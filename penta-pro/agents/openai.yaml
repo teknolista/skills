@@ -1,0 +1,4 @@
+interface:
+  display_name: "PENTA-PRO"
+  short_description: "Interview users and prepare software specifications"
+  default_prompt: "Use $penta-pro to interview me and create or update an English software specification for this project."
