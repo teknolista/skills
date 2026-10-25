@@ -1,19 +1,32 @@
 # ✨ AI Agent Skills
 
-A collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence. Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
 ## Contents
 
-- [Available skills](#available-skills)
-- [Installation and activation](#installation-and-activation)
-- [PENTA-PRO](#penta-pro)
-- [Code Review](#code-review)
-- [Project AGENTS.md template](#project-agentsmd-template)
-- [Repository structure](#repository-structure)
-- [Maintenance and new skills](#maintenance-and-new-skills)
-- [License and attribution](#license-and-attribution)
+- [✨ AI Agent Skills](#-ai-agent-skills)
+  - [Contents](#contents)
+  - [Available skills](#available-skills)
+  - [Installation and activation](#installation-and-activation)
+  - [PENTA-PRO](#penta-pro)
+    - [The five pillars](#the-five-pillars)
+    - [Example requests](#example-requests)
+    - [Output and working boundaries](#output-and-working-boundaries)
+    - [Resources](#resources)
+  - [Code Review](#code-review)
+    - [Example requests](#example-requests-1)
+    - [Findings, verdicts, and boundaries](#findings-verdicts-and-boundaries)
+    - [Independent review and models](#independent-review-and-models)
+    - [Hosted review environments](#hosted-review-environments)
+    - [Resources](#resources-1)
+  - [Project AGENTS.md template](#project-agentsmd-template)
+  - [Repository structure](#repository-structure)
+  - [Maintenance and new skills](#maintenance-and-new-skills)
+    - [Validation and improvement](#validation-and-improvement)
+    - [Adding a new skill](#adding-a-new-skill)
+  - [License and attribution](#license-and-attribution)
 
 ## Available skills
 
