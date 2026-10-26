@@ -1,6 +1,6 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
@@ -21,6 +21,11 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Independent review and models](#independent-review-and-models)
     - [Hosted review environments](#hosted-review-environments)
     - [Resources](#resources-1)
+  - [Cybersec](#cybersec)
+    - [Modes and limits](#modes-and-limits)
+    - [Example requests](#example-requests-2)
+    - [Coverage and findings](#coverage-and-findings)
+    - [Resources](#resources-2)
   - [Project AGENTS.md template](#project-agentsmd-template)
   - [Repository structure](#repository-structure)
   - [Maintenance and new skills](#maintenance-and-new-skills)
@@ -34,6 +39,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | --- | --- | --- |
 | [PENTA-PRO](#penta-pro) | 1.3.0 | Create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
 | [Code Review](#code-review) | 1.3.0 | Review backend, frontend, and Android changes with prioritized findings, concrete evidence, and explicit verification limits. |
+| [Cybersec](#cybersec) | 1.1.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 
 ## Installation and activation
 
@@ -42,13 +48,14 @@ Copy the complete directory of each desired skill into the skills location suppo
 ```text
 your-project/.agents/skills/penta-pro/SKILL.md
 your-project/.agents/skills/code-review/SKILL.md
+your-project/.agents/skills/cybersec/SKILL.md
 ```
 
 A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](docs/compatibility.md) for documented locations, capabilities, and integration limits.
 
-Both skills support automatic selection for matching tasks. In Codex, mention `$penta-pro` or `$code-review` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
+The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$code-review`, or `$cybersec` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
 
-The packages use Markdown instructions, references, and templates. Neither requires the other skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
+The packages use Markdown instructions, references, and templates. No skill requires another skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
 
 ## PENTA-PRO
 
@@ -170,6 +177,62 @@ Confirm how a managed reviewer receives instructions. Including only the body of
 
 Load the review method and applicable references. Source research and evaluation cases are maintainer resources, not required context for every review. The package is an original synthesis, not an installer or runtime wrapper around upstream skills.
 
+## Cybersec
+
+**Version:** 1.1.0 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+
+Use Cybersec for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
+
+### Modes and limits
+
+Threat modeling produces assets, trust boundaries, credible abuse cases, controls, and planned verification. Repository audits inspect the current snapshot unless a narrower target is specified; they preserve reviewed files. Secure-build/hardening mode implements only security work already authorized and verifies affected controls. Readiness mode evaluates the requested gate, including detection, containment, recovery, and risk ownership.
+
+No model or skill can predict every attack or establish invulnerability. Cybersec identifies supported vulnerabilities, credible threats, control gaps, and residual/unassessed risk. Source configuration, deployed controls, and runtime evidence are separate. Framework alignment or passing scans does not establish certification, compliance, or full release approval.
+
+Live scans, exploitation, fuzzing, credential tests, shared-system testing, production changes, and external data transfers require authorization covering the specific actions, targets, methods, environment, and limits. Existing valid authorization is reused. An audit does not itself authorize fixes, installations, deployment, or secret/IAM changes.
+
+### Example requests
+
+```text
+Use $cybersec to assess this repository's security controls and report findings and unreviewed areas. Keep the source unchanged.
+Use $cybersec to threat-model the architecture in docs/penta-pro.md, including abuse cases and verification plans.
+Use $cybersec to map this project's relevant threats to controls, tests, and gaps, including cross-component attack chains. Save the assessment to docs/security-assessment.md.
+Use $cybersec to review this desktop app's IPC, local-file access, installer, and update boundaries.
+Use $cybersec to review the Android and iOS release configuration and API trust boundaries.
+Use $cybersec to assess CI/CD, dependencies, IaC, cloud IAM, and container isolation without live scans.
+Use $cybersec to review IT identity, endpoint, network, and recovery policies; distinguish policy from operational evidence.
+Use $cybersec to implement the approved fixes for SEC-001 and SEC-002 in this local test environment, then verify them.
+Use $cybersec to re-assess the requested release-security gate and write docs/security-assessment.md.
+```
+
+### Coverage and findings
+
+Substantial reports include the selected target/snapshot, relevant baseline/versions, credible threats, evidence-backed findings, and control coverage. Each relevant area is marked Assessed, Partially assessed, Not assessed, or Not applicable with a reason. Findings distinguish impact-based priority from confidence, test results, and treatment state; a changed but unverified fix is not a resolved vulnerability. Hypotheses remain investigation items rather than confirmed defects.
+
+The coverage map connects material threats to controls, verification evidence, residual gaps, and responsible next actions. It considers attacks that combine weaknesses across components and tests whether fixes block unauthorized effects while preserving legitimate behavior. Reassess affected coverage after meaningful system or threat changes. Narrow reviews stay concise; the skill does not impose a full matrix on every change, assign an invented security score, or start continuous monitoring.
+
+The assessment can conclude `Action required`, `No blocking findings` within completed agreed coverage, or `Incomplete` when material evidence is missing. Zero findings is valid. Reports and filled templates belong in the target project or requested location; report files are written only when requested or required by the calling workflow. Without project artifacts, the output is a plan or scoped threat model rather than a fabricated audit.
+
+The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.tabnews.com.br/Silva97/bem-vindo-ao-ciberapocalipse) and accessible related material, with technical guidance checked against primary NIST, OWASP, and platform sources. Opinionated article claims are not treated as standards. See [source notes](cybersec/references/sources.md) for access limits and [third-party notices](THIRD-PARTY-NOTICES.md) for attribution.
+
+### Resources
+
+| Resource | Purpose |
+| --- | --- |
+| [Entrypoint](cybersec/SKILL.md) | Modes, authority, target scope, routing, and working loop. |
+| [Assessment method](cybersec/references/assessment-method.md) | Threat reasoning, repository baseline, evidence, severity/status, coverage, and conclusions. |
+| [Threat coverage and verification](cybersec/references/threat-coverage.md) | Traceable coverage, combined attack paths, negative/positive checks, and reassessment triggers. |
+| [Web and API](cybersec/references/web-api.md) | Browser/service trust, authorization, business logic, inputs, and data. |
+| [Desktop and native](cybersec/references/desktop-native.md) | IPC/bridges, file access, privileged helpers, distribution, updates, and native boundaries. |
+| [Mobile](cybersec/references/mobile.md) | Android/iOS release, platform, storage, network, and inter-app boundaries. |
+| [DevOps and supply chain](cybersec/references/devops-supply-chain.md) | Dependencies, CI/build/artifact trust, cloud, IaC, containers, and Kubernetes. |
+| [IT operations](cybersec/references/it-operations.md) | Assets, enterprise identities, endpoints, networks, incident readiness, and recovery. |
+| [AI and agentic systems](cybersec/references/ai-agentic.md) | Prompt/tool boundaries, retrieval/memory isolation, unsafe output, and action scope. |
+| [Assessment template](cybersec/assets/security-assessment-template.md) | Adaptable threat/control/finding/evidence report. |
+| [Source notes](cybersec/references/sources.md) | Article attribution, primary sources, adaptation decisions, and unavailable readings. |
+| [Evaluation scenarios](cybersec/evals/scenarios.md) | Discovery, platform/CI/IT risks, guard controls, authorization, evidence, and validation records. |
+| [OpenAI metadata](cybersec/agents/openai.yaml) | Optional host display metadata and invocation prompt; no model selection. |
+
 ## Project AGENTS.md template
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
@@ -184,6 +247,7 @@ Each skill lives directly under this repository's root and follows the [Agent Sk
 skills/
 ├── README.md
 ├── LICENSE
+├── THIRD-PARTY-NOTICES.md
 ├── AGENTS-template.md
 ├── docs/
 │   └── compatibility.md
@@ -193,7 +257,13 @@ skills/
 │   ├── assets/
 │   ├── evals/
 │   └── references/
-└── code-review/
+├── code-review/
+│   ├── SKILL.md
+│   ├── agents/
+│   ├── assets/
+│   ├── evals/
+│   └── references/
+└── cybersec/
     ├── SKILL.md
     ├── agents/
     ├── assets/
@@ -211,7 +281,7 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 Use each skill's evaluation cases before expanding its instructions. Compare matched tasks with and without the skill on the models and hosts actually used. Check activation, preserved decisions, invented facts, unnecessary questions, substantiated defects, false positives, material misses, coverage honesty, and unintended actions. Record actual time and usage when available, and retest after relevant model or instruction changes.
 
-Version 1.3.0 includes separately assigned specification and code-review smoke trials with their limitations recorded in the evaluation files. Shorter documents and structural checks do not prove better task performance. No cross-model accuracy, cost, or efficiency benchmark is claimed. Prefer focused corrections supported by observed failures over universal rules for isolated cases.
+Each skill's evaluation file records its actual audits/trials and limitations. Shorter documents and structural checks do not prove better task performance. No cross-model accuracy, cost, or efficiency benchmark is claimed. Prefer focused corrections supported by observed failures over universal rules for isolated cases.
 
 ### Adding a new skill
 
@@ -226,4 +296,4 @@ The repository and its skills are distributed under the single root [MIT License
 
 When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
 
-The source research for [PENTA-PRO](penta-pro/references/sources.md) and [Code Review](code-review/references/sources.md) records their inputs and adaptation decisions. Attribution does not imply affiliation, endorsement, or a runtime dependency.
+The source research for [PENTA-PRO](penta-pro/references/sources.md), [Code Review](code-review/references/sources.md), and [Cybersec](cybersec/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
