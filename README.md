@@ -10,6 +10,10 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [Contents](#contents)
   - [Available skills](#available-skills)
   - [Installation and activation](#installation-and-activation)
+  - [Agent and model compatibility](#agent-and-model-compatibility)
+    - [Native skill locations](#native-skill-locations)
+    - [Required capabilities](#required-capabilities)
+    - [Model selection and validation](#model-selection-and-validation)
   - [PENTA-PRO](#penta-pro)
     - [The five pillars](#the-five-pillars)
     - [Example requests](#example-requests)
@@ -51,11 +55,52 @@ your-project/.agents/skills/code-review/SKILL.md
 your-project/.agents/skills/cybersec/SKILL.md
 ```
 
-A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](docs/compatibility.md) for documented locations, capabilities, and integration limits.
+A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](#agent-and-model-compatibility) for documented locations, capabilities, and integration limits.
 
 The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$code-review`, or `$cybersec` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
 
 The packages use Markdown instructions, references, and templates. No skill requires another skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
+
+## Agent and model compatibility
+
+Official host documentation checked on 2026-10-25. These packages use the Agent Skills format: Markdown instructions, relative references/assets, and optional OpenAI UI metadata. Native format support, execution access, and measured task quality are separate claims.
+
+### Native skill locations
+
+Copy the complete skill directory, retaining its internal paths. Use the location supported by the actual host and execution environment; installing locally does not install into every cloud agent.
+
+| Host | Documented project locations | Documented user locations | Official guidance |
+| --- | --- | --- | --- |
+| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` | [Build skills](https://learn.chatgpt.com/docs/build-skills) |
+| Claude Code | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` | [Extend Claude with skills](https://code.claude.com/docs/en/skills) |
+| Gemini CLI | `.gemini/skills/<name>/` or `.agents/skills/<name>/` | `~/.gemini/skills/<name>/` or `~/.agents/skills/<name>/` | [Agent skills](https://geminicli.com/docs/cli/skills/) |
+| GitHub Copilot | `.github/skills/<name>/`, `.claude/skills/<name>/`, or `.agents/skills/<name>/` | `~/.copilot/skills/<name>/` or `~/.agents/skills/<name>/` | [Create agent skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills) |
+| Cursor | `.agents/skills/<name>/` or `.cursor/skills/<name>/` | `~/.agents/skills/<name>/` or `~/.cursor/skills/<name>/` | [Agent Skills](https://cursor.com/docs/skills) |
+
+Invocation and consent differ by host. For example, Codex documents `$name`, Claude Code and Cursor support `/name`, and Gemini CLI exposes skill discovery/activation controls. Confirm discovery using the host's skill list or explicit invocation. Avoid installing duplicate copies with the same name just to cover several paths.
+
+### Required capabilities
+
+| Task | Necessary access | If unavailable |
+| --- | --- | --- |
+| PENTA-PRO creation/update | User intent, relevant existing context, package assets, and a writable requested destination | Ask only consequential missing questions; retain proposals and blockers. If writing is unavailable, return the draft and disclose that it was not saved. |
+| PENTA-PRO review | The actual specification and relevant authoritative context | Report missing material rather than treating an absent document as ready. |
+| Code inspection | Actual selected source/snapshot, relevant requirements/contracts, and applicable references | Report material missing coverage; do not infer a clean review from a description alone. |
+| Cybersec assessment | Authorized target/snapshot, relevant security requirements, applicable domain references, and evidence of the controls being claimed | Separate source/configuration from deployed/runtime evidence; mark inaccessible areas and avoid security or compliance guarantees. |
+| Executed verification | The project's actual tools and isolated data/environment | Label unexecuted checks and distinguish static conclusions from runtime evidence. |
+| Independent review | A separate reviewer/session with actual source access | Disclose self-review or prepare a factual handoff; do not claim independence from a model label. |
+
+Git, shell execution, browsers, Android SDKs, credentials, connectors, and additional agents are not supplied by installing a skill. Git is useful for comparisons, but an explicitly selected source snapshot can be reviewed without it. The skills can be used independently. Cybersec live testing and remediation require actual target/action authorization; capability does not imply permission.
+
+Managed review services may load only instruction text. See [Hosted review environments](#hosted-review-environments) for supporting-file and execution limits.
+
+### Model selection and validation
+
+The workflows have no hard-coded model, reasoning setting, vendor tool name, or mandatory orchestration mechanism. `agents/openai.yaml` in these packages contains display metadata and a default prompt; it does not select a model. Hosts may offer their own model overrides. Use those controls deliberately rather than adding a vendor-specific override to the portable core.
+
+Choose a currently available model with sufficient reasoning, domain competence, context capacity, and reliable tool use for the task. Escalate difficult requirements or review risks when evidence warrants it. The documented [OpenAI model options](https://learn.chatgpt.com/docs/models) include the repository's example implementation/review pairing; availability and suitability depend on the host/account and observed results. A model name is not a quality gate.
+
+After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [code-review cases](code-review/evals/scenarios.md), and [cybersec cases](cybersec/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
 
 ## PENTA-PRO
 
@@ -156,7 +201,7 @@ For example, use `gpt-6.1-sol` for implementation and `gpt-6-astra` for review w
 
 ### Hosted review environments
 
-Confirm how a managed reviewer receives instructions. Including only the body of `SKILL.md` does not transfer supporting references or execution capabilities. Claude's managed Code Review can include skill text through its review policy but does not load supporting files. Supply needed guidance through that service's supported configuration and qualify coverage when material resources are unavailable.
+Confirm how a managed reviewer receives instructions. Including only the body of `SKILL.md` does not transfer supporting references or execution capabilities. Claude's [managed Code Review customization](https://code.claude.com/docs/en/code-review-customize) can include skill text through its review policy but does not load supporting files. This differs from a local Claude Code session loading the complete directory. Supply needed guidance through that service's supported configuration and qualify coverage when references or execution are unavailable.
 
 ### Resources
 
@@ -249,8 +294,6 @@ skills/
 ├── LICENSE
 ├── THIRD-PARTY-NOTICES.md
 ├── AGENTS-template.md
-├── docs/
-│   └── compatibility.md
 ├── penta-pro/
 │   ├── SKILL.md
 │   ├── agents/
