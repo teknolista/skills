@@ -10,7 +10,19 @@ Start with an open question when the underlying need is unclear. For a bounded c
 
 Prioritize questions that change the next increment's value, scope, design, or checks. Ask a foundational decision alone when later questions depend on it; otherwise batch a few independent questions. Recompute what is answerable after each round. Investigate accessible facts yourself; ask the user for preferences, priorities, and consequential decisions that remain theirs.
 
+For each question, state what depends on the answer and use a concrete scenario where it helps the user decide. Offer a supported recommendation for a real choice. When the issue is an unknown fact, ask for its source, a representative example, or a way to verify it. If an answer is unavailable, complete independent drafting and record which increment or gate the gap affects.
+
 Turn vague qualities into examples: “scalable” needs a workload or growth scenario; “simple” needs a task the user should complete easily. Identify unacceptable outcomes even when the software technically works. Test important rules with a representative journey and a failure or boundary case, without manufacturing numeric targets.
+
+## Build evidence before filling gaps
+
+Read the relevant project notes, existing contracts, code/configuration, and recorded decisions before interviewing. Attribute each material claim to its source and revision/date. Separate what is observed, what a stakeholder believes, and what the agent derives. When sources disagree, identify the conflict and decision owner rather than silently treating the newest text as authoritative.
+
+Establish who experiences the problem, their task and context, current workaround, and the evidence that this is worth changing. Ask for research only when it affects a real decision; absence of research is a hypothesis to validate, not permission to fabricate participants or findings. For proposed metrics, clarify population, definition, source, baseline availability, evaluation window, guardrails, and who will act on the result. Manual observations can be sufficient; analytics infrastructure is not a default.
+
+Draft routine structure, requirement-derived checks, and supported facts automatically. Propose viable technical choices with rationale or make them within explicit delegation. Ask the user about missing product priorities, business rules, risk acceptance, commitments, and other consequential choices outside that authority. A proposed target stays proposed until settled; an accepted assumption still needs validation if its truth affects the outcome.
+
+Screen applicable software profiles early enough to reveal constraints such as offline synchronization, consumer compatibility, data lineage, nondeterministic model behavior, hardware deadlines, or safety. Ask about the consequential constraint before selecting a solution. Unknown applicability is not a reason to mark the concern irrelevant.
 
 ## Explore only when alternatives matter
 
@@ -27,3 +39,5 @@ Reflect consequential conclusions in plain language, keeping user answers separa
 If the user is unavailable, use existing delegation for routine choices, retain consequential unresolved questions as blockers, and complete independent specification work. Return a resumable draft rather than inventing answers or waiting indefinitely.
 
 Read the specification as an implementer without the conversation. Identify only guesses whose wrong answer would materially change the outcome or plan. Resolve accessible facts, leave routine choices within delegated authority, and surface the remaining consequential questions with their impact. No separate reviewer or external skill is required.
+
+Check that objectives and hypotheses lead to requirements, acceptance criteria, feasible checks, and a way to evaluate the intended outcome. Reconcile contradictions, missing authoritative links, unexplained deferrals, and stale evidence. Save coverage choices and remaining questions so another session can resume without repeating the interview or treating a draft as accepted.

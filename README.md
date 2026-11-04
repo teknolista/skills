@@ -41,7 +41,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PENTA-PRO](#penta-pro) | 1.3.0 | Create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
+| [PENTA-PRO](#penta-pro) | 1.5.0 | Create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
 | [Code Review](#code-review) | 1.3.0 | Review backend, frontend, and Android changes with prioritized findings, concrete evidence, and explicit verification limits. |
 | [Cybersec](#cybersec) | 1.1.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 
@@ -104,7 +104,7 @@ After changing host, model, or significant instructions, run the relevant [PENTA
 
 ## PENTA-PRO
 
-**Version:** 1.3.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 1.5.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PENTA-PRO when defining a product, specifying a substantial feature, maintaining an existing PENTA-PRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -119,6 +119,8 @@ Use PENTA-PRO when defining a product, specifying a substantial feature, maintai
 | PRODUCTION | Installation, environments, updates, migration, support, monitoring, and recovery. |
 
 The pillars organize the specification; they are not sequential development phases. Resolve enough detail for the next useful increment and refine later work as evidence emerges.
+
+The template connects product strategy and stopping criteria to discovery evidence, outcomes, requirements, contracts, verification, and post-release learning. It includes a consolidated identifier and status model, increment readiness, decision and uncertainty records, privacy and accessibility considerations, delivery dependencies, documentation, launch and support readiness, and operational recovery evidence. Conditional profiles cover services, installed/offline apps, CLI tools, infrastructure, libraries, data/scientific workloads, AI features, embedded systems, interactive media, and commercial launch. Combine profiles for hybrid products; they are not an exhaustive taxonomy.
 
 ### Example requests
 
@@ -135,6 +137,8 @@ The normal destination is `docs/penta-pro.md` in the target project, unless the 
 
 The skill distinguishes confirmed information, proposals, and pending decisions. Routine decisions made within explicit delegation are attributed to the agent and can be settled for readiness without being presented as user requirements or document acceptance. When the user is unavailable, retain consequential blockers and complete independent specification work. If saving is unavailable, return an explicitly unsaved draft.
 
+PENTA-PRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from the main document. The skill loads specialized forms and examples as needed.
+
 Critical product rules should have concrete input/output examples independent of the implementation. Planned checks remain `Unverified` until executed. Specification readiness, document acceptance, implementation verification, and release acceptance are separate states. Creating or updating a specification does not itself authorize implementation or release; existing authorization remains valid.
 
 The workflow is model-neutral. Use a host that can load the complete skill folder and relevant project context. Disclose missing capabilities rather than inventing answers or verification results. Package compatibility does not establish identical quality across models.
@@ -146,11 +150,15 @@ The workflow is model-neutral. Use a host that can load the complete skill folde
 | [Entrypoint](penta-pro/SKILL.md) | Scope, interview workflow, document maintenance, readiness, and handoff. |
 | [Specification template](penta-pro/assets/penta-pro-template.md) | Reusable five-pillar document structure and field guidance. |
 | [Focused discovery](penta-pro/references/discovery.md) | Conditional techniques for unclear intent, dependent questions, alternatives, and consequential missing information. |
+| [Software profiles](penta-pro/references/software-profiles.md) | Coverage prompts for software types and cross-cutting concerns, including accessibility, privacy, and impacts on people and the environment. |
+| [Specification patterns](penta-pro/references/specification-patterns.md) | Conditional forms for data, interfaces, decisions, threats, evidence, and runbooks. |
+| [Worked example](penta-pro/references/worked-example.md) | Fictional example of linked requirements and planned evidence, with explicit uncertainty. |
+| [Analyst review assessment](penta-pro/references/analyst-review-assessment.md) | Assessment of the supplied reviews, adopted improvements, and recommendations adapted or not adopted. |
 | [Source notes](penta-pro/references/sources.md) | Brainstorming research, inspected revisions, exclusions, and adaptation decisions. |
 | [Evaluation scenarios](penta-pro/evals/scenarios.md) | Discovery, interview, update, delegation, and scope cases, with validation records. |
 | [OpenAI metadata](penta-pro/agents/openai.yaml) | Optional Codex display metadata and example invocation. |
 
-Load the template for creation or structural gaps, and discovery guidance when needed. Source notes and evaluation cases are maintainer resources rather than routine interview context.
+Load the template for creation. For updates and reviews, consult relevant sections for structural gaps or readiness. Screen profiles for new specifications or material scope changes and read detailed patterns as needed. Source notes, the analyst assessment, and evaluation cases are maintainer resources.
 
 ## Code Review
 
