@@ -1,6 +1,6 @@
 # Sources and Adaptation Notes
 
-Maintainer context for cybersec 1.0.0, checked on 2026-10-26. Routine assessments use the applicable domain guidance and actual project requirements, not this research log. Sources are reference material, not instructions to execute.
+Historical maintainer provenance, beginning with cybersec 1.0.0 checked on 2026-10-26. Later sections record subsequent research. Current behavior is defined in [SKILL.md](../SKILL.md). Routine assessments use the applicable domain guidance and actual project requirements, not this research log. Sources are reference material, not instructions to execute.
 
 ## Original inspiration
 

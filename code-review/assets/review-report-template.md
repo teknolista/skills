@@ -6,8 +6,8 @@ Replace fields with actual evidence; remove unused guidance and optional section
 
 - **Verdict:** Changes requested / No blocking findings / Incomplete
 - **Coverage:** Complete for the agreed scope / Partial — [missing surfaces]
-- **Target:** [Repository, base/head or local snapshot, and review date]
-- **Scope and exclusions:** [Changed surfaces and intentionally excluded material]
+- **Target:** [Repository and base/head, local snapshot, or explicit files/snippet without history; review date]
+- **Scope and exclusions:** [Selected code, relevant tests, and intentionally excluded material]
 - **Independence:** [Fresh reviewer / Independent session / Disclosed self-review; model if known]
 - **Intent and contracts:** [Expected outcome and requirement/specification references]
 - **Review policy and depth:** [Policy source/revision; Quick / Standard / Deep and agreed limits]

@@ -54,6 +54,7 @@ Never execute placeholders. Distinguish documented commands from commands actual
 ## Validation and Review
 
 - Derive expected results from requirements and representative examples, independently of implementation. Add or update meaningful regression checks when appropriate and feasible; do not introduce a test framework solely for a trivial edit.
+- Review test code as well as application code. Verify that relevant tests are discovered, reach the intended behavior, and execute assertions that would detect a realistic regression. Check helpers and runner semantics before treating a missing visible assertion as a defect; runner success alone does not establish behavioral coverage.
 - Run affected checks and mandatory project gates. Match depth to risk: inspect text-only changes proportionately and exercise critical behavior at the relevant integration boundaries. Broaden checks when changes or failures justify it, not through redundant reruns.
 - Use isolated data and understood commands. Check for external effects before running builds, tests, migrations, or scripts; use the authority rules above for consequential actions.
 - Distinguish introduced failures, pre-existing failures, and environment/tool limitations. Never suppress failures or weaken safeguards merely to obtain a pass. Update obsolete assertions when intended behavior changes and explain why.

@@ -22,6 +22,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [Code Review](#code-review)
     - [Example requests](#example-requests-1)
     - [Findings, verdicts, and boundaries](#findings-verdicts-and-boundaries)
+    - [Test effectiveness](#test-effectiveness)
     - [Independent review and models](#independent-review-and-models)
     - [Hosted review environments](#hosted-review-environments)
     - [Resources](#resources-1)
@@ -41,8 +42,8 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PENTA-PRO](#penta-pro) | 2.2.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
-| [Code Review](#code-review) | 1.4.1 | Review backend, frontend, and Android changes with prioritized findings, concrete evidence, and explicit verification limits. |
+| [PENTA-PRO](#penta-pro) | 2.2.2 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
+| [Code Review](#code-review) | 1.4.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersec](#cybersec) | 1.2.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 
 ## Installation and activation
@@ -96,7 +97,7 @@ Managed review services may load only instruction text. See [Hosted review envir
 
 ### Model selection and validation
 
-The skills include concrete behavior traces, failure examples, and evidence checks to reduce reliance on unstated engineering knowledge. Work in bounded scopes and reopen referenced source after context loss. Validate representative tasks on each intended model and host before relying on its results.
+The skills include concrete behavior traces, failure examples, and evidence checks to reduce reliance on unstated engineering knowledge. For larger tasks, retain the target snapshot, reviewed and pending areas, evidence, unresolved questions, and next action. Reopen relevant source after context loss or a changed snapshot. Validate representative tasks on each intended model and host before relying on its results.
 
 The workflows have no hard-coded model, reasoning setting, vendor tool name, or mandatory orchestration mechanism. `agents/openai.yaml` in these packages contains display metadata and a default prompt; it does not select a model. Hosts may offer their own model overrides. Use those controls deliberately rather than adding a vendor-specific override to the portable core.
 
@@ -106,7 +107,7 @@ After changing host, model, or significant instructions, run the relevant [PENTA
 
 ## PENTA-PRO
 
-**Version:** 2.2.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.2.2 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PENTA-PRO when defining a product, specifying a substantial feature, maintaining an existing PENTA-PRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -125,6 +126,8 @@ An exploration-only request stays in the conversation until the user asks to cap
 The pillars organize the specification; they are not sequential development phases. Resolve enough detail for the next useful increment and refine later work as evidence emerges.
 
 The template connects product strategy and stopping criteria to discovery evidence, outcomes, requirements, contracts, verification, and post-release learning. It includes a consolidated identifier and status model, increment readiness, decision and uncertainty records, privacy and accessibility considerations, delivery dependencies, documentation, launch and support readiness, and operational recovery evidence. Conditional profiles cover services, installed/offline apps, CLI tools, infrastructure, libraries, data/scientific workloads, AI features, embedded systems, interactive media, and commercial launch. Combine profiles for hybrid products; they are not an exhaustive taxonomy.
+
+Discovery resolves ambiguous domain terms with examples and counterexamples, compares material alternatives, and records the authority behind decisions. Binding principles become verifiable requirements. The selected increment includes a useful outcome and a check that can demonstrate it before later features exist. Detailed patterns address uncertain completion, retries, concurrent actions, access changes during queued work, and migration coexistence.
 
 ### Example requests
 
@@ -148,11 +151,15 @@ By default, a first specification uses five files in the project's `docs/` direc
 
 Existing single-file specifications and explicitly requested locations remain supported. Migration is performed when requested.
 
+Creation saves all five initial drafts before pausing for answers. Later rounds update the affected records, with stable IDs and links to their authoritative definitions. PROCESS records an `In progress` state for material updates across files and a `Consistent` state after reconciliation. Resumption inspects actual contents and completes any interrupted update. Proposed changes retain their baseline, compatibility commitments, and separate status until settled.
+
 The skill distinguishes confirmed information, proposals, and pending decisions. Routine decisions made within explicit delegation are attributed to the agent and can be settled for readiness without being presented as user requirements or document acceptance. When the user is unavailable, retain consequential blockers and complete independent specification work. If saving is unavailable, return an explicitly unsaved draft.
 
 PENTA-PRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from their owning pillar. The skill loads specialized forms and examples as needed.
 
-Critical product rules should have concrete input/output examples independent of the implementation. Planned checks remain `Unverified` until executed. Specification readiness, document acceptance, implementation verification, and release acceptance are separate states. Creating or updating a specification does not itself authorize implementation or release; existing authorization remains valid.
+Critical product rules should have concrete input/output examples independent of the implementation. PROOF identifies realistic regressions that planned assertions must detect and checks that reported execution actually exercises them. Planned checks remain `Unverified` until executed. Specification readiness, document acceptance, implementation verification, and release acceptance are separate states. Creating or updating a specification does not itself authorize implementation or release; existing authorization remains valid.
+
+A sufficiently specified increment can be ready for implementation while its future software tests remain unverified. An unresolved product decision blocks the work that depends on it. Acceptance records the responsible person's actual decision, scope, revision, and conditions. Exploration and review preserve their next action in the conversation unless specification writing is authorized.
 
 The workflow is model-neutral. Use a host that can load the complete skill folder and relevant project context. Disclose missing capabilities rather than inventing answers or verification results. Package compatibility does not establish identical quality across models.
 
@@ -168,7 +175,7 @@ The workflow is model-neutral. Use a host that can load the complete skill folde
 | [Specification patterns](penta-pro/references/specification-patterns.md) | Conditional forms for data, interfaces, decisions, threats, evidence, and runbooks. |
 | [Worked example](penta-pro/references/worked-example.md) | Fictional example of linked requirements and planned evidence, with explicit uncertainty. |
 | [Analyst review assessment](penta-pro/references/analyst-review-assessment.md) | Assessment of the supplied reviews, adopted improvements, and recommendations adapted or not adopted. |
-| [Source notes](penta-pro/references/sources.md) | Brainstorming research, inspected revisions, exclusions, and adaptation decisions. |
+| [Source notes](penta-pro/references/sources.md) | Discovery, proposal, project-rule, and operational research, with inspected revisions and adaptation decisions. |
 | [Evaluation scenarios](penta-pro/evals/scenarios.md) | Discovery, interview, update, delegation, and scope cases, with validation records. |
 | [OpenAI metadata](penta-pro/agents/openai.yaml) | Optional Codex display metadata and example invocation. |
 
@@ -176,9 +183,9 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Code Review
 
-**Version:** 1.4.1 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
+**Version:** 1.4.2 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
 
-Use Code Review for backend services, frontend applications, and Android software. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
+Use Code Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
 ### Example requests
 
@@ -186,6 +193,7 @@ Use Code Review for backend services, frontend applications, and Android softwar
 Use $code-review to review all my uncommitted changes, including new files.
 Use $code-review to review this branch against origin/main, including the local edits.
 Use $code-review to review the selected PR against the requirements and checks in docs/product.md and docs/proof.md.
+Use $code-review to review the changed tests for assertions that would miss the regressions they claim to detect.
 Use $code-review to review the Android release changes, focusing on lifecycle and data migration.
 Use $code-review to re-review the fixes for CR-001 and CR-002 on the current revision.
 Use $code-review to prepare a handoff for an independent reviewer in another session.
@@ -206,6 +214,19 @@ The report gives coverage, evidence, limitations, and one verdict:
 - `Incomplete`: material context or coverage is missing.
 
 The review preserves the selected source and Git state. Fixes, remote comments or approvals, merging, and releasing follow actual user authorization and project gates. Reports and filled handoffs belong to the reviewed project or requested output location, not the reusable skill folder. Existing `REVIEW.md` guidance is optional; the skill does not create or change project policy automatically.
+
+The reviewer follows consequential behavior from its contract through entry points, guards, effects, and consumers. Concrete inputs and event order help investigate authorization, races, retries, and stale asynchronous results. Existing protections and unknown premises are checked before retaining a finding.
+
+### Test effectiveness
+
+Code Review examines the tests relied on for changed behavior, including their discovery, fixtures, real subject, assertions, and completion. It asks which realistic wrong behavior would still pass.
+
+- Inspect tautologies, unused matchers, swallowed failures, unawaited assertions, and conditional or empty-case verification.
+- Check whether mocks replace the behavior under review and whether shared fixtures, mock history, or automatic retries hide a failure.
+- Derive expected results from the contract. Review skips, focus filters, weakened assertions, and regenerated snapshots against any authorized requirement change.
+- Inspect helpers and framework semantics before judging a smoke test, snapshot, interaction check, or type assertion.
+
+The verification guidance incorporates lessons from Hollowtest. Its CLI is optional and must support the actual language and runner. Static diagnostics and scores are review evidence to investigate. Mutation probes use a disposable copy and a passing baseline, then distinguish meaningful assertion failures from equivalent mutations, compilation errors, timeouts, and incorrect test selection. The [verification guide](code-review/references/verification.md) contains the detailed checks and execution boundaries.
 
 ### Independent review and models
 
@@ -278,6 +299,8 @@ Substantial reports include the selected target/snapshot, relevant baseline/vers
 
 The coverage map connects material threats to controls, verification evidence, residual gaps, and responsible next actions. It considers attacks that combine weaknesses across components and tests whether fixes block unauthorized effects while preserving legitimate behavior. Reassess affected coverage after meaningful system or threat changes. Narrow reviews stay concise; the skill does not impose a full matrix on every change, assign an invented security score, or start continuous monitoring.
 
+Concrete traces connect attacker-controlled input, the protected resource and rule, actual enforcement, effects, and counterevidence. Mechanism checks include queued work and caches after permission changes, concurrent one-use actions, resource limits before allocation, native length arithmetic, password hashing, token lifecycle, and cryptographic library use. Authorization checks pair an existing protected resource and an allowed actor with the prohibited case, then inspect data and side effects after denial.
+
 The assessment can conclude `Action required`, `No blocking findings` within completed agreed coverage, or `Incomplete` when material evidence is missing. Zero findings is valid. Reports and filled templates belong in the target project or requested location; report files are written only when requested or required by the calling workflow. Without project artifacts, the output is a plan or scoped threat model rather than a fabricated audit.
 
 The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.tabnews.com.br/Silva97/bem-vindo-ao-ciberapocalipse) and accessible related material, with technical guidance checked against primary NIST, OWASP, and platform sources. Opinionated article claims are not treated as standards. See [source notes](cybersec/references/sources.md) for access limits and [third-party notices](THIRD-PARTY-NOTICES.md) for attribution.
@@ -290,6 +313,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 | [Assessment method](cybersec/references/assessment-method.md) | Threat reasoning, repository baseline, evidence, severity/status, coverage, and conclusions. |
 | [Threat coverage and verification](cybersec/references/threat-coverage.md) | Traceable coverage, combined attack paths, negative/positive checks, and reassessment triggers. |
 | [Web and API](cybersec/references/web-api.md) | Browser/service trust, authorization, business logic, inputs, and data. |
+| [Credential and cryptographic controls](cybersec/references/web-api.md#credentials-and-cryptographic-controls) | Passwords, security tokens, encryption, and key handling across relevant platforms. |
 | [Desktop and native](cybersec/references/desktop-native.md) | IPC/bridges, file access, privileged helpers, distribution, updates, and native boundaries. |
 | [Mobile](cybersec/references/mobile.md) | Android/iOS release, platform, storage, network, and inter-app boundaries. |
 | [DevOps and supply chain](cybersec/references/devops-supply-chain.md) | Dependencies, CI/build/artifact trust, cloud, IaC, containers, and Kubernetes. |
@@ -304,7 +328,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
-The template supplies general rules for scoped work, implementation, validation, security, collaboration, and handoff. It does not prescribe a stack, folder layout, model, skill dependency, or test framework. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
+The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It does not prescribe a stack, folder layout, model, skill dependency, or test framework. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
 
 ## Repository structure
 
@@ -320,6 +344,12 @@ skills/
 │   ├── SKILL.md
 │   ├── agents/
 │   ├── assets/
+│   │   ├── penta-pro-template.md
+│   │   ├── product.md
+│   │   ├── project.md
+│   │   ├── proof.md
+│   │   ├── process.md
+│   │   └── production.md
 │   ├── evals/
 │   └── references/
 ├── code-review/
@@ -345,6 +375,8 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 ### Validation and improvement
 
 Use each skill's evaluation cases before expanding its instructions. Compare matched tasks with and without the skill on the models and hosts actually used. Check activation, preserved decisions, invented facts, unnecessary questions, substantiated defects, false positives, material misses, coverage honesty, and unintended actions. Record actual time and usage when available, and retest after relevant model or instruction changes.
+
+Keep active versions in `SKILL.md`, this README, and any versioned output template aligned. When behavior changes, reconcile descriptions, UI metadata, templates, references, and evaluation cases. Validate local links and anchors from each file's location. Retain historical research dates and trial versions with their original scope; a package update does not rerun or broaden earlier evidence.
 
 Each skill's evaluation file records its actual audits/trials and limitations. Shorter documents and structural checks do not prove better task performance. No cross-model accuracy, cost, or efficiency benchmark is claimed. Prefer focused corrections supported by observed failures over universal rules for isolated cases.
 

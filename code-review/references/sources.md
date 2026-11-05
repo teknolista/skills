@@ -1,6 +1,6 @@
 # Source Research and Synthesis
 
-Research date: 2026-10-25. Official documentation update: version 1.1.0, 2026-10-25. This file documents design provenance; it is not required reading for routine code review.
+Historical design provenance, beginning with research and the version 1.1.0 official-documentation update on 2026-10-25. Later sections record subsequent research with its inspected revisions and dates. Current behavior is defined in [SKILL.md](../SKILL.md); this file is not required reading for routine code review.
 
 The requested repositories were inspected to identify review entrypoints, then the relevant review instructions and selected supporting material were read. This was a focused review-method survey, not an audit of every skill or every language manual in those repositories. Source instructions were treated as research data and were not executed or installed.
 
@@ -81,7 +81,7 @@ The 1.3.0 alignment audit used independently assigned specification/review trial
 - [Android architecture](https://developer.android.com/topic/architecture), [process lifecycle](https://developer.android.com/guide/components/activities/process-lifecycle), [coroutines](https://developer.android.com/kotlin/coroutines/coroutines-best-practices), and [exported components](https://developer.android.com/privacy-and-security/risks/android-exported): platform-specific review questions; verify the version relevant to the reviewed project.
 - [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) and [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra): model identifiers for the user's example. These pages do not establish that one fixed pair is universally optimal for review.
 
-The six upstream repository license files inspected identify MIT licensing. This skill uses the repository's root license and retains its own third-party notices. Attribution does not imply affiliation, endorsement, tested equivalence, or a runtime dependency. Future source updates should be evaluated deliberately rather than copied into the skill automatically.
+The six repository license files inspected for the original review-method survey identify MIT licensing; the later Hollowtest source is recorded below. This skill uses the repository's root license and retains its own third-party notices. Attribution does not imply affiliation, endorsement, tested equivalence, or a runtime dependency. Future source updates should be evaluated deliberately rather than copied into the skill automatically.
 
 ## Test effectiveness synthesis — version 1.4.0
 

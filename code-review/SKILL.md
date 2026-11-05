@@ -1,9 +1,9 @@
 ---
 name: code-review
-description: "Reviews code changes, pull requests, commit ranges, and selected files for substantiated defects. Use for backend, frontend, or Android code review, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
+description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for backend, frontend, Android, or test-code review, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.4.1"
+  version: "1.4.2"
 ---
 
 # Code Review

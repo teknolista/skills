@@ -1,8 +1,10 @@
 # Maintainer Evaluation Scenarios
 
+Cases evolve with the current package. Historical validation records apply only to their stated revision, fixtures, and executed scope; new or revised cases are not retroactively covered by those runs.
+
 Use these cases to test a revision of the skill with a fresh reviewer in a disposable workspace. Keep the expected outcomes hidden from the reviewer. Give it the user request, repository content, and skill only. Record the reviewer/model, reviewed snapshot, actual findings, misses, false positives, side effects, time, and cost. Passing document validation alone does not establish review accuracy.
 
-**Contents:** [Cases 1–6: defect calibration](#1-backend-authorization-regression) · [Cases 7–9: scope, evidence, independence](#7-scope-and-clean-state) · [Cases 10–13: policy and host behavior](#10-policy-changed-by-the-reviewed-patch) · [Cases 14–16: discovery and context use](#14-discovery-boundaries) · [Case 17: source without history](#17-current-state-source-without-git) · [Validation records](#validation-records)
+**Contents:** [Cases 1–6: defect calibration](#1-backend-authorization-regression) · [Cases 7–9: scope, evidence, independence](#7-scope-and-clean-state) · [Cases 10–13: policy and host behavior](#10-policy-changed-by-the-reviewed-patch) · [Cases 14–16: discovery and context use](#14-discovery-boundaries) · [Case 17: source without history](#17-current-state-source-without-git) · [Additional behavior cases](#additional-cases-for-version-140) · [Test effectiveness](#test-effectiveness-cases) · [Validation records](#validation-records)
 
 For authoring changes, first test selection with descriptions alone, then run tasks with the full selected package. Compare matched runs with and without the skill; repeat on the models/hosts actually used by the project. Use the same inputs and tool access, and compare actionable results rather than exact phrasing. Measure usage only when the host exposes it. Do not infer token, latency, or accuracy gains from shorter Markdown.
 
@@ -98,7 +100,7 @@ For authoring changes, first test selection with descriptions alone, then run ta
 
 ## 14. Discovery boundaries
 
-**Requests:** Positive: “Review this PR for defects”; “Re-review CR-003 after the Android fix”; “Give an independent second opinion on this backend patch.” Negative: “Implement a login form”; “Review our product specification”; “Explain what code review means.”
+**Requests:** Positive: “Review these tests for assertions that miss regressions”; “Review this PR for defects”; “Re-review CR-003 after the Android fix”; “Give an independent second opinion on this backend patch.” Negative: “Implement a login form”; “Review our product specification”; “Explain what code review means.”
 
 **Expected:** Select code-review for actual code-review work, not specification review, conceptual explanation, or ordinary implementation. An explicit request to implement and then review should retain both tasks rather than silently replacing implementation with a read-only review.
 
@@ -177,3 +179,7 @@ On 2026-11-05, a local Python experiment checked weak versus exact results, catc
 ### Version 1.4.1
 
 The final pass added shared fixture state and automatic retry to test-effectiveness review. A local Python mock experiment showed that a previous call could mask a missing notification, while isolated history and argument checks exposed it and accepted the correct invocation. Structural validation covers the final package. This experiment tests the failure mechanism and supplies no new model-performance measurement.
+
+### Version 1.4.2
+
+On 2026-11-05, repository synchronization made test-effectiveness review explicit in discovery/UI metadata and the handoff, aligned the report target with supported source-without-history reviews, and updated evaluation navigation. Frontmatter, local links and anchors, table structure, UI metadata, and active versions were checked. The added test-review discovery request is an authored case; metadata validation does not establish model selection accuracy, and no new autonomous trial was run.

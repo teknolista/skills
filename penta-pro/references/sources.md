@@ -1,6 +1,6 @@
 # PENTA-PRO Research Notes
 
-Maintainer provenance for version 1.2.0, inspected on 2026-10-25. These notes are not routine interview context. Upstream instructions were analyzed as source material, not executed as project authority. The synthesis uses original wording and bundles no upstream scripts or templates.
+Historical maintainer provenance, beginning with version 1.2.0 inspected on 2026-10-25. Later sections record subsequent research with its inspected revisions and dates. Current behavior is defined in [SKILL.md](../SKILL.md); these notes are not routine interview context. Upstream instructions were analyzed as source material, not executed as project authority. The synthesis uses original wording and bundles no upstream scripts or templates.
 
 ## Sources used
 

@@ -1,5 +1,7 @@
 # Maintainer Evaluation Scenarios
 
+Cases evolve with the current package. Historical validation records apply only to their stated revision, fixtures, and executed scope; new or revised cases are not retroactively covered by those runs.
+
 These are test cases, not interview context. Give a fresh agent only the request, skill, and raw project artifacts; keep the expected outcomes hidden. Use a disposable project, not the reusable asset, for generated specifications.
 
 ## Test procedure
@@ -47,13 +49,14 @@ Run representative cases with and without the skill on the same artifacts and av
 | Release versus launch readiness | A build is deployable, but user documentation, support staffing, and public communication are incomplete. | Keep release authorization separate from launch authorization. Record the deployable artifact and the missing launch evidence without treating either gate as passed. |
 | Documentation as a product deliverable | A public library specification includes API docs but no verification that examples or supported versions work. | Require documentation examples, version coverage, ownership, and a check against the released artifact. Keep unpublished or untested docs distinct from verified docs. |
 | Advanced checks follow risk | A critical billing calculation has only two example cases while a trivial UI label change gets the same review. | Recommend or adopt property-based tests, fuzzing, or fault injection only where the consequence justifies the investment, and record the choice. Do not mandate an advanced technique for every feature or dismiss it for every critical one. |
-| Escaped-defect follow-through | A defect found in production has a fix merged and its ticket closed, but no root-cause note or specification/check update. | Record affected requirement and check references, detection stage, root-cause category, prevention action, and the new or updated regression check with an owner. Do not treat ticket closure as complete follow-through, and do not invent a root cause. |
+| Escaped-defect follow-through | A defect found in production has a fix merged and its ticket closed, but no root-cause note or specification/check update. | Record affected requirement and check references, detection stage, supported causal findings or explicit uncertainty, and an owned prevention or investigation action. Link the new or updated regression check. Do not treat ticket closure as complete follow-through or invent a root cause. |
 | Review with unknown coverage | An accepted vendor artifact is referenced but unavailable. The current increment requires only a different contract. The release depends on the unavailable artifact. | Mark coverage Pending, identify its owner and affected release gate, and continue work supported by the available contract. Assess increment readiness separately from actual implementation authorization. |
 | Variable outcomes and affected non-users | A future pilot scores photo quality. Low scores could delay payments to contractors who do not use the app. | Identify the affected group and material impact, propose representative evaluation and recourse, and keep unknown thresholds, owner decisions, and proof explicit. Limit pilot-specific blockers to the work that depends on them. |
 | Consequential cutover | A replacement service needs an irreversible migration; the only evidence is a rollback plan for application binaries. | Define a representative rehearsal, reconciliation criteria, point of no return and viable recovery, with evidence needed for the cutover gate. Keep unexecuted exercises Unverified. |
 | Existing library and structural constraints | Specify a compatible parser update to a C library. The consumer mandates C99 and no dynamic allocation. Source code and target hardware are unavailable. | Retain justified technical constraints with inspection checks, define legacy and new input cases and error behavior, and record unavailable baseline evidence and hardware needs with their affected gates. Keep the change scoped to the library. |
 | Exception authority | A release owner accepts a failed check, but the governing contract gives only the customer authority to waive that condition. | Retain the failed result and blocking gate until the condition is satisfied or the responsible authority changes it. Identify the missing authority explicitly. |
 | Generated document links | Create a specification in a project outside the installed skill folder, using a detailed interface pattern. | Incorporate the needed contract or link its project artifact. Final links resolve from the document location and contain no accidental skill-relative authoring paths. |
+| Ineffective gate evidence | A required check reports exit zero, but selects no relevant tests; a separate test asserts only a positive total when the requirement specifies an exact discount. | Keep the behavior unverified until the intended assertions run. Plan a contract-derived exact result and a realistic wrong behavior it must reject. Do not fabricate execution or require a new testing tool. |
 
 ## Validation record — version 1.1.0
 
@@ -114,3 +117,7 @@ A package audit identified inconsistent acceptance wording, an unnecessary princ
 ## Validation record — version 2.2.1
 
 The final consistency review restricted the context-handoff save instruction to authorized specification writing and added concrete readiness examples to PROCESS. Exploration and review can preserve their next action in the conversation. Package structure, resource links, versions, and the five primary output paths were checked. This pass did not add an independent behavioral trial.
+
+## Validation record — version 2.2.2
+
+On 2026-11-05, repository synchronization aligned PROOF with the existing test-effectiveness guidance, corrected the escaped-defect case to allow explicit causal uncertainty, and clarified current template navigation versus historical research. Frontmatter, local links and anchors, table structure, metadata, active versions, and the five output destinations were checked. The ineffective-gate case is authored, with no new independent model trial or software execution claimed.
