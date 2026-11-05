@@ -1,0 +1,34 @@
+# Validation and evidence
+
+Match verification to the deliverable. A specification can be reviewed for consistency and implementability without a running app. An implemented screen requires relevant build/runtime evidence before claiming observed behavior. A usability claim requires an appropriate user study; an LLM critique is not a participant study.
+
+## Choose a useful check set
+
+Trace a primary task through entry, action, visible result and persistent outcome when applicable. Add the consequential failure/recovery and boundary cases suggested by the change. Check shared-component consumers and neighboring screens when a shared token or behavior changes. Do not manufacture dozens of screenshots or exhaustive permutations for a narrow edit.
+
+| Question | Useful evidence | Insufficient alone |
+| --- | --- | --- |
+| Is the screen specified clearly? | Concrete state/transition and acceptance examples, linked requirements, explicit gaps | Filled headings or a large document |
+| Does the composition work at target sizes? | Current rendered capture with viewport/device, state, content and theme | Source code or a stale mock |
+| Can users operate it? | Actual keyboard/touch/assistive interaction and observable outcome | Calling handlers or enumerating focusable nodes |
+| Is the implementation behaving correctly? | Relevant assertions, error/recovery cases, data/effect checks | Render-only smoke test or screenshot |
+| Is it accessible? | Applicable automated plus manual/assistive checks with scope and limits | Zero scanner findings or an accessibility-tree proxy |
+| Does the design help real users? | Observed task results and research limitations | Model confidence, aesthetic preference or invented metrics |
+
+For rendered review record a coherent batch of observed issues; fix them and inspect again only when implementation/refinement is authorized. Use consistent data, locale, theme and dimensions for comparisons. Wait for relevant content/fonts/animations to settle; mask only irrelevant dynamic content, never the behavior under test. Preserve meaningful assertions rather than updating goldens just to turn tests green. Visual diffs can catch appearance changes but cannot replace interaction checks.
+
+Establish whether the selected app and account use isolated test data or a live service before interacting. A local frontend can still call production APIs. Exercise consequential actions with controlled fixtures or an authorized sandbox; a request to inspect a checkout, delete dialog or notification flow does not by itself authorize a real purchase, deletion or message. Record the unexecuted boundary if safe conditions are unavailable; do not silently switch targets or assume an irreversible action can be cleaned up afterward.
+
+Check hierarchy, actionable labels, alignment, clipping, reflow, content extremes, relevant themes/text scaling, focus/input, loading/empty/error and recovery. Inspect actual computed colors/semantics when making numerical or accessibility claims. Screenshot estimates must be labeled estimates. Do not claim exact WCAG contrast from an image without reliable foreground/background evidence and calculation.
+
+## Evidence record and stopping
+
+Record target revision or local snapshot, screen/state, environment and tool, action, expected and observed result, pass/fail/not-run and artifact reference. Separate `planned`, `source-inspected`, `rendered-inspected`, `interaction-tested` and `user-tested` evidence. Scope claims to the checks actually performed.
+
+Classify findings by task impact: blocked critical action, substantial barrier/recovery defect, minor friction or optional refinement. Confidence and impact are separate. Include reproducible condition, affected users, evidence and next check; do not invent an aggregate design score. Missing material evidence stays pending, not passed. If no tool/device is available, complete the specification or static assessment and provide a specific remaining check.
+
+Stop when the requested detail/change and relevant checks are complete, or when a specific unresolved decision/access limit prevents further dependent work. Save current work and next action; avoid endless polish, repeated scans or claims of perfection. A document marked accepted records an actual user decision; it does not grant implementation, publication or release authority.
+
+## Trust the scope of a checker
+
+When a contrast/token checker contributes evidence, inspect its selected pairs, supported formats/themes and handling of missing roles, unknown usage categories and skipped calculations. Unknown or skipped required pairs remain unverified; they must not disappear behind a successful exit code. Calculated token pairs must also match actual rendered foreground/background combinations, including opacity and interaction state. Neither a token check nor a component's accessibility attributes establishes complete WCAG conformance.

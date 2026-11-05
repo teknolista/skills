@@ -54,3 +54,15 @@ Primary references for version-sensitive verification:
 - [Processes and app lifecycle](https://developer.android.com/guide/components/activities/process-lifecycle)
 - [Coroutines best practices](https://developer.android.com/kotlin/coroutines/coroutines-best-practices)
 - [Exported component risks](https://developer.android.com/privacy-and-security/risks/android-exported)
+
+## Data, presentation and dependency wiring
+
+Inspect typed-result and exception boundaries rather than imposing a particular Result wrapper or MVI pattern. Trace HTTP execution, status handling and body decoding, including 204/empty or malformed successful responses. Check cancellation and expected failures at the actual responsible layer. In a result chain, observer helpers such as onFailure may return the original result: a local-cache call inside the callback can be discarded rather than become a fallback. Likewise, inspect whether a failed persistence operation is ignored before reporting synchronization success.
+
+For navigation, prefer minimal identifiers where appropriate, but validate destination access and missing/stale IDs; type-safe serialized routes are not authorization. Check cross-feature callbacks, back-stack scoping, shared state and DI ownership. A singleton that captures an Activity or prior account can retain stale state or leak data; repeated DI startup may fail, and duplicate database/DataStore instances may violate storage ownership. Judge actual lifecycle effects, not preferred class/module naming.
+
+For Compose, verify narrow component inputs, event callbacks, effective touch area and reused accessible primitives as needed. State belongs at the lowest owner satisfying its lifetime and sharing needs; local expansion/focus state need not always live in a ViewModel. Stable/Immutable annotations assert a compiler contract rather than making mutable collections observable: trace equality, mutation and snapshot notification before suggesting them. Profile meaningful performance issues; deferred layout/draw reads can help animation without making all recomposition a defect.
+
+For KMP inspect source-set dependencies and supported actual implementations: JVM/Android-only APIs, generated resources, transport engines, lifecycle and secure-storage adapters need appropriate placement. Shared imports or an Android preview do not prove target compatibility or native behavior. Inspect actual plugin/AGP/Kotlin/Gradle compatibility and target test compilations instead of importing a generic module layout.
+
+For related tests use [Android/KMP test effectiveness](android-testing.md) alongside the general verification reference. For transport logging, packaged secrets and auth-refresh races, apply the mobile/platform security checks to the actual affected flows.

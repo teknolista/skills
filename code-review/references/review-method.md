@@ -25,6 +25,8 @@ git diff --no-ext-diff --no-textconv <merge-base> <head>
 
 These are command shapes, not runnable placeholders. Resolve real references, quote paths, and use repository tools appropriate to the environment. Repositories with no initial commit need separate index/working-file inspection. Untracked files are absent from `git diff`; inspect their relevant content explicitly. Avoid printing secret-bearing files or irrelevant generated/vendor content. A committed range omits subsequent local edits unless those are expressly included.
 
+The index and working tree can contain different versions of the same file. For staged-only review, inspect index content and its matching callers/tests; a later unstaged fix does not repair the staged snapshot. For a review of all pending work, inspect both deltas, assess the resulting working snapshot, and identify any different staged behavior that matters to the requested commit workflow. A combined diff against HEAD can hide a staged change canceled by an unstaged edit. Do not stage, reset, or restore files to simplify the review. Commands run in the working tree verify that content, not automatically the index or a requested historical revision; use an authorized isolated snapshot for execution when required.
+
 Record base/head hashes for committed comparisons. For live work, record HEAD, status, and a sufficiently precise file/content snapshot to detect concurrent edits; store any temporary snapshot outside the source tree. Recheck before reporting. Distinguish missing source access, truncated diffs, submodules, renamed files, binary output, lockfiles, and files intentionally excluded from the review.
 
 For multiple repositories, name the selected repository and comparison for each; a workspace-wide latest-turn view and a repository's staged view are different scopes. For stacked/dependent PRs, identify the actual prerequisite and base, inspect the relevant dependency contracts, and keep findings attributable to the requested change. Recheck affected conclusions when a prerequisite changes.
@@ -48,6 +50,8 @@ Depth changes effort and coverage, not the evidence threshold for a reported bug
 ## Reason from contracts and consequences
 
 Review two complementary questions: does the change deliver the intended behavior, and does it satisfy established engineering constraints? Use repository standards and supported versions before generic preferences. When no formal specification exists, use observable API contracts, tests, existing behavior, and the request, stating the limitation on requirements coverage.
+
+When a candidate depends on framework, compiler, library, database, or platform semantics, establish the project's actual resolved version and relevant configuration. Inspect local definitions or official documentation for that version before relying on recalled behavior. A lockfile, runtime artifact, and declared dependency range can describe different facts. Do not invent an API guarantee or conclude that a symbol is missing merely because it is unfamiliar. If the necessary semantics remain unknown, keep the candidate as a specific question or evidence gap.
 
 Trace a successful path and the meaningful failure paths. Follow the actual guard chain before claiming an input is unchecked. Authentication is not resource authorization. A caller's invariant may make a local state unreachable; a real concurrency window may invalidate a prior check. An error intentionally rejected by contract is not necessarily a bug.
 

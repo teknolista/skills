@@ -37,12 +37,15 @@ For each serious candidate, establish these links before assigning a finding:
 | Caller and controlled input | The actor's actual privileges, entry point, and fields or state the actor can influence. |
 | Protected resource and rule | The affected object, tenant, file, operation, or secret and the project invariant governing access or effects. |
 | Enforcement | The actual guard, query scope, capability, isolation boundary, or transaction that applies on this path. Follow shared callers and middleware. |
+| Checked value versus used value | Whether parsing, normalization, redirects, lookups, or concurrent changes can make the final principal, resource, destination, or amount differ from the one the guard checked. |
 | Effect | The read, write, message, job, file, response, or external action after enforcement, including failure paths and asynchronous consumers. |
 | Counterevidence and conclusion | Any protection that blocks the proposed path, missing premise, and the source trace or permitted check that resolves it. |
 
 For example, a fictional endpoint authenticates caller A and loads document B by a caller-supplied ID. That alone is insufficient to conclude a leak. Trace the ownership check and the response. If it queues a privileged export of B to A before returning 403, verify the queue payload and worker's delivery rule. The unauthorized effect may occur after the HTTP denial. If the worker independently enforces ownership and discards the job without disclosure, account for that protection and assess any remaining effect separately. Keep both the denied cross-owner case and the legitimate owner case in the verification plan.
 
 For races, write a possible interleaving. If two redemptions both read `unused` before either writes `used`, inspect whether an atomic claim, uniqueness constraint, or suitable transaction/locking rule actually prevents two effects. A sequential replay test cannot establish concurrency safety. For a suspected race that cannot be reproduced safely, retain the source trace and its runtime assumptions instead of claiming an executed failure.
+
+Follow a validated value all the way to its use; the presence of a validation helper is insufficient. For example, a fetcher may allow the initial host but then follow a redirect to a disallowed destination. Establish the actual client redirect behavior, reachable destination, credentials forwarded, and any effective egress control before assigning impact. For mutable files or records, a second check alone may leave another race; inspect whether the operation stays bound to the authorized resource and state. Do not prescribe a universal lock or disable legitimate redirects without checking the target's contract and supported mechanisms.
 
 ## Keep status dimensions separate
 

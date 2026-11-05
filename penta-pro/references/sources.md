@@ -53,3 +53,12 @@ The five-pillar package is self-contained. Upstream directories, CLIs, companion
 The final maintenance pass clarified actual document acceptance, traceable binding principles, proposed stopping criteria, and resumption with bounded context. The interface patterns now show how uncertain completion, concurrent attempts, resource authorization, and migration coexistence become decisions and concrete checks across the five pillars.
 
 The examples use original wording informed by [AWS retry and idempotency guidance](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) and [OWASP authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html). Project-specific policies and provider guarantees still require their actual source and applicable version.
+
+## User-supplied Android/KMP bundle — 2026-11-05
+
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+
+
+## Companion-document consistency — version 2.4.1
+
+The 2026-11-05 final package review clarified the ownership boundary between PENTA-PRO and an existing screen specification. This original maintenance correction preserves the five primary outputs and records conflicts or out-of-scope companion edits explicitly. It imports no additional upstream material.

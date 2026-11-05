@@ -183,3 +183,31 @@ The final pass added shared fixture state and automatic retry to test-effectiven
 ### Version 1.4.2
 
 On 2026-11-05, repository synchronization made test-effectiveness review explicit in discovery/UI metadata and the handoff, aligned the report target with supported source-without-history reviews, and updated evaluation navigation. Frontmatter, local links and anchors, table structure, UI metadata, and active versions were checked. The added test-review discovery request is an authored case; metadata validation does not establish model selection accuracy, and no new autonomous trial was run.
+
+## Android/KMP bundle follow-up — 1.5.0
+
+2026-11-05: added the following maintainer scenarios after source inspection and primary-document checks.
+
+| Input / task | Expected behavior |
+| --- | --- |
+| Cache fallback invoked inside an observer returning the original failed Result | Trace helper semantics and caller-visible result; identify a reachable protection gap without demanding a particular Result library. |
+| StateFlow loading assertion with eager fake; delayed scheduler and no collector | Inspect conflation/collector/scheduler ownership; use a controlled suspension if loading visibility is contractual, and do not declare all intermediate emissions required. |
+| SavedStateHandle map construction, activity recreation and filtered-out native tests described as full recovery verification | Separate evidence boundaries, inspect runner/discovery and report missing actual platform/process evidence. |
+| Stable annotation over a mutated list, a component retaining harmless local expansion, and existing Robolectric tests | Substantiate stale UI if reachable; do not force ViewModel hoisting, annotation removal or device-only tooling without evidence/requirements. |
+
+Author-side contract walkthrough only; these rows are not an independently executed model trial. The source contrast-checker probe is recorded in the [bundle assessment](../../docs/research/pl-coding-bundle.md); it does not establish behavior of this skill. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
+
+## Final maintenance cases — 1.5.1
+
+2026-11-05: focused source review added these cases for snapshot precision, version-dependent premises, and safe verification. Expected outcomes are authored evaluation criteria, not completed model trials.
+
+| Input / task | Expected behavior |
+| --- | --- |
+| A staged authorization regression is repaired only in the working file; request staged-only review | Read the index snapshot, report the staged defect with its actual location, and do not use working-tree tests as proof that the staged code passes. Preserve both versions and the index selection. |
+| An unfamiliar library helper has version-dependent behavior; its installed implementation prevents the apparent defect | Inspect the resolved implementation/configuration and refute the candidate. If access is unavailable, state the exact missing premise rather than inventing the API contract or reporting a confirmed bug. |
+| A standard test command loads a modified fixture that contacts a shared service using inherited credentials | Inspect the execution path and avoid that side effect without authorization. Use permitted isolation or source evidence and report unavailable runtime verification; a temporary directory alone is not a sandbox. |
+
+Validation of this revision covers package structure and resource links. A disposable Git fixture also executed index and working-file versions of a small authorization function: the staged version allowed another user's read while the unstaged repair denied it, and both versions retained the same owner-access control. The experiment preserved the index, working file and skill package. It demonstrates the snapshot distinction, not autonomous reviewer behavior. No claim of improved detection rate, smaller-model performance, or application runtime safety follows from these checks.
+
+
+Additional independent forward testing was attempted during the 2026-11-05 maintenance pass, but host usage limits prevented completion. No result is recorded as passed from those attempts. Earlier completed inspections and bounded source experiments retain only their stated scope.

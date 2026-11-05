@@ -40,3 +40,11 @@ Prefer primary advisories and documentation for the assessed versions. Record th
 The 2026-11-04 review added a compact caller-to-effect evidence trace, bounded context handling, a concrete denied-response example, and explicit state-race and resource-limit checks. These are original explanations intended to make the existing assessment method easier to apply consistently.
 
 Primary material consulted includes [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html), [password storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html), [cryptographic storage](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html), and [MITRE CWE-367](https://cwe.mitre.org/data/definitions/367.html). Mechanism checks supplement the existing platform routes and use the target's actual policy, library, and deployment requirements.
+
+## User-supplied Android/KMP bundle — 2026-11-05
+
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+
+## Checked values and effective operations — version 1.3.1
+
+The 2026-11-05 maintenance review made the checked-to-used value trace explicit in the existing assessment method. [OWASP SSRF prevention](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) and [MITRE CWE-367](https://cwe.mitre.org/data/definitions/367.html) were checked for redirect and time-of-check/time-of-use mechanisms. The guidance is an original synthesis: establish actual transformations and protections instead of treating a validation call or a second check as sufficient evidence. It adds no universal mitigation, live-target authorization, or claim of complete vulnerability coverage.

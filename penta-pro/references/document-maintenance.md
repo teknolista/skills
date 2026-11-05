@@ -18,6 +18,12 @@ Use PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for new presentatio
 
 For a first specification using the default layout, create all five files with supported content and explicit gaps. Small projects can have short pillars. Keep the template index as authoring guidance in the skill package. Remove drafting links and placeholders from the generated project files. Before writing, inspect any existing files at the destinations and resolve ambiguous ownership.
 
+## Screen specifications and other companion artifacts
+
+When a maintained screen specification such as `docs/ui-ux.md` exists, keep it as the canonical home for detailed layouts, component states, interaction behavior and screen-specific acceptance. PRODUCT retains product requirements, business permissions and acceptance at the feature boundary; link the screen records rather than copying them. PROOF indexes the required checks and their actual evidence, wherever that evidence is maintained. PROJECT references the design system and implementation contracts, while PROCESS records artifact ownership and any unfinished reconciliation. Do not create a companion file merely because a template mentions one; the default PENTA-PRO output is still the five pillar files.
+
+Compare the companion's actual scope and decision status with the product requirement. For example, an offline-only product and a screen labeled “Synchronized to cloud” conflict even if both documents are marked accepted. Identify the affected requirement and screen IDs, sources, and decision needed. Do not silently introduce cloud infrastructure or change a settled requirement to match the screen. Apply a resolution supported by current authority; otherwise leave only the dependent work blocked. If editing the companion is outside scope, record the exact pending reconciliation rather than claiming the whole set is consistent.
+
 ## Coordinated updates and resumption
 
 1. Read `process.md` for current scope, next action, shared status, and any unfinished update. Then inspect the affected pillars and their referenced records. For an existing single-file specification, read its equivalent resume section.

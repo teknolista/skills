@@ -1,6 +1,6 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. UI/UX turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
@@ -31,6 +31,9 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Example requests](#example-requests-2)
     - [Coverage and findings](#coverage-and-findings)
     - [Resources](#resources-2)
+  - [UI/UX](#uiux)
+    - [Examples and output](#examples-and-output)
+    - [UI/UX resources](#uiux-resources)
   - [Project AGENTS.md template](#project-agentsmd-template)
   - [Repository structure](#repository-structure)
   - [Maintenance and new skills](#maintenance-and-new-skills)
@@ -42,9 +45,10 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PENTA-PRO](#penta-pro) | 2.3.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Code Review](#code-review) | 1.4.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersec](#cybersec) | 1.2.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [PENTA-PRO](#penta-pro) | 2.4.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Code Review](#code-review) | 1.5.1 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Cybersec](#cybersec) | 1.3.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI/UX](#uiux) | 1.1.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-ux.md`. |
 
 ## Installation and activation
 
@@ -54,11 +58,12 @@ Copy the complete directory of each desired skill into the skills location suppo
 your-project/.agents/skills/penta-pro/SKILL.md
 your-project/.agents/skills/code-review/SKILL.md
 your-project/.agents/skills/cybersec/SKILL.md
+your-project/.agents/skills/ui-ux/SKILL.md
 ```
 
 A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](#agent-and-model-compatibility) for documented locations, capabilities, and integration limits.
 
-The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$code-review`, or `$cybersec` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
+The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$code-review`, `$cybersec`, or `$ui-ux` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
 
 The packages use Markdown instructions, references, and templates. No skill requires another skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
 
@@ -86,6 +91,7 @@ Invocation and consent differ by host. For example, Codex documents `$name`, Cla
 | --- | --- | --- |
 | PENTA-PRO creation/update | User intent, relevant existing context, package assets, and a writable requested destination | Ask only consequential missing questions; retain proposals and blockers. If writing is unavailable, return the draft and disclose that it was not saved. |
 | PENTA-PRO review | The actual specification and relevant authoritative context | Report missing material rather than treating an absent document as ready. |
+| UI/UX specification and implementation | Relevant requirements/design context and a writable target project; source/toolchain for implementation, browser or Android environment for runtime checks | Save a partial specification and mark pending decisions/checks; never claim rendered, device, accessibility or user validation without evidence. |
 | Code inspection | Actual selected source/snapshot, relevant requirements/contracts, and applicable references | Report material missing coverage; do not infer a clean review from a description alone. |
 | Cybersec assessment | Authorized target/snapshot, relevant security requirements, applicable domain references, and evidence of the controls being claimed | Separate source/configuration from deployed/runtime evidence; mark inaccessible areas and avoid security or compliance guarantees. |
 | Executed verification | The project's actual tools and isolated data/environment | Label unexecuted checks and distinguish static conclusions from runtime evidence. |
@@ -103,11 +109,11 @@ The workflows have no hard-coded model, reasoning setting, vendor tool name, or 
 
 Choose a currently available model with sufficient reasoning, domain competence, context capacity, and reliable tool use for the task. Escalate difficult requirements or review risks when evidence warrants it. The documented [OpenAI model options](https://learn.chatgpt.com/docs/models) include the repository's example implementation/review pairing; availability and suitability depend on the host/account and observed results. A model name is not a quality gate.
 
-After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [code-review cases](code-review/evals/scenarios.md), and [cybersec cases](cybersec/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
+After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [code-review cases](code-review/evals/scenarios.md), [cybersec cases](cybersec/evals/scenarios.md), and [UI/UX cases](ui-ux/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
 
 ## PENTA-PRO
 
-**Version:** 2.3.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.4.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PENTA-PRO when defining a product, specifying a substantial feature, maintaining an existing PENTA-PRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -125,7 +131,7 @@ An exploration-only request stays in the conversation until the user asks to cap
 
 The preferred order for interview deepening and document presentation is PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS. Establish behavior and evidence needs before designing the solution, then detail its operation and execution plan. Gather consequential operational, budget, and platform constraints early. Refine PROOF after design and operational decisions, and maintain PROCESS authority and resume state throughout. Reconcile affected pillars as decisions change; the order does not impose sequential development phases.
 
-The template connects product strategy and stopping criteria to discovery evidence, outcomes, requirements, contracts, verification, and post-release learning. It includes a consolidated identifier and status model, increment readiness, decision and uncertainty records, privacy and accessibility considerations, delivery dependencies, documentation, launch and support readiness, and operational recovery evidence. Conditional profiles cover services, installed/offline apps, CLI tools, infrastructure, libraries, data/scientific workloads, AI features, embedded systems, interactive media, and commercial launch. Combine profiles for hybrid products; they are not an exhaustive taxonomy.
+The template connects product strategy and stopping criteria to discovery evidence, outcomes, requirements, contracts, verification, and post-release learning. It includes a consolidated identifier and status model, increment readiness, decision and uncertainty records, privacy and accessibility considerations, delivery dependencies, documentation, launch and support readiness, and operational recovery evidence. Conditional profiles cover services, installed/offline apps, CLI tools, infrastructure, libraries, data/scientific workloads, AI features, embedded systems, interactive media, and commercial launch. For Android/KMP projects, an [additional overlay](penta-pro/references/android-kmp.md) details cross-platform contracts, test boundaries, state retention, dependency lifetimes and release evidence within the five pillar files. Combine profiles for hybrid products; they are not an exhaustive taxonomy.
 
 Discovery resolves ambiguous domain terms with examples and counterexamples, compares material alternatives, and records the authority behind decisions. Binding principles become verifiable requirements. The selected increment includes a useful outcome and a check that can demonstrate it before later features exist. Detailed patterns address uncertain completion, retries, concurrent actions, access changes during queued work, and migration coexistence.
 
@@ -183,7 +189,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Code Review
 
-**Version:** 1.4.2 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
+**Version:** 1.5.1 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
 
 Use Code Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -255,6 +261,7 @@ Confirm how a managed reviewer receives instructions. Including only the body of
 | [Backend](code-review/references/backend.md) | APIs, authorization, data, concurrency, failure recovery, and operations. |
 | [Frontend](code-review/references/frontend.md) | UI state, contracts, accessibility, browser boundaries, and performance. |
 | [Android](code-review/references/android.md) | Lifecycle, coroutines, Flow, Compose/Views, platform security, and release variants. |
+| [Android/KMP test effectiveness](code-review/references/android-testing.md) | Coroutine schedulers, Flow, Compose synchronization, restoration and target coverage. |
 | [Verification](code-review/references/verification.md) | Test effectiveness, assertion execution, false-positive checks, isolated mutation probes, and evidence reporting. |
 | [Independent review](code-review/references/independent-review.md) | Fresh context, model selection, review lenses, and feedback loops. |
 | [Report template](code-review/assets/review-report-template.md) | Optional structure for substantial or saved reviews. |
@@ -263,11 +270,13 @@ Confirm how a managed reviewer receives instructions. Including only the body of
 | [Evaluation scenarios](code-review/evals/scenarios.md) | Calibration, scope, policy, host behavior, and validation records. |
 | [OpenAI metadata](code-review/agents/openai.yaml) | Optional Codex display metadata and example invocation. |
 
+Android/KMP guidance also examines typed-result fallback/decoding semantics, dependency lifetimes and shared-platform boundaries. Test review distinguishes scheduler/clock ownership, conflated Flow states, device execution and actual OS restoration.
+
 Load the review method and applicable references. Source research and evaluation cases are maintainer resources, not required context for every review. The package is an original synthesis, not an installer or runtime wrapper around upstream skills.
 
 ## Cybersec
 
-**Version:** 1.2.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Version:** 1.3.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
 Use Cybersec for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
@@ -299,6 +308,8 @@ Substantial reports include the selected target/snapshot, relevant baseline/vers
 
 The coverage map connects material threats to controls, verification evidence, residual gaps, and responsible next actions. It considers attacks that combine weaknesses across components and tests whether fixes block unauthorized effects while preserving legitimate behavior. Reassess affected coverage after meaningful system or threat changes. Narrow reviews stay concise; the skill does not impose a full matrix on every change, assign an invented security score, or start continuous monitoring.
 
+Mobile guidance also covers packaged configuration versus privileged secrets, credential storage/backups, HTTP logging, trusted destinations and refresh/logout races across actual platform implementations.
+
 Concrete traces connect attacker-controlled input, the protected resource and rule, actual enforcement, effects, and counterevidence. Mechanism checks include queued work and caches after permission changes, concurrent one-use actions, resource limits before allocation, native length arithmetic, password hashing, token lifecycle, and cryptographic library use. Authorization checks pair an existing protected resource and an allowed actor with the prohibited case, then inspect data and side effects after denial.
 
 The assessment can conclude `Action required`, `No blocking findings` within completed agreed coverage, or `Incomplete` when material evidence is missing. Zero findings is valid. Reports and filled templates belong in the target project or requested location; report files are written only when requested or required by the calling workflow. Without project artifacts, the output is a plan or scoped threat model rather than a fabricated audit.
@@ -324,6 +335,45 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 | [Evaluation scenarios](cybersec/evals/scenarios.md) | Discovery, platform/CI/IT risks, guard controls, authorization, evidence, and validation records. |
 | [OpenAI metadata](cybersec/agents/openai.yaml) | Optional host display metadata and invocation prompt; no model selection. |
 
+## UI/UX
+
+**Version:** 1.1.1 · **Entrypoint:** [ui-ux/SKILL.md](ui-ux/SKILL.md)
+
+Use UI/UX to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
+
+### Examples and output
+
+```text
+Use $ui-ux to interview me about this Android app's onboarding and home screens and save the specification to docs/ui-ux.md.
+Use $ui-ux to add the offline editing flow to the existing screen specification, preserving accepted decisions.
+Use $ui-ux to review this web checkout's keyboard interaction, errors and responsive layout; record findings in docs/ui-ux.md.
+Use $ui-ux to implement UI-S03 using the project's existing components, verify the affected flow and update docs/ui-ux.md.
+```
+
+Feedback guidance chooses field, form, transient, persistent, content-area or decision surfaces by task consequence, retaining usable content and truthful recovery. Compose guidance covers component contracts, state ownership, previews and shared/platform resources without imposing MVI or a DI library.
+
+The default output is the target project's cumulative **`docs/ui-ux.md`**, with a screen index, shared visual/interaction rules, flows, per-screen contracts, decision status, acceptance scenarios, verification evidence and a resume pointer. It is saved during partial interviews and updated across iterations. Additional mockups or assets are optional linked evidence. A request to specify screens produces documentation; implementation follows the user's requested scope.
+
+When PENTA-PRO files exist, this UI document supplements their five pillars and links canonical requirements, checks, architecture and process records. Existing design systems remain authoritative for their owned tokens/components. The skill has no mandatory dependency on the other skills, BMAD, OpenSpec, Figma, a browser plugin, image generation or a paid service. Runtime checks require available project tools; HTML concepts do not prove Android behavior. Research observations, proposals, accepted decisions and executed checks remain distinct. No production usability or cross-model efficiency benchmark is claimed.
+
+### UI/UX resources
+
+| Resource | Purpose |
+| --- | --- |
+| [Entrypoint](ui-ux/SKILL.md) | Modes, routing, scope and working loop. |
+| [Design method](ui-ux/references/design-method.md) | Discovery, task/flow coverage, screen contracts, content and recovery. |
+| [Visual system](ui-ux/references/visual-system.md) | Tokens, identity, typography, graphic assets, charts and motion. |
+| [Web](ui-ux/references/web.md) | Browser layout, navigation, semantics and checks. |
+| [Android](ui-ux/references/android.md) | Compose/Views, adaptive layout, state, Back, insets and native checks. |
+| [Feedback and state coverage](ui-ux/references/feedback-states.md) | Error surfaces, partial failures, refresh/pagination, control variants and stress states. |
+| [Validation](ui-ux/references/validation.md) | Rendered inspection, interaction tests, usability and evidence limits. |
+| [Document maintenance](ui-ux/references/document-maintenance.md) | Cumulative updates, stable IDs, ownership and resumption. |
+| [Output template](ui-ux/assets/ui-ux-template.md) | Adaptable single-file screen and flow specification. |
+| [Worked example](ui-ux/references/worked-example.md) | Two-screen Android specification with explicit pending decisions. |
+| [Source research](ui-ux/references/sources.md) | Repository coverage, pinned sources, adaptations and research limits. |
+| [Evaluation scenarios](ui-ux/evals/scenarios.md) | Realistic cases and validation record. |
+| [OpenAI metadata](ui-ux/agents/openai.yaml) | Optional host presentation and invocation prompt. |
+
 ## Project AGENTS.md template
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
@@ -340,6 +390,7 @@ skills/
 ├── LICENSE
 ├── THIRD-PARTY-NOTICES.md
 ├── AGENTS-template.md
+├── docs/research/              # Maintainer source assessments
 ├── penta-pro/
 │   ├── SKILL.md
 │   ├── agents/
@@ -358,7 +409,13 @@ skills/
 │   ├── assets/
 │   ├── evals/
 │   └── references/
-└── cybersec/
+├── cybersec/
+│   ├── SKILL.md
+│   ├── agents/
+│   ├── assets/
+│   ├── evals/
+│   └── references/
+└── ui-ux/
     ├── SKILL.md
     ├── agents/
     ├── assets/
@@ -368,6 +425,8 @@ skills/
 
 `SKILL.md` contains required metadata and runtime instructions. Optional `agents/` files adapt host presentation; `assets/` holds output templates; `references/` holds conditional detail; `evals/` holds maintenance cases and validation records. Create only the directories a skill needs.
 
+The [PL Coding bundle assessment](docs/research/pl-coding-bundle.md) records the Android/KMP lessons incorporated across all four skills, provenance limits and concrete reasons some upstream prescriptions were excluded.
+
 ## Maintenance and new skills
 
 Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/docs/build-skills) and [Anthropic's best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) on 2026-10-25. These are maintainer references, not runtime dependencies. Recheck relevant guidance when changing packaging, discovery, or model support; evaluate upstream changes deliberately rather than importing them automatically.
@@ -375,6 +434,8 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 ### Validation and improvement
 
 Use each skill's evaluation cases before expanding its instructions. Compare matched tasks with and without the skill on the models and hosts actually used. Check activation, preserved decisions, invented facts, unnecessary questions, substantiated defects, false positives, material misses, coverage honesty, and unintended actions. Record actual time and usage when available, and retest after relevant model or instruction changes.
+
+The final maintenance pass clarifies staged versus working-file review, version-dependent API evidence, safe test execution, checked versus effective security values, and UI review/implementation boundaries. PENTA-PRO also reconciles companion screen specifications without changing its five-file output. These safeguards support consistent execution; they do not establish reliability on every model.
 
 Keep active versions in `SKILL.md`, this README, and any versioned output template aligned. When behavior changes, reconcile descriptions, UI metadata, templates, references, and evaluation cases. Validate local links and anchors from each file's location. Retain historical research dates and trial versions with their original scope; a package update does not rerun or broaden earlier evidence.
 
@@ -393,4 +454,4 @@ The repository and its skills are distributed under the single root [MIT License
 
 When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
 
-The source research for [PENTA-PRO](penta-pro/references/sources.md), [Code Review](code-review/references/sources.md), and [Cybersec](cybersec/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
+The source research for [PENTA-PRO](penta-pro/references/sources.md), [Code Review](code-review/references/sources.md), [Cybersec](cybersec/references/sources.md), and [UI/UX](ui-ux/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.

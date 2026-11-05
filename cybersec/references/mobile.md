@@ -14,3 +14,17 @@ Identify Android/iOS, actual release/debug variants, supported OS/SDK versions, 
 Use authorized test devices/emulators and synthetic accounts. Instrumentation can install software and alter device state; repository assessment does not authorize changes to a person's device. State when evidence is static, JVM/unit-only, debug-build-only, or lacks release/device verification.
 
 Primary guidance: [MASVS](https://mas.owasp.org/MASVS/), [MASTG](https://mas.owasp.org/MASTG/).
+
+## Client configuration, credential lifecycle and shared implementations
+
+Generated BuildConfig/BuildKonfig fields and values read from local.properties may keep a credential out of Git while still embedding it in the APK/framework/binary. Identify whether the value is intentionally public client configuration or a privileged secret, and what an extractor could do with it. Restrict public client keys appropriately; keep privileged authority at a trusted service. Obfuscation or CI injection does not make a packaged secret confidential.
+
+Trace token storage through actual implementation, keys/access control, backups, retention and logout. A DataStore/Room abstraction name alone does not establish encryption or credential protection; inspect an explicit encrypted configuration if one exists. Shared KMP interfaces require independent scrutiny of Android Keystore/iOS Keychain or other actual storage implementations. Verify that logout/account switch clears the intended persisted data, in-memory auth-provider caches and pending work. An old refresh completing after logout must not restore a former session or populate the new account's cache.
+
+For HTTP logging, inspect headers, URL/query, bodies, errors and crash collection in each shipped platform/variant. LogLevel.ALL or printStackTrace may expose bearer/refresh tokens, credentials and personal records. Header sanitization alone cannot redact body/query secrets; test with synthetic markers at the actual sink. A debug logger may still export real user data, and a shared factory may accidentally enable it in release.
+
+For authenticated requests, parse and validate the destination scheme, host and relevant port/path under the actual service policy; string contains/prefix checks on a base URL do not establish origin trust. Check credential attachment before requests, redirects/challenges and a refresh request's recursion behavior. Bound refresh/retry storms and concurrent token rotation; examine refresh failure, session invalidation and retry of non-idempotent operations. Use the actual library/version and configured behavior rather than assuming an Auth plugin solves these controls automatically.
+
+Check sensitive values passed in navigation arguments, saved state, preview/sample fixtures and exception text. A type-safe route can still expose caller-controlled IDs or serializable secrets. Client cancellation, local confirmation and a quiz/check status do not establish server authorization, rollback or independent security review.
+
+Primary implementation references: [Ktor client logging](https://ktor.io/docs/client-logging.html), [Ktor bearer authentication](https://ktor.io/docs/client-bearer-auth.html), [Android hardcoded secret risks](https://developer.android.com/privacy-and-security/risks/hardcoded-cryptographic-secrets), [DataStore](https://developer.android.com/topic/libraries/architecture/datastore). Apply verified guidance to the installed version and threat model.

@@ -41,6 +41,8 @@ Reuse accessible project facts before asking questions. Attribute evidence to it
 - **PRODUCTION:** Define installation, signed or otherwise trusted update delivery as appropriate, rollback limits, user data migration, diagnostics, export, and uninstall behavior. State how long disconnected versions remain supported.
 - **PROCESS:** Assign owners for platform compatibility, packaging, signing, and distribution review when required by the chosen channel. Record access and lead-time dependencies.
 
+For Android or Kotlin Multiplatform, also read the [Android/KMP overlay](android-kmp.md) when platform contracts, shared code or delivery need detail. Keep its answers in the same five pillar documents.
+
 ## CLI and automation
 
 - **PRODUCT:** Specify arguments, environment inputs, configuration precedence, standard input/output/error, exit codes, machine-readable output, and interactive versus unattended behavior. Identify destructive effects and any preview or confirmation behavior required by the actual use case.

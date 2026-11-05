@@ -8,6 +8,7 @@ Use this packet to request a fresh review. Replace placeholders; do not send the
 - **Scope and exclusions:** [Included work and limits]
 - **Requirements and invariants:** [Authoritative text or accessible paths/IDs; note any missing specification]
 - **Accepted design and constraints:** [Relevant decisions, platform versions, compatibility, and operational needs]
+- **Material mechanisms and tradeoffs:** [State/data authority, retry/fallback strategy, dependency lifetimes, changed consumers and relevant rejected alternatives; link evidence and keep author explanations distinguishable from verified facts]
 - **Repository guidance:** [Applicable conventions and actual validation commands]
 - **Review policy and depth:** [Trusted policy source/revision, scoped rules, and agreed depth]
 - **Verification evidence:** [Checks, artifact/revision, results, and whether independently observed or author-reported]

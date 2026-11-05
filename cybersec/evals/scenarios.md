@@ -63,3 +63,31 @@ Synthetic Python checks confirmed the backend behavior, and Node mocks exercised
 A final GPT-6 Astra document re-review found the identified material consistency issues resolved, including status separation, unsupported author claims, source attribution, and repository integration. Package validation, local Markdown links/anchors, optional metadata, whitespace, and unchanged neighboring-skill checks passed.
 
 This is one bounded synthetic assessment plus document audits. The authored cases above are not all executed trials; no exhaustive attack coverage, real-project detection rate, cross-vendor/model benchmark, or measured efficiency gain is claimed. Repeat relevant cases with the actual system, permissions, evidence, and host/model before treating a result as a project security gate.
+
+## Android/KMP bundle follow-up — 1.3.0
+
+2026-11-05: added the following maintainer scenarios after source inspection and primary-document checks.
+
+| Input / task | Expected behavior |
+| --- | --- |
+| BuildKonfig privileged token from ignored local.properties plus all-level HTTP logs | Distinguish Git hygiene from packaged secrecy, trace extractability and actual credential/body/query sinks with synthetic markers. |
+| Concurrent refresh finishes after logout/account switch; shared auth client receives an external URL | Trace session-generation/cache invalidation and trusted destination policy; verify denial and legitimate refresh without testing live credentials. |
+| KMP storage interface uses encrypted Android storage but plain iOS backing | Inspect actual target implementations and backup/access policy; neither assume cross-platform equivalence nor demand encryption for every non-sensitive preference. |
+
+Author-side contract walkthrough only; these rows are not an independently executed model trial. The source contrast-checker probe is recorded in the [bundle assessment](../../docs/research/pl-coding-bundle.md); it does not establish behavior of this skill. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
+
+## Final maintenance review — 1.3.1
+
+2026-11-05: all package files were reviewed for routing, evidence thresholds, authority, and usability with less capable models. The assessment trace now requires comparing the checked value with the one used for the effect.
+
+| Input / task | Expected behavior |
+| --- | --- |
+| URL host passes an allowlist; the client follows a redirect to another host. A variant validates every hop or has effective destination enforcement. | Follow the actual request path and egress boundary; distinguish validation of the first URL from the final destination, recognize the protected variant, and leave unknown runtime behavior unverified. Do not send requests to live metadata or internal services. |
+| A privileged file operation checks a path, then opens it later; the proposed fix repeats the check immediately before opening. | Establish whether an attacker can replace the resource in the relevant window, inspect how the final operation is bound to the authorized object, and avoid claiming that a repeated check eliminates the race. |
+
+These are authored regression scenarios, not executed model trials. Primary-source verification and package/whitespace checks support the document change; no live-network, filesystem-race, production, or cross-model performance result is claimed.
+
+
+Additional independent forward testing was attempted during the 2026-11-05 maintenance pass, but host usage limits prevented completion. No result is recorded as passed from those attempts. Earlier completed inspections and bounded source experiments retain only their stated scope.
+
+A separate maintainer-run in-memory Python probe exercised the redirect mechanism: an initially allowed URL redirected to a synthetic disallowed destination, the unrestricted variant returned its fixture content, and the per-hop-check variant rejected before visiting that destination. Both variants returned legitimate direct media. No sockets, DNS or real internal services were used. This confirms the example's mechanism, not autonomous assessment quality or deployed egress controls.

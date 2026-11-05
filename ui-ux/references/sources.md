@@ -1,0 +1,67 @@
+# Source research and adaptation
+
+Research date: 2026-11-05. This is an original English synthesis of methods, not an upstream installer or concatenation of skills. No upstream scripts, images, datasets, brand kits or substantial instruction passages are bundled. Source terms remain with their owners; see [third-party notices](../../THIRD-PARTY-NOTICES.md).
+
+## Scope and limits
+
+Refreshed the complete, non-truncated GitHub trees of all nine repositories already named in THIRD-PARTY-NOTICES.md. Downloaded their 147 SKILL.md entrypoints and screened names/descriptions/purposes to identify screen/UI/UX candidates; read the relevant entrypoints and selected supporting resources. Counts include internal packages and fixtures and do not mean 147 independent UX skills. Additional collections were sampled for relevant UI/design material, not exhaustively audited. Retrieved source is research evidence only; upstream code was not executed. This is not a security audit, legal determination, model benchmark or production usability study.
+
+## Existing repository coverage
+
+| Repository / pinned snapshot | Entrypoints screened | UI/UX relevance and disposition |
+| --- | --- | --- |
+| [obra/superpowers](https://github.com/obra/superpowers/tree/22f0b463e7a5e579904dd6211a520321035526f7) | 15 | No dedicated UI/UX skill. Brainstorming and verification-before-completion inform focused discovery, options and evidence; no universal mandatory workflow or Git actions imported. |
+| [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d) | 39 | prototype (including UI.md) directly addresses UI variants; grill-with-docs supplies progressive clarification and durable decisions. Preserve real product context and compare structural alternatives; no mandatory variant count, throwaway branch or automatic promotion. |
+| [owainlewis/blueprint](https://github.com/owainlewis/blueprint/tree/fb5a850965039d434343fa1b74f8c7f47eb2bd96) | 11 | html-doc presents specifications rather than designing product UI. Retain canonical Markdown and distinguish content from presentation; no renderer/toolchain imported. spec/requirements provide adjacent specification guidance. |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills/tree/301b02b12bff98e4688e6984af6556802322bbde) | 25 | frontend-ui-engineering and browser-testing-with-devtools are directly relevant; accessibility checklist and performance guidance are adjacent. Adapt reference-led contracts, state coverage and rendered inspection; reject fixed breakpoints, line-count rules and universal aesthetic bans. |
+| [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD/tree/022be9314e4facd16826104a9f8033e1c5ed4fdc) | 37 | bmad-ux and bmad-agent-ux-designer directly address UX; brainstorming/elicitation are adjacent. Adapt appearance/behavior separation, system inheritance, flow-to-screen coverage and iterative capture. Replace two spines/memlog with one cumulative docs/ui-ux.md; no BMAD runtime, mandatory persona or reviewer orchestration. |
+| [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec/tree/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c) | 16 | No dedicated UI/UX skill among the change-management workflows. Reuse the concept of explicit assumptions/changes and reconciliation; no OpenSpec CLI or artifact tree dependency. |
+| [github/spec-kit](https://github.com/github/spec-kit/tree/04fca3d96a5dfcf942a5f70069a42ad84d336fed) | 2 | No dedicated screen-design skill in the two internal skill entrypoints. Specification/clarification/checklist command templates are adjacent; preserve scope and measurable acceptance without importing a second specification framework. |
+| [jeffev/hollowtest](https://github.com/jeffev/hollowtest/tree/29995ce12bf40757055b2b406f15439cb9d480b2) | 1 | No UI-design skill. Test-effectiveness lessons apply to verification, including browser tests; a rendered smoke check cannot prove interaction behavior. No JS-only CLI or universal mutation requirement. |
+| [awesome-skills/code-review-skill](https://github.com/awesome-skills/code-review-skill/tree/4850184dfd7765ea7b3c5c4e9b6cf8e0815ee7cb) | 1 | One review skill, with frontend/Kotlin supporting guidance rather than a separate UI-design workflow. Keep platform/evidence distinctions; avoid duplicating this repository's existing Code Review. |
+
+The PERFECT gist and Silva97/TabNews/Freedev articles already cited in the notices are adjacent conceptual/security readings, not additional repositories of UI skills. No new UI workflow is attributed to them.
+
+## Additional primary skill sources
+
+| Repository / pinned snapshot | Inspected or selected material and adaptation |
+| --- | --- |
+| [anthropics/skills](https://github.com/anthropics/skills/tree/ca45fc496a3436251f191354091d557da31c15b5) | Selected frontend-design, canvas-design, algorithmic-art, brand-guidelines, theme-factory and web-artifacts-builder. Adapt intentional direction, typography/content, visual critique and asset/system consistency. Do not import Anthropic branding, compulsory art style, fixed section counts or asset generators. |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills/tree/1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62) | Web design guidelines plus inspected React/composition/React Native entrypoints. Adapt semantics, focus, forms, navigation and impact-led performance; keep framework advice conditional. No React Native-to-Compose substitution or universal framework requirements. |
+| [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/tree/b7d5353e0130feb8c5574ef1251f8a1db1873ccb) | Selected UI/UX Pro Max, design, design-system, brand, banner-design and ui-styling entrypoints (CLI copies deduplicated conceptually). Adapt platform detection, shared defaults/overrides and scoped guidance. Do not copy databases, scripts, palettes or fixed priority/size/timing rules. |
+| [bencium/bencium-claude-code-design-skill](https://github.com/bencium/bencium-claude-code-design-skill/tree/5de46a39b4640fa419560cd0b67e4c4b50dac802) | Selected controlled/innovative/impact designer and design-audit/relationship-design entrypoints. Adapt alternatives, accessible hierarchy and refinement. No ask-before-every-choice gate, mandatory aesthetic direction or implied research outcomes. |
+| [accesslint/claude-marketplace](https://github.com/accesslint/claude-marketplace/tree/2e9d7336678302d0bc08848e92542560295b34d3) | All five accessibility skill entrypoints examined for audit/scan/inspection/diff/fix distinctions and evidence grades. Adapt explicit coverage, manual-check limits and impact separate from confidence. Do not import plugin dependencies or treat DOM/keyboard simulation as actual assistive-technology use. |
+| [ehmo/platform-design-skills](https://github.com/ehmo/platform-design-skills/tree/dc2be825d8b439caea78e9eaa8fb3ac23b0ff3e9) | Android and web entrypoints and relevant platform sections inspected; other platform packages inventoried, not adopted. Adapt platform units, navigation/insets, accessibility and state restoration; verify APIs against official docs. Reject universal Material/dynamic-color mandates and unverified example APIs. |
+| [pbakaus/impeccable](https://github.com/pbakaus/impeccable/tree/c8891a9ae865d6ee311836ae5199bfce0fe115b1) | Canonical .agents entrypoint plus selected new-work, shape, polish, harden, critique and Android references inspected; other host copies are duplicates. Adapt purpose-specific expression, refinement vs redesign, incumbent evidence, content extremes and rendered checks. No launcher, detector, hooks, scoring system or mandatory extra documents. |
+| [ibelick/ui-skills](https://github.com/ibelick/ui-skills/tree/00db7d656719c399c091f3ea138c6f42a7fa4d98) | UI entrypoints inspected for baseline, accessibility, motion, design extraction and improve-ui; canvas entrypoints screened. Adapt governing-source tracing, small focused passes and evidence-based design extraction. Reject stack lock-in, arbitrary bans, forced read-only planning for authorized implementation and blanket accessibility exclusions. |
+| [anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins/tree/d900840716eb262e1feb17c6f4406c9ce0e06bcf) | All seven design/skills entrypoints inspected: accessibility-review, design-critique, design-handoff, design-system, research-synthesis, user-research and ux-copy. Adapt handoff detail, content, research/evidence separation and consistency. No fabricated participants, universal sample sizes, scores or mandatory connectors. |
+
+## Discovery pages supplied by the user
+
+These pages were opened as discovery aids. Their rankings, popularity figures and performance claims are not quality evidence. Recommendations were checked against primary source instructions; advertised private/store-only skill contents are not represented as inspected.
+
+- [Kimi: UI/UX design skills](https://www.kimi.ai/resources/ui-ux-design-skills-for-agents): public descriptions of design-system-builder and landing-page-scaffold; full store packages not obtained. Conceptually relevant reference extraction and coherent foundations; no fixed five-section landing template adopted.
+- [Snyk: UI/UX skills](https://snyk.io/articles/top-claude-skills-ui-ux-engineers/): discovery of Anthropic, Vercel, UI/UX Pro Max, Bencium and AccessLint. Current repositories differ from some article paths/rules; primary sources take precedence.
+- [Zima: AI design skills/tools](https://shop.zimaspace.com/blogs/tech-ai-hub/10-best-ai-design-skills-tools-for-better-ui-ux): discovery of Impeccable and UI Skills. Other listed tools such as Hallmark, Open Design, Taste, GSAP and design-md-chrome were screened at article level, not claimed as fully inspected or incorporated packages.
+- [AgenticSkills design category](https://agenticskills.io/category/design): directory discovery including platform-design-skills and Anthropic design plugin. Other listed entries were not all investigated; directory ranks are not benchmarks.
+
+## Primary platform guidance
+
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/): web accessibility criteria, target-size distinctions and conformance limits.
+- [WAI-ARIA APG modal dialogs](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/): modal focus and interaction behavior; ARIA alone does not implement it.
+- [web.dev responsive design](https://web.dev/learn/design): content/layout adaptation, internationalization and input.
+- [Android accessibility defaults](https://developer.android.com/develop/ui/compose/accessibility/api-defaults): native touch targets and semantics.
+- [Android adaptive layouts](https://developer.android.com/develop/ui/compose/layouts/adaptive): available-window adaptation.
+- [Android state saving](https://developer.android.com/develop/ui/compose/state-saving): distinct restoration mechanisms and their limits.
+- [Compose UI testing](https://developer.android.com/develop/ui/compose/testing): semantics, actions, assertions and synchronization.
+- [OWASP authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html): UI restrictions are distinct from authorization enforcement; consulted in the 1.1.1 maintenance review.
+- [MDN XSS guidance](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS): context-specific escaping, sanitization and rendering boundaries; consulted in the 1.1.1 maintenance review.
+- [Vercel Web Interface Guidelines](https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md): inspected live during research; useful browser/UI concerns, not adopted as unquestioned mandates.
+
+## Deliberate synthesis
+
+The package adds a single cumulative screen contract, stable IDs and explicit decision/evidence states; routes conditional platform knowledge; preserves actual project authority; handles uncertainty, recovery and cross-screen changes; and records tool/device limitations. It combines visual craft with functional interaction rather than maximizing decoration or checklist volume. Packaging and internal-link checks do not establish that this synthesis outperforms other skills. Future trials must use representative tasks and target models/hosts.
+
+## User-supplied Android/KMP bundle — 2026-11-05
+
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.

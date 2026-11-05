@@ -3,7 +3,7 @@ name: penta-pro
 description: "Explores software requirements and creates, updates, or reviews PENTA-PRO specifications through focused interviews. Use for new software, substantial feature specifications, or resuming a PENTA-PRO document; not for ordinary coding, code review, or conceptual explanations."
 license: MIT
 metadata:
-  version: "2.3.0"
+  version: "2.4.1"
 ---
 
 # PENTA-PRO
@@ -74,6 +74,7 @@ For material assumptions, separate permission to proceed from evidence that the 
 
 - Keep all five pillars. Remove drafting prompts from the project deliverable. Record `Pending` for material unknown applicability or insufficient linked coverage, and `Not applicable` for screened concerns with a reason. Keep deferred work visible with an owner and trigger.
 - Reuse canonical artifacts. Link requirements and acceptance from PRODUCT, decisions and contracts from PROJECT, and evidence from PROOF. Index independently maintained feature details, increment plans, and contracts from their owning pillar. Keep shared coverage and navigation in PROCESS.
+- If a screen specification such as `docs/ui-ux.md` exists, follow the [ownership rules](references/document-maintenance.md#screen-specifications-and-other-companion-artifacts). Reconcile material conflicts instead of treating a detailed mockup as authority over product behavior.
 - Resolve final links from the generated document's location. Replace authoring links into this skill with actual project artifacts or remove them with the drafting guidance. Keep needed contract details in the deliverable or its accessible canonical references.
 - Record glossary, artifact ownership, and material revision history only at the depth needed to preserve meaning. Use existing trackers and machine-readable contracts when authoritative; do not create parallel YAML/JSON copies without a consumer and a synchronization rule.
 - Preserve stable requirement, acceptance, and decision IDs. Do not invent tools, targets, budgets, capabilities, or confirmations. State quality targets with their measurement conditions.

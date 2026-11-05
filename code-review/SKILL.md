@@ -3,7 +3,7 @@ name: code-review
 description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for backend, frontend, Android, or test-code review, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.4.2"
+  version: "1.5.1"
 ---
 
 # Code Review
@@ -27,6 +27,7 @@ Read [the review method](references/review-method.md) for target selection, poli
 | Browser UI, client state, forms, accessibility, web performance | [Frontend](references/frontend.md) |
 | Kotlin/Java Android, Compose/Views, manifests, Gradle, mobile storage | [Android](references/android.md) |
 | Test code, assertions, fixtures, CI evidence, or regression-protection claims | [Verification](references/verification.md) |
+| Kotlin coroutine/Flow, Compose or KMP tests and their execution claims | [Android/KMP test effectiveness](references/android-testing.md) |
 | Independent handoff, model selection, or multiple review lenses | [Independent review](references/independent-review.md) |
 
 Cross-platform changes may need multiple domain references. Read relevant sections, not every checklist by default. Use the [report template](assets/review-report-template.md) for substantial/saved reports and the [handoff template](assets/review-handoff-template.md) for another reviewer. Adapt them to the caller's format and change size; omit irrelevant sections.
@@ -34,7 +35,7 @@ Cross-platform changes may need multiple domain references. Read relevant sectio
 ## Workflow
 
 1. **Set scope and intent.** Resolve repository, comparison/files, requirements, contracts, and applicable policy. Explicit file/snippet requests can be current-state reviews without Git or a baseline; do not invent regression history. With no target, inspect uncommitted work, including staged, unstaged, and relevant untracked files. A clean worktree needs an established comparison or clarification, not an unsolicited audit.
-2. **Capture and inspect the snapshot.** Record actual revisions/local content and exclusions. Read every in-scope human-written change plus necessary guards, callers, and consumers; inspect generators and relevant output for generated changes. A committed comparison omits local work unless expressly included.
+2. **Capture and inspect the snapshot.** Record actual revisions/local content and exclusions. Distinguish the index from working files when they differ; staged-only review evaluates the content that would be committed. Read every in-scope human-written change plus necessary guards, callers, and consumers; inspect generators and relevant output for generated changes. A committed comparison omits local work unless expressly included.
 3. **Trace consequences.** Check intended behavior and established engineering constraints. Follow one changed behavior from entry point through guards, effects, and consumers using the method's [behavior trace](references/review-method.md#trace-one-behavior-at-a-time). Include meaningful failures, concurrency, cancellation, and compatibility.
 4. **Examine evidence.** Review in-scope test code and the tests relied on for changed behavior. Follow [verification](references/verification.md) to inspect discovery, setup, assertion execution, expected results, and sensitivity to realistic defects. Run focused, safe project checks when useful. Distinguish local execution, matching CI evidence, and unverified author claims.
 5. **Challenge candidates.** Verify reachable triggers, existing protections, baseline behavior, and impact. Try to disprove each issue, including suggestions from other reviewers. Deduplicate root causes; separate questions, optional ideas, and unrelated pre-existing defects.

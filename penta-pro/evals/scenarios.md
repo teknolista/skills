@@ -126,3 +126,25 @@ On 2026-11-05, repository synchronization aligned PROOF with the existing test-e
 ## Validation record — version 2.3.0
 
 The preferred interview and presentation order is now PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS. Instructions preserve early operational and delivery constraints, refinement of PROOF after design, and continuous PROCESS authority and resume state. Navigation, template tables, software profiles, the worked example, README, and active versions were aligned. Frontmatter, local links and anchors, versions, the five output destinations, and presentation order were checked. The new case is authored; no new model trial or measured efficiency improvement is claimed.
+
+## Android/KMP bundle follow-up — 2.4.0
+
+2026-11-05: added the following maintainer scenarios after source inspection and primary-document checks.
+
+| Input / task | Expected behavior |
+| --- | --- |
+| Shared Android/iOS notes editor with offline writes and unknown retention | Keep the five outputs; distinguish local/queued/confirmed status, per-platform restoration, migration and required target evidence without mandating a stack. |
+| A KMP project already has its own modules and unsupported Apple test runner on the host | Reuse ownership and build facts; verify actual AGP/Kotlin/Gradle constraints and keep unavailable target checks pending rather than inventing commands or passing all platforms. |
+
+Author-side contract walkthrough only; these rows are not an independently executed model trial. The source contrast-checker probe is recorded in the [bundle assessment](../../docs/research/pl-coding-bundle.md); it does not establish behavior of this skill. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
+
+
+## Final maintenance review — 2.4.1
+
+2026-11-05: reviewed the package and clarified ownership when a companion screen specification exists. The default output remains the five pillar documents; detailed UI records do not silently override product requirements.
+
+| Input / task | Expected behavior |
+| --- | --- |
+| Specify a local-only Android app whose designer-owned screen document says “Synchronized to cloud”; companion edits are excluded | Create the five pillar drafts, preserve the screen document, identify the conflicting requirement/screen and supported authority, and record pending reconciliation without inventing a backend or claiming global consistency. |
+
+This is an authored scenario. A fresh agent began the corresponding disposable-project trial but reached the host usage limit before producing the five documents; the trial is incomplete, not passed. Package checks establish structural consistency only. No smaller-model performance or software runtime result is claimed.
