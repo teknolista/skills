@@ -1,4 +1,0 @@
-interface:
-  display_name: "Code Review"
-  short_description: "Review backend, frontend, Android, and test effectiveness"
-  default_prompt: "Use $code-review to independently review the selected code and relevant tests against requirements and report prioritized findings with concrete evidence."

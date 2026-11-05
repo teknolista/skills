@@ -100,9 +100,9 @@ For authoring changes, first test selection with descriptions alone, then run ta
 
 ## 14. Discovery boundaries
 
-**Requests:** Positive: “Review these tests for assertions that miss regressions”; “Review this PR for defects”; “Re-review CR-003 after the Android fix”; “Give an independent second opinion on this backend patch.” Negative: “Implement a login form”; “Review our product specification”; “Explain what code review means.”
+**Requests:** Positive: “Review these tests for assertions that miss regressions”; “Review this PR for defects”; “Re-review CR-003 after the Android fix”; “Give an independent second opinion on this backend patch.” Negative: “Implement a login form”; “Review our product specification”; “Explain what peer review means.”
 
-**Expected:** Select code-review for actual code-review work, not specification review, conceptual explanation, or ordinary implementation. An explicit request to implement and then review should retain both tasks rather than silently replacing implementation with a read-only review.
+**Expected:** Select peer-review for actual peer-review work, not specification review, conceptual explanation, or ordinary implementation. An explicit request to implement and then review should retain both tasks rather than silently replacing implementation with a read-only review.
 
 ## 15. Small, correct change
 
@@ -195,7 +195,7 @@ On 2026-11-05, repository synchronization made test-effectiveness review explici
 | SavedStateHandle map construction, activity recreation and filtered-out native tests described as full recovery verification | Separate evidence boundaries, inspect runner/discovery and report missing actual platform/process evidence. |
 | Stable annotation over a mutated list, a component retaining harmless local expansion, and existing Robolectric tests | Substantiate stale UI if reachable; do not force ViewModel hoisting, annotation removal or device-only tooling without evidence/requirements. |
 
-Author-side contract walkthrough only; these rows are not an independently executed model trial. The source contrast-checker probe is recorded in the [bundle assessment](../../docs/research/pl-coding-bundle.md); it does not establish behavior of this skill. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
+Author-side contract walkthrough only; these rows are not an independently executed model trial. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
 
 ## Final maintenance cases — 1.5.1
 
@@ -211,3 +211,8 @@ Validation of this revision covers package structure and resource links. A dispo
 
 
 Additional independent forward testing was attempted during the 2026-11-05 maintenance pass, but host usage limits prevented completion. No result is recorded as passed from those attempts. Earlier completed inspections and bounded source experiments retain only their stated scope.
+
+
+## Package identity — 1.6.0
+
+Renamed the package to `peer-review`, its display name to Peer Review, and its explicit invocation to `$peer-review`. Repository links, examples, templates, discovery references and documentation use the new identity. Upstream project names, skill identifiers and external URLs retain their original names for accurate attribution. The review workflow and historical trial scope are unchanged. Validation covers package naming, UI metadata, repository links and removal of stale local invocations; no new behavioral trial is implied by this rename.

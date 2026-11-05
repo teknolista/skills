@@ -36,7 +36,7 @@ Executed creation checks: skill-creator quick_validate.py passed for all four sk
 | Token checker exits zero after ignoring an unknown foreground/usage category | Keep affected pairs unverified, inspect actual rendered combinations and avoid WCAG conformance claims. |
 | Compose shared component with local expansion and a common preview lacking Android-only parameters | Choose appropriate state ownership/resources/preview APIs without blanket MVI/Material/Channel rules; preserve accepted screen IDs and disclose unverified native targets. |
 
-Author-side contract walkthrough only; these rows are not an independently executed model trial. The source contrast-checker probe is recorded in the [bundle assessment](../../docs/research/pl-coding-bundle.md); it does not establish behavior of this skill. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
+Author-side contract walkthrough only; these rows are not an independently executed model trial. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
 
 ## Final maintenance review — 1.1.1
 

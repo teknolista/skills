@@ -1,6 +1,6 @@
 # Source Research and Synthesis
 
-Historical design provenance, beginning with research and the version 1.1.0 official-documentation update on 2026-10-25. Later sections record subsequent research with its inspected revisions and dates. Current behavior is defined in [SKILL.md](../SKILL.md); this file is not required reading for routine code review.
+Historical design provenance, beginning with research and the version 1.1.0 official-documentation update on 2026-10-25. Later sections record subsequent research with its inspected revisions and dates. Current behavior is defined in [SKILL.md](../SKILL.md); this file is not required reading for routine peer review.
 
 The requested repositories were inspected to identify review entrypoints, then the relevant review instructions and selected supporting material were read. This was a focused review-method survey, not an audit of every skill or every language manual in those repositories. Source instructions were treated as research data and were not executed or installed.
 
@@ -30,7 +30,7 @@ The distinction between requirement alignment and repository standards prevents 
 
 ### Blueprint
 
-Read-only inspection, concrete trigger/impact evidence, behavioral test review, specialist coverage limits, and fresh independent judgment shaped the core. The synthesis labels self-review honestly rather than treating it as independent. It allows useful bounded inspection when orchestration is unavailable, while an actual independence requirement remains unsatisfied. Proposal review stays distinct from implemented-code review.
+Read-only inspection, concrete trigger/impact evidence, behavioral test review, specialist coverage limits, and fresh independent judgment shaped the core. The synthesis labels self-review honestly rather than treating it as independent. It allows useful bounded inspection when orchestration is unavailable, while an actual independence requirement remains unsatisfied. Proposal review stays distinct from review of implemented code.
 
 ### Addy Osmani
 
@@ -91,4 +91,4 @@ Mutation interpretation also follows Stryker's [mutant states](https://stryker-m
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.

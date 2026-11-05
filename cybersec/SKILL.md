@@ -1,6 +1,6 @@
 ---
 name: cybersec
-description: "Assesses cybersecurity risks and controls in software, DevOps, cloud, and IT systems. Use for threat modeling, security reviews, hardening, security-focused implementation, or security release checks across web/API, desktop, and mobile projects; not ordinary coding or general code review."
+description: "Assesses cybersecurity risks and controls in software, DevOps, cloud, and IT systems. Use for threat modeling, security reviews, hardening, security-focused implementation, or security release checks across web/API, desktop, and mobile projects; not ordinary coding or general peer review."
 license: MIT
 metadata:
   version: "1.3.1"

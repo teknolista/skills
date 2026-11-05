@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-This repository's newly written instructions and templates were informed by the public methods listed in the [PENTA-PRO](penta-pro/references/sources.md) [Code Review](code-review/references/sources.md), and [UI/UX](ui-ux/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution and UI/UX research attributions appear separately after that notice.
+This repository's newly written instructions and templates were informed by the public methods listed in the [PENTA-PRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI/UX](ui-ux/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution and UI/UX research attributions appear separately after that notice.
 
 | Work | Copyright notice | License |
 | --- | --- | --- |
@@ -82,6 +82,6 @@ These articles/directories were discovery aids, not normative standards or evide
 
 ## User-supplied PL Coding Skills Bundle
 
-The user supplied a local directory labeled **PL Coding Skills Bundle**, inspected on 2026-11-05: 20 skill entrypoints covering Android, Kotlin Multiplatform, design and PR comprehension, plus supporting files. The [assessment and provenance record](docs/research/pl-coding-bundle.md) identifies every entrypoint, snapshot digest, applicable lessons, excluded prescriptions, source probes and primary technical verification links.
+The user supplied a local directory labeled **PL Coding Skills Bundle**, inspected on 2026-11-05: 20 skill entrypoints covering Android, Kotlin Multiplatform, design and PR comprehension, plus supporting files.
 
 No license, public source URL, release manifest or independently verified authorship was present in the supplied directory. This attribution records the source label supplied by the user and does not infer redistribution rights or a public author identity. Only independently written explanations of general methods were added to this repository; no upstream skill text, implementation, templates, styles, token data or quiz workflow is redistributed. The original bundle remains unchanged. The MIT permission notice above does not purport to license this bundle. Attribution implies no affiliation or endorsement.

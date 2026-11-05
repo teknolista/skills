@@ -1,4 +1,4 @@
-# Code Review: [Change title]
+# Peer Review: [Change title]
 
 Replace fields with actual evidence; remove unused guidance and optional sections. Preserve the caller's output format when one is specified.
 

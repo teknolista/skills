@@ -1,6 +1,6 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Code Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. UI/UX turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. UI/UX turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
@@ -19,7 +19,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Example requests](#example-requests)
     - [Output and working boundaries](#output-and-working-boundaries)
     - [Resources](#resources)
-  - [Code Review](#code-review)
+  - [Peer Review](#peer-review)
     - [Example requests](#example-requests-1)
     - [Findings, verdicts, and boundaries](#findings-verdicts-and-boundaries)
     - [Test effectiveness](#test-effectiveness)
@@ -46,7 +46,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | Skill | Version | Purpose |
 | --- | --- | --- |
 | [PENTA-PRO](#penta-pro) | 2.4.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Code Review](#code-review) | 1.5.1 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Peer Review](#peer-review) | 1.6.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersec](#cybersec) | 1.3.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 | [UI/UX](#uiux) | 1.1.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-ux.md`. |
 
@@ -56,14 +56,14 @@ Copy the complete directory of each desired skill into the skills location suppo
 
 ```text
 your-project/.agents/skills/penta-pro/SKILL.md
-your-project/.agents/skills/code-review/SKILL.md
+your-project/.agents/skills/peer-review/SKILL.md
 your-project/.agents/skills/cybersec/SKILL.md
 your-project/.agents/skills/ui-ux/SKILL.md
 ```
 
 A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](#agent-and-model-compatibility) for documented locations, capabilities, and integration limits.
 
-The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$code-review`, `$cybersec`, or `$ui-ux` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
+The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-ux` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
 
 The packages use Markdown instructions, references, and templates. No skill requires another skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
 
@@ -109,7 +109,7 @@ The workflows have no hard-coded model, reasoning setting, vendor tool name, or 
 
 Choose a currently available model with sufficient reasoning, domain competence, context capacity, and reliable tool use for the task. Escalate difficult requirements or review risks when evidence warrants it. The documented [OpenAI model options](https://learn.chatgpt.com/docs/models) include the repository's example implementation/review pairing; availability and suitability depend on the host/account and observed results. A model name is not a quality gate.
 
-After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [code-review cases](code-review/evals/scenarios.md), [cybersec cases](cybersec/evals/scenarios.md), and [UI/UX cases](ui-ux/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
+After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [peer-review cases](peer-review/evals/scenarios.md), [cybersec cases](cybersec/evals/scenarios.md), and [UI/UX cases](ui-ux/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
 
 ## PENTA-PRO
 
@@ -187,22 +187,22 @@ The workflow is model-neutral. Use a host that can load the complete skill folde
 
 For creation, read the template index and five pillar templates. For updates and reviews, consult relevant sections for structural gaps or readiness. Screen profiles for new specifications or material scope changes and read detailed patterns as needed. Source notes, the analyst assessment, and evaluation cases are maintainer resources.
 
-## Code Review
+## Peer Review
 
-**Version:** 1.5.1 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
+**Version:** 1.6.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
-Use Code Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
+Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
 ### Example requests
 
 ```text
-Use $code-review to review all my uncommitted changes, including new files.
-Use $code-review to review this branch against origin/main, including the local edits.
-Use $code-review to review the selected PR against the requirements and checks in docs/product.md and docs/proof.md.
-Use $code-review to review the changed tests for assertions that would miss the regressions they claim to detect.
-Use $code-review to review the Android release changes, focusing on lifecycle and data migration.
-Use $code-review to re-review the fixes for CR-001 and CR-002 on the current revision.
-Use $code-review to prepare a handoff for an independent reviewer in another session.
+Use $peer-review to review all my uncommitted changes, including new files.
+Use $peer-review to review this branch against origin/main, including the local edits.
+Use $peer-review to review the selected PR against the requirements and checks in docs/product.md and docs/proof.md.
+Use $peer-review to review the changed tests for assertions that would miss the regressions they claim to detect.
+Use $peer-review to review the Android release changes, focusing on lifecycle and data migration.
+Use $peer-review to re-review the fixes for CR-001 and CR-002 on the current revision.
+Use $peer-review to prepare a handoff for an independent reviewer in another session.
 ```
 
 `origin/main` is an example; use the actual intended base. A committed comparison and the current worktree are different scopes. With no named target, the skill starts with uncommitted work, including staged, unstaged, and relevant untracked files, and identifies comparisons that need clarification.
@@ -225,14 +225,14 @@ The reviewer follows consequential behavior from its contract through entry poin
 
 ### Test effectiveness
 
-Code Review examines the tests relied on for changed behavior, including their discovery, fixtures, real subject, assertions, and completion. It asks which realistic wrong behavior would still pass.
+Peer Review examines the tests relied on for changed behavior, including their discovery, fixtures, real subject, assertions, and completion. It asks which realistic wrong behavior would still pass.
 
 - Inspect tautologies, unused matchers, swallowed failures, unawaited assertions, and conditional or empty-case verification.
 - Check whether mocks replace the behavior under review and whether shared fixtures, mock history, or automatic retries hide a failure.
 - Derive expected results from the contract. Review skips, focus filters, weakened assertions, and regenerated snapshots against any authorized requirement change.
 - Inspect helpers and framework semantics before judging a smoke test, snapshot, interaction check, or type assertion.
 
-The verification guidance incorporates lessons from Hollowtest. Its CLI is optional and must support the actual language and runner. Static diagnostics and scores are review evidence to investigate. Mutation probes use a disposable copy and a passing baseline, then distinguish meaningful assertion failures from equivalent mutations, compilation errors, timeouts, and incorrect test selection. The [verification guide](code-review/references/verification.md) contains the detailed checks and execution boundaries.
+The verification guidance incorporates lessons from Hollowtest. Its CLI is optional and must support the actual language and runner. Static diagnostics and scores are review evidence to investigate. Mutation probes use a disposable copy and a passing baseline, then distinguish meaningful assertion failures from equivalent mutations, compilation errors, timeouts, and incorrect test selection. The [verification guide](peer-review/references/verification.md) contains the detailed checks and execution boundaries.
 
 ### Independent review and models
 
@@ -256,19 +256,19 @@ Confirm how a managed reviewer receives instructions. Including only the body of
 
 | Resource | Purpose |
 | --- | --- |
-| [Entrypoint](code-review/SKILL.md) | Scope, routing, evidence requirements, independence, and follow-up. |
-| [Review method](code-review/references/review-method.md) | Target selection, trusted policy, confidence, severity, coverage, and verdicts. |
-| [Backend](code-review/references/backend.md) | APIs, authorization, data, concurrency, failure recovery, and operations. |
-| [Frontend](code-review/references/frontend.md) | UI state, contracts, accessibility, browser boundaries, and performance. |
-| [Android](code-review/references/android.md) | Lifecycle, coroutines, Flow, Compose/Views, platform security, and release variants. |
-| [Android/KMP test effectiveness](code-review/references/android-testing.md) | Coroutine schedulers, Flow, Compose synchronization, restoration and target coverage. |
-| [Verification](code-review/references/verification.md) | Test effectiveness, assertion execution, false-positive checks, isolated mutation probes, and evidence reporting. |
-| [Independent review](code-review/references/independent-review.md) | Fresh context, model selection, review lenses, and feedback loops. |
-| [Report template](code-review/assets/review-report-template.md) | Optional structure for substantial or saved reviews. |
-| [Handoff template](code-review/assets/review-handoff-template.md) | Factual packet for another reviewer or model. |
-| [Source research](code-review/references/sources.md) | Original sources, official guidance, and synthesis decisions. |
-| [Evaluation scenarios](code-review/evals/scenarios.md) | Calibration, scope, policy, host behavior, and validation records. |
-| [OpenAI metadata](code-review/agents/openai.yaml) | Optional Codex display metadata and example invocation. |
+| [Entrypoint](peer-review/SKILL.md) | Scope, routing, evidence requirements, independence, and follow-up. |
+| [Review method](peer-review/references/review-method.md) | Target selection, trusted policy, confidence, severity, coverage, and verdicts. |
+| [Backend](peer-review/references/backend.md) | APIs, authorization, data, concurrency, failure recovery, and operations. |
+| [Frontend](peer-review/references/frontend.md) | UI state, contracts, accessibility, browser boundaries, and performance. |
+| [Android](peer-review/references/android.md) | Lifecycle, coroutines, Flow, Compose/Views, platform security, and release variants. |
+| [Android/KMP test effectiveness](peer-review/references/android-testing.md) | Coroutine schedulers, Flow, Compose synchronization, restoration and target coverage. |
+| [Verification](peer-review/references/verification.md) | Test effectiveness, assertion execution, false-positive checks, isolated mutation probes, and evidence reporting. |
+| [Independent review](peer-review/references/independent-review.md) | Fresh context, model selection, review lenses, and feedback loops. |
+| [Report template](peer-review/assets/review-report-template.md) | Optional structure for substantial or saved reviews. |
+| [Handoff template](peer-review/assets/review-handoff-template.md) | Factual packet for another reviewer or model. |
+| [Source research](peer-review/references/sources.md) | Original sources, official guidance, and synthesis decisions. |
+| [Evaluation scenarios](peer-review/evals/scenarios.md) | Calibration, scope, policy, host behavior, and validation records. |
+| [OpenAI metadata](peer-review/agents/openai.yaml) | Optional Codex display metadata and example invocation. |
 
 Android/KMP guidance also examines typed-result fallback/decoding semantics, dependency lifetimes and shared-platform boundaries. Test review distinguishes scheduler/clock ownership, conflated Flow states, device execution and actual OS restoration.
 
@@ -378,7 +378,7 @@ When PENTA-PRO files exist, this UI document supplements their five pillars and 
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
-The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It does not prescribe a stack, folder layout, model, skill dependency, or test framework. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
+The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It routes work to `penta-pro`, `ui-ux`, `peer-review`, and `cybersec`, identifies the five pillar documents plus the cumulative UI specification, and explains ownership, resumption and evidence states. Fill in actual skill locations and commands; copying the template does not install the packages or require all four on every task. It leaves the stack, source layout, model and test framework to the project. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
 
 ## Repository structure
 
@@ -390,7 +390,6 @@ skills/
 ├── LICENSE
 ├── THIRD-PARTY-NOTICES.md
 ├── AGENTS-template.md
-├── docs/research/              # Maintainer source assessments
 ├── penta-pro/
 │   ├── SKILL.md
 │   ├── agents/
@@ -403,7 +402,7 @@ skills/
 │   │   └── process.md
 │   ├── evals/
 │   └── references/
-├── code-review/
+├── peer-review/
 │   ├── SKILL.md
 │   ├── agents/
 │   ├── assets/
@@ -424,8 +423,6 @@ skills/
 ```
 
 `SKILL.md` contains required metadata and runtime instructions. Optional `agents/` files adapt host presentation; `assets/` holds output templates; `references/` holds conditional detail; `evals/` holds maintenance cases and validation records. Create only the directories a skill needs.
-
-The [PL Coding bundle assessment](docs/research/pl-coding-bundle.md) records the Android/KMP lessons incorporated across all four skills, provenance limits and concrete reasons some upstream prescriptions were excluded.
 
 ## Maintenance and new skills
 
@@ -454,4 +451,4 @@ The repository and its skills are distributed under the single root [MIT License
 
 When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
 
-The source research for [PENTA-PRO](penta-pro/references/sources.md), [Code Review](code-review/references/sources.md), [Cybersec](cybersec/references/sources.md), and [UI/UX](ui-ux/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
+The source research for [PENTA-PRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersec](cybersec/references/sources.md), and [UI/UX](ui-ux/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.

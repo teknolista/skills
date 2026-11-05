@@ -1,4 +1,4 @@
-# Independent Code Review Handoff
+# Independent Peer Review Handoff
 
 Use this packet to request a fresh review. Replace placeholders; do not send the implementer's full conversation or hidden reasoning.
 

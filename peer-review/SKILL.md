@@ -1,12 +1,12 @@
 ---
-name: code-review
-description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for backend, frontend, Android, or test-code review, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
+name: peer-review
+description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for reviews of backend, frontend, Android, or test code, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.5.1"
+  version: "1.6.0"
 ---
 
-# Code Review
+# Peer Review
 
 Find consequential problems in the selected change or source snapshot and substantiate them. Zero findings is valid. Judge evidence rather than the author's confidence, identity, or model.
 

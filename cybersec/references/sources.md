@@ -43,7 +43,7 @@ Primary material consulted includes [OWASP authorization](https://cheatsheetseri
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
 
 ## Checked values and effective operations — version 1.3.1
 

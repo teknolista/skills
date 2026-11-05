@@ -15,8 +15,8 @@ Historical maintainer provenance, beginning with version 1.2.0 inspected on 2026
 ## Scope exclusions
 
 - [owainlewis/blueprint](https://github.com/owainlewis/blueprint/tree/74210b5f4f07e6a213d2d3950603f55a868c9f4a/skills): the inspected skill inventory has no dedicated brainstorming skill. `requirements` was inspected to classify its scope; requirements, architecture, and planning workflows were not imported into this brainstorming-only synthesis.
-- [awesome-skills/code-review-skill](https://github.com/awesome-skills/code-review-skill/tree/4850184dfd7765ea7b3c5c4e9b6cf8e0815ee7cb): the inspected inventory contains a code-review skill, with no brainstorming skill identified.
-- [The supplied PERFECT gist](https://gist.github.com/keskinonur/36e0dd44f8cc7f6e507055e94a70618b): its published skill is a code-review workflow, outside this update's scope.
+- [awesome-skills/code-review-skill](https://github.com/awesome-skills/code-review-skill/tree/4850184dfd7765ea7b3c5c4e9b6cf8e0815ee7cb): the inspected inventory contains a peer-review skill, with no brainstorming skill identified.
+- [The supplied PERFECT gist](https://gist.github.com/keskinonur/36e0dd44f8cc7f6e507055e94a70618b): its published skill is a peer-review workflow, outside this update's scope.
 
 ## Deliberate adaptations
 
@@ -56,7 +56,7 @@ The examples use original wording informed by [AWS retry and idempotency guidanc
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
 
 
 ## Companion-document consistency — version 2.4.1

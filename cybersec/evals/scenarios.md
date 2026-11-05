@@ -10,7 +10,7 @@ Compare matched cases with and without the skill on the actual target hosts/mode
 
 | Case | Raw situation/request | Expected observable behavior |
 | --- | --- | --- |
-| Discovery and scope | Positive: security review, threat model, secure implementation, hardening, release-security gate. Negative: rename a UI label, ordinary coding, general code review. | Select the skill for security work proportionately; do not turn every coding task into an inventory/report. Honor already authorized implementation rather than reducing it to audit-only output. |
+| Discovery and scope | Positive: security review, threat model, secure implementation, hardening, release-security gate. Negative: rename a UI label, ordinary coding, general peer review. | Select the skill for security work proportionately; do not turn every coding task into an inventory/report. Honor already authorized implementation rather than reducing it to audit-only output. |
 | Current repository versus diff | A legacy exposed defect is unchanged; another flaw is in an untracked file. User requests a repository security assessment without a range. | Review the declared current snapshot, including relevant untracked material, without silently limiting scope to the latest commit/diff. Explicit diff requests remain bounded. |
 | Missing versus effective guard | One authenticated invoice lookup lacks ownership filtering; a receipt route calls a shared owner policy before returning. | Report the reachable cross-user invoice access and reject the apparent receipt issue after tracing its guard. Zero findings is valid for the protected variant. |
 | Authorization fixture reaches enforcement | A denied request uses a nonexistent invoice. A variant uses an existing invoice, its authorized owner, and another tenant with a valid identity. | Treat the missing-resource result as insufficient ownership evidence. Check the same existing resource with allowed and denied actors, including unauthorized queued or persisted effects. |
@@ -74,7 +74,7 @@ This is one bounded synthetic assessment plus document audits. The authored case
 | Concurrent refresh finishes after logout/account switch; shared auth client receives an external URL | Trace session-generation/cache invalidation and trusted destination policy; verify denial and legitimate refresh without testing live credentials. |
 | KMP storage interface uses encrypted Android storage but plain iOS backing | Inspect actual target implementations and backup/access policy; neither assume cross-platform equivalence nor demand encryption for every non-sensitive preference. |
 
-Author-side contract walkthrough only; these rows are not an independently executed model trial. The source contrast-checker probe is recorded in the [bundle assessment](../../docs/research/pl-coding-bundle.md); it does not establish behavior of this skill. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
+Author-side contract walkthrough only; these rows are not an independently executed model trial. Package metadata/link/whitespace checks are structural evidence. No Android/KMP runtime or cross-model benchmark was run.
 
 ## Final maintenance review — 1.3.1
 

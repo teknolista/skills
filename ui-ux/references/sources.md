@@ -18,7 +18,7 @@ Refreshed the complete, non-truncated GitHub trees of all nine repositories alre
 | [Fission-AI/OpenSpec](https://github.com/Fission-AI/OpenSpec/tree/3e4d5f0769e2857c8eb54f149cbf5e4f703fa04c) | 16 | No dedicated UI/UX skill among the change-management workflows. Reuse the concept of explicit assumptions/changes and reconciliation; no OpenSpec CLI or artifact tree dependency. |
 | [github/spec-kit](https://github.com/github/spec-kit/tree/04fca3d96a5dfcf942a5f70069a42ad84d336fed) | 2 | No dedicated screen-design skill in the two internal skill entrypoints. Specification/clarification/checklist command templates are adjacent; preserve scope and measurable acceptance without importing a second specification framework. |
 | [jeffev/hollowtest](https://github.com/jeffev/hollowtest/tree/29995ce12bf40757055b2b406f15439cb9d480b2) | 1 | No UI-design skill. Test-effectiveness lessons apply to verification, including browser tests; a rendered smoke check cannot prove interaction behavior. No JS-only CLI or universal mutation requirement. |
-| [awesome-skills/code-review-skill](https://github.com/awesome-skills/code-review-skill/tree/4850184dfd7765ea7b3c5c4e9b6cf8e0815ee7cb) | 1 | One review skill, with frontend/Kotlin supporting guidance rather than a separate UI-design workflow. Keep platform/evidence distinctions; avoid duplicating this repository's existing Code Review. |
+| [awesome-skills/code-review-skill](https://github.com/awesome-skills/code-review-skill/tree/4850184dfd7765ea7b3c5c4e9b6cf8e0815ee7cb) | 1 | One review skill, with frontend/Kotlin supporting guidance rather than a separate UI-design workflow. Keep platform/evidence distinctions; avoid duplicating this repository's existing Peer Review. |
 
 The PERFECT gist and Silva97/TabNews/Freedev articles already cited in the notices are adjacent conceptual/security readings, not additional repositories of UI skills. No new UI workflow is attributed to them.
 
@@ -64,4 +64,4 @@ The package adds a single cumulative screen contract, stable IDs and explicit de
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. See the [assessment and provenance record](../../docs/research/pl-coding-bundle.md) for all inputs, snapshot, adaptations, counterexamples and primary verification links. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
