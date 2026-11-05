@@ -7,12 +7,14 @@ Use for creation, updates, resumption, or requested migration to the five-file l
 | File | Owns |
 | --- | --- |
 | `docs/product.md` | Product summary, glossary, objectives, requirements, and acceptance criteria. |
-| `docs/project.md` | Architecture, contracts, dependencies, risks, assumptions, open questions, and decisions. |
 | `docs/proof.md` | Check plans, requirement-to-evidence links, actual results, and outcome evaluation. |
-| `docs/process.md` | Shared specification metadata, coverage, identifier conventions, revision history, resume state, tasks, gates, and authority. |
+| `docs/project.md` | Architecture, contracts, dependencies, risks, assumptions, open questions, and decisions. |
 | `docs/production.md` | Environments, distribution, migrations, operations, support, and recovery. |
+| `docs/process.md` | Shared specification metadata, coverage, identifier conventions, revision history, resume state, tasks, gates, and authority. |
 
 Keep sibling navigation in each file and link specific records using their stable IDs and valid anchors. Record a fact once and reference its owner. For example, a check in `proof.md` links its acceptance criterion in `product.md` and its contract in `project.md`. Define stable headings or explicit anchors where record-level navigation is needed. Existing external schemas or trackers can remain authoritative.
+
+Use PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for new presentation and interview deepening. An order change alone does not require rewriting an existing specification or reopening settled decisions. Resume from PROCESS and follow affected dependencies; retain established locations and IDs.
 
 For a first specification using the default layout, create all five files with supported content and explicit gaps. Small projects can have short pillars. Keep the template index as authoring guidance in the skill package. Remove drafting links and placeholders from the generated project files. Before writing, inspect any existing files at the destinations and resolve ambiguous ownership.
 

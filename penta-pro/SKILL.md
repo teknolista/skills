@@ -3,12 +3,12 @@ name: penta-pro
 description: "Explores software requirements and creates, updates, or reviews PENTA-PRO specifications through focused interviews. Use for new software, substantial feature specifications, or resuming a PENTA-PRO document; not for ordinary coding, code review, or conceptual explanations."
 license: MIT
 metadata:
-  version: "2.2.2"
+  version: "2.3.0"
 ---
 
 # PENTA-PRO
 
-Turn user intent into an English specification organized as **PRODUCT → PROJECT → PROOF → PROCESS → PRODUCTION**. Cover the product's lifecycle and resolve enough uncertainty for the next useful increment; keep later scope visible without pretending its design is settled.
+Turn user intent into an English specification organized as **PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS**. Cover the product's lifecycle and resolve enough uncertainty for the next useful increment; keep later scope visible without pretending its design is settled.
 
 ## Choose the task and resources
 
@@ -19,7 +19,7 @@ Turn user intent into an English specification organized as **PRODUCT → PROJEC
 | Resume or update | Read the existing specification and resume state first. Use new answers and consult only relevant template sections for structural gaps or reassessing readiness. | Focused revisions preserving settled decisions, stable IDs, and unrelated edits. |
 | Review | Read the existing specification and inspect the linked records needed for the requested review. For readiness, use the template's [PROCESS checklist](assets/process.md#increment-readiness-authority-and-completion). | Concrete gaps, contradictions, and affected work or gates. Edit only when revisions are requested. |
 
-On resumption or update, preserve the authoritative specification, including a legacy single file. When creating a specification, honor the requested destination and format. By default, locate the target project's root and create `docs/` there if needed. Save `docs/product.md`, `docs/project.md`, `docs/proof.md`, `docs/process.md`, and `docs/production.md` using the matching templates in `assets/`. If the user specifies a different directory, save the five files together there and verify links from that location. The template index stays in the skill package.
+On resumption or update, preserve the authoritative specification, including a legacy single file. When creating a specification, honor the requested destination and format. By default, locate the target project's root and create `docs/` there if needed. Save `docs/product.md`, `docs/proof.md`, `docs/project.md`, `docs/production.md`, and `docs/process.md` using the matching templates in `assets/`. If the user specifies a different directory, save the five files together there and verify links from that location. The template index stays in the skill package.
 
 Clarify which project to use when the target is ambiguous. Inspect existing destinations before writing and clarify collisions with unrelated documents. Follow [document maintenance](references/document-maintenance.md) for the five-file layout and requested migrations. Resolve skill asset paths relative to this skill and keep project answers in the target project.
 
@@ -37,15 +37,20 @@ Establish whether the work creates software, changes an existing system, replace
 
 1. Reuse known facts. Establish the users, problem evidence, intended outcomes, first increment, and constraints across the five pillars; briefly reflect consequential interpretations for correction. For products where the bet matters, establish the strategy, principles, alternatives, and stopping criteria before elaborating features. Gather influential constraints early, including offline use, device support, data location, recovery, safety, and applicable commercial, launch, documentation, or support commitments. Distinguish observed needs from hypotheses and technical health from user or business success.
 2. Use accessible evidence to draft and narrow the questions. Prioritize questions that change the next increment. Ask a foundational question alone or batch a few independent questions. For each consequential decision, state what it changes and give a recommended option when evidence supports one. Defer questions whose prerequisites remain open and continue independent work while answers are pending.
-3. Deepen only topics that affect scope, design, acceptance, or operation. These pillars are perspectives, not sequential development phases:
+3. Use PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS as the preferred order of interview deepening and document presentation. These are perspectives, not sequential development phases. Revisit affected pillars when a later decision changes an earlier premise:
 
    | Pillar | Focus |
    | --- | --- |
    | PRODUCT | Users, value, journeys, business rules, permissions, scope, and observable acceptance criteria. |
-   | PROJECT | Delivery constraints, resources, dependencies, risks, architecture, data, and contracts. |
    | PROOF | Check methods, representative inputs, failure cases, and required acceptance evidence. |
-   | PROCESS | Tasks, responsibilities, execution authority, review, integration, and escalation. |
+   | PROJECT | Delivery constraints, resources, dependencies, risks, architecture, data, and contracts. |
    | PRODUCTION | Installation, environments, updates, migration, support, monitoring, and recovery. |
+   | PROCESS | Tasks, responsibilities, execution authority, review, integration, and escalation. |
+
+   - Establish product behavior and acceptance criteria in PRODUCT, then outline requirement-derived checks and required evidence in PROOF before elaborating the solution. Reuse settled design decisions and existing contracts.
+   - Gather consequential operating constraints, budget, existing-platform limits, and dependencies early enough to inform PROJECT. Detail implementation-specific deployment and recovery in PRODUCTION once the relevant design is known.
+   - Refine PROOF's integration checks, environments, and procedures after design and operational decisions. If a check reveals an infeasible requirement or design, revisit the affected records and preserve the unresolved decision; do not weaken acceptance silently.
+   - PROCESS tracks authority, ownership, status, and resumption from the start. Finalize its execution plan after the other pillars expose the necessary work. For updates, follow affected records and dependencies without restarting settled work solely to traverse the order.
 
 4. Run one integrated interview. When creation is requested, save the initial draft across all five files in the default layout before pausing for answers or handing off the specification. Use supported details and mark consequential unknowns `Pending`. Consolidate later rounds in the affected files. Save shared status, coverage, revision history, and the next interview focus and action in `process.md`, linking open questions in `project.md`. For an established or explicitly requested single file, use the equivalent sections in that file.
 5. Check the chain from objective and discovery evidence through requirement, acceptance, design, verification, and outcome evaluation. Reconcile changes across affected artifacts and record superseded decisions without reusing IDs. Read the document as an implementer without the conversation: surface consequential missing answers, not routine delegated choices. Stop questioning when further answers would not change the next increment; retain non-blocking uncertainty explicitly.

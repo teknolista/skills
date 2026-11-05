@@ -1,10 +1,12 @@
 # PROJECT
 
-[PRODUCT](product.md) · [PROJECT](project.md) · [PROOF](proof.md) · [PROCESS](process.md) · [PRODUCTION](production.md)
+[PRODUCT](product.md) · [PROOF](proof.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROCESS](process.md)
 
 Shared specification state and next action are recorded in [PROCESS](process.md#document-metadata-and-resume-state).
 
 Define a feasible delivery commitment and the technical blueprint that supports it. This pillar covers more than scheduling: it connects scope and constraints to solution design.
+
+Use PRODUCT's requirements, PROOF's evidence needs, and known operational constraints to compare feasible solutions. Check that the selected design can be verified and operated within the actual resources. Reconcile design-dependent checks in PROOF and detailed operating procedures in PRODUCTION as decisions settle.
 
 ## Delivery boundaries and resources
 

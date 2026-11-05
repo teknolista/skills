@@ -1,6 +1,6 @@
 # PRODUCT
 
-[PRODUCT](product.md) · [PROJECT](project.md) · [PROOF](proof.md) · [PROCESS](process.md) · [PRODUCTION](production.md)
+[PRODUCT](product.md) · [PROOF](proof.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROCESS](process.md)
 
 Shared specification state and next action are recorded in [PROCESS](process.md#document-metadata-and-resume-state).
 

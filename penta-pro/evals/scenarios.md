@@ -57,6 +57,7 @@ Run representative cases with and without the skill on the same artifacts and av
 | Exception authority | A release owner accepts a failed check, but the governing contract gives only the customer authority to waive that condition. | Retain the failed result and blocking gate until the condition is satisfied or the responsible authority changes it. Identify the missing authority explicitly. |
 | Generated document links | Create a specification in a project outside the installed skill folder, using a detailed interface pattern. | Incorporate the needed contract or link its project artifact. Final links resolve from the document location and contain no accidental skill-relative authoring paths. |
 | Ineffective gate evidence | A required check reports exit zero, but selects no relevant tests; a separate test asserts only a positive total when the requirement specifies an exact discount. | Keep the behavior unverified until the intended assertions run. Plan a contract-derived exact result and a realistic wrong behavior it must reject. Do not fabricate execution or require a new testing tool. |
+| Preferred order with feedback | Specify a local app that must work offline and preserve existing data during upgrades. Architecture is undecided and routine technical choices are delegated. | Deepen PRODUCT, PROOF, PROJECT, PRODUCTION, then PROCESS. Capture offline and upgrade constraints early; outline behavioral checks before design, refine migration/integration checks afterward, and track authority and resume state throughout. Preserve exactly the five default pillar files and reconcile affected records. |
 
 ## Validation record — version 1.1.0
 
@@ -121,3 +122,7 @@ The final consistency review restricted the context-handoff save instruction to 
 ## Validation record — version 2.2.2
 
 On 2026-11-05, repository synchronization aligned PROOF with the existing test-effectiveness guidance, corrected the escaped-defect case to allow explicit causal uncertainty, and clarified current template navigation versus historical research. Frontmatter, local links and anchors, table structure, metadata, active versions, and the five output destinations were checked. The ineffective-gate case is authored, with no new independent model trial or software execution claimed.
+
+## Validation record — version 2.3.0
+
+The preferred interview and presentation order is now PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS. Instructions preserve early operational and delivery constraints, refinement of PROOF after design, and continuous PROCESS authority and resume state. Navigation, template tables, software profiles, the worked example, README, and active versions were aligned. Frontmatter, local links and anchors, versions, the five output destinations, and presentation order were checked. The new case is authored; no new model trial or measured efficiency improvement is claimed.

@@ -1,10 +1,12 @@
 # PROOF
 
-[PRODUCT](product.md) · [PROJECT](project.md) · [PROOF](proof.md) · [PROCESS](process.md) · [PRODUCTION](production.md)
+[PRODUCT](product.md) · [PROOF](proof.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROCESS](process.md)
 
 Shared specification state and next action are recorded in [PROCESS](process.md#document-metadata-and-resume-state).
 
 Specify how the team will verify requirements and validate that the product serves its users. Define the checks before implementation; collect evidence as work proceeds.
+
+Start with PRODUCT's behavior, acceptance criteria, and known constraints. Refine implementation-specific checks, environments, and procedures after PROJECT and PRODUCTION establish their design and operational details. Keep unresolved prerequisites explicit; a later refinement does not erase earlier expected outcomes or supply execution evidence.
 
 ## Acceptance and traceability
 

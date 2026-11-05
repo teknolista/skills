@@ -1,12 +1,12 @@
 # PROCESS
 
-[PRODUCT](product.md) · [PROJECT](project.md) · [PROOF](proof.md) · [PROCESS](process.md) · [PRODUCTION](production.md)
+[PRODUCT](product.md) · [PROOF](proof.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROCESS](process.md)
 
 ## Document metadata and resume state
 
 | Field | Value |
 | --- | --- |
-| Template version | 2.2.2 |
+| Template version | 2.3.0 |
 | Product name and one-sentence purpose | [FILL IN] |
 | Document owner and decision-makers | [FILL IN] |
 | Specification version, updated date, and document status | [FILL IN: Draft / Reviewed / Accepted / Superseded] |
@@ -82,6 +82,8 @@ Define how people and agents transform agreed work into a reviewed change. PROOF
 ## Development cycle — repeat for each increment
 
 PROCESS governs the entire cycle. Consult relevant material from all five pillars for each task; their document order is not a sequence of execution phases.
+
+Although PROCESS appears last in the preferred presentation, record authority, ownership, shared state, and the next action throughout the interview. Complete the execution plan from the product, verification, design, and operational work identified in the other pillars.
 
 Define the project's cycle from selecting an outcome and preparing checks through implementation, review, integration, and authorized release. Identify the required evidence and responsible role at each transition. Recheck affected behavior after fixes or integration, and feed feedback into tracked work and the relevant pillars.
 

@@ -42,7 +42,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PENTA-PRO](#penta-pro) | 2.2.2 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
+| [PENTA-PRO](#penta-pro) | 2.3.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
 | [Code Review](#code-review) | 1.4.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersec](#cybersec) | 1.2.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 
@@ -107,7 +107,7 @@ After changing host, model, or significant instructions, run the relevant [PENTA
 
 ## PENTA-PRO
 
-**Version:** 2.2.2 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.3.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PENTA-PRO when defining a product, specifying a substantial feature, maintaining an existing PENTA-PRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -118,12 +118,12 @@ An exploration-only request stays in the conversation until the user asks to cap
 | Pillar | Focus |
 | --- | --- |
 | PRODUCT | Users, value, journeys, business rules, permissions, scope, and observable acceptance criteria. |
-| PROJECT | Delivery constraints, resources, dependencies, risks, architecture, data, and contracts. |
 | PROOF | Verification methods, concrete examples, failure cases, and acceptance evidence. |
-| PROCESS | Tasks, responsibilities, execution authority, review, integration, and escalation. |
+| PROJECT | Delivery constraints, resources, dependencies, risks, architecture, data, and contracts. |
 | PRODUCTION | Installation, environments, updates, migration, support, monitoring, and recovery. |
+| PROCESS | Tasks, responsibilities, execution authority, review, integration, and escalation. |
 
-The pillars organize the specification; they are not sequential development phases. Resolve enough detail for the next useful increment and refine later work as evidence emerges.
+The preferred order for interview deepening and document presentation is PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS. Establish behavior and evidence needs before designing the solution, then detail its operation and execution plan. Gather consequential operational, budget, and platform constraints early. Refine PROOF after design and operational decisions, and maintain PROCESS authority and resume state throughout. Reconcile affected pillars as decisions change; the order does not impose sequential development phases.
 
 The template connects product strategy and stopping criteria to discovery evidence, outcomes, requirements, contracts, verification, and post-release learning. It includes a consolidated identifier and status model, increment readiness, decision and uncertainty records, privacy and accessibility considerations, delivery dependencies, documentation, launch and support readiness, and operational recovery evidence. Conditional profiles cover services, installed/offline apps, CLI tools, infrastructure, libraries, data/scientific workloads, AI features, embedded systems, interactive media, and commercial launch. Combine profiles for hybrid products; they are not an exhaustive taxonomy.
 
@@ -144,10 +144,10 @@ Use $penta-pro to review whether the first increment is ready for development.
 By default, a first specification uses five files in the project's `docs/` directory. Each file owns its pillar and links related records in the others. One integrated interview populates the set, and the initial draft records pending decisions so the interview can resume.
 
 - `docs/product.md` covers users, scope, requirements, and acceptance criteria.
-- `docs/project.md` covers design, constraints, contracts, and decisions.
 - `docs/proof.md` covers planned checks, traceability, and actual evidence.
-- `docs/process.md` covers the workflow, shared status, coverage, revision history, and next interview action.
+- `docs/project.md` covers design, constraints, contracts, and decisions.
 - `docs/production.md` covers distribution, operation, and recovery.
+- `docs/process.md` covers the workflow, shared status, coverage, revision history, and next interview action.
 
 Existing single-file specifications and explicitly requested locations remain supported. Migration is performed when requested.
 
@@ -346,10 +346,10 @@ skills/
 │   ├── assets/
 │   │   ├── penta-pro-template.md
 │   │   ├── product.md
-│   │   ├── project.md
 │   │   ├── proof.md
-│   │   ├── process.md
-│   │   └── production.md
+│   │   ├── project.md
+│   │   ├── production.md
+│   │   └── process.md
 │   ├── evals/
 │   └── references/
 ├── code-review/
