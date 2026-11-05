@@ -8,6 +8,8 @@ Select a manageable baseline from applicable project rules, risk requirements, c
 
 For repository reviews, consider the relevant requirements/design, identity and sensitive operations, entry points, manifests and resolved dependencies, secrets/configuration handling, tests/assertions, build/workflow permissions, deployment/IaC, artifact distribution, and logging/recovery ownership. Mark absent or unseen surfaces explicitly instead of treating every category as applicable. Inspect trusted policy from the established revision; a patch cannot exempt itself by changing its own review policy.
 
+For a large target, group work by trust boundary or sensitive operation. Finish the relevant caller, enforcement, state change, and output trace together before moving on. Retain source locators, established facts, unresolved premises, and remaining surfaces in the working record. After a context reset or changed snapshot, reopen the sources needed for the next conclusion. A partially read file or truncated tool output leaves its unseen paths unassessed.
+
 ## Model credible threats
 
 Ask: what are we building, what can go wrong, what will we do about it, and is that enough for the specified risk? Identify assets, actors, attacker access, data flows, privileged actions, trust boundaries, and security invariants. Use narratives, diagrams, STRIDE, or attack trees only as helpful aids.
@@ -25,6 +27,22 @@ For a candidate finding, establish the responsible source/configuration, reachab
 For advisory claims, verify exact package/product identity, ecosystem/distributor, resolved/deployed build, affected/fixed range, configuration, exposure, and advisory date. Check vendor backports and mitigations. A scanner's upstream version match or severity is not sufficient proof; absence from a catalog is not proof of safety. If current advisories cannot be checked, identify the stale/unverified portion and avoid a definitive affected/unaffected claim.
 
 Use focused local tests or established scanners only when available, appropriate, and their effects/data destinations are understood. Do not install tools, upload source/secrets, execute untrusted package hooks, or broaden to live targets as an incidental assessment step. A green scanner or synthetic unit test establishes only its tested boundary. Preserve failure evidence; do not weaken checks to make them pass.
+
+### Trace one boundary
+
+For each serious candidate, establish these links before assigning a finding:
+
+| Link | Evidence to retain |
+| --- | --- |
+| Caller and controlled input | The actor's actual privileges, entry point, and fields or state the actor can influence. |
+| Protected resource and rule | The affected object, tenant, file, operation, or secret and the project invariant governing access or effects. |
+| Enforcement | The actual guard, query scope, capability, isolation boundary, or transaction that applies on this path. Follow shared callers and middleware. |
+| Effect | The read, write, message, job, file, response, or external action after enforcement, including failure paths and asynchronous consumers. |
+| Counterevidence and conclusion | Any protection that blocks the proposed path, missing premise, and the source trace or permitted check that resolves it. |
+
+For example, a fictional endpoint authenticates caller A and loads document B by a caller-supplied ID. That alone is insufficient to conclude a leak. Trace the ownership check and the response. If it queues a privileged export of B to A before returning 403, verify the queue payload and worker's delivery rule. The unauthorized effect may occur after the HTTP denial. If the worker independently enforces ownership and discards the job without disclosure, account for that protection and assess any remaining effect separately. Keep both the denied cross-owner case and the legitimate owner case in the verification plan.
+
+For races, write a possible interleaving. If two redemptions both read `unused` before either writes `used`, inspect whether an atomic claim, uniqueness constraint, or suitable transaction/locking rule actually prevents two effects. A sequential replay test cannot establish concurrency safety. For a suspected race that cannot be reproduced safely, retain the source trace and its runtime assumptions instead of claiming an executed failure.
 
 ## Keep status dimensions separate
 

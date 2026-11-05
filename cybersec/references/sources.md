@@ -34,3 +34,9 @@ The articles are not normative security standards. No article text, code, or ill
 | Dependency conclusions | [Vendor backport guidance](https://access.redhat.com/security/updates/backporting), [npm lockfiles](https://docs.npmjs.com/cli/v11/configuring-npm/package-lock-json/), [Cargo dependency guidance](https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html): match advisory/build evidence and reproducibility to the actual ecosystem. |
 
 Prefer primary advisories and documentation for the assessed versions. Record the selected edition/IDs/date instead of hard-coding a permanent latest version. A checklist, Top 10 list, attestation, or benchmark cannot establish exhaustive attack coverage, deployment effectiveness, regulatory certification, or universal model quality.
+
+## Evidence tracing and mechanism checks — version 1.2.0
+
+The 2026-11-04 review added a compact caller-to-effect evidence trace, bounded context handling, a concrete denied-response example, and explicit state-race and resource-limit checks. These are original explanations intended to make the existing assessment method easier to apply consistently.
+
+Primary material consulted includes [OWASP authorization](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html), [password storage](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html), [cryptographic storage](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html), and [MITRE CWE-367](https://cwe.mitre.org/data/definitions/367.html). Mechanism checks supplement the existing platform routes and use the target's actual policy, library, and deployment requirements.

@@ -31,9 +31,12 @@ Challenge dependence on a single defense or shared credential: what remains prot
 ## Turn controls into verifiable behavior
 
 - Pair a prohibited case with an allowed case. Verify both the denial and absence of unauthorized reads, writes, queued work, or sensitive output; an error response alone may hide side effects.
+- Confirm the fixture can reach the intended enforcement point. Use an existing protected resource, a valid identity lacking the relevant permission, and an allowed actor for the same operation. An earlier routing, parsing, or login rejection can leave resource authorization untested. Check unexpected persistence, messages, and output after denial.
 - For stateful workflows, select relevant expiry/revocation, replay, ordering, concurrency, cancellation, and partial-failure checks. Use the actual boundary, not only a helper's mock behavior.
 - Choose checks by the claim: source tracing for enforcement, integration tests for component interactions, isolated parser/property tests or authorized bounded fuzzing for input spaces, and operational evidence for alerts/restoration. State what mocks and synthetic tests cannot establish. Tool availability does not expand authorization.
 - Link repeatable regression checks to corrected invariants. Inspect sibling paths sharing the same root cause within scope; record broader follow-up without silently expanding the task.
+
+For example, requesting a nonexistent invoice and observing 404 gives no evidence about access to another tenant's existing invoice. Create isolated tenant fixtures, establish that the owner can access its invoice, and exercise the same invoice with the other tenant's valid identity. Inspect the result and side effects according to the application's disclosure policy, which may deliberately use either 403 or 404.
 
 ## Keep coverage useful over time
 

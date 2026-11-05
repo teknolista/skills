@@ -2,6 +2,8 @@
 
 **Entirely fictional.** This abbreviated example illustrates drafting and traceability; it is not a real project, research result, executed test, default policy, or complete production specification. IDs and numeric input values illustrate one behavior, not universal targets. Start real work from the [main template](../assets/penta-pro-template.md).
 
+The example is displayed together for comparison. In a generated project, place each pillar in its matching `docs/` file and the shared state below in `docs/process.md`. Keep the product summary and glossary in `docs/product.md`.
+
 ## Scenario and document state
 
 Fictional brief `BRIEF-001`: an analyst wants a local CLI that totals a file of whole integers without sending data over the network or modifying the input. Invalid lines must produce an error rather than a partial total. The owner requests a specification only and delegates parser organization to the agent; supported numeric ranges remain undecided.
@@ -19,7 +21,7 @@ Fictional brief `BRIEF-001`: an analyst wants a local CLI that totals a file of 
 
 `DISC-001` is an **untested hypothesis**: analysts will find a local total useful for checking manually prepared integer lists. Source is the fictional brief, not an interview study. Frequency, current error rate and time saved are unknown. `OBJ-001` is to help the analyst obtain the intended total while preserving the source file.
 
-The stated product principle is **preserve input and fail visibly**: a partial or silent result is worse than a clear error. A stopping criterion follows from it: if representative analysts must pre-clean every file, revisit the workflow or input assumptions rather than adding increasingly tolerant parsing. This is a product decision, not a technical requirement.
+The principle **preserve input and fail visibly** is derived from BRIEF-001 and is expressed by REQ-002/003. The agent proposes a product stopping criterion for review. If representative analysts must pre-clean every file, revisit the workflow or input assumptions. This criterion is **Proposed** because the brief did not establish when the owner would stop or change direction.
 
 | ID / type | Requirement and source | Confirmation / scope | Acceptance references |
 | --- | --- | --- | --- |

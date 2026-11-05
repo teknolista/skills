@@ -55,6 +55,20 @@ Add the transport-specific details that matter:
 
 Specify expected behavior before using examples as tests. Distinguish promised behavior from a provider guarantee that still needs confirmation. A generated schema or mock is not evidence that a real provider conforms.
 
+### Work through consequential operations
+
+For an operation that changes durable state, grants access, or has external effects, describe the actor, allowed action and resource, initial state, success state, and observable result. Then examine the relevant interruptions and competing actions. Record choices as proposed or pending until their source or delegation settles them.
+
+| Situation | Decision to specify | Concrete check to plan |
+| --- | --- | --- |
+| A request times out after the effect might have committed | How the caller discovers the outcome and safely resumes; who owns reconciliation | Commit the effect, suppress the response, then retry or query status. Check the final durable state and total external effects. |
+| Two attempts overlap or a message is redelivered | What identifies one operation, where that identity is scoped, its lifetime, and what happens if its payload changes | Submit the same operation concurrently, then reuse its identity with changed input. Compare actual effects to the specified conflict/replay behavior. |
+| Access changes while queued work is waiting | Whose authority the worker uses, when permission is evaluated, and who may retrieve the output | Queue work, revoke the actor's access, and exercise processing and retrieval under the chosen policy. |
+| An authenticated actor requests another tenant's resource | The required resource-level authority and allowed response and effects | Use two isolated tenants. Exercise reads and writes across the boundary and verify both returned data and durable effects against the access rule. |
+| A migration and older clients coexist | Which versions may read and write each state, and when recovery becomes irreversible | Exercise the supported old/new combinations with pre-existing data and interrupt at the consequential migration boundary. |
+
+For example, if a confirmed rule permits at most one reservation per request, a missing response leaves the outcome unknown. A retry check must count reservations and inspect their ownership. A successful retry response alone cannot establish that the rule held. Keep the behavior and criterion in PRODUCT, the operation contract in PROJECT, the planned check in PROOF, ownership in PROCESS, and reconciliation or recovery in PRODUCTION.
+
 ## Threat and hazard mapping
 
 Use where misuse, compromise, accidental failure, or unsafe operation can cause material harm. Security threats and safety hazards may share references, but document their different causes; a hazard does not require an attacker.

@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-This repository's newly written instructions and templates were informed by the public methods listed in the skills' source notes. The works below informed [Code Review](code-review/references/sources.md). No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution appears separately after that notice.
+This repository's newly written instructions and templates were informed by the public methods listed in the [PENTA-PRO](penta-pro/references/sources.md) and [Code Review](code-review/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution appears separately after that notice.
 
 | Work | Copyright notice | License |
 | --- | --- | --- |
@@ -9,6 +9,9 @@ This repository's newly written instructions and templates were informed by the 
 | [Blueprint](https://github.com/owainlewis/blueprint/blob/main/LICENSE) | Copyright (c) 2026 Owain Lewis | MIT |
 | [Addy Osmani Agent Skills](https://github.com/addyosmani/agent-skills/blob/main/LICENSE) | Copyright (c) 2025 Addy Osmani | MIT |
 | [BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD/blob/main/LICENSE) | Copyright (c) 2025 BMad Code, LLC | MIT; upstream also includes a trademark notice. |
+| [OpenSpec](https://github.com/Fission-AI/OpenSpec/blob/main/LICENSE) | Copyright (c) 2024 OpenSpec Contributors | MIT |
+| [Spec Kit](https://github.com/github/spec-kit/blob/v1.3.0/LICENSE) | Copyright GitHub, Inc. | MIT |
+| [Hollowtest](https://github.com/jeffev/hollowtest/blob/29995ce12bf40757055b2b406f15439cb9d480b2/LICENSE) | Copyright (c) 2026 Jefferson Valandro | MIT |
 | [Awesome Skills Code Review](https://github.com/awesome-skills/code-review-skill/blob/main/LICENSE) | Copyright (c) 2025 awesome-skills | MIT |
 
 The PERFECT gist by keskinonur was consulted conceptually. No explicit license was visible in the inspected gist, and its text is not reproduced in this package.

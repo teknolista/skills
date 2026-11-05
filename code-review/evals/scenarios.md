@@ -122,6 +122,26 @@ For authoring changes, first test selection with descriptions alone, then run ta
 
 **Expected:** Report the demonstrable incorrect total, use a concrete input/output example, and mark origin Unknown rather than inventing a regression baseline. Keep the review within the selected source, do not demand Git, and do not duplicate guaranteed caller validation. Use a precise snippet/symbol label when no real file path is supplied.
 
+## Additional cases for version 1.4.0
+
+| Case | Setup and request | Expected behavior |
+| --- | --- | --- |
+| Concurrent write with effective protection | Two buyers appear to read the final stock item before writing. One fixture uses an atomic conditional decrement and verifies the affected-row count. A second uses an unconditional write and acknowledges both purchases. Review the selected implementation against the one-item invariant. | Trace the concrete event order and the actual protection. Reject the race finding in the protected fixture and report the reachable violation in the other. Identify any unknown database semantics instead of inventing them. |
+| Successful runner without relevant execution | The author reports that tests passed. The runner output has exit code zero but zero matching tests, or the relevant test is skipped. Review the evidence for a requested behavioral gate. | Keep runner success separate from behavioral verification, inspect test selection and assertions, and report the unmet gate. Do not infer a product bug solely from absent execution. |
+| Interrupted review with changing source | A large diff was truncated after the first files. A saved note names a candidate and the reviewed head, but the target changes before resumption. Continue the review. | Reopen the relevant source, identify the new snapshot, recheck affected findings, and inspect omitted content. Keep pending coverage visible instead of treating the earlier note as completed review. |
+
+## Test effectiveness cases
+
+| Case | Expected behavior |
+| --- | --- |
+| Shared mock history already contains a successful call from a different test | Run or reason about the current invocation with isolated history. Recognize existing fixture cleanup when present. Report a missing behavior check only when stale history can mask the relevant failure. |
+| A discount test asserts only a positive result and passes when the discount is removed | Derive the correct total from the contract, demonstrate the surviving wrong value, and identify the missing behavior check. |
+| An error test checks only inside catch, an assertion promise floats, or Python catches AssertionError | Trace the path that passes without the intended assertion reaching the runner. Suggest a framework-correct check and verify it against the wrong behavior. |
+| A test uses an assertion helper, a no-throw smoke contract, a partial collaborator mock, a throwing query, or a compiler type assertion | Inspect the actual contract and execution mechanism before reporting a gap. Do not infer hollowness from syntax alone. |
+| A loop receives no cases or a property rejects every generated input | Confirm vacuous execution and identify the untested claim, respecting any explicit empty-input contract. |
+| Mutation changes a boundary without changing any supported observable outcome | Treat it as potentially equivalent, and seek a distinguishing valid input before claiming a test defect. |
+| A mutation run fails to compile or selects zero tests | Report the actual execution state and leave behavioral detection unverified. |
+
 ## Validation records
 
 ### Version 1.0.0
@@ -147,3 +167,13 @@ Baseline/current Python and Node checks reproduced the first two failures. A rea
 The separate audit found missing support for explicitly selected source without comparison history. After the 1.3.0 correction, a different assigned agent reviewed a no-Git pricing function, found the seeded percentage-versus-cents defect, ran four input/output checks, and used Unknown origin without inventing history or duplicating caller validation. Only the requested report was written; source and contract hashes were unchanged.
 
 These are bounded forward trials with independently assigned tasks, not a controlled with/without-skill comparison or cross-vendor benchmark. The runtime did not expose a verified model identifier for the trial records; no model identity, universal accuracy, latency, or cost improvement is claimed. Re-run representative cases in the target host/model before relying on a measured project gate.
+
+### Version 1.4.0
+
+The maintenance review adds a compact behavior trace, examples of candidate refutation and event ordering, explicit resumption after truncated context, and checks that the intended tests actually ran. The additional cases above are authored scenarios. Structural validation and source review cover this revision. They do not measure performance on smaller models.
+
+On 2026-11-05, a local Python experiment checked weak versus exact results, catch-only error tests, swallowed assertion failures, tuple assertions, empty case collections, an assertion helper, an equivalent mutation, and an unawaited versus awaited coroutine. The observed outcomes matched the documented distinctions. These are synthetic mechanism checks. They do not establish autonomous reviewer accuracy, Hollowtest's detection accuracy, or coverage of other test runners. The delegated maintenance passes encountered a usage limit, and their saved edits were inspected and structurally validated by the completing agent.
+
+### Version 1.4.1
+
+The final pass added shared fixture state and automatic retry to test-effectiveness review. A local Python mock experiment showed that a previous call could mask a missing notification, while isolated history and argument checks exposed it and accepted the correct invocation. Structural validation covers the final package. This experiment tests the failure mechanism and supplies no new model-performance measurement.

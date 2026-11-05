@@ -82,3 +82,9 @@ The 1.3.0 alignment audit used independently assigned specification/review trial
 - [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) and [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra): model identifiers for the user's example. These pages do not establish that one fixed pair is universally optimal for review.
 
 The six upstream repository license files inspected identify MIT licensing. This skill uses the repository's root license and retains its own third-party notices. Attribution does not imply affiliation, endorsement, tested equivalence, or a runtime dependency. Future source updates should be evaluated deliberately rather than copied into the skill automatically.
+
+## Test effectiveness synthesis — version 1.4.0
+
+On 2026-11-05, the complete [Hollowtest README](https://github.com/jeffev/hollowtest/blob/29995ce12bf40757055b2b406f15439cb9d480b2/README.md) and [skill](https://github.com/jeffev/hollowtest/blob/29995ce12bf40757055b2b406f15439cb9d480b2/skills/hollowtest/SKILL.md) informed the assertion execution, mocking, vacuous checks, and test-weakening guidance. The synthesis uses original wording and adapts the ideas to an evidence-based review across frameworks. The source is MIT licensed, copyright 2026 Jefferson Valandro.
+
+Mutation interpretation also follows Stryker's [mutant states](https://stryker-mutator.io/docs/mutation-testing-elements/mutant-states-and-metrics/) and [equivalent mutations](https://stryker-mutator.io/docs/mutation-testing-elements/equivalent-mutants/). Surviving changes require investigation of reachability, observable differences, and test selection. Static scores, source-project performance claims, and tool diagnostics do not establish review accuracy or product correctness. Hollowtest remains optional.

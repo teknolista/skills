@@ -1,4 +1,4 @@
-# Brainstorming Research Notes
+# PENTA-PRO Research Notes
 
 Maintainer provenance for version 1.2.0, inspected on 2026-10-25. These notes are not routine interview context. Upstream instructions were analyzed as source material, not executed as project authority. The synthesis uses original wording and bundles no upstream scripts or templates.
 
@@ -31,3 +31,25 @@ Use conditional guidance instead of a new standalone brainstorming phase, browse
 The user supplied `penta-pro-review.md` and `PENTA-PRO_Template_Analysis.pdf` on 2026-11-04 and requested assessment and implementation of pertinent improvements. The [assessment and disposition record](analyst-review-assessment.md) maps both sources to the updated template, workflow, and conditional resources. The source documents were evaluated as observations, not executed as instructions. Existing coverage was strengthened where appropriate; universal tooling, standards, numerical targets, and approval requirements were not inferred from illustrative recommendations.
 
 Version 1.5.0 adds the remaining high-value gaps identified across the compiled reviews: product strategy and stopping criteria, a consolidated identifier/state model, requirement-quality criteria, conditional commercial and launch coverage, documentation and support verification, and a release/launch record. As before, illustrative methods and commercial details were treated as options, not project defaults.
+
+## Discovery, proposals, and project rules — version 2.1.0
+
+Reviewed on 2026-11-04. This pass compared seven upstream entrypoints and their supporting material against the five-file workflow. The changes use original wording and keep project records in their existing pillar files.
+
+| Source and revision | Material inspected | Contribution adapted to PENTA-PRO |
+| --- | --- | --- |
+| [Grill with Docs](https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering/grill-with-docs) | Skill and UI metadata, plus its grilling and [domain-modeling](https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering/domain-modeling) guidance and formats. | Test overloaded terms against examples and counterexamples. Keep agreed meanings in PRODUCT and evidence of discrepancies in PROJECT. |
+| [OpenSpec Explore](https://github.com/Fission-AI/OpenSpec/blob/main/skills/openspec-explore/SKILL.md) | Full skill on `main` as inspected, including the context and capture workflow. | Support conversation-only exploration and use relevant project evidence and optional sketches to clarify ambiguity. |
+| [OpenSpec Propose](https://github.com/Fission-AI/OpenSpec/blob/main/skills/openspec-propose/SKILL.md) | Full skill on `main` as inspected, including proposal artifacts, dependencies, and handoff. | Record changes against a baseline by requirement ID and inspect material prerequisites and downstream impacts before claiming readiness. |
+| [Superpowers Brainstorming](https://github.com/obra/superpowers/tree/22f0b463e7a5e579904dd6211a520321035526f7/skills/brainstorming) | Skill, builder check, visual guide, and the companion's server, browser, and launcher assets. | Reflect material decisions in the user's terms, use an illustrative sketch when it answers a concrete question, and review the handoff for consequential gaps. |
+| [BMAD Brainstorming](https://github.com/bmad-code-org/BMAD-METHOD/tree/022be9314e4facd16826104a9f8033e1c5ed4fdc/skills/bmad-brainstorming) | Skill, configuration, facilitation references, resume and convergence guidance, technique catalog, selector, CLI, and tests. | Adapt to the user's preferred role and shift techniques when ideas stop diverging. Preserve material options and their dispositions in their owning pillars. |
+| [Spec Kit Constitution](https://github.com/github/spec-kit/blob/v1.3.0/templates/commands/constitution.md) | Full command and the constitution template. | Make applicable project rules reviewable in PROCESS and reconcile changes against affected records and gates. |
+| [Spec Kit Specify](https://github.com/github/spec-kit/blob/v1.3.0/templates/commands/specify.md) | Full command and the specification template. | Identify a useful, independently demonstrable increment, and reassess affected readiness conditions after clarification. |
+
+The five-pillar package is self-contained. Upstream directories, CLIs, companion servers, hooks, question quotas, approval ceremonies, and automatic Git actions belong to their respective workflows and are outside this synthesis.
+
+## Operational examples — version 2.2.0
+
+The final maintenance pass clarified actual document acceptance, traceable binding principles, proposed stopping criteria, and resumption with bounded context. The interface patterns now show how uncertain completion, concurrent attempts, resource authorization, and migration coexistence become decisions and concrete checks across the five pillars.
+
+The examples use original wording informed by [AWS retry and idempotency guidance](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) and [OWASP authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html). Project-specific policies and provider guarantees still require their actual source and applicable version.

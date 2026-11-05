@@ -41,9 +41,9 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PENTA-PRO](#penta-pro) | 1.5.0 | Create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
-| [Code Review](#code-review) | 1.3.0 | Review backend, frontend, and Android changes with prioritized findings, concrete evidence, and explicit verification limits. |
-| [Cybersec](#cybersec) | 1.1.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [PENTA-PRO](#penta-pro) | 2.2.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PROOF, PROCESS, and PRODUCTION. |
+| [Code Review](#code-review) | 1.4.1 | Review backend, frontend, and Android changes with prioritized findings, concrete evidence, and explicit verification limits. |
+| [Cybersec](#cybersec) | 1.2.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 
 ## Installation and activation
 
@@ -96,6 +96,8 @@ Managed review services may load only instruction text. See [Hosted review envir
 
 ### Model selection and validation
 
+The skills include concrete behavior traces, failure examples, and evidence checks to reduce reliance on unstated engineering knowledge. Work in bounded scopes and reopen referenced source after context loss. Validate representative tasks on each intended model and host before relying on its results.
+
 The workflows have no hard-coded model, reasoning setting, vendor tool name, or mandatory orchestration mechanism. `agents/openai.yaml` in these packages contains display metadata and a default prompt; it does not select a model. Hosts may offer their own model overrides. Use those controls deliberately rather than adding a vendor-specific override to the portable core.
 
 Choose a currently available model with sufficient reasoning, domain competence, context capacity, and reliable tool use for the task. Escalate difficult requirements or review risks when evidence warrants it. The documented [OpenAI model options](https://learn.chatgpt.com/docs/models) include the repository's example implementation/review pairing; availability and suitability depend on the host/account and observed results. A model name is not a quality gate.
@@ -104,9 +106,11 @@ After changing host, model, or significant instructions, run the relevant [PENTA
 
 ## PENTA-PRO
 
-**Version:** 1.5.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.2.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PENTA-PRO when defining a product, specifying a substantial feature, maintaining an existing PENTA-PRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
+
+An exploration-only request stays in the conversation until the user asks to capture the findings. For a material change, PENTA-PRO compares the proposal with the current requirements and behavior, identifies compatibility commitments, and traces their effects across the pillars. Applicable project rules and amendments are linked from PROCESS.
 
 ### The five pillars
 
@@ -125,19 +129,28 @@ The template connects product strategy and stopping criteria to discovery eviden
 ### Example requests
 
 ```text
+Use $penta-pro to explore options for offline editing before we write the specification.
 Use $penta-pro to interview me and create a specification for this project.
-Use $penta-pro to resume the interview from docs/penta-pro.md.
+Use $penta-pro to resume the interview from docs/process.md.
 Use $penta-pro to update the specification with these new requirements: ...
 Use $penta-pro to review whether the first increment is ready for development.
 ```
 
 ### Output and working boundaries
 
-The normal destination is `docs/penta-pro.md` in the target project, unless the user selects another path or an existing specification has an established location. Project answers belong in that document; the shared template stays generic. Preserve completed specifications and reconcile updates deliberately rather than replacing them with a newer blank template.
+By default, a first specification uses five files in the project's `docs/` directory. Each file owns its pillar and links related records in the others. One integrated interview populates the set, and the initial draft records pending decisions so the interview can resume.
+
+- `docs/product.md` covers users, scope, requirements, and acceptance criteria.
+- `docs/project.md` covers design, constraints, contracts, and decisions.
+- `docs/proof.md` covers planned checks, traceability, and actual evidence.
+- `docs/process.md` covers the workflow, shared status, coverage, revision history, and next interview action.
+- `docs/production.md` covers distribution, operation, and recovery.
+
+Existing single-file specifications and explicitly requested locations remain supported. Migration is performed when requested.
 
 The skill distinguishes confirmed information, proposals, and pending decisions. Routine decisions made within explicit delegation are attributed to the agent and can be settled for readiness without being presented as user requirements or document acceptance. When the user is unavailable, retain consequential blockers and complete independent specification work. If saving is unavailable, return an explicitly unsaved draft.
 
-PENTA-PRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from the main document. The skill loads specialized forms and examples as needed.
+PENTA-PRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from their owning pillar. The skill loads specialized forms and examples as needed.
 
 Critical product rules should have concrete input/output examples independent of the implementation. Planned checks remain `Unverified` until executed. Specification readiness, document acceptance, implementation verification, and release acceptance are separate states. Creating or updating a specification does not itself authorize implementation or release; existing authorization remains valid.
 
@@ -148,7 +161,8 @@ The workflow is model-neutral. Use a host that can load the complete skill folde
 | Resource | Purpose |
 | --- | --- |
 | [Entrypoint](penta-pro/SKILL.md) | Scope, interview workflow, document maintenance, readiness, and handoff. |
-| [Specification template](penta-pro/assets/penta-pro-template.md) | Reusable five-pillar document structure and field guidance. |
+| [Template index](penta-pro/assets/penta-pro-template.md) | Authoring guidance and links to the five pillar templates. |
+| [Document maintenance](penta-pro/references/document-maintenance.md) | Canonical ownership, coordinated updates, resumption, and migration. |
 | [Focused discovery](penta-pro/references/discovery.md) | Conditional techniques for unclear intent, dependent questions, alternatives, and consequential missing information. |
 | [Software profiles](penta-pro/references/software-profiles.md) | Coverage prompts for software types and cross-cutting concerns, including accessibility, privacy, and impacts on people and the environment. |
 | [Specification patterns](penta-pro/references/specification-patterns.md) | Conditional forms for data, interfaces, decisions, threats, evidence, and runbooks. |
@@ -158,11 +172,11 @@ The workflow is model-neutral. Use a host that can load the complete skill folde
 | [Evaluation scenarios](penta-pro/evals/scenarios.md) | Discovery, interview, update, delegation, and scope cases, with validation records. |
 | [OpenAI metadata](penta-pro/agents/openai.yaml) | Optional Codex display metadata and example invocation. |
 
-Load the template for creation. For updates and reviews, consult relevant sections for structural gaps or readiness. Screen profiles for new specifications or material scope changes and read detailed patterns as needed. Source notes, the analyst assessment, and evaluation cases are maintainer resources.
+For creation, read the template index and five pillar templates. For updates and reviews, consult relevant sections for structural gaps or readiness. Screen profiles for new specifications or material scope changes and read detailed patterns as needed. Source notes, the analyst assessment, and evaluation cases are maintainer resources.
 
 ## Code Review
 
-**Version:** 1.3.0 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
+**Version:** 1.4.1 · **Entrypoint:** [code-review/SKILL.md](code-review/SKILL.md)
 
 Use Code Review for backend services, frontend applications, and Android software. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -171,7 +185,7 @@ Use Code Review for backend services, frontend applications, and Android softwar
 ```text
 Use $code-review to review all my uncommitted changes, including new files.
 Use $code-review to review this branch against origin/main, including the local edits.
-Use $code-review to review the selected PR against docs/penta-pro.md.
+Use $code-review to review the selected PR against the requirements and checks in docs/product.md and docs/proof.md.
 Use $code-review to review the Android release changes, focusing on lifecycle and data migration.
 Use $code-review to re-review the fixes for CR-001 and CR-002 on the current revision.
 Use $code-review to prepare a handoff for an independent reviewer in another session.
@@ -220,7 +234,7 @@ Confirm how a managed reviewer receives instructions. Including only the body of
 | [Backend](code-review/references/backend.md) | APIs, authorization, data, concurrency, failure recovery, and operations. |
 | [Frontend](code-review/references/frontend.md) | UI state, contracts, accessibility, browser boundaries, and performance. |
 | [Android](code-review/references/android.md) | Lifecycle, coroutines, Flow, Compose/Views, platform security, and release variants. |
-| [Verification](code-review/references/verification.md) | Assertions, regression protection, safe checks, and evidence reporting. |
+| [Verification](code-review/references/verification.md) | Test effectiveness, assertion execution, false-positive checks, isolated mutation probes, and evidence reporting. |
 | [Independent review](code-review/references/independent-review.md) | Fresh context, model selection, review lenses, and feedback loops. |
 | [Report template](code-review/assets/review-report-template.md) | Optional structure for substantial or saved reviews. |
 | [Handoff template](code-review/assets/review-handoff-template.md) | Factual packet for another reviewer or model. |
@@ -232,7 +246,7 @@ Load the review method and applicable references. Source research and evaluation
 
 ## Cybersec
 
-**Version:** 1.1.0 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Version:** 1.2.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
 Use Cybersec for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
@@ -248,7 +262,7 @@ Live scans, exploitation, fuzzing, credential tests, shared-system testing, prod
 
 ```text
 Use $cybersec to assess this repository's security controls and report findings and unreviewed areas. Keep the source unchanged.
-Use $cybersec to threat-model the architecture in docs/penta-pro.md, including abuse cases and verification plans.
+Use $cybersec to threat-model the architecture in docs/project.md, including abuse cases and verification plans.
 Use $cybersec to map this project's relevant threats to controls, tests, and gaps, including cross-component attack chains. Save the assessment to docs/security-assessment.md.
 Use $cybersec to review this desktop app's IPC, local-file access, installer, and update boundaries.
 Use $cybersec to review the Android and iOS release configuration and API trust boundaries.

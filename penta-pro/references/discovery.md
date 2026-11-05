@@ -2,6 +2,8 @@
 
 Use when the intended outcome is unclear, answers conflict, or viable directions still need comparison. Skip renewed discovery for settled decisions and small, well-specified updates.
 
+When the request is exploration only, keep findings and options in the conversation. If the user asks to capture them, consolidate confirmed facts, proposals, and unresolved questions into the relevant pillars. Agreement with a recommendation confirms only that decision within the user's authority. A request to create a specification already authorizes saving its drafts.
+
 ## Find the need and the next consequential question
 
 Briefly reflect your understanding of the user, desired outcome, constraints, and exclusions. Present inferred intent as an interpretation the user can correct. A requested feature may be the right solution; investigate its purpose without assuming the user chose poorly.
@@ -24,20 +26,22 @@ Draft routine structure, requirement-derived checks, and supported facts automat
 
 Screen applicable software profiles early enough to reveal constraints such as offline synchronization, consumer compatibility, data lineage, nondeterministic model behavior, hardware deadlines, or safety. Ask about the consequential constraint before selecting a solution. Unknown applicability is not a reason to mark the concern irrelevant.
 
+When people use the same word for different concepts, test their meanings with a concrete example and its counterexample. Ask which meaning applies in each context and what behavior changes. Keep the canonical term, any context-specific variants, and the agreed boundary in PRODUCT. If documentation, code, or tests disagree, cite the discrepancy in PROJECT and check which behavior is intended before changing acceptance criteria.
+
 ## Explore only when alternatives matter
 
-Generate candidates before judging them, then compare a small shortlist against user value, constraints, feasibility, effort, and risk. Include a simpler or existing solution when credible. Use a different lens, such as removing a step or reversing an assumption, if the discussion is stuck. Do not demand a fixed number of ideas or reopen an accepted direction without a concrete reason.
+Match the user's preferred role when they express one: elicit their ideas, develop options together, or propose options for their review. Generate candidates before judging them, then compare a small shortlist against user value, constraints, feasibility, effort, and risk. Include a simpler or existing solution when credible. If ideas cluster around one approach, try a different perspective, such as replaying the journey from an operator's point of view or imagining how the options fail. For a tangled flow or boundary, use an illustrative sketch and a concrete scenario to test the distinction. Change techniques when ideas stop diverging or the question is ready for a decision. Do not demand a fixed number of ideas or reopen an accepted direction without a concrete reason.
 
-Recommend a direction with its trade-offs and consequential assumptions. Respect choices delegated to the agent; record them as agent decisions with rationale, not as choices personally made by the user. Escalate material product changes and decisions outside that authority.
+Recommend a direction with its trade-offs and consequential assumptions. Keep only materially different options and why they were selected, deferred, or ruled out. Record product options in PRODUCT and design options in PROJECT. Distinguish who proposed an option from who decided on it when that distinction affects authority or follow-up. Respect delegated choices and escalate material decisions outside that authority.
 
 For a risky assumption, identify the cheapest useful evidence: repository inspection, a user example, research, a sketch, or a bounded prototype. Define the question and stopping condition. Creating executable prototypes follows actual task authorization; illustrative output is not production validation. Link surviving assumptions and their checks to PROJECT and PROOF, and park deferred ideas outside the current scope.
 
 ## Consolidate and check the handoff
 
-Reflect consequential conclusions in plain language, keeping user answers separate from proposals. Invite correction where interpretation matters; avoid repeated acceptance rituals for settled or delegated choices. If answers stop reducing uncertainty, reframe the problem or propose a bounded investigation rather than extending the interview indefinitely.
+Reflect consequential conclusions in plain language, including what they change for the current behavior or next increment. Keep user answers separate from proposals. Invite correction where interpretation matters; avoid repeated acceptance rituals for settled or delegated choices. If answers stop reducing uncertainty, reframe the problem or propose a bounded investigation rather than extending the interview indefinitely.
 
-If the user is unavailable, use existing delegation for routine choices, retain consequential unresolved questions as blockers, and complete independent specification work. Return a resumable draft rather than inventing answers or waiting indefinitely.
+When a specification is requested and the user is unavailable, use existing delegation for routine choices, retain consequential unresolved questions as blockers, and complete independent specification work. Return a resumable draft with those questions still open.
 
 Read the specification as an implementer without the conversation. Identify only guesses whose wrong answer would materially change the outcome or plan. Resolve accessible facts, leave routine choices within delegated authority, and surface the remaining consequential questions with their impact. No separate reviewer or external skill is required.
 
-Check that objectives and hypotheses lead to requirements, acceptance criteria, feasible checks, and a way to evaluate the intended outcome. Reconcile contradictions, missing authoritative links, unexplained deferrals, and stale evidence. Save coverage choices and remaining questions so another session can resume without repeating the interview or treating a draft as accepted.
+Check that objectives and hypotheses lead to requirements, acceptance criteria, feasible checks, and a way to evaluate the intended outcome. Reconcile contradictions, missing authoritative links, unexplained deferrals, and stale evidence. After a material clarification, update supported records and recheck affected dependencies and readiness. For a saved specification, record shared coverage and the next action in `process.md`, linking remaining questions in `project.md`, so another session can resume without repeating the interview or treating a draft as accepted. Follow an existing single-file layout when that is authoritative.

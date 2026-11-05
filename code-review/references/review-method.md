@@ -1,6 +1,6 @@
 # Review Method
 
-**Contents:** [Target](#choose-a-precise-target) · [Policy](#load-trusted-review-policy) · [Depth](#choose-proportionate-depth) · [Contracts](#reason-from-contracts-and-consequences) · [Validation and priority](#validate-and-prioritize) · [Findings](#finding-contract) · [Coverage and verdict](#coverage-evidence-and-verdict)
+**Contents:** [Target](#choose-a-precise-target) · [Policy](#load-trusted-review-policy) · [Depth](#choose-proportionate-depth) · [Contracts](#reason-from-contracts-and-consequences) · [Behavior trace](#trace-one-behavior-at-a-time) · [Validation and priority](#validate-and-prioritize) · [Findings](#finding-contract) · [Coverage and verdict](#coverage-evidence-and-verdict)
 
 ## Choose a precise target
 
@@ -54,6 +54,24 @@ Trace a successful path and the meaningful failure paths. Follow the actual guar
 Inspect deletions and replacements for removed guarantees, forgotten consumers, stale migrations, orphaned registrations, and changed defaults. Check configuration and dependency changes for observable runtime effects even when production source is untouched. For tests-only changes, inspect whether regression protection was weakened.
 
 Maintainability findings need a named consequence: an invariant that can diverge, an incompatible extension point, a concrete maintenance hazard, or a demonstrated unnecessary mechanism. Code smells, file length, naming taste, and a different preferred framework are prompts to investigate, not standalone blockers. Do not demand new product behavior under a claim of reasonable user expectations; identify the existing contract or ask a material question.
+
+## Trace one behavior at a time
+
+For a consequential changed behavior, write a short working trace with source locations. This can remain in review notes and need not become a report section.
+
+| Trace element | What to establish |
+| --- | --- |
+| Contract | The observable rule and its source, including supported inputs and states. |
+| Entry and guards | The actual route, caller, event, or lifecycle callback, and each protection reached before the effect. |
+| Effect and observer | The state or external effect that changes, its owner and lifetime, and the consumer that observes it. |
+| Counterexample | Concrete input or event order that would violate the rule, and why each step is reachable. |
+| Evidence and open premises | The source or executed check for each necessary step, any protection that refutes the candidate, and any missing fact. |
+
+For example, an authenticated user A requesting user B's invoice is a useful authorization counterexample. Follow the lookup, ownership policy, and response serialization. An effective ownership denial before the response refutes the candidate. A missing local filter alone does not establish exposure.
+
+For concurrent or asynchronous behavior, spell out the event order and the invariant. If stock is one and two buyers each read one before either writes, check whether a transaction, conditional write, unique constraint, or shared lock prevents both succeeding. Establish the actual transaction and isolation behavior before concluding that the race exists. For a search, track request A, request B, B's completion, and A's completion, then inspect which completion may update the current view. The same approach applies to retries after an uncertain commit and callbacks after their owner is destroyed.
+
+Keep the working set to the changed behavior and the context needed to judge it. For large reviews, retain a compact coverage record with snapshot, reviewed and pending paths/behaviors, exclusions, candidate locations, evidence, and unresolved premises. If a tool truncates a diff or source, read the omitted portion in smaller sections before marking it reviewed. After a handoff or context loss, reopen relevant source and confirm the snapshot before relying on earlier conclusions.
 
 ## Validate and prioritize
 

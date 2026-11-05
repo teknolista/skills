@@ -3,7 +3,7 @@ name: cybersec
 description: "Assesses cybersecurity risks and controls in software, DevOps, cloud, and IT systems. Use for threat modeling, security reviews, hardening, security-focused implementation, or security release checks across web/API, desktop, and mobile projects; not ordinary coding or general code review."
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.2.1"
 ---
 
 # Cybersec
@@ -36,6 +36,7 @@ Read [assessment method](references/assessment-method.md) for threat reasoning, 
 | --- | --- |
 | Threat models, substantial audits/readiness checks, interacting trust boundaries | [Threat coverage and verification](references/threat-coverage.md) |
 | Browser/frontend, backend/services, APIs, identity, business logic, data | [Web and API](references/web-api.md) |
+| Passwords, security tokens, or encryption on any platform | [Credential and cryptographic controls](references/web-api.md#credentials-and-cryptographic-controls) |
 | Desktop, Electron/native bridges, installers, local files, native parsers | [Desktop and native](references/desktop-native.md) |
 | Android, iOS, mobile storage/platform/network boundaries | [Mobile](references/mobile.md) |
 | CI/CD, dependencies, artifacts, IaC, cloud, containers, Kubernetes | [DevOps and supply chain](references/devops-supply-chain.md) |
@@ -48,7 +49,7 @@ Use the [assessment template](assets/security-assessment-template.md) for substa
 
 1. Establish purpose, sensitive assets, supported platforms, deployment stage, known requirements, decision owners, and access limits. Inspect actual artifacts and reuse existing specifications and threat models; no other skill is mandatory.
 2. Trace credible attacker capabilities and trust-boundary crossings into security invariants and business impact. Include business abuse, cross-component attack chains, and post-compromise paths. Link relevant threats to controls, verification, and gaps; keep narrow reviews proportionate. Taxonomies are prompts, not proof of exhaustive coverage.
-3. Inspect relevant code, policy, build/release paths, and operational evidence. Separate controls observed in source, controls deployed/effective, missing controls, and inaccessible evidence. A secure repository configuration does not prove production configuration.
+3. Inspect relevant code, policy, build/release paths, and operational evidence. Work through one material boundary at a time using the [evidence trace](references/assessment-method.md#trace-one-boundary). Keep a brief record of assessed paths and remaining coverage when the scope spans multiple context windows. Separate controls observed in source, controls deployed/effective, missing controls, and inaccessible evidence. A secure repository configuration does not prove production configuration.
 4. Challenge findings against guards, consumers, reachability, privileges, configuration, and compensating controls. Confirm scanner/CVE claims against exact products/builds and current primary advisories; disclose offline or missing-version limits.
 5. Prioritize by impact, exposure, prerequisites, and recovery. Propose the smallest effective correction plus containment, detection, and recovery where relevant. Implement only within the selected authorized mode; verify the attack is blocked and legitimate behavior still works, including affected integrations.
 6. Return scope/snapshot, findings and evidence, control coverage, executed checks, material gaps, residual risk, and next actions. Use an impact-based priority independently of confidence and treatment status. Zero findings is valid; unknown areas are never a clean result. Revisit affected threats after material changes.

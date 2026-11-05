@@ -23,9 +23,9 @@ Omit the implementer's internal reasoning and full conversation. Accepted design
 
 ## Select a model deliberately
 
-Keep model selection outside the portable skill. An example arrangement is `gpt-6.1-sol` implementing and `gpt-6-astra` reviewing, when both are available in the user's environment. Preserve an explicit model choice; do not silently substitute a model or claim that metadata switched it.
+Keep model selection outside the portable skill. Verify that the selected reviewer can access the source and reason about the changed domain within the available context and tools. Preserve an explicit model choice and report the actual session when known.
 
-The arrangement is a practical candidate, not an established guarantee that one model is always the best reviewer. A fresh session of the same capable model can still be independent of the implementation session. Different models can diversify some failure modes while sharing others. Repository access, domain competence, a clear packet, and verification matter more than assigning authority based on a model name.
+A fresh session of the same capable model can still be independent of the implementation session. Different models can diversify some failure modes while sharing others. Repository access, domain competence, a clear packet, and verification matter more than assigning authority based on a model name.
 
 Distinguish a custom skill from a host's built-in review command. Codex documents `review_model` for built-in reviews and separate controls for detached review delivery. Those settings do not by themselves establish which model/context executes an ordinary `$code-review` skill request. Verify the actual reviewer session; see [Codex review documentation](https://learn.chatgpt.com/docs/code-review?surface=app). Changing host configuration requires the user's authorization.
 
