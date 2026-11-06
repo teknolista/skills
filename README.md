@@ -1,8 +1,15 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. UI/UX turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
+
+> [!IMPORTANT]
+> These skills are still in development. They are based on my personal experience developing my own applications and may need adjustments for other projects, teams, models, and workflows.
+>
+> Everyone is welcome to use, improve, and adapt them. The [MIT License](LICENSE) permits modification and redistribution, including commercial use, subject to its notice requirements. Applicable third-party notices must also be retained.
+>
+> Feedback from actual use, constructive criticism, and suggestions are very welcome through [GitHub Issues](https://github.com/teknolista/skills/issues).
 
 ## Contents
 
@@ -10,6 +17,9 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [Contents](#contents)
   - [Available skills](#available-skills)
   - [Installation and activation](#installation-and-activation)
+    - [Install with the skills CLI](#install-with-the-skills-cli)
+    - [Manual installation](#manual-installation)
+    - [Activation](#activation)
   - [Agent and model compatibility](#agent-and-model-compatibility)
     - [Native skill locations](#native-skill-locations)
     - [Required capabilities](#required-capabilities)
@@ -31,9 +41,9 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Example requests](#example-requests-2)
     - [Coverage and findings](#coverage-and-findings)
     - [Resources](#resources-2)
-  - [UI/UX](#uiux)
+  - [UI Design](#ui-design)
     - [Examples and output](#examples-and-output)
-    - [UI/UX resources](#uiux-resources)
+    - [UI Design resources](#ui-design-resources)
   - [Project AGENTS.md template](#project-agentsmd-template)
   - [Repository structure](#repository-structure)
   - [Maintenance and new skills](#maintenance-and-new-skills)
@@ -48,9 +58,44 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [PENTA-PRO](#penta-pro) | 2.4.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
 | [Peer Review](#peer-review) | 1.7.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersec](#cybersec) | 1.3.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI/UX](#uiux) | 1.1.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-ux.md`. |
+| [UI Design](#ui-design) | 1.2.0 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
 
 ## Installation and activation
+
+### Install with the skills CLI
+
+Install [Node.js 22.20 or later](https://github.com/vercel-labs/skills#install-a-skill), with npm/npx available, and run the command from the project where you want to use the skills. The CLI downloads the published GitHub contents; local unpublished changes in this repository are not included.
+
+Choose which skills to install for Codex:
+
+```bash
+npx skills@latest add teknolista/skills -a codex
+```
+
+Install all four skills for Codex without selection prompts:
+
+```bash
+npx skills@latest add teknolista/skills --skill '*' -a codex -y
+```
+
+Install only one skill, or inspect the available skills without installing:
+
+```bash
+npx skills@latest add teknolista/skills --skill ui-design -a codex
+npx skills@latest add teknolista/skills --list
+```
+
+Available skill names are `penta-pro`, `peer-review`, `cybersec`, and `ui-design`. Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Keep the quotes around `'*'` so the shell passes it to the CLI.
+
+Installation defaults to the current project. Add `-g` for user-level installation across projects:
+
+```bash
+npx skills@latest add teknolista/skills --skill '*' -a codex -g -y
+```
+
+Use `npx skills@latest check` to check for updates and `npx skills@latest update` to update installed skills. See the [official CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) for installation options and update scopes.
+
+### Manual installation
 
 Copy the complete directory of each desired skill into the skills location supported by your agent. Preserve its internal relative paths. For a Codex project, the installed entrypoints are:
 
@@ -58,12 +103,14 @@ Copy the complete directory of each desired skill into the skills location suppo
 your-project/.agents/skills/penta-pro/SKILL.md
 your-project/.agents/skills/peer-review/SKILL.md
 your-project/.agents/skills/cybersec/SKILL.md
-your-project/.agents/skills/ui-ux/SKILL.md
+your-project/.agents/skills/ui-design/SKILL.md
 ```
 
 A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](#agent-and-model-compatibility) for documented locations, capabilities, and integration limits.
 
-The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-ux` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
+### Activation
+
+The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-design` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
 
 The packages use Markdown instructions, references, and templates. No skill requires another skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
 
@@ -91,7 +138,7 @@ Invocation and consent differ by host. For example, Codex documents `$name`, Cla
 | --- | --- | --- |
 | PENTA-PRO creation/update | User intent, relevant existing context, package assets, and a writable requested destination | Ask only consequential missing questions; retain proposals and blockers. If writing is unavailable, return the draft and disclose that it was not saved. |
 | PENTA-PRO review | The actual specification and relevant authoritative context | Report missing material rather than treating an absent document as ready. |
-| UI/UX specification and implementation | Relevant requirements/design context and a writable target project; source/toolchain for implementation, browser or Android environment for runtime checks | Save a partial specification and mark pending decisions/checks; never claim rendered, device, accessibility or user validation without evidence. |
+| UI Design specification and implementation | Relevant requirements/design context and a writable target project; source/toolchain for implementation, browser or Android environment for runtime checks | Save a partial specification and mark pending decisions/checks; never claim rendered, device, accessibility or user validation without evidence. |
 | Code inspection | Actual selected source/snapshot, relevant requirements/contracts, and applicable references | Report material missing coverage; do not infer a clean review from a description alone. |
 | Cybersec assessment | Authorized target/snapshot, relevant security requirements, applicable domain references, and evidence of the controls being claimed | Separate source/configuration from deployed/runtime evidence; mark inaccessible areas and avoid security or compliance guarantees. |
 | Executed verification | The project's actual tools and isolated data/environment | Label unexecuted checks and distinguish static conclusions from runtime evidence. |
@@ -109,7 +156,7 @@ The workflows have no hard-coded model, reasoning setting, vendor tool name, or 
 
 Choose a currently available model with sufficient reasoning, domain competence, context capacity, and reliable tool use for the task. Escalate difficult requirements or review risks when evidence warrants it. The documented [OpenAI model options](https://learn.chatgpt.com/docs/models) include the repository's example implementation/review pairing; availability and suitability depend on the host/account and observed results. A model name is not a quality gate.
 
-After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [peer-review cases](peer-review/evals/scenarios.md), [cybersec cases](cybersec/evals/scenarios.md), and [UI/UX cases](ui-ux/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
+After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [peer-review cases](peer-review/evals/scenarios.md), [cybersec cases](cybersec/evals/scenarios.md), and [UI Design cases](ui-design/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
 
 ## PENTA-PRO
 
@@ -335,50 +382,50 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 | [Evaluation scenarios](cybersec/evals/scenarios.md) | Discovery, platform/CI/IT risks, guard controls, authorization, evidence, and validation records. |
 | [OpenAI metadata](cybersec/agents/openai.yaml) | Optional host display metadata and invocation prompt; no model selection. |
 
-## UI/UX
+## UI Design
 
-**Version:** 1.1.1 · **Entrypoint:** [ui-ux/SKILL.md](ui-ux/SKILL.md)
+**Version:** 1.2.0 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
-Use UI/UX to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
+Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
 ### Examples and output
 
 ```text
-Use $ui-ux to interview me about this Android app's onboarding and home screens and save the specification to docs/ui-ux.md.
-Use $ui-ux to add the offline editing flow to the existing screen specification, preserving accepted decisions.
-Use $ui-ux to review this web checkout's keyboard interaction, errors and responsive layout; record findings in docs/ui-ux.md.
-Use $ui-ux to implement UI-S03 using the project's existing components, verify the affected flow and update docs/ui-ux.md.
+Use $ui-design to interview me about this Android app's onboarding and home screens and save the specification to docs/ui-design.md.
+Use $ui-design to add the offline editing flow to the existing screen specification, preserving accepted decisions.
+Use $ui-design to review this web checkout's keyboard interaction, errors and responsive layout; record findings in docs/ui-design.md.
+Use $ui-design to implement UI-S03 using the project's existing components, verify the affected flow and update docs/ui-design.md.
 ```
 
 Feedback guidance chooses field, form, transient, persistent, content-area or decision surfaces by task consequence, retaining usable content and truthful recovery. Compose guidance covers component contracts, state ownership, previews and shared/platform resources without imposing MVI or a DI library.
 
-The default output is the target project's cumulative **`docs/ui-ux.md`**, with a screen index, shared visual/interaction rules, flows, per-screen contracts, decision status, acceptance scenarios, verification evidence and a resume pointer. It is saved during partial interviews and updated across iterations. Additional mockups or assets are optional linked evidence. A request to specify screens produces documentation; implementation follows the user's requested scope.
+The default output is the target project's cumulative **`docs/ui-design.md`**, with a screen index, shared visual/interaction rules, flows, per-screen contracts, decision status, acceptance scenarios, verification evidence and a resume pointer. It is saved during partial interviews and updated across iterations. Additional mockups or assets are optional linked evidence. A request to specify screens produces documentation; implementation follows the user's requested scope.
 
 When PENTA-PRO files exist, this UI document supplements their five pillars and links canonical requirements, checks, architecture and process records. Existing design systems remain authoritative for their owned tokens/components. The skill has no mandatory dependency on the other skills, BMAD, OpenSpec, Figma, a browser plugin, image generation or a paid service. Runtime checks require available project tools; HTML concepts do not prove Android behavior. Research observations, proposals, accepted decisions and executed checks remain distinct. No production usability or cross-model efficiency benchmark is claimed.
 
-### UI/UX resources
+### UI Design resources
 
 | Resource | Purpose |
 | --- | --- |
-| [Entrypoint](ui-ux/SKILL.md) | Modes, routing, scope and working loop. |
-| [Design method](ui-ux/references/design-method.md) | Discovery, task/flow coverage, screen contracts, content and recovery. |
-| [Visual system](ui-ux/references/visual-system.md) | Tokens, identity, typography, graphic assets, charts and motion. |
-| [Web](ui-ux/references/web.md) | Browser layout, navigation, semantics and checks. |
-| [Android](ui-ux/references/android.md) | Compose/Views, adaptive layout, state, Back, insets and native checks. |
-| [Feedback and state coverage](ui-ux/references/feedback-states.md) | Error surfaces, partial failures, refresh/pagination, control variants and stress states. |
-| [Validation](ui-ux/references/validation.md) | Rendered inspection, interaction tests, usability and evidence limits. |
-| [Document maintenance](ui-ux/references/document-maintenance.md) | Cumulative updates, stable IDs, ownership and resumption. |
-| [Output template](ui-ux/assets/ui-ux-template.md) | Adaptable single-file screen and flow specification. |
-| [Worked example](ui-ux/references/worked-example.md) | Two-screen Android specification with explicit pending decisions. |
-| [Source research](ui-ux/references/sources.md) | Repository coverage, pinned sources, adaptations and research limits. |
-| [Evaluation scenarios](ui-ux/evals/scenarios.md) | Realistic cases and validation record. |
-| [OpenAI metadata](ui-ux/agents/openai.yaml) | Optional host presentation and invocation prompt. |
+| [Entrypoint](ui-design/SKILL.md) | Modes, routing, scope and working loop. |
+| [Design method](ui-design/references/design-method.md) | Discovery, task/flow coverage, screen contracts, content and recovery. |
+| [Visual system](ui-design/references/visual-system.md) | Tokens, identity, typography, graphic assets, charts and motion. |
+| [Web](ui-design/references/web.md) | Browser layout, navigation, semantics and checks. |
+| [Android](ui-design/references/android.md) | Compose/Views, adaptive layout, state, Back, insets and native checks. |
+| [Feedback and state coverage](ui-design/references/feedback-states.md) | Error surfaces, partial failures, refresh/pagination, control variants and stress states. |
+| [Validation](ui-design/references/validation.md) | Rendered inspection, interaction tests, usability and evidence limits. |
+| [Document maintenance](ui-design/references/document-maintenance.md) | Cumulative updates, stable IDs, ownership and resumption. |
+| [Output template](ui-design/assets/ui-design-template.md) | Adaptable single-file screen and flow specification. |
+| [Worked example](ui-design/references/worked-example.md) | Two-screen Android specification with explicit pending decisions. |
+| [Source research](ui-design/references/sources.md) | Repository coverage, pinned sources, adaptations and research limits. |
+| [Evaluation scenarios](ui-design/evals/scenarios.md) | Realistic cases and validation record. |
+| [OpenAI metadata](ui-design/agents/openai.yaml) | Optional host presentation and invocation prompt. |
 
 ## Project AGENTS.md template
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
-The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It routes work to `penta-pro`, `ui-ux`, `peer-review`, and `cybersec`, identifies the five pillar documents plus the cumulative UI specification, and explains ownership, resumption and evidence states. Fill in actual skill locations and commands; copying the template does not install the packages or require all four on every task. It leaves the stack, source layout, model and test framework to the project. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
+The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It routes work to `penta-pro`, `ui-design`, `peer-review`, and `cybersec`, identifies the five pillar documents plus the cumulative UI specification, and explains ownership, resumption and evidence states. Fill in actual skill locations and commands; copying the template does not install the packages or require all four on every task. It leaves the stack, source layout, model and test framework to the project. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
 
 ## Repository structure
 
@@ -414,7 +461,7 @@ skills/
 │   ├── assets/
 │   ├── evals/
 │   └── references/
-└── ui-ux/
+└── ui-design/
     ├── SKILL.md
     ├── agents/
     ├── assets/
@@ -451,4 +498,4 @@ The repository and its skills are distributed under the single root [MIT License
 
 When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
 
-The source research for [PENTA-PRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersec](cybersec/references/sources.md), and [UI/UX](ui-ux/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
+The source research for [PENTA-PRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersec](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.

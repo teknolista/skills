@@ -6,7 +6,7 @@ Apply alongside the mobile/offline profile when Android or KMP is in scope. Reco
 
 Identify actual target platforms, device/window/input conditions and shared versus platform-specific journeys. For each important action define who can perform it, displayed fields, validation units, loading/refresh/partial failure, cancellation and recovery. Specify whether text limits count bytes, UTF-16 code units, code points or user-perceived characters when the distinction affects input, truncation or storage.
 
-For offline edits distinguish locally retained, queued, synchronized and server-confirmed states. Define stale-data age, conflicts, account switch, permission loss and unsaved-data behavior. State which data may survive backgrounding, configuration recreation, process termination, logout and app upgrades. A library exposing saved-state types across targets does not establish equivalent OS restoration. Link a screen contract such as docs/ui-ux.md if it exists; keep product permissions and acceptance here.
+For offline edits distinguish locally retained, queued, synchronized and server-confirmed states. Define stale-data age, conflicts, account switch, permission loss and unsaved-data behavior. State which data may survive backgrounding, configuration recreation, process termination, logout and app upgrades. A library exposing saved-state types across targets does not establish equivalent OS restoration. Link a screen contract such as docs/ui-design.md if it exists; keep product permissions and acceptance here.
 
 ## PROOF
 

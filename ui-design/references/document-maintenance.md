@@ -1,12 +1,14 @@
-# Maintaining docs/ui-ux.md
+# Maintaining docs/ui-design.md
 
-Resolve the **target project root**, not this skill package or the filesystem root. The default path is `<project-root>/docs/ui-ux.md`. Existing explicit project instructions or user destinations take precedence; report any deliberate alternative. This invocation normally creates/updates that file even for a partial iteration; honor an explicit request for conversation-only or read-only work.
+Resolve the **target project root**, not this skill package or the filesystem root. The default path is `<project-root>/docs/ui-design.md`. Existing explicit project instructions or user destinations take precedence; report any deliberate alternative. This invocation normally creates/updates that file even for a partial iteration; honor an explicit request for conversation-only or read-only work.
+
+If the project already maintains a screen specification at a different path, continue that authoritative document unless a path migration is requested. For an authorized migration, preserve its content and update incoming links instead of creating competing specifications.
 
 Read the existing document before writing. Preserve accepted decisions, stable IDs, unrelated screens, manually maintained content and linked artifacts. Adapt the template instead of overwriting the document with a blank copy. For a first interview save the initial partial draft before pausing, with known facts, proposed scope, open questions and next action. At the end of each substantive iteration reconcile and save the cumulative document. If the interaction stops early, retain the draft and label incomplete coverage.
 
 ## Ownership and traceability
 
-`ui-ux.md` owns the detailed screen/flow/visual contract. Link existing design-system files for canonical tokens instead of cloning their full content. PENTA-PRO's five files retain ownership of product requirements, proof/evidence, architecture, operation and work execution. Record UI consequences here and propose or make authorized updates in the appropriate owner when a decision changes scope, permissions, data retention, contracts or acceptance. Do not silently resolve conflicts in whichever file was edited last.
+`ui-design.md` owns the detailed screen/flow/visual contract. Link existing design-system files for canonical tokens instead of cloning their full content. PENTA-PRO's five files retain ownership of product requirements, proof/evidence, architecture, operation and work execution. Record UI consequences here and propose or make authorized updates in the appropriate owner when a decision changes scope, permissions, data retention, contracts or acceptance. Do not silently resolve conflicts in whichever file was edited last.
 
 Use existing IDs. If none exist, a small scheme such as `UI-S01` screen, `UI-F01` flow and `UI-D01` decision is sufficient. Keep IDs stable after renaming; retire IDs visibly when references still use them. Index screens with platform, purpose, specification/decision status and links. Scope platform differences explicitly; do not duplicate a whole screen merely for a theme or width variant.
 

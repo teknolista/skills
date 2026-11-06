@@ -1,4 +1,4 @@
-# UI/UX specification
+# UI Design specification
 
 <!-- Adapt to scope; replace guidance with actual details or explicit pending items. This is an output template, not a completed project specification. -->
 

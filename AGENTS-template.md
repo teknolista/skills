@@ -18,7 +18,7 @@ When adopting this template, confirm the target repository root, complete the na
 | Generated or external code | [FILL IN: generated/vendor paths, source of truth, and regeneration guidance] |
 | Critical constraints | [FILL IN: business/data invariants, compatibility policy, security, accessibility, performance, and operational requirements that apply] |
 | Decision authority | [FILL IN: responsible owners, delegated decisions, and action/cost limits] |
-| Skill locations | [FILL IN: actual installed SKILL.md paths for penta-pro, ui-ux, peer-review, and cybersec; record unavailable packages] |
+| Skill locations | [FILL IN: actual installed SKILL.md paths for penta-pro, ui-design, peer-review, and cybersec; record unavailable packages] |
 
 Keep detailed requirements, decisions, and runbooks in their authoritative documents. Link them here instead of duplicating their content or prescribing a directory layout.
 
@@ -29,7 +29,7 @@ Use the project's four skills according to the requested work. Read the selected
 | Skill | When to use it | Expected result and boundary |
 | --- | --- | --- |
 | `penta-pro` | Explore, create, resume, update, or review requirements and software specifications | Five pillar documents when specification creation is requested; exploration or review follows the requested scope. Ordinary coding does not restart an interview. |
-| `ui-ux` | Specify, refine, review, or implement screens and user flows | Cumulative `docs/ui-ux.md`, including partial iterations, unless the request is explicitly read-only or conversation-only. Product-code changes require implementation authority. |
+| `ui-design` | Specify, refine, review, or implement screens and user flows | Cumulative `docs/ui-design.md`, including partial iterations, unless the request is explicitly read-only or conversation-only. Product-code changes require implementation authority. |
 | `peer-review` | Review implementation changes and relevant tests, or re-review fixes | Evidence-backed findings, checks and coverage limits for the selected snapshot. Review alone does not authorize fixes. Prefer a fresh reviewer when available; disclose self-review and any unmet independence requirement. |
 | `cybersec` | Model threats, assess security controls, implement authorized hardening, or check security readiness | Scoped threats, controls, findings, evidence and residual risks. Save reports when requested or required by the workflow; live testing and security changes need authority for their actual effects. |
 
@@ -46,7 +46,7 @@ Default paths below are relative to the target repository root. They describe pr
 | `docs/project.md` | Architecture, contracts, constraints, decisions, risks, assumptions and open questions. |
 | `docs/production.md` | Configuration, distribution, migrations, operations, support and recovery. |
 | `docs/process.md` | Shared specification state, coverage, tasks, authority, revision history and next action. |
-| `docs/ui-ux.md` | Detailed screen/flow contracts, visual rules, interaction states and screen-specific acceptance; links to governing requirements and existing design-system sources. |
+| `docs/ui-design.md` | Detailed screen/flow contracts, visual rules, interaction states and screen-specific acceptance; links to governing requirements and existing design-system sources. |
 
 PENTA-PRO uses PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for presentation and interview deepening. Gather influential operating constraints early, refine checks after design decisions, and track authority and resumption throughout. This order does not impose sequential implementation phases. The UI document supplements the five pillars when visual interfaces are in scope.
 

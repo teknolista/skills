@@ -25,6 +25,6 @@ For relevant controls inspect default, focus, pressed, selected/toggled, disable
 
 ## Reviewable artifacts
 
-A compact component/state gallery can expose shared inconsistencies before many screens are built. When comparing directions, keep the same representative task/content and vary meaningful palette/type/composition/density decisions within fixed brand constraints. Capture selected reasons and exceptions in docs/ui-ux.md; do not require three options or a new theme system for a small edit.
+A compact component/state gallery can expose shared inconsistencies before many screens are built. When comparing directions, keep the same representative task/content and vary meaningful palette/type/composition/density decisions within fixed brand constraints. Capture selected reasons and exceptions in docs/ui-design.md; do not require three options or a new theme system for a small edit.
 
 Link a mock state with screen ID, trigger, theme/window and intended transition. Native previews, HTML concepts and production runtime evidence have different roles. Generated swatches should use the actual canonical tokens when possible, but a passing token-pair calculation does not establish every rendered combination or accessibility conformance. Verify focus, actual translucent/background pairs and interaction separately. No automatic publication, external font/icon downloads or upstream viewer is required.

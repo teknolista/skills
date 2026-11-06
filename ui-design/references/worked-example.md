@@ -4,7 +4,7 @@ Illustrative specification excerpt, not an accepted project decision, executed t
 
 ## Context and scope
 
-A native Android field-notes app has Compose and an existing theme. The requested increment lists notes and edits a note. Backend retry semantics and draft-retention policy are unknown. Specification only; no product code changes. The actual output would be `<target-project>/docs/ui-ux.md`.
+A native Android field-notes app has Compose and an existing theme. The requested increment lists notes and edits a note. Backend retry semantics and draft-retention policy are unknown. Specification only; no product code changes. The actual output would be `<target-project>/docs/ui-design.md`.
 
 ## Shared foundation
 

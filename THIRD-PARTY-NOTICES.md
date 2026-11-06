@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-This repository's newly written instructions and templates were informed by the public methods listed in the [PENTA-PRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI/UX](ui-ux/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution and UI/UX research attributions appear separately after that notice.
+This repository's newly written instructions and templates were informed by the public methods listed in the [PENTA-PRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution and UI Design research attributions appear separately after that notice.
 
 | Work | Copyright notice | License |
 | --- | --- | --- |
@@ -58,9 +58,9 @@ Accessible related readings by the author include [AppSec learning guidance](htt
 
 Cybersec is an original English synthesis; no article text, code, or illustrations are redistributed. The MIT permission notice above concerns the identified MIT-licensed works, not these articles. Article rights and any source terms remain with their owners. [Cybersec source notes](cybersec/references/sources.md) identify primary technical references, adaptations, and access limitations. Attribution does not imply endorsement or affiliation.
 
-## UI/UX: researched skills, standards and discovery sources
+## UI Design: researched skills, standards and discovery sources
 
-[UI/UX source notes](ui-ux/references/sources.md) record the 2026-11-05 survey of all nine previously cited skill repositories, their pinned revisions, relevant entrypoints, additional design collections, adoption decisions and limits. The new package is independently written: it does not redistribute upstream scripts, datasets, images, fonts, branding, or substantial instruction text. Linked external materials retain their own terms; this repository's MIT license does not relicense them.
+[UI Design source notes](ui-design/references/sources.md) record the 2026-11-05 survey of all nine previously cited skill repositories, their pinned revisions, relevant entrypoints, additional design collections, adoption decisions and limits. The new package is independently written: it does not redistribute upstream scripts, datasets, images, fonts, branding, or substantial instruction text. Linked external materials retain their own terms; this repository's MIT license does not relicense them.
 
 Additional primary sources consulted conceptually:
 
