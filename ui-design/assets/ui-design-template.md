@@ -8,6 +8,7 @@
 - Updated / source snapshot:
 - Specification coverage / unresolved decisions:
 - Governing requirements and design-system references:
+- Supplied design constraints / allowed exploration / intentional departures, when applicable:
 
 ## Experience foundations
 

@@ -17,9 +17,17 @@ Trace a primary task through entry, action, visible result and persistent outcom
 
 For rendered review record a coherent batch of observed issues; fix them and inspect again only when implementation/refinement is authorized. Use consistent data, locale, theme and dimensions for comparisons. Wait for relevant content/fonts/animations to settle; mask only irrelevant dynamic content, never the behavior under test. Preserve meaningful assertions rather than updating goldens just to turn tests green. Visual diffs can catch appearance changes but cannot replace interaction checks.
 
+When the task requires matching a supplied design, compare the relevant layout, content, assets and component states under matching conditions where possible. Record intentional departures and unresolved differences against the agreed constraints. Source inspection alone cannot establish rendered fidelity, and matching one screenshot does not establish unseen states or other window sizes.
+
 Establish whether the selected app and account use isolated test data or a live service before interacting. A local frontend can still call production APIs. Exercise consequential actions with controlled fixtures or an authorized sandbox; a request to inspect a checkout, delete dialog or notification flow does not by itself authorize a real purchase, deletion or message. Record the unexecuted boundary if safe conditions are unavailable; do not silently switch targets or assume an irreversible action can be cleaned up afterward.
 
 Check hierarchy, actionable labels, alignment, clipping, reflow, content extremes, relevant themes/text scaling, focus/input, loading/empty/error and recovery. Inspect actual computed colors/semantics when making numerical or accessibility claims. Screenshot estimates must be labeled estimates. Do not claim exact WCAG contrast from an image without reliable foreground/background evidence and calculation.
+
+## Reproduce a journey safely
+
+For runtime checks, reuse the existing harness and record a compact recipe: build/instance identity, usable readiness, account and fixture prerequisites, public entry route, actions, expected visible result and durable effect, reset and cleanup. Confirm ownership before driving a shared browser, emulator or service; serialize interaction with that instance or use genuinely isolated instances. After surprising behavior, recheck the instance and relevant UI state before continuing. Reset only test-owned resources and retain captured evidence after teardown.
+
+Capture the action and resulting state, not only a final screenshot or an internal handler call. Where persistence is promised, verify through the contract's supported read-back or re-entry path so a cached optimistic result cannot masquerade as a saved record. Mark alternate entry points and inaccessible prerequisites as pending coverage. A source/harness mismatch may be stale automation or a product regression; establish the intended contract before changing either.
 
 ## Evidence record and stopping
 

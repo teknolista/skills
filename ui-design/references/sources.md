@@ -65,3 +65,12 @@ The package adds a single cumulative screen contract, stable IDs and explicit de
 ## User-supplied Android/KMP bundle — 2026-11-05
 
 Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+
+
+## pstack synthesis — version 1.3.0
+
+2026-11-06: screened names and descriptions of all 58 skill entrypoints under [cursor/plugins pstack](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills), then read relevant bodies and selected supporting references. The non-truncated tree was pinned to `2776ddd2355d6d6c8747d3964600f28daf62f049`; this is not an audit of the entire plugins repository. Relevant sources: [create-verification-skill](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/create-verification-skill/SKILL.md), [maintain-verification-skill](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/maintain-verification-skill/SKILL.md), [statechart](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/statechart/SKILL.md), [principle-experience-first](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/principle-experience-first/SKILL.md).
+
+Adapted identified-instance readiness, serial or isolated UI driving, action plus durable-outcome evidence, owned cleanup that retains evidence, and honest state/transition abstraction. Existing flow coverage, identity inheritance, native/web distinctions and authority rules were retained. No mandatory live pass for documentation-only work, new feature-map tree, Cursor/Grok/Tailscale setup, fixed prototype count or automatic user-session control was imported.
+
+This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](../../THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.

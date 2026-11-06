@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-This repository's newly written instructions and templates were informed by the public methods listed in the [PENTA-PRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersec's article attribution and UI Design research attributions appear separately after that notice.
+This repository's newly written instructions and templates were informed by the public methods listed in the [PentaPRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersecurity's article attribution and UI Design research attributions appear separately after that notice.
 
 | Work | Copyright notice | License |
 | --- | --- | --- |
@@ -13,6 +13,7 @@ This repository's newly written instructions and templates were informed by the 
 | [Spec Kit](https://github.com/github/spec-kit/blob/v1.3.0/LICENSE) | Copyright GitHub, Inc. | MIT |
 | [Hollowtest](https://github.com/jeffev/hollowtest/blob/29995ce12bf40757055b2b406f15439cb9d480b2/LICENSE) | Copyright (c) 2026 Jefferson Valandro | MIT |
 | [Awesome Skills Code Review](https://github.com/awesome-skills/code-review-skill/blob/main/LICENSE) | Copyright (c) 2025 awesome-skills | MIT |
+| [pstack in cursor/plugins](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/LICENSE) | Copyright (c) 2026 Lauren Tan | MIT |
 
 The PERFECT gist by keskinonur was consulted conceptually. No explicit license was visible in the inspected gist, and its text is not reproduced in this package.
 
@@ -47,7 +48,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Cybersec: original article and related reading
+## Cybersecurity: original article and related reading
 
 - **Author:** Silva97.
 - **Original title:** [Bem-vindo ao ciberapocalipse](https://www.tabnews.com.br/Silva97/bem-vindo-ao-ciberapocalipse).
@@ -56,7 +57,7 @@ SOFTWARE.
 
 Accessible related readings by the author include [AppSec learning guidance](https://www.tabnews.com.br/Silva97/82bae07a-ca41-4655-b7ee-dc699e807b7f), [Você deveria aprender a ouvir críticas](https://www.tabnews.com.br/Silva97/voce-deveria-aprender-a-ouvir-criticas), [Threat modeling](https://www.tabnews.com.br/Silva97/threat-modeling), and [Dividir para proteger](https://www.tabnews.com.br/Silva97/dividir-para-proteger). The original article also links [Cibersegurança para desenvolvedores](https://blog.freedev.com.br/ciberseguran%C3%A7a-para-desenvolvedores-a37385cf5d23) and [Como sobreviver a um RCE](https://blog.freedev.com.br/como-sobreviver-a-um-rce-833d5c6bc1f1); their full text was unavailable during this review and is not claimed as verified support.
 
-Cybersec is an original English synthesis; no article text, code, or illustrations are redistributed. The MIT permission notice above concerns the identified MIT-licensed works, not these articles. Article rights and any source terms remain with their owners. [Cybersec source notes](cybersec/references/sources.md) identify primary technical references, adaptations, and access limitations. Attribution does not imply endorsement or affiliation.
+Cybersecurity is an original English synthesis; no article text, code, or illustrations are redistributed. The MIT permission notice above concerns the identified MIT-licensed works, not these articles. Article rights and any source terms remain with their owners. [Cybersecurity source notes](cybersec/references/sources.md) identify primary technical references, adaptations, and access limitations. Attribution does not imply endorsement or affiliation.
 
 ## UI Design: researched skills, standards and discovery sources
 
@@ -90,3 +91,14 @@ No license, public source URL, release manifest or independently verified author
 ## Peer Review: review-coordination article
 
 Centelha's [Mais agentes, mais PRs: como organizar a revisão](https://www.tabnews.com.br/Centelha/mais-agentes-mais-prs-como-organizar-a-revisao), published on TabNews on 2026-11-06, was consulted through the public content API on the same date. It informed independently written guidance on change maps, related-change review, integration evidence and reviewer capacity. No article text, code or illustrations are redistributed. Article rights remain with their owners; this repository's MIT license does not relicense it. Attribution implies no affiliation or endorsement. [Peer Review source notes](peer-review/references/sources.md#review-coordination--version-170) record the adaptation and its limits.
+
+
+## Cursor pstack research
+
+On 2026-11-06, screened all 58 skill entrypoints in [pstack/skills](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills) at commit `2776ddd2355d6d6c8747d3964600f28daf62f049`. Names/descriptions were screened across the complete tree; relevant architecture, testing, verification, state-model, measurement and writing bodies and selected references were read in detail. The browser's cached directory listing differed from the current tree; the pinned non-truncated Git tree determined this inventory. Supporting resources were retrieved for inspection, not all audited. No upstream code or automation was executed.
+
+The useful methods informed [PentaPRO](penta-pro/references/sources.md#pstack-synthesis--version-250), [Peer Review](peer-review/references/sources.md#pstack-synthesis--version-180), [Cybersecurity](cybersec/references/sources.md#pstack-synthesis--version-140), and [UI Design](ui-design/references/sources.md#pstack-synthesis--version-130). General explanation, catch-up, personalization, setup, orchestration and style workflows did not warrant new dependencies or separate skills. Many principles were already covered and were not repeated merely to enlarge the packages.
+
+The synthesis retains task authority and proportionality. It does not adopt mandatory named models, parallel agents, scripts for every nontrivial edit, run-only findings, unconditional trust of internal types, automatic Git integration, blanket compatibility removal, hard-coded host tooling, or fixed prototype/benchmark counts. Formal verification and measurements remain conditional on the actual risk and evidence needs.
+
+The inspected pstack license is MIT, copyright 2026 Lauren Tan; its notice is preserved in the table and common permission text above. All additions use original wording, without upstream implementation, templates, model artifacts or substantial passages. Attribution implies no affiliation or endorsement. No reliability, security, performance or productivity benchmark is claimed from this research.

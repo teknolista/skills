@@ -1,10 +1,10 @@
-# PENTA-PRO Research Notes
+# PentaPRO Research Notes
 
 Historical maintainer provenance, beginning with version 1.2.0 inspected on 2026-10-25. Later sections record subsequent research with its inspected revisions and dates. Current behavior is defined in [SKILL.md](../SKILL.md); these notes are not routine interview context. Upstream instructions were analyzed as source material, not executed as project authority. The synthesis uses original wording and bundles no upstream scripts or templates.
 
 ## Sources used
 
-| Source and inspected revision | Material inspected | Contribution adapted to PENTA-PRO |
+| Source and inspected revision | Material inspected | Contribution adapted to PentaPRO |
 | --- | --- | --- |
 | [obra/superpowers](https://github.com/obra/superpowers/tree/2ce8aa15d05bd57213e6f746f953aafb7ded7a8b/skills/brainstorming) | `brainstorming/SKILL.md` and its builder-check prompt | Discover the purpose behind a feature, reflect intent, explore meaningful alternatives, and check whether an implementer needs consequential missing information. |
 | [mattpocock/skills](https://github.com/mattpocock/skills/blob/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering/grill-with-docs/SKILL.md) | `grill-with-docs`, `grill-me`, and the [grilling primitive](https://github.com/mattpocock/skills/blob/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/productivity/grilling/SKILL.md) they invoke | Ask questions only when their prerequisites are settled; distinguish facts the agent can inspect from decisions requiring the user. The interview primitive sits outside the supplied engineering folder but is an explicit dependency of its interview wrapper. |
@@ -20,7 +20,7 @@ Historical maintainer provenance, beginning with version 1.2.0 inspected on 2026
 
 ## Deliberate adaptations
 
-Keep questioning proportional to the next increment, with no exhaustive design-tree requirement, idea quota, subjective confidence percentage, or mandatory questionnaire format. Existing PENTA-PRO readiness criteria remain authoritative for this workflow.
+Keep questioning proportional to the next increment, with no exhaustive design-tree requirement, idea quota, subjective confidence percentage, or mandatory questionnaire format. Existing PentaPRO readiness criteria remain authoritative for this workflow.
 
 Preserve actual user authorization and delegated decisions. Do not import mandatory approval loops, automatic commits, forced skill chaining, external publication, or particular orchestration/tooling. Resolve important uncertainty without turning routine technical choices into user blockers.
 
@@ -36,7 +36,7 @@ Version 1.5.0 adds the remaining high-value gaps identified across the compiled 
 
 Reviewed on 2026-11-04. This pass compared seven upstream entrypoints and their supporting material against the five-file workflow. The changes use original wording and keep project records in their existing pillar files.
 
-| Source and revision | Material inspected | Contribution adapted to PENTA-PRO |
+| Source and revision | Material inspected | Contribution adapted to PentaPRO |
 | --- | --- | --- |
 | [Grill with Docs](https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering/grill-with-docs) | Skill and UI metadata, plus its grilling and [domain-modeling](https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/engineering/domain-modeling) guidance and formats. | Test overloaded terms against examples and counterexamples. Keep agreed meanings in PRODUCT and evidence of discrepancies in PROJECT. |
 | [OpenSpec Explore](https://github.com/Fission-AI/OpenSpec/blob/main/skills/openspec-explore/SKILL.md) | Full skill on `main` as inspected, including the context and capture workflow. | Support conversation-only exploration and use relevant project evidence and optional sketches to clarify ambiguity. |
@@ -61,4 +61,15 @@ Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and rel
 
 ## Companion-document consistency — version 2.4.1
 
-The 2026-11-05 final package review clarified the ownership boundary between PENTA-PRO and an existing screen specification. This original maintenance correction preserves the five primary outputs and records conflicts or out-of-scope companion edits explicitly. It imports no additional upstream material.
+The 2026-11-05 final package review clarified the ownership boundary between PentaPRO and an existing screen specification. This original maintenance correction preserves the five primary outputs and records conflicts or out-of-scope companion edits explicitly. It imports no additional upstream material.
+
+
+## pstack synthesis — version 2.5.0
+
+2026-11-06: screened names and descriptions of all 58 skill entrypoints under [cursor/plugins pstack](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills), then read relevant bodies and selected supporting references. The non-truncated tree was pinned to `2776ddd2355d6d6c8747d3964600f28daf62f049`; this is not an audit of the entire plugins repository. Relevant sources: [architect](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/architect/SKILL.md), [principle-model-the-domain](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/principle-model-the-domain/SKILL.md), [principle-separate-before-serializing-shared-state](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/principle-separate-before-serializing-shared-state/SKILL.md), [principle-attack-the-premise](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/principle-attack-the-premise/SKILL.md), [create-verification-skill](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/create-verification-skill/SKILL.md), [benchmark-checklist](https://github.com/cursor/plugins/blob/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/benchmark-checklist/SKILL.md).
+
+Adapted caller-first contract sketches, explicit state ownership, repeatable journey recipes, model correspondence, measurement validity and enforceable prevention of recurring failures. Existing uncertainty, risk-based techniques, authority, five-file ownership and readiness rules remain authoritative. No mandatory type sketches, scaffolding, new verify skill, benchmark count, redesign or extra output file was imported.
+
+This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](../../THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
+
+Model-checking scope was also checked against the primary [TLA+ model introduction](https://learning.tlapl.us/intro/platform/) and [TLC model documentation](https://dl.tlapl.us/tlatoolbox/doc/model/about-models.html): finite-model exploration and implementation correspondence are separate claims. No checker was installed or run for this update.

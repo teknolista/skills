@@ -36,6 +36,8 @@ Recommend a direction with its trade-offs and consequential assumptions. Keep on
 
 For a risky assumption, identify the cheapest useful evidence: repository inspection, a user example, research, a sketch, or a bounded prototype. Define the question and stopping condition. Creating executable prototypes follows actual task authorization; illustrative output is not production validation. Link surviving assumptions and their checks to PROJECT and PROOF, and park deferred ideas outside the current scope.
 
+If successive experiments or fixes fail while assuming the same fact, state that premise and seek an observation that distinguishes it from a credible alternative before repeating the approach. Update the affected assumption and decision from the evidence; repeated failure alone does not authorize a redesign or settle a product choice.
+
 ## Consolidate and check the handoff
 
 Reflect consequential conclusions in plain language, including what they change for the current behavior or next increment. Keep user answers separate from proposals. Invite correction where interpretation matters; avoid repeated acceptance rituals for settled or delegated choices. If answers stop reducing uncertainty, reframe the problem or propose a bounded investigation rather than extending the interview indefinitely.

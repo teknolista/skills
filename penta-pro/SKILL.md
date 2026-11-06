@@ -1,12 +1,12 @@
 ---
 name: penta-pro
-description: "Explores software requirements and creates, updates, or reviews PENTA-PRO specifications through focused interviews. Use for new software, substantial feature specifications, or resuming a PENTA-PRO document; not for ordinary coding, peer review, or conceptual explanations."
+description: "Explores software requirements and creates, updates, or reviews PentaPRO specifications through focused interviews. Use for new software, substantial feature specifications, or resuming a PentaPRO document; not for ordinary coding, peer review, or conceptual explanations."
 license: MIT
 metadata:
-  version: "2.4.1"
+  version: "2.5.1"
 ---
 
-# PENTA-PRO
+# PentaPRO
 
 Turn user intent into an English specification organized as **PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS**. Cover the product's lifecycle and resolve enough uncertainty for the next useful increment; keep later scope visible without pretending its design is settled.
 

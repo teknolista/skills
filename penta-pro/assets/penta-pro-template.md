@@ -1,4 +1,4 @@
-# PENTA-PRO Specification Templates
+# PentaPRO Specification Templates
 
 **PRODUCT · PROOF · PROJECT · PRODUCTION · PROCESS**
 
@@ -20,6 +20,7 @@ Use this order for presentation and interview deepening. Gather consequential op
 ## Authoring guidance
 
 - Replace `[FILL IN]` with supported project content or an explicit gap. Remove drafting instructions, sample rows, and unused forms from the deliverable. Keep the coverage decisions.
+- For specification-only work, plan product verification and operational actions; execute them only when the user's task authorizes execution. Reuse actual existing evidence and keep unexecuted checks `Unverified`. Template prompts grant no execution authority.
 - Check links from the final document's location. Replace links to authoring resources with the relevant project artifact or remove them after incorporating the needed details.
 - Identify consequential statements as requirements, constraints, decisions, or assumptions, and record their confirmation status: `Confirmed`, `Proposed`, or `Pending`. Examples and placeholders are not approved requirements.
 - Resolve blocking uncertainty for the next deliverable. Record other open questions with an owner and a point by which they must be answered. Do not invent missing targets, tools, or approvals.

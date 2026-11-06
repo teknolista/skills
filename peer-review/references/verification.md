@@ -19,6 +19,8 @@ Before asserting that coverage is missing, search by the changed symbol, imports
 
 Snapshots, mock-call checks, manual checks, and no-throw assertions are not universally worthless. Judge the actual claim: a snapshot may detect a markup regression while missing keyboard behavior; a mock may verify an adapter call while proving nothing about a remote service. Prefer a specific missing assertion to a blanket demand for more tests.
 
+Also consider a behavior-preserving internal change. A test that rejects it may couple to private call order or representation rather than the supported contract. A downstream request payload, a prohibited external effect, an architectural boundary or a type-level guarantee can itself be the contract, so an interaction assertion is not automatically brittle. For example, “empty carts never charge” can check no payment request, paired with a nonempty-cart case proving the observer can detect a request. Do not delete useful tests or demand refactoring during a review; report a concrete consequence and appropriate scope.
+
 A useful gap finding names the changed contract, an affected consumer, a realistic regression, the searched/read evidence, and the check that should fail. Do not add a separate gap finding that merely repeats a bug without additional remediation value. Necessary missing evidence may instead be a review limitation or release gate.
 
 ## Trace whether the test can fail
@@ -66,6 +68,12 @@ Static diagnostics are candidates for the checks above. Record unreadable helper
 For an isolated mutation probe, establish a passing baseline and confirm that the selected tests exercise the mutated code. Apply a bounded representative change, then inspect why the run failed or passed. Distinguish an assertion failure from compilation failure, infrastructure error, timeout, skipped execution, or incorrect test selection. A surviving mutation needs a reachable input and an observable contractual difference before it supports a protection-gap finding. Equivalent changes and behavior outside the supported contract may survive sound tests.
 
 Record the mutation, selected tests, outcome, and limits. Include boundary values where the changed condition differs. A sampled mutation score describes that sample. Afterward, discard the disposable copy and verify that the reviewed snapshot is intact.
+
+## Model correspondence and measurement claims
+
+When relying on a formal model, property harness, or generated verifier, inspect what it describes and the last revision whose correspondence was established. Follow changes to guarded state, new writers, guards, step atomicity and failure recovery, including renamed or moved code. Verify the enabled properties, assumptions, bounds, and completion; unexamined properties remain unverified. Separate stale modeling, intentional contract changes, and a reachable product counterexample. Replay a counterexample against actual code when feasible, or retain its unresolved mapping as a gap. Do not weaken a property to match a failure or treat a diagram as formal evidence. A safely isolated negative probe can check sensitivity, but is not a universal requirement for every property.
+
+For performance claims, inspect the measurement code: did the intended operation execute and complete in the timed region, produce correct results, and count errors? Fast denials, cached outputs, unconsumed iterators and unawaited work can produce misleading gains. Compare relevant builds, settings, data and cache conditions; retain run count and variation and account for machine or load-generator limits. Distinguish a measured difference from its proposed cause and a microbenchmark from the user path. Label inconclusive comparisons; request only checks material to the claim, without a fixed repetition quota.
 
 ## Report what the evidence establishes
 

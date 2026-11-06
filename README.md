@@ -1,6 +1,6 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PENTA-PRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersec assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
@@ -24,7 +24,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Native skill locations](#native-skill-locations)
     - [Required capabilities](#required-capabilities)
     - [Model selection and validation](#model-selection-and-validation)
-  - [PENTA-PRO](#penta-pro)
+  - [PentaPRO](#pentapro)
     - [The five pillars](#the-five-pillars)
     - [Example requests](#example-requests)
     - [Output and working boundaries](#output-and-working-boundaries)
@@ -36,7 +36,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Independent review and models](#independent-review-and-models)
     - [Hosted review environments](#hosted-review-environments)
     - [Resources](#resources-1)
-  - [Cybersec](#cybersec)
+  - [Cybersecurity](#cybersecurity)
     - [Modes and limits](#modes-and-limits)
     - [Example requests](#example-requests-2)
     - [Coverage and findings](#coverage-and-findings)
@@ -55,10 +55,10 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PENTA-PRO](#penta-pro) | 2.4.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.7.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersec](#cybersec) | 1.3.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.2.0 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [PentaPRO](#pentapro) | 2.5.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Peer Review](#peer-review) | 1.8.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Cybersecurity](#cybersecurity) | 1.4.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI Design](#ui-design) | 1.3.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
 
 ## Installation and activation
 
@@ -136,15 +136,15 @@ Invocation and consent differ by host. For example, Codex documents `$name`, Cla
 
 | Task | Necessary access | If unavailable |
 | --- | --- | --- |
-| PENTA-PRO creation/update | User intent, relevant existing context, package assets, and a writable requested destination | Ask only consequential missing questions; retain proposals and blockers. If writing is unavailable, return the draft and disclose that it was not saved. |
-| PENTA-PRO review | The actual specification and relevant authoritative context | Report missing material rather than treating an absent document as ready. |
+| PentaPRO creation/update | User intent, relevant existing context, package assets, and a writable requested destination | Ask only consequential missing questions; retain proposals and blockers. If writing is unavailable, return the draft and disclose that it was not saved. |
+| PentaPRO review | The actual specification and relevant authoritative context | Report missing material rather than treating an absent document as ready. |
 | UI Design specification and implementation | Relevant requirements/design context and a writable target project; source/toolchain for implementation, browser or Android environment for runtime checks | Save a partial specification and mark pending decisions/checks; never claim rendered, device, accessibility or user validation without evidence. |
 | Code inspection | Actual selected source/snapshot, relevant requirements/contracts, and applicable references | Report material missing coverage; do not infer a clean review from a description alone. |
-| Cybersec assessment | Authorized target/snapshot, relevant security requirements, applicable domain references, and evidence of the controls being claimed | Separate source/configuration from deployed/runtime evidence; mark inaccessible areas and avoid security or compliance guarantees. |
+| Cybersecurity assessment | Authorized target/snapshot, relevant security requirements, applicable domain references, and evidence of the controls being claimed | Separate source/configuration from deployed/runtime evidence; mark inaccessible areas and avoid security or compliance guarantees. |
 | Executed verification | The project's actual tools and isolated data/environment | Label unexecuted checks and distinguish static conclusions from runtime evidence. |
 | Independent review | A separate reviewer/session with actual source access | Disclose self-review or prepare a factual handoff; do not claim independence from a model label. |
 
-Git, shell execution, browsers, Android SDKs, credentials, connectors, and additional agents are not supplied by installing a skill. Git is useful for comparisons, but an explicitly selected source snapshot can be reviewed without it. The skills can be used independently. Cybersec live testing and remediation require actual target/action authorization; capability does not imply permission.
+Git, shell execution, browsers, Android SDKs, credentials, connectors, and additional agents are not supplied by installing a skill. Git is useful for comparisons, but an explicitly selected source snapshot can be reviewed without it. The skills can be used independently. Cybersecurity live testing and remediation require actual target/action authorization; capability does not imply permission.
 
 Managed review services may load only instruction text. See [Hosted review environments](#hosted-review-environments) for supporting-file and execution limits.
 
@@ -156,15 +156,15 @@ The workflows have no hard-coded model, reasoning setting, vendor tool name, or 
 
 Choose a currently available model with sufficient reasoning, domain competence, context capacity, and reliable tool use for the task. Escalate difficult requirements or review risks when evidence warrants it. The documented [OpenAI model options](https://learn.chatgpt.com/docs/models) include the repository's example implementation/review pairing; availability and suitability depend on the host/account and observed results. A model name is not a quality gate.
 
-After changing host, model, or significant instructions, run the relevant [PENTA-PRO cases](penta-pro/evals/scenarios.md), [peer-review cases](peer-review/evals/scenarios.md), [cybersec cases](cybersec/evals/scenarios.md), and [UI Design cases](ui-design/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
+After changing host, model, or significant instructions, run the relevant [PentaPRO cases](penta-pro/evals/scenarios.md), [Peer Review cases](peer-review/evals/scenarios.md), [Cybersecurity cases](cybersec/evals/scenarios.md), and [UI Design cases](ui-design/evals/scenarios.md). Check correct activation, preserved user decisions, meaningful defects versus false positives, honest evidence/coverage, and unintended edits. Compare matched tasks before claiming better accuracy, cost, or latency. Official format support does not establish a cross-vendor performance benchmark.
 
-## PENTA-PRO
+## PentaPRO
 
-**Version:** 2.4.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.5.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
-Use PENTA-PRO when defining a product, specifying a substantial feature, maintaining an existing PENTA-PRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
+Use PentaPRO when defining a product, specifying a substantial feature, maintaining an existing PentaPRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
-An exploration-only request stays in the conversation until the user asks to capture the findings. For a material change, PENTA-PRO compares the proposal with the current requirements and behavior, identifies compatibility commitments, and traces their effects across the pillars. Applicable project rules and amendments are linked from PROCESS.
+An exploration-only request stays in the conversation until the user asks to capture the findings. For a material change, PentaPRO compares the proposal with the current requirements and behavior, identifies compatibility commitments, and traces their effects across the pillars. Applicable project rules and amendments are linked from PROCESS.
 
 ### The five pillars
 
@@ -208,7 +208,7 @@ Creation saves all five initial drafts before pausing for answers. Later rounds 
 
 The skill distinguishes confirmed information, proposals, and pending decisions. Routine decisions made within explicit delegation are attributed to the agent and can be settled for readiness without being presented as user requirements or document acceptance. When the user is unavailable, retain consequential blockers and complete independent specification work. If saving is unavailable, return an explicitly unsaved draft.
 
-PENTA-PRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from their owning pillar. The skill loads specialized forms and examples as needed.
+PentaPRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from their owning pillar. The skill loads specialized forms and examples as needed.
 
 Critical product rules should have concrete input/output examples independent of the implementation. PROOF identifies realistic regressions that planned assertions must detect and checks that reported execution actually exercises them. Planned checks remain `Unverified` until executed. Specification readiness, document acceptance, implementation verification, and release acceptance are separate states. Creating or updating a specification does not itself authorize implementation or release; existing authorization remains valid.
 
@@ -236,7 +236,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.7.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Version:** 1.8.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -309,7 +309,7 @@ Confirm how a managed reviewer receives instructions. Including only the body of
 | [Frontend](peer-review/references/frontend.md) | UI state, contracts, accessibility, browser boundaries, and performance. |
 | [Android](peer-review/references/android.md) | Lifecycle, coroutines, Flow, Compose/Views, platform security, and release variants. |
 | [Android/KMP test effectiveness](peer-review/references/android-testing.md) | Coroutine schedulers, Flow, Compose synchronization, restoration and target coverage. |
-| [Verification](peer-review/references/verification.md) | Test effectiveness, assertion execution, false-positive checks, isolated mutation probes, and evidence reporting. |
+| [Verification](peer-review/references/verification.md) | Test effectiveness, assertion execution, false-positive checks, isolated mutation probes, model correspondence, performance claims, and evidence reporting. |
 | [Independent review](peer-review/references/independent-review.md) | Fresh context, model selection, review lenses, and feedback loops. |
 | [Report template](peer-review/assets/review-report-template.md) | Optional structure for substantial or saved reviews. |
 | [Handoff template](peer-review/assets/review-handoff-template.md) | Factual packet for another reviewer or model. |
@@ -321,17 +321,17 @@ Android/KMP guidance also examines typed-result fallback/decoding semantics, dep
 
 Load the review method and applicable references. Source research and evaluation cases are maintainer resources, not required context for every review. The package is an original synthesis, not an installer or runtime wrapper around upstream skills.
 
-## Cybersec
+## Cybersecurity
 
-**Version:** 1.3.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Version:** 1.4.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
-Use Cybersec for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
+Use Cybersecurity for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
 ### Modes and limits
 
 Threat modeling produces assets, trust boundaries, credible abuse cases, controls, and planned verification. Repository audits inspect the current snapshot unless a narrower target is specified; they preserve reviewed files. Secure-build/hardening mode implements only security work already authorized and verifies affected controls. Readiness mode evaluates the requested gate, including detection, containment, recovery, and risk ownership.
 
-No model or skill can predict every attack or establish invulnerability. Cybersec identifies supported vulnerabilities, credible threats, control gaps, and residual/unassessed risk. Source configuration, deployed controls, and runtime evidence are separate. Framework alignment or passing scans does not establish certification, compliance, or full release approval.
+No model or skill can predict every attack or establish invulnerability. Cybersecurity identifies supported vulnerabilities, credible threats, control gaps, and residual/unassessed risk. Source configuration, deployed controls, and runtime evidence are separate. Framework alignment or passing scans does not establish certification, compliance, or full release approval.
 
 Live scans, exploitation, fuzzing, credential tests, shared-system testing, production changes, and external data transfers require authorization covering the specific actions, targets, methods, environment, and limits. Existing valid authorization is reused. An audit does not itself authorize fixes, installations, deployment, or secret/IAM changes.
 
@@ -369,7 +369,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 | --- | --- |
 | [Entrypoint](cybersec/SKILL.md) | Modes, authority, target scope, routing, and working loop. |
 | [Assessment method](cybersec/references/assessment-method.md) | Threat reasoning, repository baseline, evidence, severity/status, coverage, and conclusions. |
-| [Threat coverage and verification](cybersec/references/threat-coverage.md) | Traceable coverage, combined attack paths, negative/positive checks, and reassessment triggers. |
+| [Threat coverage and verification](cybersec/references/threat-coverage.md) | Traceable coverage, combined attack paths, negative/positive checks, structural guarantees, security-model limits, and reassessment triggers. |
 | [Web and API](cybersec/references/web-api.md) | Browser/service trust, authorization, business logic, inputs, and data. |
 | [Credential and cryptographic controls](cybersec/references/web-api.md#credentials-and-cryptographic-controls) | Passwords, security tokens, encryption, and key handling across relevant platforms. |
 | [Desktop and native](cybersec/references/desktop-native.md) | IPC/bridges, file access, privileged helpers, distribution, updates, and native boundaries. |
@@ -384,7 +384,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 ## UI Design
 
-**Version:** 1.2.0 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
+**Version:** 1.3.1 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
 Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
@@ -401,7 +401,7 @@ Feedback guidance chooses field, form, transient, persistent, content-area or de
 
 The default output is the target project's cumulative **`docs/ui-design.md`**, with a screen index, shared visual/interaction rules, flows, per-screen contracts, decision status, acceptance scenarios, verification evidence and a resume pointer. It is saved during partial interviews and updated across iterations. Additional mockups or assets are optional linked evidence. A request to specify screens produces documentation; implementation follows the user's requested scope.
 
-When PENTA-PRO files exist, this UI document supplements their five pillars and links canonical requirements, checks, architecture and process records. Existing design systems remain authoritative for their owned tokens/components. The skill has no mandatory dependency on the other skills, BMAD, OpenSpec, Figma, a browser plugin, image generation or a paid service. Runtime checks require available project tools; HTML concepts do not prove Android behavior. Research observations, proposals, accepted decisions and executed checks remain distinct. No production usability or cross-model efficiency benchmark is claimed.
+When PentaPRO files exist, this UI document supplements their five pillars and links canonical requirements, checks, architecture and process records. Existing design systems remain authoritative for their owned tokens/components. The skill has no mandatory dependency on the other skills, BMAD, OpenSpec, Figma, a browser plugin, image generation or a paid service. Runtime checks require available project tools; HTML concepts do not prove Android behavior. Research observations, proposals, accepted decisions and executed checks remain distinct. No production usability or cross-model efficiency benchmark is claimed.
 
 ### UI Design resources
 
@@ -413,7 +413,7 @@ When PENTA-PRO files exist, this UI document supplements their five pillars and 
 | [Web](ui-design/references/web.md) | Browser layout, navigation, semantics and checks. |
 | [Android](ui-design/references/android.md) | Compose/Views, adaptive layout, state, Back, insets and native checks. |
 | [Feedback and state coverage](ui-design/references/feedback-states.md) | Error surfaces, partial failures, refresh/pagination, control variants and stress states. |
-| [Validation](ui-design/references/validation.md) | Rendered inspection, interaction tests, usability and evidence limits. |
+| [Validation](ui-design/references/validation.md) | Rendered inspection, reproducible journeys, durable outcomes, usability and evidence limits. |
 | [Document maintenance](ui-design/references/document-maintenance.md) | Cumulative updates, stable IDs, ownership and resumption. |
 | [Output template](ui-design/assets/ui-design-template.md) | Adaptable single-file screen and flow specification. |
 | [Worked example](ui-design/references/worked-example.md) | Two-screen Android specification with explicit pending decisions. |
@@ -477,9 +477,11 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 ### Validation and improvement
 
+The pstack-informed update adds caller-facing contract sketches and verification recipes to PentaPRO, safety-premise and measurement checks to Peer Review, model/enforcement distinctions to Cybersecurity, and instance-aware journey evidence to UI Design. These additions are conditional; the skills keep their existing output contracts and introduce no pstack dependency. [Research attribution and limits](THIRD-PARTY-NOTICES.md#cursor-pstack-research) identify the pinned source and adaptations.
+
 Use each skill's evaluation cases before expanding its instructions. Compare matched tasks with and without the skill on the models and hosts actually used. Check activation, preserved decisions, invented facts, unnecessary questions, substantiated defects, false positives, material misses, coverage honesty, and unintended actions. Record actual time and usage when available, and retest after relevant model or instruction changes.
 
-The final maintenance pass clarifies staged versus working-file review, version-dependent API evidence, safe test execution, checked versus effective security values, and UI review/implementation boundaries. PENTA-PRO also reconciles companion screen specifications without changing its five-file output. These safeguards support consistent execution; they do not establish reliability on every model.
+The final maintenance review clarifies planning versus execution authority, synchronization at the actual writer scope, safe test execution, enforced versus merely declared type guarantees, and fidelity to authorized supplied designs. Existing guidance covers staged versus working-file review, version-dependent API evidence, checked versus effective security values, and companion-document ownership. These safeguards support consistent execution; they do not establish reliability on every model.
 
 Keep active versions in `SKILL.md`, this README, and any versioned output template aligned. When behavior changes, reconcile descriptions, UI metadata, templates, references, and evaluation cases. Validate local links and anchors from each file's location. Retain historical research dates and trial versions with their original scope; a package update does not rerun or broaden earlier evidence.
 
@@ -498,4 +500,4 @@ The repository and its skills are distributed under the single root [MIT License
 
 When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
 
-The source research for [PENTA-PRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersec](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
+The source research for [PentaPRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersecurity](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.

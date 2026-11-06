@@ -57,6 +57,10 @@ Model expected and peak workload, data growth, resource limits, critical bottlen
 
 ## Data design and integration contracts
 
+For a consequential new boundary, sketch a realistic caller interaction before settling the interface: input, returned value or error, observable effects, and ownership. Include the important invalid or interrupted case. Derive signatures and state variants from that contract; label sketches as proposals, not implemented APIs. Prefer one authoritative schema with derived consumers where feasible. A wrapper or adapter earns its place by hiding policy, representation, or a real compatibility boundary; do not require layers or remove them solely by caller count.
+
+For concurrent writers, decide which state truly must be shared and identify every writer's execution boundary. Independent progress can use separate ownership; a shared balance or unique claim still needs an actual atomicity/coordination mechanism at that scope. A process-local mutex does not coordinate independent processes or services; a type declaration or instruction to serialize work does not by itself establish atomicity. Record behavior after a partial write, crash, retry, and stale claim where these affect the contract.
+
 - Define logical schemas, constraints, identifiers, relationships, and ownership; add physical schema and indexing choices where needed.
 - Specify transaction boundaries, consistency requirements, concurrent-update behavior, deduplication, and migration compatibility.
 - For each API, event, file format, or external service, identify its owner and authoritative contract. Define schemas, validation, authorization, errors, compatibility, and versioning.

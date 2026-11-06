@@ -36,6 +36,15 @@ Trace the value chain: objective/discovery → requirement → acceptance criter
 - Document the chosen test-first policy and any coverage targets in one place. Coverage is supporting evidence, not a substitute for meaningful assertions or behavioral checks.
 - Use independent review for changes that require it. Provide the reviewer with requirements, the actual diff, relevant context, and evidence; review approval does not replace execution checks.
 
+## Executable journeys and specialized evidence
+
+When runtime verification is required, link a repeatable recipe in the project's existing test or runbook structure: launch and usable-readiness check, identified build/instance/account, fixtures and preconditions, public entry/action, expected visible result and durable effect, reset, evidence location, and teardown. A listening port does not establish migrated data or usable authentication. Identify which resources the check owns; cleanup removes only its own scratch state and keeps evidence. This recipe does not require creating another skill or a feature-map document.
+
+For consequential formal/model-based checks, record the property, mapped code/design revision, assumptions, bounds, and checks that actually completed. Revisit the mapping after changes to guards, writers, atomic steps, or recovery paths. A passing obsolete model does not verify current code; a bounded model result is not a proof for arbitrary sizes or the whole deployed system. Plan a distinguishing negative case where useful and feasible, and keep model defects separate from product defects.
+
+For a performance decision, define the workload, timed region, successful-work and error counts, comparable configurations, cache/warmup conditions, repeated runs and variation. Confirm that deferred or asynchronous work finishes inside the claimed interval. Relate a local speedup to the end-to-end task and investigate the actual limiter when claiming a cause. If the difference is within observed noise or the work differs, keep the comparison inconclusive. Do not impose a universal run count or require benchmarks for unrelated changes.
+
+
 ## Risk coverage and test data
 
 | Risk / requirement / AC IDs | Failure or boundary to exercise | Method / environment / data | Expected result / check reference | Owner / evidence or gap |
@@ -75,3 +84,5 @@ For the released revision and cohort, link product measures and operational sign
 Track product outcomes alongside delivery indicators such as time to an accepted increment, escaped defects, rework, operating cost, and human interruptions. Record baselines and compare similar work. Use findings to improve the specification and workflow; do not treat generated code volume as a success measure.
 
 For material escaped defects or recurring incidents, record the affected requirement/check references, detection stage, supported causal findings, fix, regression coverage, and an owned prevention action. If the cause remains unknown, retain the uncertainty with the investigation or risk decision and follow-up trigger. Record recovery and longer-term corrective work separately.
+
+When a rule repeatedly fails, consider an enforceable correction at its owning boundary: a schema-derived type, constrained API, lint, runtime invariant, or focused regression check. Select the smallest mechanism that catches the demonstrated failure and preserves valid behavior. A static type cannot enforce changing permissions or external state. Keep judgment-dependent guidance in the specification instead of adding a brittle rule or more duplicated instructions.

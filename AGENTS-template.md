@@ -48,7 +48,7 @@ Default paths below are relative to the target repository root. They describe pr
 | `docs/process.md` | Shared specification state, coverage, tasks, authority, revision history and next action. |
 | `docs/ui-design.md` | Detailed screen/flow contracts, visual rules, interaction states and screen-specific acceptance; links to governing requirements and existing design-system sources. |
 
-PENTA-PRO uses PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for presentation and interview deepening. Gather influential operating constraints early, refine checks after design decisions, and track authority and resumption throughout. This order does not impose sequential implementation phases. The UI document supplements the five pillars when visual interfaces are in scope.
+PentaPRO uses PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for presentation and interview deepening. Gather influential operating constraints early, refine checks after design decisions, and track authority and resumption throughout. This order does not impose sequential implementation phases. The UI document supplements the five pillars when visual interfaces are in scope.
 
 On resumption, read the relevant next-action record in `docs/process.md` or the established tracker, then the affected requirements, contracts, checks and screens. Load only the records and dependencies needed for the task. If documents do not yet exist, use the available brief and project evidence; create them when specification work is requested rather than manufacturing a full specification for every small edit.
 

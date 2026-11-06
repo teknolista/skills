@@ -24,7 +24,7 @@ Run realistic tasks with the packaged skill and raw project artifacts. Check pro
 
 2026-11-05: authored the cases above and performed an author-side consistency walkthrough of initial specification, iterative preservation, Android evidence limits and PENTA ownership against the entrypoint, references and template. This is self-review of instructions, not an independent model execution or behavioral pass rate. The worked example demonstrates a concrete two-screen specification and honest pending evidence; it is illustrative, not research or app runtime evidence.
 
-Executed creation checks: skill-creator quick_validate.py passed for all four skill packages; a repository check including the new untracked package validated 52 Markdown files and 319 local links/anchors, active versions, UI metadata, tables and the five PENTA-PRO destinations; git diff --check passed. A separate new-package check verified table headers, metadata, a single skill entrypoint and absence of conflict markers. These are structural results, not execution of the behavioral scenarios above. No real app was built, no browser/device interaction or assistive-technology study was run, and no cross-model, efficiency, accessibility-conformance or comparative-quality benchmark is claimed. Run the applicable cases with actual target models and tools before operational reliance; retain task inputs, output snapshots and observed side effects.
+Executed creation checks: skill-creator quick_validate.py passed for all four skill packages; a repository check including the new untracked package validated 52 Markdown files and 319 local links/anchors, active versions, UI metadata, tables and the five PentaPRO destinations; git diff --check passed. A separate new-package check verified table headers, metadata, a single skill entrypoint and absence of conflict markers. These are structural results, not execution of the behavioral scenarios above. No real app was built, no browser/device interaction or assistive-technology study was run, and no cross-model, efficiency, accessibility-conformance or comparative-quality benchmark is claimed. Run the applicable cases with actual target models and tools before operational reliance; retain task inputs, output snapshots and observed side effects.
 
 ## Android/KMP bundle follow-up — 1.1.0
 
@@ -57,3 +57,36 @@ Additional independent forward testing was attempted during the 2026-11-05 maint
 ## Package identity — 1.2.0
 
 2026-11-06: renamed the package and invocation to `ui-design` / `$ui-design`, with display name UI Design. The output template and default cumulative screen specification use `ui-design-template.md` and `docs/ui-design.md`. Repository links, installation examples, companion-document references and project guidance follow the new identity. External source names and URLs retain their original identities. Historical trials retain their recorded scope; structural rename checks do not imply a new behavioral trial.
+
+
+## pstack follow-up — 1.3.0
+
+2026-11-06: authored the following cases for the targeted synthesis. They are maintenance scenarios, not independently executed model trials.
+
+| Input / situation | Expected observable behavior |
+| --- | --- |
+| A health endpoint answers while seed data is unavailable; the driver targets a shared emulator | Check usable readiness, build/account/instance identity and prerequisites; drive serially or in an authorized isolated instance and leave unavailable behavior pending. |
+| Save shows an optimistic cached success, but no record appears on supported re-entry; teardown deletes captures | Check action plus durable outcome, distinguish harness drift from a product failure, and preserve evidence while cleaning only test-owned resources. |
+| A simplified flow diagram merges saved, queued and outcome-unknown nodes | Keep action/recovery distinctions visible, label omitted scope and avoid treating an illustrative diagram as exhaustive formal or native-runtime evidence. |
+
+An author-side instruction walkthrough checked these cases against the edited resources, including existing authority and evidence rules. Package metadata, active versions, local links and whitespace are checked separately. No running app, benchmark, formal checker, security exploit, independent model trial or cross-model performance comparison was executed for this update.
+
+## Final quality review — 1.3.1
+
+2026-11-06: inspected all package files and clarified fidelity to supplied designs: distinguish authorized reproduction from third-party inspiration, preserve the constraints implied by the request, expose conflicts, label unseen behavior/adaptation proposals, and compare the implemented result within the available evidence. Existing 1.3.0 synthesis remains intact.
+
+| Input / task | Observable success | Failure to catch |
+| --- | --- | --- |
+| Implement a supplied desktop mock in an app with accepted tokens; no mobile mock is provided | Preserves requested layout/content, records token conflicts and intentional changes, labels responsive behavior as a proposal and compares rendered output where available | Treats the reference as permission for unrelated redesign or claims unseen states were supplied/verified |
+| Match a reference with a low-contrast essential label, with source access but no renderer | Records the accessibility conflict and a focused proposed adjustment; saves source-inspected evidence and a pending rendered comparison | Silently reproduces the barrier, invents user acceptance or claims rendered fidelity from source |
+
+These are authored maintenance scenarios and an author-side instruction walkthrough, not executed model trials. Primary W3C contrast/target-size and Android accessibility/state-saving guidance were checked for the existing platform distinctions. Structural checks are reported separately; no running application, native device, browser interaction, assistive-technology session or cross-model comparison was executed for this review.
+
+
+## Bounded specification trial — 1.3.1
+
+2026-11-06: a fresh independently assigned agent refined a disposable native-Android two-screen document from product requirements, an authorized owner-provided reference, canonical theme roles and existing accepted decisions. It preserved both screen IDs, accepted UI-D01/UI-D02 and the exact hand-written maintainer note. Binding identity and primary-action placement were retained; new layout/interaction details were labeled proposals where the supplied artifacts did not settle them. The reference's autosave suggestion stayed in conflict with the accepted no-draft-persistence rule and did not override it.
+
+Only the established cumulative document changed. The agent specified save/discard, interruption, keyboard, accessibility and failure states and kept field/storage/session questions and all missing native evidence visible. It checked local links, IDs and canonical opaque color-pair arithmetic; the maintainer independently confirmed unchanged governing-file hashes, preserved records, all six local links/anchors and the two reported token contrast ratios. Calculated pairs were not represented as rendered contrast or accessibility conformance.
+
+This single documentation trial supplies no implemented UI, rendered-fidelity comparison, Android/device/lifecycle execution, assistive-technology result, user study or smaller-model benchmark. It does not execute the separate desktop-mock or low-contrast-reference cases above.

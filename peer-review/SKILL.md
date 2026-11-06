@@ -3,7 +3,7 @@ name: peer-review
 description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for reviews of backend, frontend, Android, or test code, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.7.0"
+  version: "1.8.0"
 ---
 
 # Peer Review
@@ -27,6 +27,7 @@ Read [the review method](references/review-method.md) for target selection, poli
 | Browser UI, client state, forms, accessibility, web performance | [Frontend](references/frontend.md) |
 | Kotlin/Java Android, Compose/Views, manifests, Gradle, mobile storage | [Android](references/android.md) |
 | Test code, assertions, fixtures, CI evidence, or regression-protection claims | [Verification](references/verification.md) |
+| Formal/model-based evidence or performance measurements | [Model correspondence and measurement claims](references/verification.md#model-correspondence-and-measurement-claims) |
 | Kotlin coroutine/Flow, Compose or KMP tests and their execution claims | [Android/KMP test effectiveness](references/android-testing.md) |
 | Independent handoff, model selection, or multiple review lenses | [Independent review](references/independent-review.md) |
 | Related PRs, shared behavior, integration dependencies, or a requested review-queue plan | [Change coordination](references/independent-review.md#coordinate-related-changes) |

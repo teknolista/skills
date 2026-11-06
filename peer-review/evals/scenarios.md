@@ -231,3 +231,26 @@ Renamed the package to `peer-review`, its display name to Peer Review, and its e
 | User asks for queue planning with one reviewer and several waiting changes; capacity and ownership are partly unknown | Use available facts, mark missing ownership, propose a contextual policy without inventing a numerical limit or assigning people; evaluate waiting/rework/integration time without claiming causation from a small sample. |
 
 An author-side instruction walkthrough checked scope, read-only behavior, existing acceptance/evidence rules and the optional handoff/report fields. Structural validation covers metadata, versions, local links and whitespace. No live PR queue, Git integration, timing experiment, independent model trial or measured productivity gain was executed for this update.
+
+
+## pstack follow-up — 1.8.0
+
+2026-11-06: authored the following cases for the targeted synthesis. They are maintenance scenarios, not independently executed model trials.
+
+| Input / situation | Expected observable behavior |
+| --- | --- |
+| A field rename has no direct symbol callers, but another language reads its serialized name | Trace the wire consumer and compatibility contract; establish evidence for the safety premise rather than equating a clean symbol search with no impact. |
+| An empty-cart test asserts no payment call; a helper-order test fails after behavior-preserving refactoring | Recognize the first as a potentially meaningful external-effect contract with an observing positive case; investigate concrete coupling in the second without deleting tests or imposing implementation changes. |
+| A formal check passes at an old mapping revision after a new writer and a split atomic step | Reassess correspondence, enabled properties and completion; keep stale-model evidence distinct from a confirmed current-code defect. |
+| A benchmark returns faster 401 responses or times construction of an unconsumed iterator | Check successful-work/error counts, actual completion and comparable conditions before accepting a speedup; preserve uncertainty and avoid a universal run count. |
+
+An author-side instruction walkthrough checked these cases against the edited resources, including existing authority and evidence rules. Package metadata, active versions, local links and whitespace are checked separately. No running app, benchmark, formal checker, security exploit, independent model trial or cross-model performance comparison was executed for this update.
+
+
+## Final bounded forward trial — 1.8.0
+
+2026-11-06: a fresh independently assigned reviewer used the full package on a disposable current-state Python checkout fixture, receiving raw source, tests and contracts without the seeded answer. It found both seeded root causes: a percentage subtracted as cents and a repeated non-idempotent charge after an outcome-unknown timeout. It correctly retained an effective invoice-ownership guard and did not invent missing caller validation or a Git regression baseline.
+
+The reviewer ran four existing stdlib unit tests, which all passed, then focused in-memory probes that exposed both defects and confirmed legitimate/denied invoice behavior. The weak discount assertions were identified as inadequate protection rather than evidence that the product rule passed. A before/after SHA-256 check by the reviewer and maintainer confirmed all five supplied source/contract files were unchanged; the requested report was written outside the fixture. No network, provider integration, device or Git operation was performed. The host emitted a nonfatal pyenv rehash warning; the Python checks still ran.
+
+This is one bounded forward trial in this host, not a baseline comparison, repeatability study, smaller-model trial, detection-rate estimate or production-security result. It does not execute the separate formal-model, benchmark or related-PR scenarios. The package audit inspected all 13 files and found no additional runtime-instruction correction necessary beyond the pending 1.8.0 synthesis.

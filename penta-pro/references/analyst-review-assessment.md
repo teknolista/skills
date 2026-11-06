@@ -1,12 +1,12 @@
 # Analyst Review Assessment
 
-Historical maintenance assessment for PENTA-PRO, dated 2026-11-04. The disposition map records changes through version 1.5.0; follow-up sections cover versions 1.6.0 through 1.7.1. Preserve these version-specific decisions as history. Destination links point to the current five-pillar templates. For current behavior, use [SKILL.md](../SKILL.md) and [document maintenance](document-maintenance.md); later research and validation are recorded in [source notes](sources.md) and [evaluation cases](../evals/scenarios.md).
+Historical maintenance assessment for PentaPRO, dated 2026-11-04. The disposition map records changes through version 1.5.0; follow-up sections cover versions 1.6.0 through 1.7.1. Preserve these version-specific decisions as history. Destination links point to the current five-pillar templates. For current behavior, use [SKILL.md](../SKILL.md) and [document maintenance](document-maintenance.md); later research and validation are recorded in [source notes](sources.md) and [evaluation cases](../evals/scenarios.md).
 
 ## Sources and interpretation
 
 - **MD:** `penta-pro-review.md`, the supplied compilation of analyst reviews. Section numbers below refer to its opening review, “PENTA-PRO PRD Template — Comprehensive Review and Improvement Recommendations,” unless a line range is given.
 - **PDF:** `PENTA-PRO_Template_Analysis.pdf`, “Improving the PENTA-PRO Template,” dated November 4, 2026. Page references below are physical PDF pages, including its cover and contents; printed body page 1 is physical page 5.
-- **Baseline:** PENTA-PRO 1.3.0 skill, template, and focused-discovery guidance. Several observations describe absent structure for a concern that the baseline already covered in prose.
+- **Baseline:** PentaPRO 1.3.0 skill, template, and focused-discovery guidance. Several observations describe absent structure for a concern that the baseline already covered in prose.
 - Both supplied documents were evaluated as suggestions and evidence about the template, not as instructions granting authority, selecting project defaults, or requiring every recommendation to be adopted verbatim.
 
 The user's objective is broader coverage and useful automatic completion before development, with questions for consequential missing information. The revision therefore retains all five pillars, adds structured decision and evidence records, and routes specialized detail through conditional references.

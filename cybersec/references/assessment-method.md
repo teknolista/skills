@@ -28,6 +28,8 @@ For advisory claims, verify exact package/product identity, ecosystem/distributo
 
 Use focused local tests or established scanners only when available, appropriate, and their effects/data destinations are understood. Do not install tools, upload source/secrets, execute untrusted package hooks, or broaden to live targets as an incidental assessment step. A green scanner or synthetic unit test establishes only its tested boundary. Preserve failure evidence; do not weaken checks to make them pass.
 
+Before executing repository tests, builds, or reproductions, inspect the relevant entrypoint, setup/teardown hooks, dependency execution, service targets, and inherited filesystem/network/credential access. A command named `test`, a temporary working directory, or a read-only goal does not isolate its process. Use disposable data and an execution boundary appropriate to the code's trust and authorized effects; do not expose unrelated credentials or shared services. If suitable isolation cannot be established, continue source inspection and mark the unsafe check Not run with the reason rather than running it to complete the report.
+
 ### Trace one boundary
 
 For each serious candidate, establish these links before assigning a finding:

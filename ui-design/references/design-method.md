@@ -10,6 +10,8 @@ Distinguish provided fact, observed behavior, research finding, hypothesis, prop
 
 For each flow identify entry, preconditions, screens, decisions, completion and recovery. Account for direct entry, return visits, cancellation and interruption. A flow diagram can clarify branching; give endpoints real destinations or explicitly unresolved IDs. Shared components and defaults should serve multiple screens without erasing their contextual differences.
 
+Use user-visible names on states and transitions. Keep distinctions that change allowed actions, permissions, recovery or the truth of a result: a single “done” node must not hide saved, queued and outcome-unknown states. State when a diagram omits transitions or represents only a selected journey. A useful state sketch explains the contract; it is not evidence that all paths were explored or that the running app follows it.
+
 Before adding a screen, ask what task or necessary decision it supports. Before hiding a function behind a gesture, icon or overflow menu, consider discovery and an accessible alternative. Use progressive disclosure for secondary complexity without concealing required input, prices, risks or consequences. Marketing surfaces emphasize informed decisions; operational surfaces emphasize task completion; reading surfaces emphasize comprehension. Choose expression and density for the surface's purpose.
 
 ## Screen specification

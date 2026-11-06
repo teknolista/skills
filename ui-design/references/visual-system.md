@@ -4,9 +4,11 @@
 
 Inspect actual themes/tokens, shared components and their consumers, accepted design guidance and supplied references. Trace which application and variant uses them. A repeated literal is evidence of implementation, not automatically an intentional token. Record source, scope and confidence; screenshot-only measurements are estimates. Imported screenshots cannot establish internal token names, exact spacing or hidden interactions.
 
+For a supplied design, infer from the request which parts govern the result: layout, content, assets, component appearance or overall direction. Preserve those commitments and record allowed exploration. Unseen interaction and responsive states still need explicit contracts or labeled proposals. If visual fidelity conflicts with an accessibility requirement or accepted product contract, expose the conflict and propose a focused adjustment; do not silently reproduce the barrier or redesign unrelated areas.
+
 For a new system propose a coherent small foundation: semantic color roles and foreground/background pairs, typography roles and fallback, spacing/layout rhythm, shape/elevation, iconography, component variants and motion. Label proposed names/values; map them to existing owners where possible. Record global defaults once and deliberate screen overrides with reasons. Native defaults, familiar fonts, brand colors, gradients, cards and shadows are legitimate when appropriate; do not replace user intent with a blacklist of aesthetics.
 
-Choose a visual direction tied to the subject, audience and task. Compare references by hierarchy, density, composition, navigation and states; use their principles without copying proprietary branding, imagery, text or exact compositions. Preserve provenance, permissions and license requirements for reused material. A product dashboard and its marketing page may share tokens while requiring different composition and tone.
+Choose a visual direction tied to the subject, audience and task. Compare references by hierarchy, density, composition, navigation and states. Distinguish implementing a supplied, authorized design from using third-party inspiration; inspiration does not establish permission to reuse branding, imagery, text or exact compositions. Preserve provenance, permissions and license requirements for reused material. A product dashboard and its marketing page may share tokens while requiring different composition and tone.
 
 ## Composition, typography and color
 
