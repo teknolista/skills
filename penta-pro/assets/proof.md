@@ -10,7 +10,7 @@ Start with PRODUCT's behavior, acceptance criteria, and known constraints. Refin
 
 ## Acceptance and traceability
 
-Keep acceptance criteria beside their feature in PRODUCT. Link each requirement and criterion to a check and its execution evidence here.
+Keep acceptance criteria with their canonical feature or requirement record, indexed from PRODUCT. That record may be in PRODUCT or a project-selected specification registry. Link each requirement and criterion to a check and its execution evidence here instead of duplicating its definition.
 
 | Requirement / criterion | Task or change | Verification method | Result | Evidence and tested revision |
 | --- | --- | --- | --- | --- |

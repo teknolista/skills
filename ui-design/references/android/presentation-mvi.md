@@ -2,6 +2,8 @@
 
 Use AndroidX Lifecycle and Jetpack Compose in Android modules. Keep business logic outside composables; keep UI-only state at its appropriate owner. Read [screen architecture](compose-architecture.md) for state ownership, effects, text input, and performance, and [component patterns](compose-components.md) for reusable UI.
 
+The MVI, Koin and shared-module shapes below are examples for projects that select them. Preserve an existing coherent presentation/DI approach; do not add Koin, an MVI action layer or a `core:presentation` module merely to copy a snippet. Apply the state, ownership and evidence principles through the project's actual interfaces.
+
 ## State and actions
 
 Expose immutable `StateFlow<ScreenState>` from a ViewModel and update a private `MutableStateFlow` atomically with `update`. Keep state meaningful: model mutually exclusive loading/content/error states explicitly when a set of booleans would permit impossible combinations. Preserve existing content during refresh when that matches the product.
@@ -86,7 +88,7 @@ The helper controls collection, not persistence or exactly-once delivery. A snac
 
 ## Native resource-backed text
 
-Place `UiText` and shared mappings in an Android `core:presentation` module; keep feature mappings and resource IDs in their owning feature. Do not store a Context in the ViewModel.
+Place `UiText` and shared mappings in the project's existing Android presentation owner; a `core:presentation` module is appropriate only when actual shared consumers justify it. Keep feature mappings and resource IDs in their owning feature. Do not store a Context in the ViewModel.
 
 ```kotlin
 import android.content.Context

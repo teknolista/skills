@@ -78,3 +78,9 @@ Model-checking scope was also checked against the primary [TLA+ model introducti
 ## Android task ownership — 2.5.2
 
 2026-11-06: Native module implementation is distinct from architecture/specification/readiness work. The five pillars retain their canonical ownership; adding a concrete approved Gradle module does not start a second product interview. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
+
+## Canonical change/specification records — 2.5.4
+
+2026-11-06: a maintainer review found that the five-pillar ownership defaults could be read as requiring duplicate requirements and task lists even when the project had selected a maintained external registry. The entrypoint, document-maintenance rules and affected templates now distinguish global context/navigation from authoritative capability, acceptance and execution records. OpenSpec is a conditional integration example drawn from the user's workflow, not a new framework dependency or an assertion about a particular CLI version.
+
+The correction preserves current-versus-proposed-versus-deployed scope, evidence freshness and the ordinary five-file default for projects without another selected registry. The new maintenance cases are authored scenarios; no new independent model trial or comparative performance result is claimed here.

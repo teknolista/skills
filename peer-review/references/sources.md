@@ -115,3 +115,9 @@ Model-checking scope was also checked against the primary [TLA+ model introducti
 ## Android task ownership — 1.8.1
 
 2026-11-06: Read-only code/test-effectiveness review remains here; Android test-authoring helpers supply implementation procedures rather than competing assessment. PR comprehension is not review evidence. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
+
+## Layered review and learning from escaped defects — 1.9.0
+
+2026-11-06: considered a Portuguese engineering-advice excerpt supplied in the conversation. No author name, article title or public URL was supplied, so no external identity or publication is inferred. This original adaptation retains automation as check evidence, fresh reviewer context, a structural change map, deeper verification of migrations/configuration/dependencies/test changes, and a feedback loop from escaped defects to regression protection.
+
+Existing source tracing, independence, candidate validation and execution boundaries remain in force. The additions distinguish required gates from selected checks, configured tool rules from contractual correctness, legitimate test retirement from lost protection, and implementer feedback from authority to accept a blocker. They do not mandate different model vendors, a full suite for every patch, automatic fixes, new CI installation, or a permanently growing checklist. Missing green checks do not forbid useful source inspection; they retain the project's actual gate consequences. Source-independent evaluation cases are recorded separately from historical executed trials; no new model-performance result is claimed.

@@ -2,7 +2,7 @@
 name: pr-quiz
 description: Create or regenerate a decision-comprehension quiz for a GitHub pull request when explicitly requested. Use for PR quizzes or their optional grading workflow; not code review, security assessment, test validation, or automatic action after creating a PR.
 metadata:
-  version: "1.2.0"
+  version: "1.2.1"
 ---
 
 # PR Decision Quiz
@@ -21,7 +21,9 @@ Select the consequential decisions: responsibility boundaries, data ownership, c
 
 Prefer four plausible options of similar length, with exactly one defensible correct answer and a short explanation. The helper accepts 2–6 options for existing callers. Do not test syntax, exact constants, naming trivia, private function control flow or unsupported general knowledge. If two answers are reasonable, clarify the decision or omit the question. If defects are found, report/route them; never disguise a blocker as a comprehension exercise.
 
-Write local JSON:
+Write local JSON with unique object-field names. Duplicate `questions`, `correct` or other fields are ambiguous and the helper rejects them before any GitHub call; reconcile the intended question/key rather than relying on the parser's last value.
+
+Example:
 
 ```json
 {

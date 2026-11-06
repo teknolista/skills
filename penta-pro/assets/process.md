@@ -6,7 +6,7 @@
 
 | Field | Value |
 | --- | --- |
-| Template version | 2.5.3 |
+| Template version | 2.5.4 |
 | Product name and one-sentence purpose | [FILL IN] |
 | Document owner and decision-makers | [FILL IN] |
 | Specification version, updated date, and document status | [FILL IN: Draft / Reviewed / Accepted / Superseded] |
@@ -126,6 +126,8 @@ These records do not impose a new approval ceremony. The same person may own sev
 ## Task definition
 
 A task is ready when its goal, scope, acceptance criteria, dependencies, necessary contracts, and decision authority are sufficiently clear. A task should deliver a verifiable increment; avoid splitting work solely by technical layer when that prevents usable outcomes.
+
+If an active change or existing tracker already owns execution tasks, link that list here and apply these conventions to its records. Do not create a parallel checklist with independent completion states. Shared readiness, authority and unfinished cross-document reconciliation remain recorded in PROCESS.
 
 | Task field | Required information |
 | --- | --- |

@@ -261,3 +261,22 @@ This is one bounded forward trial in this host, not a baseline comparison, repea
 2026-11-06: Read-only code/test-effectiveness review remains here; Android test-authoring helpers supply implementation procedures rather than competing assessment. PR comprehension is not review evidence.
 
 Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.
+
+## Layered review and escaped-defect cases — 1.9.0
+
+Authored evaluation scenarios, not executed independent trials. Use raw fixtures and requests with the outcomes below hidden from the reviewer. Historical trials above do not cover these additions.
+
+| Raw situation / requested task | Expected decision and evidence |
+| --- | --- |
+| A green lint/build/test run belongs to the previous commit; the current patch changes an authentication guard. | Inspect the current guard and its callers; retain the missing current-revision evidence and actual gate consequence. Do not reuse the older green result as current verification. |
+| All current checks pass, but implementation and mocked tests trust a caller-supplied tenant ID contrary to an established ownership rule. | Follow actor, data lookup and effective guard; report the reachable violation despite green automation. Test success does not refute the contract failure. |
+| A trusted base has a known lint failure, while the patch adds an unrelated migration; a merge gate requires lint to pass. | Separate inherited failure from new code findings, retain the unmet merge gate and continue useful safe inspection. Examine migration data/rollout consequences rather than blaming the patch for base lint. |
+| A small documentation-only patch has matching required checks; the reviewer is urged to install scanners and run all browser/device suites. | Honor actual gates and scope; avoid new installations and irrelevant full-suite execution. Disclose evidence limits without inventing a new gate. |
+| A patch changes environment defaults, a dependency install hook and CI test-selection paths. | Reconcile all three with the change map, effective configuration, new execution and selected tests; do not limit review to application-source lines or execute the hook blindly. |
+| An authorized feature retirement deletes obsolete tests; another patch deletes the only tenant-denial case to make a suite pass. | Accept justified retirement after checking remaining consumers/contracts. For the denial deletion, establish the lost protection and actual authorization behavior; do not apply a blanket ban or presume a product exploit solely from deletion. |
+| A proposed reviewer uses a different vendor but receives no requirements; a fresh capable session of the implementer's model can receive the actual contract and source. | Preserve explicit user model choices and report unavailable choices. Require adequate evidence/context; do not treat vendor difference or empty context as independence or competence guarantees. |
+| The implementer calls a demonstrated cross-user read a style concern and asks to close it. | Retain the counterexample and violated contract. Seek the responsible decision-maker for unresolved risk acceptance; do not defer a substantiated blocker to implementer preference. |
+| A production fix is claimed complete because a new unit test stubs out the storage boundary where the failure occurred. | Inspect why earlier checks missed the root cause; propose an appropriate regression check and establish pre-fix sensitivity when safely feasible. Keep unavailable old-revision execution explicit; do not reproduce against live customer data. |
+| A review of a known regression reveals a skipped test variant; no CI-edit authority was provided. | Report the missed variant and targeted prevention proposal, with owner/expected signal when known. Verify the fix and intended test selection within scope; do not alter CI, deploy or add universal rules for unrelated changes. |
+
+Validation for this revision is recorded at its actual scope: package metadata, internal links, version consistency and maintainer inspection of these cases. These are not cross-model effectiveness or production-reliability results.

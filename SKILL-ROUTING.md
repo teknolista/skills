@@ -15,7 +15,7 @@ Ordinary backend, CLI or other implementation can proceed under the project's in
 
 ## Every source skill and its destination
 
-Source inventory: the 14 entrypoints in the user-supplied local `android-skills` directory on 2026-11-06. The earlier `design` consolidation remains recorded in UI Design; it is absent from this source inventory. Integration copies the source; it does not delete or install anything in that directory or a user's agent profile.
+Source inventory: the 14 entrypoints in the user-supplied local `android-skills` directory on 2026-11-06. The project attributes the Android and PR-quiz source skills to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for attribution and license limits. The earlier `design` consolidation remains recorded in UI Design; it is absent from this source inventory. Integration copies and adapts the source; it does not delete or install anything in that directory or a user's agent profile.
 
 | Source | Destination | Decision / requested result |
 | --- | --- | --- |
@@ -55,6 +55,8 @@ For example, “implement retry, then review the change” has an implementation
 
 When contracts disagree, identify the actual conflicting records and status/authority. A mock, test, later file timestamp or confident model statement cannot silently overrule an accepted requirement. Settle routine delegated implementation choices directly; leave only work depending on an unresolved consequential decision pending. Preserve earlier evidence with its tested revision rather than relabeling it as evidence for the new one.
 
+Project-selected specification and tracking tools retain their canonical records. The five PentaPRO pillars may index external requirement/task artifacts instead of duplicating them; the UI contract links the governing behavior rather than defining a competing business policy. A proposed change, an implemented branch and the deployed baseline are distinct states even when they share a capability ID.
+
 ## Validation scope
 
 Inspect descriptions and entrypoint boundaries against the cases above whenever adding a skill. Structural checks can establish unique names, linked resources and absence of retired entrypoints, but cannot guarantee identical automatic routing across models/hosts. Run representative tasks on the actual intended host/model before claiming reliable activation or comparative quality. The PR quiz helper/workflow has offline behavioral tests; its template is not installed as an active repository workflow by this integration.
@@ -80,3 +82,13 @@ Executed checks for the resulting collection:
 - `git diff --check` and a separate whitespace/final-newline check of untracked text files passed; dedicated README sections and the versioned PentaPRO output template match the current entrypoints.
 
 This was a maintainer review with local regression checks, not a new independent cross-model evaluation. No consuming application, device/assistive-technology session, deployed backend or live GitHub workflow/merge-rule test was run. The pinned action's actual hosted runtime/permissions still need validation when adopted. Existing browser/model trials retain their original scope and are not relabeled as fresh evidence for this review. No claim of exhaustive correctness, certification or identical routing on smaller models follows from these results.
+
+### Closing audit after SDD and layered-review integration — 2026-11-06
+
+Reviewed all 13 current entrypoints and their supporting resources by area, preserving the earlier attribution, Peer Review 1.9.0 and tutorial work. Seven packages received justified corrections; the other six required no further behavioral change. Updated versions and manual-installation coverage are synchronized in README.
+
+Concrete corrections: PentaPRO indexes project-selected canonical requirement/change/task artifacts instead of creating competing copies; native build guidance respects effective built-in Kotlin opt-outs; DAO guidance distinguishes literal LIKE matching and SQLite REPLACE cascades from ordinary updates; integration tests exercise these actual boundaries. Android UI examples preserve the selected DI/presentation/module choices. Security guidance requires account/generation isolation at the final write boundary, not just a prior session check. UI tooling and the PR publisher reject duplicate JSON declarations; UI tooling also reports oversized numeric input cleanly and distinguishes an old retained export from a new successful build.
+
+Executed closure checks: all 13 skill validators, README/template version alignment, repository-local Markdown links/anchors, YAML parsing and `git diff --check` passed. The UI helper passed 22 Python tests; the PR publisher passed 10 Python tests; the actual embedded workflow passed 19 offline scenarios. New ambiguous-JSON/numeric regressions failed before their fixes and passed afterward. Compiled Kotlin/SQLite checks reproduced wildcard and REPLACE counterexamples, passed seven literal-query cases, and retained seven orchestration groups plus four concurrency/fake checks with real coroutines.
+
+A fresh PentaPRO forward trial updated only five pillar files in a disposable project, retained canonical OpenSpec records and honest readiness/evidence states, and preserved the other seven files by SHA-256 comparison. Its package evaluation file records the actual scope. This adds one bounded workflow observation, not evidence of smaller-model quality or automatic activation across hosts. No consuming Android app/build, generated Room DAO, device/assistive-technology run, deployed service or live GitHub permission test was performed.

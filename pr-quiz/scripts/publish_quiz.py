@@ -35,9 +35,18 @@ END = "<!-- pr-quiz:end -->"
 LETTERS = "ABCDEF"
 
 
+def unique_object(pairs):
+    result = {}
+    for name, value in pairs:
+        if name in result:
+            raise ValueError("Quiz JSON contains duplicate object fields; resolve the ambiguity before publishing.")
+        result[name] = value
+    return result
+
+
 def load_quiz(path):
     with open(path, encoding="utf-8") as f:
-        quiz = json.load(f)
+        quiz = json.load(f, object_pairs_hook=unique_object)
     if not isinstance(quiz, dict):
         raise ValueError("Quiz must be an object.")
     questions = quiz.get("questions")

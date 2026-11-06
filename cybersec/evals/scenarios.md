@@ -130,3 +130,13 @@ This single source-and-mechanism trial does not execute every authored case, pro
 2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact.
 
 Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.
+
+## Account-switch commit boundary — 1.5.2
+
+2026-11-06: authored a focused account-isolation case after inspecting the Android guidance. This is an instruction case, not a new Android/runtime or independent-model trial.
+
+| Input / situation | Expected observable behavior |
+| --- | --- |
+| A response for account A checks that A is current, suspends, then writes to the currently selected account after logout/login as B. A second variant always writes to A's isolated partition and cannot expose it to B. | Trace the actual destination, generation and final write boundary. Recognize that a check immediately before a separate write can still race; require the actual isolation invariant through atomic generation rejection or the allowed original-account partition. Do not report the protected variant as cross-account leakage merely because cancellation did not stop it. |
+
+The clarification aligns assessment wording with the native data helper's existing commit-boundary guidance. No live service, account, device or credential was exercised.

@@ -3,7 +3,7 @@ name: ui-design
 description: "Design, specify, prototype, refine, review, or implement application screens and user flows, with visual design, interaction states, accessibility, and platform-specific guidance for web and native Android. Create or maintain docs/ui-design.md across iterations. Use for UI design discovery, screen specifications, design systems, interface critique, and authorized UI implementation; not backend-only work or standalone graphic-art production."
 license: MIT
 metadata:
-  version: "1.5.1"
+  version: "1.5.2"
 ---
 
 # UI Design

@@ -27,6 +27,8 @@ Keep model selection outside the portable skill. Verify that the selected review
 
 A fresh session of the same capable model can still be independent of the implementation session. Different models can diversify some failure modes while sharing others. Repository access, domain competence, a clear packet, and verification matter more than assigning authority based on a model name.
 
+Fresh context means removing the implementer's conversational momentum while preserving the contracts and evidence needed to judge the change. Do not use an empty-context reviewer deprived of requirements. A different vendor is an optional evaluated choice, not a prerequisite or a guarantee of finding different bugs. Challenge behavior and try to refute candidates; an adversarial lens does not justify a finding quota or presumed defects.
+
 Distinguish a custom skill from a host's built-in review command. Codex documents `review_model` for built-in reviews and separate controls for detached review delivery. Those settings do not by themselves establish which model/context executes an ordinary `$peer-review` skill request. Verify the actual reviewer session; see [Codex review documentation](https://learn.chatgpt.com/docs/code-review?surface=app). Changing host configuration requires the user's authorization.
 
 For model/process changes, compare the same representative review cases and track validated defects found, false positives, material misses, review time, and cost. Escalate difficult authentication/data integrity, concurrency, platform, or architectural decisions to a suitably capable reviewer. Keep the lightest arrangement that meets the project's evidence and risk requirements. Do not claim measured superiority without such a comparison.
@@ -40,6 +42,8 @@ Normalize locations, verify reachable triggers, reject refuted candidates, recor
 ## Close the loop
 
 The implementing agent evaluates each finding and either fixes it within authorization or explains a concrete refutation/accepted trade-off. Do not blindly implement reviewer suggestions. Clarify a blocking ambiguity while continuing unrelated authorized work when safe.
+
+Classify disagreements by consequence: a reachable contract violation or unmet required gate needs resolution; an optional style preference stays non-blocking unless a project rule makes it consequential. The implementer is not the sole authority to dismiss a demonstrated blocker as style or accept its risk. Preserve the evidence and use the project's responsible decision-maker for unresolved material disagreements.
 
 Re-review the resulting snapshot. Mark findings `Resolved`, `Still present`, `Refuted`, or `Accepted risk` with supporting evidence and the responsible decision-maker for accepted risk. Repeat affected checks and inspect for new defects introduced by the fix. Use a stated limit or escalate a persistent disagreement instead of looping indefinitely. A review verdict never substitutes for required CI, human approval, integration checks, or deployment authority.
 

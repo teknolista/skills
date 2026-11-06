@@ -35,6 +35,8 @@ If no findings survive validation, state that explicitly. Do not retain example 
 | --- | --- | --- | --- |
 | [Actual check] | [Actual target] | Passed / Failed / Not run | [Evidence or reason] |
 
+[Identify applicable formatting/static/build, security/secret and behavioral-test checks. Distinguish locally executed evidence from matching CI results or author claims, required gates from selected checks, and code failures from inherited/environment failures. State the consequence of each unmet required gate; omit inapplicable layers.]
+
 ## Material questions and gaps
 
 [Unresolved contract questions, unavailable evidence, unreviewed surfaces, or stale-snapshot limits. State the smallest next action and whether it prevents assessment.]

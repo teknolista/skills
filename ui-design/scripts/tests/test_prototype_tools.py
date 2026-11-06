@@ -161,6 +161,31 @@ class PrototypeTests(unittest.TestCase):
         self.assertEqual(1, result.returncode)
         self.assertNotIn("Traceback", result.stderr)
 
+    def test_duplicate_json_declarations_fail_without_replacing_output(self):
+        self.tokens.write_text('{"themes":{"light":{"text":"#ffffff","text":"#000000","surface":"#ffffff"}},"pairs":[{"fg":"text","bg":"surface","use":"text"}]}')
+        result = self.run_cli("check", self.tokens)
+        self.assertEqual(1, result.returncode)
+        self.assertIn("duplicate JSON key", result.stderr)
+        self.tokens.write_text((ASSETS / "tokens.json").read_text())
+        self.output.write_text("reviewed output")
+        original = self.manifest.read_text()
+        self.manifest.write_text(original.replace('"title":', '"title": "ambiguous", "title":', 1))
+        result = self.run_cli("build", self.manifest, self.output)
+        self.assertEqual(1, result.returncode)
+        self.assertIn("duplicate JSON key", result.stderr)
+        self.assertEqual("reviewed output", self.output.read_text())
+
+    def test_oversized_numeric_token_fails_cleanly(self):
+        self.edit(self.tokens, lambda t: t.update(space={"huge": 10 ** 1000}))
+        result = self.run_cli("check", self.tokens)
+        self.assertEqual(1, result.returncode)
+        self.assertIn("error:", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+        self.tokens.write_text(self.tokens.read_text().replace(str(10 ** 1000), "9" * 5000))
+        result = self.run_cli("check", self.tokens)
+        self.assertEqual(1, result.returncode)
+        self.assertNotIn("Traceback", result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

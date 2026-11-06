@@ -2,7 +2,7 @@
 name: android-data-layer
 description: Implement or debug native Android repositories, Ktor/OkHttp clients, Room persistence, DataStore and synchronization. Use for data-layer code changes; use peer-review for independent assessment and cybersec for security audits.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # Android Data Layer
@@ -56,6 +56,8 @@ Use `androidx.room:room-runtime`, the Room compiler through KSP, and `androidx.r
 Catch only known storage failures when a typed result is required. Rethrow `CancellationException` before broader catches. A flow query can also fail during collection: define whether that failure is propagated or materialized as state, rather than silently completing or reporting an empty database.
 
 Choose automatic migrations only for supported schema changes; use manual migrations for transformations and explicit migration specs for ambiguous changes. Test migration paths with exported schemas and representative rows. Do not silently enable destructive migration for user-owned data. Use transactions for multi-table updates and cache replacement; make write conflicts and uniqueness rules explicit.
+
+For DAO search or conflict-policy changes, read [query and write semantics](references/query-and-write-semantics.md). Bound SQL values can still act as LIKE wildcards, and SQLite REPLACE is not an ordinary update: it can delete a conflicting parent and cascade to child rows. Choose the intended matching and mutation contract before copying a query or conflict annotation.
 
 ## Offline-first when required
 

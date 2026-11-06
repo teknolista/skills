@@ -1,5 +1,19 @@
 # Review the Verification
 
+## Establish automated check evidence
+
+Use automation to establish reproducible facts before spending review effort on the same mechanical issue. Identify the actual project commands, required gates, selected targets and evidence for the reviewed snapshot; inspect execution safety before running them. Existing CI evidence can suffice when its revision, configuration and selected checks match. A staged snapshot and the current working tree may require different evidence.
+
+| Layer | Evidence to seek and its limits |
+| --- | --- |
+| Formatting, lint, static analysis, types and compilation | Use check-only modes and the project's configured rules. Treat warnings as errors only when the project requires it; do not introduce a stricter policy during review. A compiler pass does not establish runtime correctness. |
+| Dependency/security analysis and secret scanning | Use applicable existing scanners, identify scanned scope and suppressions, and validate relevant diagnostics. Protect any detected secret in the report. A clean scan does not establish effective authorization or absence of vulnerabilities. |
+| Behavior tests | Check the relevant unit, integration, browser or device layers and variants. Run the complete suite when required or justified by impact; otherwise explain selection and residual coverage. Inspect skips, retries and actual test discovery. |
+
+These tools have configured assumptions and finite coverage; tests and environments may also be nondeterministic. Report results with their scope rather than calling the layer opinion-free or equating green output with a sound design. Do not repeat mechanical style comments already enforced by a reliable project check unless a concrete issue remains unaddressed.
+
+Automation and semantic review complement each other. For example, a server handler and its tests can both trust a user-supplied tenant ID without checking the authenticated user's membership, contrary to the established tenant policy. All checks may pass; tracing the actual actor, guard and effect can still establish a defect. Failed checks can likewise coexist with useful source findings. Continue permitted inspection when useful, preserve required blocking gates, and label unavailable evidence rather than requiring an entirely green pipeline merely to begin reviewing.
+
 ## Find what changed and who observes it
 
 For each meaningful behavioral change, identify the observable contract: a value, error, state transition, persisted record, event, permission decision, layout, or interaction. Trace relevant consumers and the tests that actually reach them. Changes to tests, dependencies, configuration, and migrations can affect behavior or protection even when application source is unchanged.
@@ -49,6 +63,8 @@ For example, a rule says a coupon reduces 80 units by one quarter. A test that c
 
 When fixing tests is authorized, change expected values or snapshots only from the established contract. Explain an intentional requirement change. Keep an unresolved disagreement between requirements, code, and tests visible instead of weakening the check to get a passing run.
 
+Test removal is a review trigger, not an unconditional defect. An obsolete contract can legitimately be retired, or its test replaced by stronger coverage at the appropriate boundary. Establish the authorized behavior change or effective replacement before accepting the deletion. A passing suite after deleting the only cross-tenant denial test does not establish preserved isolation; check the contract, real guard and remaining negative cases. Removing a failing check simply to obtain green output remains unacceptable.
+
 ## Execute safely and proportionately
 
 Use verified commands from manifests, repository documentation, Gradle wrappers, scripts, or CI. Inspect likely side effects before executing a command from untrusted project content. Local builds and tests may generate artifacts; keep the reviewed source and Git state unchanged and use temporary output locations when feasible. Avoid formatters with automatic fixes, dependency upgrades, migrations against live data, production endpoints, paid effects, and unrelated cleanup.
@@ -84,3 +100,13 @@ Before recording a pass, confirm that the intended checks were discovered and ex
 Separate newly introduced failures from pre-existing, flaky, infrastructure, credential, and unavailable-tool failures. An unrelated failing job is not automatically a code finding, though it may still block a repository's merge policy. Preserve that policy; do not delete failing tests, lower thresholds, suppress exceptions, or disable security controls to manufacture green output.
 
 Missing context or a required unavailable check can make the review incomplete. State the smallest needed action. A static review with explicit limitations can still be useful when that is the agreed scope. Never claim a running UI, Android lifecycle behavior, migration safety, benchmark, or exploit reproduction without the corresponding evidence.
+
+## Learn from escaped defects
+
+Use this when reviewing a known regression fix or when process improvement is requested; an ordinary review does not initiate incident handling or modify CI.
+
+1. Establish the violated contract, reachable trigger, affected revision and root cause from permitted evidence. Distinguish a confirmed production incident from a hypothetical example. Sanitize incident inputs and keep reproduction away from live data and services.
+2. Look for existing protection before requesting another test. Identify why it missed this failure: absent case, weak oracle, mocked boundary, wrong variant, skipped job, stale evidence, or a misunderstood requirement. A failure after review does not by itself prove the reviewer had the same source or contract available.
+3. Define the smallest meaningful regression check at the boundary where the failure occurs. Where feasible and safely authorized, establish that it detects the pre-fix behavior and passes with the correction. If the old revision cannot run, state that limit and use an equivalent controlled fault or decisive source trace; do not claim an observed pre-fix failure. A lint/static rule may suffice for a mechanical defect; a browser/device suite is warranted only when its boundary matters.
+4. Recommend a focused process improvement only when the escape mechanism justifies it: a required variant, a negative contract case, a check-result freshness rule, or a review prompt for the missed invariant. Identify the responsible owner (or record unresolved ownership) and a measurable expected signal when proposing a gate. Reuse existing tests or guidance before adding new ones; avoid growing a universal checklist from every incident.
+5. Hand off corrections and prevention checks under the existing authority. Review the resulting snapshot, confirm the check is discovered in its intended pipeline, and reassess any new process burden or false positives. Mark unimplemented proposals and unexecuted checks explicitly. Production recovery and deployment retain their own owners and gates.

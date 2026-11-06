@@ -2,7 +2,7 @@
 name: android-integration-testing
 description: Author, run or debug non-UI native Android boundary tests for Room, Ktor clients, DataStore, DI and WorkManager. Use for integration-test implementation; use peer-review for independent evidence assessment and cybersec for security audits.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # Android Integration Testing
@@ -32,6 +32,8 @@ For offline-first repositories, collect the real storage stream, refresh, and ob
 An in-memory Room database still uses SQLite and is an integration boundary. Construct it per test using application/test Context and the production database/DAOs; close it after each test. Use suspend operations/Flow and controlled scheduling rather than enabling main-thread queries to conceal production violations.
 
 Test constraints, transactions, conflict policy, observable invalidation, and actual DAO queries with representative data. Test migrations from supported historical schemas with `MigrationTestHelper` and committed schema exports; verify both schema validity and preserved/transformed rows. Configure the matching schema asset location for the installed Room plugin/helper version. Do not treat a fresh in-memory database as migration evidence or silently enable destructive fallback.
+
+Test the real query/mutation semantics, not only a repository fake: literal-search `%`/`_` and escape characters, relevant case/accent distinctions, stable tie ordering, and parent/child preservation after an edit or conflict. SQLite REPLACE may delete related rows through cascades, while a parameterized LIKE still interprets wildcards. Use the [DAO semantics guide](../android-data-layer/references/query-and-write-semantics.md) when available; keep the expected matching/identity rules grounded in the project contract.
 
 ## DataStore and lifecycle
 

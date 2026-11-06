@@ -36,6 +36,15 @@ class QuizTests(unittest.TestCase):
     def test_malformed_schema_rejected(self):
         for data in [[],{}, {'questions':[]},{'questions':[1]}]:
             with self.assertRaises(ValueError):self.load(data)
+    def test_duplicate_json_fields_are_rejected_before_publishing(self):
+        valid=json.dumps(self.fixture())
+        conflicting=valid.replace('"correct": 0', '"correct": 0, "correct": 1')
+        root_duplicate='{"questions": [], '+valid[1:]
+        for raw in [conflicting,root_duplicate]:
+            with self.subTest(raw=raw),tempfile.TemporaryDirectory() as d:
+                p=Path(d)/'q.json';p.write_text(raw)
+                with patch.object(sys,'argv',['publish_quiz.py','123',str(p)]), patch.object(quiz.subprocess,'run',side_effect=AssertionError('No GitHub call expected')):
+                    with self.assertRaises(ValueError):quiz.main()
     def test_replacement_preserves_outside_text_and_backslashes(self):
         body='Maintainer note\n'+quiz.START+'\nold\n'+quiz.END+'\nDo not lose this.'
         block=quiz.START+'\nnew \\1\n'+quiz.END

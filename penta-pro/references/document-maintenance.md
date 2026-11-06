@@ -24,6 +24,16 @@ When a maintained screen specification such as `docs/ui-design.md` exists, keep 
 
 Compare the companion's actual scope and decision status with the product requirement. For example, an offline-only product and a screen labeled “Synchronized to cloud” conflict even if both documents are marked accepted. Identify the affected requirement and screen IDs, sources, and decision needed. Do not silently introduce cloud infrastructure or change a settled requirement to match the screen. Apply a resolution supported by current authority; otherwise leave only the dependent work blocked. If editing the companion is outside scope, record the exact pending reconciliation rather than claiming the whole set is consistent.
 
+## Existing change and specification workflows
+
+When the project already uses a maintained requirements/change system, establish which records are authoritative before filling the templates. Examples include capability specifications and active change tasks in OpenSpec, an existing requirements registry, or accepted tracker records. The presence of a tool alone does not select its authority; use the project's stated ownership and actual artifacts. This is conditional integration, not a requirement to install or initialize another framework.
+
+Keep the five pillars as the global context and navigation layer. PRODUCT links normative capability/feature requirements and acceptance by their existing IDs rather than copying their definitions. PROOF links their checks and revision-specific evidence. PROJECT holds global architecture and points to relevant change designs or durable decisions; PRODUCTION retains operating constraints and procedures. PROCESS points to the active change/task list and records shared readiness, authority, ownership and unresolved reconciliation without creating a second execution backlog.
+
+Distinguish the current baseline, a proposed or accepted change, and deployed behavior. A planned requirement or checked task is not execution evidence; a consolidated specification is not proof that a release containing it reached users. Preserve previous evidence with its tested revision. When a decision changes, reconcile affected canonical records under the existing authority and link the new state from the pillars. Do not infer authority from a later file timestamp, duplicate an entire requirement to fill a template table, or silently broaden an accepted change.
+
+If a required external record is inaccessible, contradictory, or insufficiently detailed, mark the affected concern `Pending` and name the smallest missing input or reconciliation. Do not synthesize a replacement copy and then treat it as authoritative. When no external canonical workflow is selected, use the ordinary PentaPRO templates and ownership defaults.
+
 ## Coordinated updates and resumption
 
 1. Read `process.md` for current scope, next action, shared status, and any unfinished update. Then inspect the affected pillars and their referenced records. For an existing single-file specification, read its equivalent resume section.

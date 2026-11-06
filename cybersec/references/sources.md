@@ -67,4 +67,8 @@ Model-checking scope was also checked against the primary [TLA+ model introducti
 
 ## Android security consolidation — 1.5.0
 
-2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
+2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. The source bundle is attributed to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see the [third-party notice](../../THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for provenance and redistribution limits. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
+
+## Account-switch commit boundary — 1.5.2
+
+2026-11-06: clarified the existing Android account-isolation rule so a pre-write session check is not mistaken for an atomic protection. The enforcing write must reject an obsolete generation relative to account changes or remain confined to the initiating account's allowed isolated partition. This is an original explanation of the check/use and ownership reasoning already maintained in the assessment method and native data helper. The added evaluation case is authored rather than a new runtime or model-quality result.

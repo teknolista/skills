@@ -189,3 +189,24 @@ This one bounded trial covers drafting, output ownership, uncertainty and confli
 2026-11-06: Native module implementation is distinct from architecture/specification/readiness work. The five pillars retain their canonical ownership; adding a concrete approved Gradle module does not start a second product interview.
 
 Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.
+
+## Existing canonical change workflow — 2.5.4
+
+2026-11-06: authored these maintenance cases after identifying conflicting ownership defaults in the entrypoint and templates. These are not executed model trials.
+
+| Input / situation | Expected observable behavior |
+| --- | --- |
+| The app's AGENTS.md selects OpenSpec capabilities as normative behavior and active change tasks as the execution list; the user requests a PentaPRO update for that increment. | Keep all five pillars, index/link the existing requirements, checks and change design from their owning pillars, and point PROCESS to the existing tasks. Do not copy complete scenarios into PRODUCT or create parallel task completion states. |
+| The tracker says tasks are done, consolidated specs were updated in a branch, and no release evidence exists. | Preserve the distinctions among planning/task status, verification and actual deployment. Keep release checks unverified and do not claim that users already have the behavior. |
+| A required external capability file cannot be read; only a summary of it is available. | Record the affected scope as Pending and identify the missing source or reconciliation. Complete independent global context, but do not invent a replacement normative spec or claim full readiness from the summary. |
+| A small new project has no existing registry or selected change framework. | Use the ordinary five-pillar defaults without requiring OpenSpec, another tracker, an extra installer or new companion files. |
+
+Package metadata, local resources/anchors, active version consistency and the edited instructions are checked separately. Those checks do not establish automatic routing or reliable behavior across models.
+
+## Bounded canonical-workflow forward trial — 2.5.4
+
+2026-11-06: a fresh independently assigned agent received the current skill, a planning-only maintenance request and a disposable 12-file native-notes project. The raw fixture included five existing pillars, an authoritative capability, an accepted search proposal/design/delta and its execution tasks. The reviewer did not receive an expected answer or the maintainer's suspected failure.
+
+It updated only the five pillars, retained the original stable IDs and native/offline constraints, linked canonical behavior/tasks, and distinguished the supported baseline from an accepted but unimplemented search change. It identified the gap between proposed no-results/error behavior and missing recovery acceptance in the canonical records, kept execution-environment/owner prerequisites explicit, and did not infer test or release success from the checked design task. Future checks remained Unverified; the maintained specification remained Draft.
+
+The agent checked 12 Markdown files/87 local links and anchors. A maintainer SHA-256 comparison independently confirmed that the other seven fixture files, including all OpenSpec requirements/design/tasks, were unchanged and that no files were added. No app implementation, software test, installation, Git operation or external action occurred. This single trial in the current host is not a smaller-model, cross-vendor, repeatability or performance benchmark; the other authored cases above remain unexecuted.

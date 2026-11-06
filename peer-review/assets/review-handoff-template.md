@@ -12,7 +12,7 @@ Use this packet to request a fresh review. Replace placeholders; do not send the
 - **Change map:** [For cross-file work, which parts must be read together and how input, transformations, effects and consumers connect; reconcile with the actual diff]
 - **Repository guidance:** [Applicable conventions and actual validation commands]
 - **Review policy and depth:** [Trusted policy source/revision, scoped rules, and agreed depth]
-- **Verification evidence:** [Checks, artifact/revision, results, and whether independently observed or author-reported]
+- **Verification evidence:** [Applicable required gates and selected checks, artifact/revision, results and unmet gate consequences; distinguish independently observed, matching CI and author-reported evidence]
 - **Review focus:** [Backend / frontend / Android / test effectiveness / mixed surfaces and specific risk areas]
 - **Execution boundaries:** [Accessible references, inspection-only or executable checks, disposable environments, time/cost limits, and restricted side effects]
 - **Reviewer/model:** [Explicit selection if provided; confirm availability through the host]

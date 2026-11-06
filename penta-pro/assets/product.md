@@ -90,6 +90,8 @@ For each required analytics event, specify trigger, schema/version, minimal prop
 
 Record functional and quality requirements in one register. Use `Must`, `Should`, `Could`, and `Won't in this release` deliberately; priority does not replace acceptance criteria.
 
+If a project-owned requirements or capability registry is already authoritative, use this section as an index to its IDs, scope and accepted status. Keep normative definitions and acceptance in that registry rather than creating another independently maintained register here. Global objectives, product policies and unresolved ownership remain visible from this pillar.
+
 | ID / kind | Requirement and reason | Source / parent objective or requirement / owner | Priority / increment | Confirmation / lifecycle | Feature / acceptance / proof reference |
 | --- | --- | --- | --- | --- | --- |
 | REQ-001; functional / quality / constraint | [FILL IN] | [FILL IN] | [FILL IN] | [FILL IN] | [FILL IN] |

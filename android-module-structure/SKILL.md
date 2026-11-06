@@ -2,7 +2,7 @@
 name: android-module-structure
 description: Implement native Android/Kotlin JVM module boundaries, Gradle conventions and build configuration in an existing or authorized project. Use for concrete module/build changes; use penta-pro for requirements, architecture proposals and readiness specifications, and peer-review for read-only code review.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # Native Android Module Structure
@@ -50,7 +50,7 @@ Use an included `build-logic` build and version catalog for repeated configurati
 
 Read [native build-logic examples](references/build-logic.md) when creating conventions, Room/KSP setup, or catalog wiring. It covers included-build catalog access, native application/library conventions, Compose tooling, and registration through precompiled script plugin filenames.
 
-AGP 9+ enables built-in Kotlin by default: do not also apply `org.jetbrains.kotlin.android` to those Android modules. On a legacy stack that requires the Kotlin Android plugin, retain it until a deliberate migration. Kotlin/JVM modules still use their own Kotlin plugin. Align the Compose compiler and serialization compiler plugins with the effective Kotlin compiler; inspect AGP's embedded Kotlin compatibility when applicable. Use public `com.android.build.api.dsl` APIs, not Gradle/AGP internals.
+AGP 9+ enables built-in Kotlin by default, but inspect effective `android.builtInKotlin` settings and supported module overrides before changing plugins. When built-in Kotlin is enabled, do not also apply `org.jetbrains.kotlin.android` to that Android module. On a supported opt-out/legacy configuration that still uses the Kotlin Android plugin, retain it until a deliberate migration; the AGP version alone does not prove which mode a module uses. Kotlin/JVM modules still use their own Kotlin plugin. Align the Compose compiler and serialization compiler plugins with the effective Kotlin compiler; inspect AGP's embedded Kotlin compatibility when applicable. Use public `com.android.build.api.dsl` APIs, not Gradle/AGP internals.
 
 For a deliberate built-in Kotlin migration, also inspect annotation processing and source directories: legacy `org.jetbrains.kotlin.kapt` is incompatible with that mode; use supported KSP or the documented AGP legacy-kapt path when needed. Move custom Kotlin sources through supported Android source APIs rather than assuming the old Kotlin source-set DSL still applies. Do not remove a processor until its generated-code consumers have a verified replacement.
 

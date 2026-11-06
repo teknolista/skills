@@ -122,3 +122,14 @@ An independent documentation review confirmed the complete 18-file source-to-des
 2026-11-06: Four local Android UI entrypoints (Compose architecture, components, MVI presentation and navigation) were incorporated as conditional references under references/android. UI Design remains generic and owns the single UI contract; the four former names are not discoverable skills. Project architecture and actual versions govern their examples. Earlier design-prototype work remains intact.
 
 Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.
+
+## Final local-input and stack review — 1.5.2
+
+2026-11-06: two added helper regressions failed before correction: duplicate JSON role keys silently kept the last value, and a numeric token containing an oversized integer raised an uncaught overflow traceback. The corrected reader rejects duplicate object keys in both token files and manifests, and numeric range checks reject oversized integers before floating-point conversion. All **22** stdlib helper tests passed after these corrections; the duplicate-manifest case also verifies preservation of the prior export. This is executed helper evidence, not a new browser/native or independent-model trial.
+
+| Authored maintenance case | Expected behavior |
+| --- | --- |
+| An existing Android app uses Hilt, Navigation 3 and no shared presentation module; the request is a small screen-state correction. | Preserve its coherent stack and module layout; apply the state/ownership guidance without adding Koin, MVI actions or `core:presentation` merely to reproduce the examples. |
+| A prototype export exists, then a changed manifest fails validation. | Keep the previous artifact intact but identify it as stale; do not claim it demonstrates the failed iteration. |
+
+These instruction cases were inspected by the maintainer but not executed as new agent trials. Earlier browser and specification trials retain their original scope.

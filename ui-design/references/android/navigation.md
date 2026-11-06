@@ -52,7 +52,7 @@ fun AppNavigation() {
 
 Pass stable IDs and small scalar arguments, then load current data at the destination. Do not serialize large models, credentials, or user-sensitive payloads into routes. Treat route/deep-link arguments as untrusted inputs and validate authorization when loading the data.
 
-Acquire a destination ViewModel inside its `composable` entry using [Koin](../../../android-di-koin/SKILL.md) and the current entry's owner. A ViewModel can decode typed arguments with `SavedStateHandle.toRoute<NoteDetailRoute>()`; use one consistent source for the ID instead of passing contradictory constructor and route values. Use a parent graph owner only when the product intentionally shares a ViewModel; clear it when that graph leaves the stack.
+Acquire a destination ViewModel inside its `composable` entry with the project's selected factory/DI integration and the current entry's owner. Use the [Koin helper](../../../android-di-koin/SKILL.md) when Koin is already selected; navigation does not require a DI migration. A ViewModel can decode typed arguments with `SavedStateHandle.toRoute<NoteDetailRoute>()`; use one consistent source for the ID instead of passing contradictory constructor and route values. Use a parent graph owner only when the product intentionally shares a ViewModel; clear it when that graph leaves the stack.
 
 For top-level tabs, choose `launchSingleTop`, `restoreState`, and `popUpTo(...){ saveState = true }` deliberately to avoid duplicate stacks and preserve each tab as required. After successful authentication, remove login destinations when back navigation must not return to them. Do not repeatedly navigate from an unacknowledged boolean during recomposition.
 

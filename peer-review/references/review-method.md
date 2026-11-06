@@ -47,6 +47,17 @@ Use the requested depth, or a standard review adapted to risk:
 
 Depth changes effort and coverage, not the evidence threshold for a reported bug. A quick pass does not waive a mandatory project gate. Do not silently increase cost or claim full coverage after sampling.
 
+Build the initial change map from the complete file list, including deletions, renames and relevant new files. Relate each group to its intended outcome and reconcile the map with source; a structural summary prioritizes reading but cannot replace it. Treat these surfaces as triggers for deeper tracing, not automatic findings or universal demands for human approval:
+
+| Changed surface | What deserves deeper verification |
+| --- | --- |
+| Schema/data migrations or destructive storage changes | Existing-data preservation, old/new reader compatibility during rollout, locks and recovery from partial application; a fresh-database pass alone is insufficient. |
+| Environment, authentication, authorization, secrets or release configuration | Effective defaults/overrides, identity and permission boundaries, exposure of credentials and the actual deployed/build variant. |
+| Dependencies, lockfiles or build/install hooks | Direct/transitive resolution, API/runtime compatibility, provenance and newly executed code or permissions; a version bump alone is not a vulnerability. |
+| Deleted, skipped or weakened tests; changed CI filters or gates | Which contract and realistic regression lose protection, whether that contract was intentionally retired, and whether replacement coverage runs in the relevant pipeline. |
+
+Follow explicit project requirements for specialist or human review on these surfaces. Otherwise request additional expertise only for a concrete consequential uncertainty; disclose what remains unverified. Do not silently replace missing expertise with a confident approval.
+
 ## Reason from contracts and consequences
 
 Review two complementary questions: does the change deliver the intended behavior, and does it satisfy established engineering constraints? Use repository standards and supported versions before generic preferences. When no formal specification exists, use observable API contracts, tests, existing behavior, and the request, stating the limitation on requirements coverage.

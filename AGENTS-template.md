@@ -43,6 +43,8 @@ If a needed skill or resource is unavailable, identify the missing capability an
 
 Default paths below are relative to the target repository root. They describe project outputs, not files to write inside an installed skill. Preserve established authoritative locations and record deliberate alternatives in Project Facts and Navigation.
 
+If the project already assigns detailed requirements or implementation tasks to another specification/tracker, keep that record authoritative. The five pillars can link and index it; do not maintain a competing copy of requirements or task status. Keep a proposed change distinct from the current supported baseline, and preserve evidence with the revision it actually checks.
+
 | Document | Canonical responsibility |
 | --- | --- |
 | `docs/product.md` | Users, outcomes, requirements, business permissions and feature acceptance criteria. |

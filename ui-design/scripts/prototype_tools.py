@@ -45,15 +45,21 @@ def text(value, label):
 
 
 def number(value, label, minimum=0, maximum=10000):
-    require(type(value) in (int, float) and math.isfinite(value) and minimum <= value <= maximum,
+    require(type(value) in (int, float) and minimum <= value <= maximum and math.isfinite(value),
             f"invalid {label}: {value!r}")
     return value
 
 
 def read_json(path):
+    def unique_object(pairs):
+        result = {}
+        for key, value in pairs:
+            require(key not in result, f"duplicate JSON key: {key!r}")
+            result[key] = value
+        return result
     try:
-        return object_of(json.loads(Path(path).read_text(encoding="utf-8")), str(path))
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        return object_of(json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=unique_object), str(path))
+    except (OSError, UnicodeError, ValueError) as exc:
         raise Invalid(f"cannot read {path}: {exc}") from exc
 
 
