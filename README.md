@@ -46,7 +46,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | Skill | Version | Purpose |
 | --- | --- | --- |
 | [PENTA-PRO](#penta-pro) | 2.4.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.6.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Peer Review](#peer-review) | 1.7.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersec](#cybersec) | 1.3.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 | [UI/UX](#uiux) | 1.1.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-ux.md`. |
 
@@ -189,7 +189,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.6.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Version:** 1.7.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -221,7 +221,7 @@ The report gives coverage, evidence, limitations, and one verdict:
 
 The review preserves the selected source and Git state. Fixes, remote comments or approvals, merging, and releasing follow actual user authorization and project gates. Reports and filled handoffs belong to the reviewed project or requested output location, not the reusable skill folder. Existing `REVIEW.md` guidance is optional; the skill does not create or change project policy automatically.
 
-The reviewer follows consequential behavior from its contract through entry points, guards, effects, and consumers. Concrete inputs and event order help investigate authorization, races, retries, and stale asynchronous results. Existing protections and unknown premises are checked before retaining a finding.
+The reviewer follows consequential behavior from its contract through entry points, guards, effects, and consumers. Concrete inputs and event order help investigate authorization, races, retries, and stale asynchronous results. Existing protections and unknown premises are checked before retaining a finding. Cross-file change maps and guided summaries are reconciled with the full in-scope diff. For related PRs, the skill checks shared behavior and distinguishes branch evidence from the actual integration state. [Conditional coordination guidance](peer-review/references/independent-review.md#coordinate-related-changes) covers owners, dependencies, review capacity and workflow evaluation without imposing queue limits or authorizing Git integration.
 
 ### Test effectiveness
 

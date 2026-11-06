@@ -92,3 +92,10 @@ Mutation interpretation also follows Stryker's [mutant states](https://stryker-m
 ## User-supplied Android/KMP bundle — 2026-11-05
 
 Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+
+
+## Review coordination — version 1.7.0
+
+On 2026-11-06, read Centelha's [Mais agentes, mais PRs: como organizar a revisão](https://www.tabnews.com.br/Centelha/mais-agentes-mais-prs-como-organizar-a-revisao), published that day on TabNews, through its public content API. The article informed cross-file relationship maps, semantic dependencies between parallel changes, evidence for the actual integration state, explicit handoff ownership and conditional review-capacity planning. Acceptance, evidence freshness and independent judgment were already covered and were retained.
+
+This original synthesis adopts no mandatory PR size, queue threshold, tool integration, automatic merge or universal productivity claim. Vendor examples in the article were contextual and are not required capabilities. No article text or illustrations are reproduced; rights remain with their owners. The article is process advice, not a benchmark or proof of this skill's effectiveness.

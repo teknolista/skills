@@ -42,3 +42,5 @@ If no findings survive validation, state that explicitly. Do not retain example 
 ## Follow-up
 
 [Implementer action, re-review scope, and remaining project gates. For re-review, give each previous finding's status and evidence. This report is not a remote approval or release authorization.]
+
+[For related changes or a moving base: identify the assessed combination/base, shared behavior, known review/integration ownership, missing combined-state evidence and next action. Keep individual review results separate from integration readiness; omit this guidance when irrelevant.]

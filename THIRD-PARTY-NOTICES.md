@@ -85,3 +85,8 @@ These articles/directories were discovery aids, not normative standards or evide
 The user supplied a local directory labeled **PL Coding Skills Bundle**, inspected on 2026-11-05: 20 skill entrypoints covering Android, Kotlin Multiplatform, design and PR comprehension, plus supporting files.
 
 No license, public source URL, release manifest or independently verified authorship was present in the supplied directory. This attribution records the source label supplied by the user and does not infer redistribution rights or a public author identity. Only independently written explanations of general methods were added to this repository; no upstream skill text, implementation, templates, styles, token data or quiz workflow is redistributed. The original bundle remains unchanged. The MIT permission notice above does not purport to license this bundle. Attribution implies no affiliation or endorsement.
+
+
+## Peer Review: review-coordination article
+
+Centelha's [Mais agentes, mais PRs: como organizar a revisão](https://www.tabnews.com.br/Centelha/mais-agentes-mais-prs-como-organizar-a-revisao), published on TabNews on 2026-11-06, was consulted through the public content API on the same date. It informed independently written guidance on change maps, related-change review, integration evidence and reviewer capacity. No article text, code or illustrations are redistributed. Article rights remain with their owners; this repository's MIT license does not relicense it. Attribution implies no affiliation or endorsement. [Peer Review source notes](peer-review/references/sources.md#review-coordination--version-170) record the adaptation and its limits.

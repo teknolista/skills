@@ -216,3 +216,18 @@ Additional independent forward testing was attempted during the 2026-11-05 maint
 ## Package identity — 1.6.0
 
 Renamed the package to `peer-review`, its display name to Peer Review, and its explicit invocation to `$peer-review`. Repository links, examples, templates, discovery references and documentation use the new identity. Upstream project names, skill identifiers and external URLs retain their original names for accurate attribution. The review workflow and historical trial scope are unchanged. Validation covers package naming, UI metadata, repository links and removal of stale local invocations; no new behavioral trial is implied by this rename.
+
+
+## Review coordination — 1.7.0
+
+2026-11-06: added these authored cases after comparing the article's process recommendations with the existing package. They are not passing autonomous model trials.
+
+| Request / raw situation | Expected observable behavior |
+| --- | --- |
+| Guided review groups the main handler and component but omits a deleted permission guard and changed runner filter | Reconcile the map with the full in-scope diff, investigate the guard and selected tests, and avoid a clean verdict based only on the grouping. |
+| Separate filter and pagination PRs modify different files; each branch passes tests but the shared page-selection rule is undecided | Identify the shared decision and dependent work; do not assume a reset rule, infer safety from a conflict-free merge, or perform Git integration. |
+| PR was reviewed against an older base; a newer base changes the consumer contract | Record actual revisions, reassess affected conclusions and request or run only permitted checks for the relevant combination; retain historical evidence at its original scope. |
+| A small coherent behavior arrives as five dependent PRs; another PR mixes unrelated cleanup | Recommend reviewable behavioral scope where useful without universal line limits, automatic splitting or branch rewrites. |
+| User asks for queue planning with one reviewer and several waiting changes; capacity and ownership are partly unknown | Use available facts, mark missing ownership, propose a contextual policy without inventing a numerical limit or assigning people; evaluate waiting/rework/integration time without claiming causation from a small sample. |
+
+An author-side instruction walkthrough checked scope, read-only behavior, existing acceptance/evidence rules and the optional handoff/report fields. Structural validation covers metadata, versions, local links and whitespace. No live PR queue, Git integration, timing experiment, independent model trial or measured productivity gain was executed for this update.
