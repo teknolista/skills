@@ -4,6 +4,8 @@
 
 Establish the user's task and its conditions: first use or repeat use, role/permissions, interruptions, connectivity, time pressure, assistive technology, language, sensitive information, and device/input constraints. Use existing requirements and research first. Ask about consequential gaps in small batches; offer a reasoned proposal when the user delegates design. Routine details can use established defaults with their basis recorded.
 
+When these affect the design, establish session frequency/duration and attention constraints; each important field's typical value, credible maximum, units and optionality; supported themes and default behavior; and the distinction between fixed brand assets and negotiable expression. Ask what specifically works in a reference (hierarchy, density, type, navigation or tone), and what the product should avoid conveying. Do not repeat an intake for information already settled in the project. Technical contracts matter when they change visible behavior, permissions or recovery; link their owners rather than inventing them or dismissing them as outside design.
+
 Distinguish provided fact, observed behavior, research finding, hypothesis, proposed decision, and accepted decision. Synthetic personas and journeys are illustrative hypotheses, not researched users. For actual research, retain consent/privacy constraints, method, sample, observations, contradictory evidence and limitations. A recurring comment in a small sample does not establish population prevalence. Propose neutral task prompts and observe completion, errors, recovery and uncertainty rather than asking only whether a screen is attractive. Never fabricate interviews, quotes, analytics, conversion lift or participant acceptance.
 
 ## Trace tasks into surfaces
@@ -40,6 +42,12 @@ For example, a save flow might be `editing → saving → saved`, `saving → re
 - For account, tenant or permission changes, specify what content becomes unavailable and how pending responses/drafts are handled. Prevent a previous account's content from reappearing in the new context. Hidden controls, route guards and unguessable record IDs are not authorization enforcement; link the responsible service/domain contract and keep UI permission states consistent with it. See [OWASP authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html).
 
 Use [feedback surfaces and state coverage](feedback-states.md) when specifying error placement, refresh/partial-data behavior, control variants or stress cases.
+
+## Explore a material visual decision
+
+When direction is genuinely unresolved, compare a few named alternatives on the same representative screen, task, content and window. Give each a concise rationale and descriptive attributes tied to the audience. Vary meaningful axes such as palette temperature, type/hierarchy, shape, composition or information density; a hue swap alone rarely explores a different experience. Keep non-negotiable brand and platform behavior fixed, and explain which tradeoffs each option exposes.
+
+Retain the chosen direction, rejected concerns and any remix by decision ID in `docs/ui-design.md`. A remix can combine compatible elements but needs another coherence/contrast check; it is not automatically validated because its source options were checked. Use the user's delegated authority for routine choices and seek input for consequential unresolved decisions. Do not impose three options, both themes, an extra approval ceremony or a visual redesign on a small edit. For reviewable local artifacts, use [prototyping](prototyping.md).
 
 ## Critique and refinement
 

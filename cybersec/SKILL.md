@@ -3,7 +3,7 @@ name: cybersec
 description: "Assesses cybersecurity risks and controls in software, DevOps, cloud, and IT systems. Use for threat modeling, security reviews, hardening, security-focused implementation, or security release checks across web/API, desktop, and mobile projects; not ordinary coding or general peer review."
 license: MIT
 metadata:
-  version: "1.4.1"
+  version: "1.5.1"
 ---
 
 # Cybersecurity
@@ -40,6 +40,7 @@ Read [assessment method](references/assessment-method.md) for threat reasoning, 
 | Passwords, security tokens, or encryption on any platform | [Credential and cryptographic controls](references/web-api.md#credentials-and-cryptographic-controls) |
 | Desktop, Electron/native bridges, installers, local files, native parsers | [Desktop and native](references/desktop-native.md) |
 | Android, iOS, mobile storage/platform/network boundaries | [Mobile](references/mobile.md) |
+| Native Android implementation/verification details for credentials, IPC, storage, WebView or release controls | [Android controls](references/android-controls.md) |
 | CI/CD, dependencies, artifacts, IaC, cloud, containers, Kubernetes | [DevOps and supply chain](references/devops-supply-chain.md) |
 | Enterprise identity, endpoints, networks, SaaS, incident/recovery operations | [IT operations](references/it-operations.md) |
 | LLM applications, retrieval, agents, model outputs, privileged tools | [AI and agentic systems](references/ai-agentic.md) |
@@ -47,6 +48,10 @@ Read [assessment method](references/assessment-method.md) for threat reasoning, 
 Use the [assessment template](assets/security-assessment-template.md) for substantial/saved reports; adapt it to the mode and omit irrelevant sections. Write files only when requested or required by the calling workflow. Artifacts are English; conversation follows the user's language. Resolve resources relative to this skill, and keep project findings outside this reusable package.
 
 ## Working loop
+
+When work arrives from another skill, retain its target snapshot, canonical requirements, authority and unresolved evidence; verify their current applicability. Link existing security findings instead of creating duplicate records. Routine implementation still needs relevant controls, but does not automatically require a full audit. A security finding is not authority to redesign product behavior or change production access.
+
+This skill is the primary owner of security assessment and hardening on Android as on other platforms. Do not start a parallel `android-security` workflow or treat a native implementation helper as an independent security verdict. Android data/DI/background/test packages, when installed, may supply concrete implementation steps; this skill retains the threat/control/evidence record and the actual authorization boundary.
 
 1. Establish purpose, sensitive assets, supported platforms, deployment stage, known requirements, decision owners, and access limits. Inspect actual artifacts and reuse existing specifications and threat models; no other skill is mandatory.
 2. Trace credible attacker capabilities and trust-boundary crossings into security invariants and business impact. Include business abuse, cross-component attack chains, and post-compromise paths. Link relevant threats to controls, verification, and gaps; keep narrow reviews proportionate. Taxonomies are prompts, not proof of exhaustive coverage.

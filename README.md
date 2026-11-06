@@ -1,13 +1,13 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Four generic skills own specification, UI work, peer review and security. Optional native Android implementation/test helpers and a generic PR quiz complement them; see [skill ownership](SKILL-ROUTING.md). Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
 > [!IMPORTANT]
 > These skills are still in development. They are based on my personal experience developing my own applications and may need adjustments for other projects, teams, models, and workflows.
 >
-> Everyone is welcome to use, improve, and adapt them. The [MIT License](LICENSE) permits modification and redistribution, including commercial use, subject to its notice requirements. Applicable third-party notices must also be retained.
+> Everyone is welcome to use, improve, and adapt them. The [MIT License](LICENSE) covers repository-original work, subject to its notice requirements. Imported material retains its source terms; see [third-party notices](THIRD-PARTY-NOTICES.md).
 >
 > Feedback from actual use, constructive criticism, and suggestions are very welcome through [GitHub Issues](https://github.com/teknolista/skills/issues).
 
@@ -44,6 +44,8 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [UI Design](#ui-design)
     - [Examples and output](#examples-and-output)
     - [UI Design resources](#ui-design-resources)
+  - [Native Android implementation and testing](#native-android-implementation-and-testing)
+  - [PR Quiz](#pr-quiz)
   - [Project AGENTS.md template](#project-agentsmd-template)
   - [Repository structure](#repository-structure)
   - [Maintenance and new skills](#maintenance-and-new-skills)
@@ -55,10 +57,21 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.5.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.8.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersecurity](#cybersecurity) | 1.4.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.3.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [PentaPRO](#pentapro) | 2.5.3 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Peer Review](#peer-review) | 1.8.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Cybersecurity](#cybersecurity) | 1.5.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI Design](#ui-design) | 1.5.1 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [Android modules](android-module-structure/SKILL.md) | 1.2.1 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [Android data](android-data-layer/SKILL.md) | 1.2.1 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
+| [Android errors](android-error-handling/SKILL.md) | 1.2.1 | Implement typed domain/HTTP/storage error handling. |
+| [Android Koin](android-di-koin/SKILL.md) | 1.2.1 | Implement dependency bindings and Android lifetimes. |
+| [Android background](android-background/SKILL.md) | 1.2.1 | Implement durable WorkManager jobs and retries. |
+| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.1 | Author/run/debug isolated logic tests. |
+| [Android integration testing](android-integration-testing/SKILL.md) | 1.2.1 | Author/run/debug non-UI integration tests. |
+| [Android UI testing](android-ui-testing/SKILL.md) | 1.2.1 | Author/run/debug native device/emulator Compose tests. |
+| [PR Quiz](pr-quiz/SKILL.md) | 1.2.0 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
+
+The [routing and consolidation map](SKILL-ROUTING.md) records all 14 source skills. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
 
 ## Installation and activation
 
@@ -72,7 +85,7 @@ Choose which skills to install for Codex:
 npx skills@latest add teknolista/skills -a codex
 ```
 
-Install all four skills for Codex without selection prompts:
+Install all available skills for Codex without selection prompts:
 
 ```bash
 npx skills@latest add teknolista/skills --skill '*' -a codex -y
@@ -85,7 +98,7 @@ npx skills@latest add teknolista/skills --skill ui-design -a codex
 npx skills@latest add teknolista/skills --list
 ```
 
-Available skill names are `penta-pro`, `peer-review`, `cybersec`, and `ui-design`. Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Keep the quotes around `'*'` so the shell passes it to the CLI.
+Available skill names are `penta-pro`, `peer-review`, `cybersec`, `ui-design`, `android-module-structure`, `android-data-layer`, `android-error-handling`, `android-di-koin`, `android-background`, `android-unit-testing`, `android-integration-testing`, `android-ui-testing`, and `pr-quiz`. Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Keep the quotes around `'*'` so the shell passes it to the CLI.
 
 Installation defaults to the current project. Add `-g` for user-level installation across projects:
 
@@ -110,9 +123,9 @@ A skill stored in this repository is not automatically installed into other proj
 
 ### Activation
 
-The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-design` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration.
+The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-design` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration. Native helpers use their listed names, for example `$android-data-layer`; `pr-quiz` runs only for a requested comprehension quiz or quiz setup, never merely after PR creation.
 
-The packages use Markdown instructions, references, and templates. No skill requires another skill, a plugin, paid service, API key, external connector, or bundled script runtime. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
+The core instructions use Markdown and optional references/templates. Cross-package links are optional navigation; no generic owner requires an Android helper for other platforms. The optional prototype helper uses Python. Publishing a requested PR quiz requires Python, gh and actual GitHub access; its optional grader uses GitHub Actions. Installing a package does not install these tools or activate a remote workflow. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
 
 ## Agent and model compatibility
 
@@ -160,7 +173,7 @@ After changing host, model, or significant instructions, run the relevant [Penta
 
 ## PentaPRO
 
-**Version:** 2.5.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.5.3 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PentaPRO when defining a product, specifying a substantial feature, maintaining an existing PentaPRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -236,7 +249,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.8.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Version:** 1.8.2 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -323,7 +336,7 @@ Load the review method and applicable references. Source research and evaluation
 
 ## Cybersecurity
 
-**Version:** 1.4.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Version:** 1.5.1 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
 Use Cybersecurity for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
@@ -384,7 +397,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 ## UI Design
 
-**Version:** 1.3.1 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
+**Version:** 1.5.1 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
 Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
@@ -395,6 +408,7 @@ Use $ui-design to interview me about this Android app's onboarding and home scre
 Use $ui-design to add the offline editing flow to the existing screen specification, preserving accepted decisions.
 Use $ui-design to review this web checkout's keyboard interaction, errors and responsive layout; record findings in docs/ui-design.md.
 Use $ui-design to implement UI-S03 using the project's existing components, verify the affected flow and update docs/ui-design.md.
+Use $ui-design to compare two visual directions for the same search screen and create an optional offline state gallery, keeping docs/ui-design.md authoritative.
 ```
 
 Feedback guidance chooses field, form, transient, persistent, content-area or decision surfaces by task consequence, retaining usable content and truthful recovery. Compose guidance covers component contracts, state ownership, previews and shared/platform resources without imposing MVI or a DI library.
@@ -402,6 +416,8 @@ Feedback guidance chooses field, form, transient, persistent, content-area or de
 The default output is the target project's cumulative **`docs/ui-design.md`**, with a screen index, shared visual/interaction rules, flows, per-screen contracts, decision status, acceptance scenarios, verification evidence and a resume pointer. It is saved during partial interviews and updated across iterations. Additional mockups or assets are optional linked evidence. A request to specify screens produces documentation; implementation follows the user's requested scope.
 
 When PentaPRO files exist, this UI document supplements their five pillars and links canonical requirements, checks, architecture and process records. Existing design systems remain authoritative for their owned tokens/components. The skill has no mandatory dependency on the other skills, BMAD, OpenSpec, Figma, a browser plugin, image generation or a paid service. Runtime checks require available project tools; HTML concepts do not prove Android behavior. Research observations, proposals, accepted decisions and executed checks remain distinct. No production usability or cross-model efficiency benchmark is claimed.
+
+An optional standard-library Python helper checks explicitly declared token contrast pairs and builds local HTML state galleries from editable sources. These concepts support named screen/state/theme/window links and token-derived specimens without remote font/icon services or automatic publication. Existing project formats, native previews and browser tooling remain valid alternatives. See the [prototype workflow](ui-design/references/prototyping.md); calculated pairs and HTML concepts do not establish accessibility conformance or native runtime correctness.
 
 ### UI Design resources
 
@@ -411,21 +427,52 @@ When PentaPRO files exist, this UI document supplements their five pillars and l
 | [Design method](ui-design/references/design-method.md) | Discovery, task/flow coverage, screen contracts, content and recovery. |
 | [Visual system](ui-design/references/visual-system.md) | Tokens, identity, typography, graphic assets, charts and motion. |
 | [Web](ui-design/references/web.md) | Browser layout, navigation, semantics and checks. |
-| [Android](ui-design/references/android.md) | Compose/Views, adaptive layout, state, Back, insets and native checks. |
+| [Android](ui-design/references/android.md) | Compose/Views and conditional implementation procedures for components, presentation, architecture and navigation. |
 | [Feedback and state coverage](ui-design/references/feedback-states.md) | Error surfaces, partial failures, refresh/pagination, control variants and stress states. |
 | [Validation](ui-design/references/validation.md) | Rendered inspection, reproducible journeys, durable outcomes, usability and evidence limits. |
 | [Document maintenance](ui-design/references/document-maintenance.md) | Cumulative updates, stable IDs, ownership and resumption. |
 | [Output template](ui-design/assets/ui-design-template.md) | Adaptable single-file screen and flow specification. |
+| [Prototype workflow](ui-design/references/prototyping.md) | Optional token checks, local state galleries, direction comparison and reproducible review. |
+| [Prototype tools](ui-design/scripts/prototype_tools.py) | Original local checker/builder; no external runtime packages required. |
+| [Prototype starter](ui-design/assets/prototype/manifest.json) | Synthetic editable gallery inputs, not a production design system. |
+| [Design consolidation](ui-design/references/design-consolidation.md) | File-by-file transfer and exclusions from the retired local design skill. |
 | [Worked example](ui-design/references/worked-example.md) | Two-screen Android specification with explicit pending decisions. |
 | [Source research](ui-design/references/sources.md) | Repository coverage, pinned sources, adaptations and research limits. |
 | [Evaluation scenarios](ui-design/evals/scenarios.md) | Realistic cases and validation record. |
 | [OpenAI metadata](ui-design/agents/openai.yaml) | Optional host presentation and invocation prompt. |
 
+## Native Android implementation and testing
+
+These helpers implement concrete native Kotlin/JVM/Android changes. They do not create another specification or assessment workflow. Design and implement Android screens through UI Design's conditional Compose/presentation/navigation references; assess Android security through Cybersecurity's Android controls. Review source and test effectiveness through Peer Review. [Ownership and every source destination](SKILL-ROUTING.md) explain the boundaries.
+
+| Helper | Example request | Main supporting resources |
+| --- | --- | --- |
+| [android-module-structure](android-module-structure/SKILL.md) | Add the approved notes data module using the existing Gradle conventions. | [Build logic](android-module-structure/references/build-logic.md), [execution](android-module-structure/references/execution.md), [maintenance cases](android-module-structure/evals/scenarios.md) |
+| [android-data-layer](android-data-layer/SKILL.md) | Implement atomic refresh while retaining cached notes after failure. | Repository/storage/transport procedures and typed-domain examples in the entrypoint |
+| [android-error-handling](android-error-handling/SKILL.md) | Implement cancellation-preserving HTTP error mapping with TLS failures distinguished. | Typed Result and Ktor boundary examples in the entrypoint |
+| [android-di-koin](android-di-koin/SKILL.md) | Wire the existing repository and destination ViewModel with the correct owner. | Binding, startup and lifetime procedures in the entrypoint |
+| [android-background](android-background/SKILL.md) | Implement an account-scoped idempotent synchronization worker. | WorkManager retry/initialization and Koin procedures in the entrypoint |
+| [android-unit-testing](android-unit-testing/SKILL.md) | Write a deterministic test for a delayed refresh cancelled during logout. | [Case catalogue](android-unit-testing/references/test-cases.md), [Notes fake](android-unit-testing/references/notes-fake.md) |
+| [android-integration-testing](android-integration-testing/SKILL.md) | Write the Room migration/data-preservation test for this schema update. | Native boundary, storage and transport test procedures in the entrypoint |
+| [android-ui-testing](android-ui-testing/SKILL.md) | Write a device test for the retry button and retained content. | Native host, selectors, scheduling and cleanup procedures in the entrypoint |
+
+Implementation results are source/configuration changes and proportionate executed checks, with missing SDK/device/service evidence disclosed. Existing stacks, versions, supported behavior and user authorization govern the work. These packages do not add iOS/Desktop targets, start a UI redesign or run independent audits merely because code is Android-specific. Cross-package links help when companions are installed; each helper retains essential local instructions and uses project-owned contracts otherwise.
+
+## PR Quiz
+
+[pr-quiz](pr-quiz/SKILL.md) creates an explicitly requested decision-comprehension quiz for a specific GitHub PR. It is generic across platforms and separate from Peer Review: passing questions does not establish defect freedom, security or independent approval. Creating a PR alone never activates it.
+
+Example: `Use $pr-quiz to draft a quiz about the caching and retry decisions in PR 123.` Drafting stays local; publishing requires the requested PR-edit scope. The [Python helper](pr-quiz/scripts/publish_quiz.py) previews with `--dry-run` without GitHub access, then can preserve surrounding PR text while publishing through `gh` when authorized. Resolve its installed path in the target repository.
+
+The [optional workflow asset](pr-quiz/assets/pr-quiz.yml) grades through trusted GitHub metadata events, without running PR-head code. It is not installed as an active workflow here. Authors are ineligible by default; passes bind to quiz ID and head SHA. Adapt reviewer/team policy, reviewed action pinning, token permissions and actual repository rules before enabling it. Merge queues/custom policies need their own integration checks. The answer key is public encoding, so this is not a security or tamper-proof approval boundary. Test setup in a controlled repository before relying on a required status.
+
+Offline maintainer checks: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s pr-quiz/scripts/tests -v` and `node pr-quiz/scripts/tests/workflow.cjs`. They exercise rendering/body preservation and the actual embedded grader with API doubles; they do not validate a live GitHub deployment or branch rule.
+
 ## Project AGENTS.md template
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
-The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It routes work to `penta-pro`, `ui-design`, `peer-review`, and `cybersec`, identifies the five pillar documents plus the cumulative UI specification, and explains ownership, resumption and evidence states. Fill in actual skill locations and commands; copying the template does not install the packages or require all four on every task. It leaves the stack, source layout, model and test framework to the project. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
+The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It routes work to `penta-pro`, `ui-design`, `peer-review`, and `cybersec`, identifies the five pillar documents plus the cumulative UI specification, and explains ownership, resumption and evidence states. Optional Android implementation/test helpers and PR Quiz have separate task boundaries in the routing table. Fill in actual skill locations and commands; copying the template does not install the packages or require all four on every task. It leaves the stack, source layout, model and test framework to the project. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
 
 ## Repository structure
 
@@ -437,6 +484,16 @@ skills/
 ├── LICENSE
 ├── THIRD-PARTY-NOTICES.md
 ├── AGENTS-template.md
+├── SKILL-ROUTING.md
+├── android-module-structure/
+├── android-data-layer/
+├── android-error-handling/
+├── android-di-koin/
+├── android-background/
+├── android-unit-testing/
+├── android-integration-testing/
+├── android-ui-testing/
+├── pr-quiz/
 ├── penta-pro/
 │   ├── SKILL.md
 │   ├── agents/
@@ -466,10 +523,11 @@ skills/
     ├── agents/
     ├── assets/
     ├── evals/
-    └── references/
+    ├── references/
+    └── scripts/
 ```
 
-`SKILL.md` contains required metadata and runtime instructions. Optional `agents/` files adapt host presentation; `assets/` holds output templates; `references/` holds conditional detail; `evals/` holds maintenance cases and validation records. Create only the directories a skill needs.
+`SKILL.md` contains required metadata and runtime instructions. Optional `agents/` files adapt host presentation; `assets/` holds output templates; `references/` holds conditional detail; `evals/` holds maintenance cases and validation records; `scripts/` holds optional executable helpers and their focused tests. Create only the directories a skill needs.
 
 ## Maintenance and new skills
 
@@ -481,7 +539,7 @@ The pstack-informed update adds caller-facing contract sketches and verification
 
 Use each skill's evaluation cases before expanding its instructions. Compare matched tasks with and without the skill on the models and hosts actually used. Check activation, preserved decisions, invented facts, unnecessary questions, substantiated defects, false positives, material misses, coverage honesty, and unintended actions. Record actual time and usage when available, and retest after relevant model or instruction changes.
 
-The final maintenance review clarifies planning versus execution authority, synchronization at the actual writer scope, safe test execution, enforced versus merely declared type guarantees, and fidelity to authorized supplied designs. Existing guidance covers staged versus working-file review, version-dependent API evidence, checked versus effective security values, and companion-document ownership. These safeguards support consistent execution; they do not establish reliability on every model.
+The collection review on 2026-11-06 strengthened handoffs across all 13 skills, retained project-owned contracts and made sample stacks conditional. Android corrections clarify Koin worker parameters, periodic-work termination, account-scoped commit races, pure StateFlow updates and version-sensitive build/test configuration. The optional PR quiz now separates reflected text from bot control markers, rejects ambiguous blocks/keys, renders question text literally and pins its action dependency to an official release commit with narrower permissions. Its grading remains an educational aid. Existing guidance covers safe test execution, staged versus working-file review, type/model limits, design fidelity and companion-document ownership. See the [validation scope and maintenance record](SKILL-ROUTING.md#validation-scope) for actual results and remaining limits; these checks do not establish reliability on every model.
 
 Keep active versions in `SKILL.md`, this README, and any versioned output template aligned. When behavior changes, reconcile descriptions, UI metadata, templates, references, and evaluation cases. Validate local links and anchors from each file's location. Retain historical research dates and trial versions with their original scope; a package update does not rerun or broaden earlier evidence.
 
@@ -496,7 +554,7 @@ Each skill's evaluation file records its actual audits/trials and limitations. S
 
 ## License and attribution
 
-The repository and its skills are distributed under the single root [MIT License](LICENSE). Skill directories do not contain duplicate LICENSE or README files.
+Repository-original work uses the root [MIT License](LICENSE). The local Android/PR-quiz import has separate source provenance and no supplied redistribution license; the repository license does not purport to relicense that material. See [third-party notices](THIRD-PARTY-NOTICES.md#native-android-and-pr-quiz-integration--2026-11-06). Skill directories do not contain duplicate LICENSE or README files.
 
 When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
 

@@ -90,3 +90,35 @@ These are authored maintenance scenarios and an author-side instruction walkthro
 Only the established cumulative document changed. The agent specified save/discard, interruption, keyboard, accessibility and failure states and kept field/storage/session questions and all missing native evidence visible. It checked local links, IDs and canonical opaque color-pair arithmetic; the maintainer independently confirmed unchanged governing-file hashes, preserved records, all six local links/anchors and the two reported token contrast ratios. Calculated pairs were not represented as rendered contrast or accessibility conformance.
 
 This single documentation trial supplies no implemented UI, rendered-fidelity comparison, Android/device/lifecycle execution, assistive-technology result, user study or smaller-model benchmark. It does not execute the separate desktop-mock or low-contrast-reference cases above.
+
+## Local design consolidation — 1.4.0
+
+2026-11-06: the complete 18-file local design package was inspected before consolidation. Existing discovery, state/error coverage, platform/evidence boundaries and single-document ownership were retained. The transfer inventory records each input, including consciously excluded hard gates, universal style rules, remote loaders and source-tool limitations.
+
+| Input / task | Observable success | Failure to catch |
+| --- | --- | --- |
+| Compare new visual directions for the same representative screen | Names and rationales reflect material palette/type/composition/density differences; fixed constraints and realistic content remain comparable; selection/remix captured by decision ID | Hue-only alternatives, invented acceptance, mandatory three-option interview or identity replacement |
+| Build a local gallery from existing screen IDs, including a failed refresh and long content | Editable sources and generated artifact linked from docs/ui-design.md; correct trigger/retained data and exact state/theme/window links; mocked effects disclosed | New competing brief, fake Undo/sync guarantees, native validation inferred from HTML |
+| A declared contrast pair names a missing role, theme or unknown usage | Explicit actionable failure, previous valid export preserved | Missing calculations silently omitted or unsupported categories counted as passes |
+| Tokens contain alpha foregrounds, translucent backgrounds, cycles or unsupported colors | Supported foreground compositing calculated; unsupported/invalid input rejected with no conformance claim | Rounded borderline ratio accepted, infinite recursion, skipped backgrounds |
+| A prototype includes a missing/outside-tree partial or invalid transition | Build rejects it and retains the old artifact | Reads outside the selected artifact source or produces dead navigation |
+| Only a small existing button label needs revision | Uses the relevant document/project context; no prototype/option workflow unless useful | Mandatory token schema, new gallery tree, remote asset loads or publication |
+
+These rows define maintenance scenarios; authored cases are not themselves executed agent trials. Concrete helper/package/rendering results are recorded separately after running the relevant checks.
+
+### Executed consolidation checks — 2026-11-06
+
+The original optional helper passed **20 standard-library regression tests**, including missing roles/themes, unknown usage, alpha compositing, unrounded thresholds, alias/include cycles, outside-tree paths, invalid navigation/dialog targets, duplicate IDs, unsupported active/external input, metadata escaping, undefined generated tokens and preservation of a previous output on failure. Its bundled synthetic example built three states and calculated six explicitly declared pair/theme combinations. These are bounded helper tests, not production accessibility or native-runtime results.
+
+An isolated headless Chrome session exercised the generated local concept through actual pointer and keyboard input: initial route, failure/retry with retained sample data, literal route navigation, editable input, hash-driven theme/width/state updates, native-dialog focus/Tab/Escape/return, and closing an open dialog when its state is left. Browser inspection caught and led to a focused Tab-cycle/hidden-modal correction before the final passing run. The final run reported zero JavaScript exceptions and zero external HTTP(S) requests. Two captures at a fixed browser viewport were inspected: light at 360 CSS px specimen width and dark at 840. This tests the original gallery and synthetic fixture only; no screen-reader session, Android runtime, live backend or user study was performed.
+
+A fresh independently assigned agent used the packaged skill in a disposable native-Android specification project. It preserved both established screen IDs, accepted brand/no-draft-persistence decisions, exact maintainer note and unchanged application placeholder. It produced the same-content **Reading rail** and **Recovery card** directions, each with four review states, updated only the cumulative specification and optional concept sources/exports, and kept the recommendation proposed. Both builds, 26 declared color-pair/theme calculations and 18 local targets passed. Its own Chrome launch was blocked by sandbox socket restrictions before page loading; it correctly marked rendered/native/user evidence unavailable. That trial supplies documentation/source-generation evidence, separate from the maintainer's successful isolated gallery browser run.
+
+An independent documentation review confirmed the complete 18-file source-to-destination inventory and retained authority/proportionality. Package metadata, active README version, Markdown references and whitespace were checked separately. The retired local source was compared against its recovery copy before removal, and all 17 unrelated Android/PR-quiz files retained identical hashes afterward. No comparative quality, efficiency or cross-model benchmark is claimed.
+
+
+## Android implementation consolidation — 1.5.0
+
+2026-11-06: Four local Android UI entrypoints (Compose architecture, components, MVI presentation and navigation) were incorporated as conditional references under references/android. UI Design remains generic and owns the single UI contract; the four former names are not discoverable skills. Project architecture and actual versions govern their examples. Earlier design-prototype work remains intact.
+
+Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.

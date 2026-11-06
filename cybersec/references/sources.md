@@ -63,3 +63,8 @@ Model-checking scope was also checked against the primary [TLA+ model introducti
 ## Execution and structural evidence — version 1.4.1
 
 2026-11-06: checked [npm script lifecycle documentation](https://docs.npmjs.com/cli/v11/using-npm/scripts/) for command and pre/post hook execution, [TypeScript's erased types](https://www.typescriptlang.org/docs/handbook/2/basic-types.html#erased-types), and the [Embedded Rust Book's typestate example](https://docs.rust-embedded.org/book/static-guarantees/typestate-programming.html) for restricted construction and state transitions. The original clarification recognizes guarantees enforced by actual construction/use rules while requiring evidence for hostile input, mutable authority, and separately deployed consumers. Delegated capability validity follows the assessed contract, not an automatic demand for reauthorization at every stage. Local execution must stay within the actual authorized boundary. Authored cases are recorded separately from executed trials; no new model-performance or live-system result is claimed.
+
+
+## Android security consolidation — 1.5.0
+
+2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.

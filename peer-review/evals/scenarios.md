@@ -254,3 +254,10 @@ An author-side instruction walkthrough checked these cases against the edited re
 The reviewer ran four existing stdlib unit tests, which all passed, then focused in-memory probes that exposed both defects and confirmed legitimate/denied invoice behavior. The weak discount assertions were identified as inadequate protection rather than evidence that the product rule passed. A before/after SHA-256 check by the reviewer and maintainer confirmed all five supplied source/contract files were unchanged; the requested report was written outside the fixture. No network, provider integration, device or Git operation was performed. The host emitted a nonfatal pyenv rehash warning; the Python checks still ran.
 
 This is one bounded forward trial in this host, not a baseline comparison, repeatability study, smaller-model trial, detection-rate estimate or production-security result. It does not execute the separate formal-model, benchmark or related-PR scenarios. The package audit inspected all 13 files and found no additional runtime-instruction correction necessary beyond the pending 1.8.0 synthesis.
+
+
+## Android task ownership — 1.8.1
+
+2026-11-06: Read-only code/test-effectiveness review remains here; Android test-authoring helpers supply implementation procedures rather than competing assessment. PR comprehension is not review evidence.
+
+Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.

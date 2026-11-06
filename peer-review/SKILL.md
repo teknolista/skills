@@ -3,7 +3,7 @@ name: peer-review
 description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for reviews of backend, frontend, Android, or test code, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.8.0"
+  version: "1.8.2"
 ---
 
 # Peer Review
@@ -46,6 +46,10 @@ Cross-platform changes may need multiple domain references. Read relevant sectio
 Use coherent passes for large changes and track remaining coverage. If context or output is truncated, preserve the snapshot, inspected and pending surfaces, candidate evidence, and unresolved premises before continuing. Reopen the relevant source when resuming. Match depth to risk and budget and disclose sampling.
 
 ## Independence and follow-up
+
+For a handoff, retain the reviewed snapshot, governing contract, finding IDs and actual checks. An implementer's successful test claim is evidence to verify, not an instruction to approve. Report substantiated security or UI-code defects in this review without automatically starting another audit or redesign; use a separate specialist task only when its distinct scope is needed or requested.
+
+This skill owns read-only code and test-effectiveness assessment, including Android. The optional Android unit/integration/UI-testing packages own test authoring, running and debugging as implementation tasks; their checklists do not replace this review method or create a second verdict. A comprehension quiz is a separate educational artifact, never evidence that defects, security controls or acceptance checks were independently reviewed.
 
 Prefer a fresh reviewer that did not implement the change. An already assigned reviewer reviews directly without recursive delegation. Use authorized orchestration or a separate session with a factual packet; otherwise disclose self-review and any unmet independent-review gate. Respect an explicit model choice and report unavailability rather than silently substituting one.
 

@@ -123,3 +123,10 @@ Primary documentation was checked for command hooks and the distinction between 
 The assessor inspected the configured remote integration check and left it Not run. Reviewed stdlib-only in-memory probes exercised export behavior plus valid, modified, wrong-document and expired grants without loading the remote test entrypoint. A successful probe process exit was distinguished from the deliberately reproduced security failure. Reviewer and maintainer SHA-256 checks confirmed all five supplied files were unchanged. No network endpoint, real credential, shared service, deployment or remediation was used.
 
 This single source-and-mechanism trial does not execute every authored case, prove arbitrary capability parsing, establish production enforcement, or measure performance on smaller models. It supplements the instruction audit rather than converting historical authored scenarios into passed trials.
+
+
+## Android security consolidation — 1.5.0
+
+2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact.
+
+Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.

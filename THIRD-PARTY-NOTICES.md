@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-This repository's newly written instructions and templates were informed by the public methods listed in the [PentaPRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No upstream renderer, script, framework, or language-guide implementation is bundled. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersecurity's article attribution and UI Design research attributions appear separately after that notice.
+This repository's newly written instructions and templates were informed by the public methods listed in the [PentaPRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No implementation from those public research collections is bundled. The separately supplied local Android/PR-quiz import below contains source files and has its own provenance record. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersecurity's article attribution and UI Design research attributions appear separately after that notice.
 
 | Work | Copyright notice | License |
 | --- | --- | --- |
@@ -85,7 +85,7 @@ These articles/directories were discovery aids, not normative standards or evide
 
 The user supplied a local directory labeled **PL Coding Skills Bundle**, inspected on 2026-11-05: 20 skill entrypoints covering Android, Kotlin Multiplatform, design and PR comprehension, plus supporting files.
 
-No license, public source URL, release manifest or independently verified authorship was present in the supplied directory. This attribution records the source label supplied by the user and does not infer redistribution rights or a public author identity. Only independently written explanations of general methods were added to this repository; no upstream skill text, implementation, templates, styles, token data or quiz workflow is redistributed. The original bundle remains unchanged. The MIT permission notice above does not purport to license this bundle. Attribution implies no affiliation or endorsement.
+No license, public source URL, release manifest or independently verified authorship was present in the supplied directory. This attribution records the source label supplied by the user and does not infer redistribution rights or a public author identity. At that research stage, only independently written explanations of general methods were added; no upstream skill text, implementation, templates, styles, token data or quiz workflow was redistributed. The later Android/PR-quiz import below records the newly included local material. That 2026-11-05 research left the supplied bundle unchanged; the authorized 2026-11-06 consolidation below supersedes that local-state observation. The MIT permission notice above does not purport to license this bundle. Attribution implies no affiliation or endorsement.
 
 
 ## Peer Review: review-coordination article
@@ -102,3 +102,19 @@ The useful methods informed [PentaPRO](penta-pro/references/sources.md#pstack-sy
 The synthesis retains task authority and proportionality. It does not adopt mandatory named models, parallel agents, scripts for every nontrivial edit, run-only findings, unconditional trust of internal types, automatic Git integration, blanket compatibility removal, hard-coded host tooling, or fixed prototype/benchmark counts. Formal verification and measurements remain conditional on the actual risk and evidence needs.
 
 The inspected pstack license is MIT, copyright 2026 Lauren Tan; its notice is preserved in the table and common permission text above. All additions use original wording, without upstream implementation, templates, model artifacts or substantial passages. Attribution implies no affiliation or endorsement. No reliability, security, performance or productivity benchmark is claimed from this research.
+
+
+## Local design-skill consolidation — 2026-11-06
+
+At the user's request, inspected all 18 files of the local `android-skills/design` package and consolidated its relevant lessons into UI Design 1.4.0. [The transfer inventory](ui-design/references/design-consolidation.md) records existing coverage, original additions and deliberate exclusions before retirement of the local source skill. Its source text, Python implementation, viewer, styles, templates, palettes and token data are not redistributed here. The optional prototype checker/builder, examples and tests added to UI Design are newly written for this repository. They implement general token-checking and local gallery concepts without a runtime dependency on the source package.
+
+A bounded source experiment reproduced upstream token-checker omissions; it is recorded as source investigation, not an endorsement or a claim of full source-tool validation. The local source folder is removed only after destination validation, with a recovery copy outside the repositories. Historical research and trial records retain their original dates and scope. The repository license does not grant rights to external source material or imply affiliation.
+
+
+## Native Android and PR-quiz integration — 2026-11-06
+
+The user subsequently requested import of the current local `/home/dever/workspace/android-skills` collection, consolidating overlapping objectives into the four generic owners first. [Skill routing and the source inventory](SKILL-ROUTING.md) map all 14 supplied entrypoints: four native UI procedures were incorporated into UI Design, Android security controls into Cybersecurity, and eight native implementation/test packages plus PR Quiz were imported as separate packages with narrower activation boundaries. The source directory was copied, not removed or installed into an agent profile.
+
+This import includes local instructions, Kotlin examples, supporting references, and the PR-quiz Python helper/GitHub Actions template, with changes to routing, validation, author eligibility and head-commit-bound pass behavior. Unlike the earlier conceptual-only research, these are included source files. No license, public origin or independently verified authorship was supplied for that local package; no additional source rights or affiliation are inferred. Repository-original additions retain the repository license; that license does not purport to relicense supplied third-party material. Earlier research dates, no-copy statements and trial results remain scoped to their recorded stages.
+
+The PR-quiz workflow is an inactive asset. No remote PR, comment, status, workflow or repository rule was changed by this integration. Its grading key is public and its educational status is separate from code review, security assessment and genuine branch protection.

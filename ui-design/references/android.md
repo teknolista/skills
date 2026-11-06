@@ -1,5 +1,18 @@
 # Native Android screens
 
+## Native implementation procedures
+
+This skill owns Android screen design and authorized UI implementation. Load only the procedure needed by that work; these are conditional references, not separate competing skills. Preserve existing Compose/Views architecture: MVI, Koin, module naming and a particular Navigation API are not universal requirements.
+
+| Implementation concern | Procedure |
+| --- | --- |
+| Compose state/effects, recomposition, lazy layouts, text input and adaptation | [Compose architecture](android/compose-architecture.md) |
+| Native resources, component APIs, Material reuse, semantics and previews | [Compose components](android/compose-components.md) |
+| ViewModel/Root/Screen integration, UiText, effects and saved state | [Presentation](android/presentation-mvi.md) |
+| Typed routes, feature graphs, ViewModel ownership, links and Back | [Navigation](android/navigation.md) |
+
+Existing project contracts remain canonical. Examples require their actual imports, resources and dependency versions; comment-only bodies are outlines. A standalone test-authoring request can use the optional `android-unit-testing`, `android-integration-testing` or `android-ui-testing` package. A code-review request uses `peer-review`; a security review uses `cybersec`. If a companion package is unavailable, retain the evidence boundary and use the project's own tools rather than pretending to have loaded it.
+
 Identify Compose, XML Views or interoperability from actual source/Gradle configuration, along with SDK constraints, navigation architecture, theme and design system. Preserve the established stack. Check current official APIs against installed dependency versions before generating code; community examples may contain obsolete or nonexistent APIs.
 
 ## Structure and adaptation

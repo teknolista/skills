@@ -1,0 +1,77 @@
+---
+name: android-background
+description: Implement or debug native Android WorkManager jobs, constraints, retries, idempotency and worker initialization. Use for concrete durable-work changes; use penta-pro for product/operating requirements and cybersec for security assessment.
+metadata:
+  version: "1.2.1"
+---
+
+# Android Background Work
+
+Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+
+Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
+
+Choose Android APIs from the execution contract. Use ViewModel/application coroutine scopes for appropriate in-process work; use WorkManager for deferrable persistent work with constraints and eventual execution. It is not an exact scheduler. Exact alarms and foreground services require their own user-visible need, permissions, platform restrictions, and current Android documentation; do not substitute them by default.
+
+## Durable job design
+
+Use `CoroutineWorker` for suspend repository work. Keep transport/storage policy in repositories and worker orchestration small. Return WorkManager success, retry, or failure according to the typed outcome. Alias the application's `Result` import when needed so it does not collide with `ListenableWorker.Result`.
+
+- Make work idempotent: process recreation/retries can repeat side effects. Use stable operation IDs/outbox state and server-supported idempotency where needed.
+- Enqueue named unique work with a deliberate ExistingWorkPolicy. KEEP avoids duplicate pending work, REPLACE cancels/replaces, and chained policies have different failure behavior. For periodic work use the matching periodic policy and respect its API minimum interval/flex; do not promise precise timing.
+- Set only required constraints and bounded backoff for transient failures. Define an attempt/age limit according to the operation. Permanent validation/auth failures do not become endless retries; a recovered session can schedule a new operation.
+- Keep inputs/output small and serializable within WorkManager's Data limit; store large payloads in persistent storage and pass IDs. Do not embed credentials in job Data or logs.
+- Preserve coroutine cancellation. Do not catch `CancellationException` and report success/failure; release resources through structured cleanup. A stopped run can be rescheduled when constraints or execution limits interrupt it; explicit WorkManager `CANCELLED` is terminal for that request. Neither stopping nor cancellation rolls back effects already committed.
+- Expose WorkInfo/progress with lifecycle-aware collection and separate job state from the data source of truth. Avoid unbounded polling from UI.
+
+Periodic work schedules future runs even when one run returns `Result.failure()`. For permanent account revocation or a policy that must stop all future runs, cancel/disable the owning periodic request and recheck eligibility in the worker; returning failure alone is insufficient. See the official [work-state semantics](https://developer.android.com/develop/background-work/background-tasks/persistent/how-to/states).
+
+## Koin integration and initialization
+
+Use compatible `androidx.work:work-runtime-ktx`/runtime and `io.insert-koin:koin-androidx-workmanager` artifacts from the catalog. Register a worker definition with its runtime Context/WorkerParameters and injectable collaborators, using the installed worker DSL:
+
+```kotlin
+val syncModule = module {
+    worker { params -> NotesSyncWorker(androidContext(), params.get(), get()) }
+}
+```
+
+Here `NotesSyncWorker` takes `(Context, WorkerParameters, NoteRepository)`: `androidContext()` supplies the application Context, `params.get()` retrieves this run's WorkerParameters, and `get()` resolves the repository. Do not register WorkerParameters as a singleton. Imports include `org.koin.androidx.workmanager.dsl.worker`, `org.koin.android.ext.koin.androidContext`, and `org.koin.dsl.module` for versions exposing this DSL. The supported constructor DSL `workerOf(::NotesSyncWorker)` is another option; verify the installed version's API.
+
+Start Koin once in the Android Application and call `workManagerFactory()` after `androidContext(...)`; include the worker and repository modules before any work can be created. Use `org.koin.androidx.workmanager.koin.workManagerFactory` for the documented integration.
+
+Disable **only WorkManager's** automatic startup metadata when the Koin factory owns initialization. Keep other AndroidX Startup initializers:
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+    </application>
+</manifest>
+```
+
+Use one initialization strategy: the Koin integration or a deliberately configured `Configuration.Provider`/custom WorkerFactory strategy supported by the installed versions. Do not initialize WorkManager a second time or allow an early provider to initialize it with the default factory first. Inspect the merged manifest, Application registration, startup ordering, and any extra processes.
+
+## Verification
+
+Test with `work-testing` facilities and the real worker factory: retryable versus permanent outcomes, constraints, bounded attempts, cancellation, duplicate scheduling, process-safe persistence, idempotent reruns, and session invalidation. Use deterministic drivers for delays/constraints. A unit call to `doWork()` does not verify enqueue policy, startup, persistence, or OS scheduling.
+
+Run a device startup/worker smoke test and appropriate integration tests. Check relevant current Android execution restrictions when introducing long-running work or foreground notifications; document the supported API/targetSdk behavior.
+
+Sources: [Android persistent work](https://developer.android.com/develop/background-work/background-tasks/persistent), [WorkManager configuration](https://developer.android.com/develop/background-work/background-tasks/persistent/configuration/custom-configuration), [Koin worker setup](https://insert-koin.io/docs/reference/koin-android/workmanager/).
+
+## Account and execution boundaries
+
+Bind work to an account/session identity and recheck it before reading credentials or committing writes. Cancel matching unique work/tags on logout, and reject stale work even if cancellation arrived too late. Avoid storing bearer tokens in job inputs. A network-connected constraint does not prove the backend is reachable or that credentials remain valid.
+
+Periodic work is inexact, and long-running/foreground work has targetSdk-dependent restrictions and notification requirements. Check the actual WorkManager/Android versions; do not use expedited work or a foreground service as an unlimited retry/quota bypass. Exercise rescheduling after process loss and a permanent auth error separately from a temporary network failure.

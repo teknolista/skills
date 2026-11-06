@@ -1,5 +1,7 @@
 # Mobile Security
 
+For native Android credential, storage, IPC, WebView and release-control implementation details, read [Android controls](android-controls.md) selectively. This extends the same assessment/hardening workflow; it does not establish another security skill, duplicate verdict or Android-only default for other platforms.
+
 Identify Android/iOS, actual release/debug variants, supported OS/SDK versions, entitlements/permissions, backend contracts, and the threat model for a controlled device. Use MASVS for selected controls and MASTG for relevant verification, without treating every resilience measure as mandatory.
 
 - Map exported/inter-app entry points, deep/app/universal links, URI grants, custom schemes, intent handlers, WebViews, JavaScript/native bridges, and local services. Validate sender, arguments, ownership, and navigation at the trusted boundary; an exported entry point alone is not proof of a vulnerability.

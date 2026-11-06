@@ -73,3 +73,8 @@ Adapted caller-first contract sketches, explicit state ownership, repeatable jou
 This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](../../THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
 
 Model-checking scope was also checked against the primary [TLA+ model introduction](https://learning.tlapl.us/intro/platform/) and [TLC model documentation](https://dl.tlapl.us/tlatoolbox/doc/model/about-models.html): finite-model exploration and implementation correspondence are separate claims. No checker was installed or run for this update.
+
+
+## Android task ownership — 2.5.2
+
+2026-11-06: Native module implementation is distinct from architecture/specification/readiness work. The five pillars retain their canonical ownership; adding a concrete approved Gradle module does not start a second product interview. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.

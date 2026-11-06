@@ -66,6 +66,14 @@ The package adds a single cumulative screen contract, stable IDs and explicit de
 
 Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
 
+## Local design consolidation — version 1.4.0
+
+2026-11-06: re-inspected all 18 files of the local `android-skills/design` package for the user's requested consolidation and retirement. The [file-level transfer inventory](design-consolidation.md) maps its entrypoint, seven references, script and nine assets to existing coverage, focused additions or deliberate exclusions. Discovery field/context detail, meaningful direction comparisons, visual critique, state-gallery review, token-derived specimens and reproducible local artifacts were the relevant lessons.
+
+The source checker was exercised in bounded in-memory experiments: a missing declared foreground, unknown usage and translucent background could evade meaningful contrast evaluation. Its runtime also depended on remote fonts/icons and did not fully implement modal focus behavior. No source implementation, styles, template or token data was copied. Optional local tools/examples/tests are original repository code, with their own explicit supported contract and verification record. Source investigation is not a claim of source-tool safety or complete functionality.
+
+The existing cumulative document, platform guidance, evidence levels and user authorization remain intact. No fixed option counts, global theme/state permutations, automatic publication, mandatory new documentation tree or unsupported accessibility guarantees were adopted. This authorized follow-up changes/removes the local source copy after destination checks; the earlier historical source-state observation does not describe its current presence. See [notices](../../THIRD-PARTY-NOTICES.md#local-design-skill-consolidation--2026-11-06).
+
 
 ## pstack synthesis — version 1.3.0
 
@@ -74,3 +82,8 @@ Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and rel
 Adapted identified-instance readiness, serial or isolated UI driving, action plus durable-outcome evidence, owned cleanup that retains evidence, and honest state/transition abstraction. Existing flow coverage, identity inheritance, native/web distinctions and authority rules were retained. No mandatory live pass for documentation-only work, new feature-map tree, Cursor/Grok/Tailscale setup, fixed prototype count or automatic user-session control was imported.
 
 This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](../../THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
+
+
+## Android implementation consolidation — 1.5.0
+
+2026-11-06: Four local Android UI entrypoints (Compose architecture, components, MVI presentation and navigation) were incorporated as conditional references under references/android. UI Design remains generic and owns the single UI contract; the four former names are not discoverable skills. Project architecture and actual versions govern their examples. Earlier design-prototype work remains intact. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.

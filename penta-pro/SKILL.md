@@ -3,7 +3,7 @@ name: penta-pro
 description: "Explores software requirements and creates, updates, or reviews PentaPRO specifications through focused interviews. Use for new software, substantial feature specifications, or resuming a PentaPRO document; not for ordinary coding, peer review, or conceptual explanations."
 license: MIT
 metadata:
-  version: "2.5.1"
+  version: "2.5.3"
 ---
 
 # PentaPRO
@@ -84,6 +84,8 @@ For material assumptions, separate permission to proceed from evidence that the 
 
 ## Quality bar
 
+For native Android projects, requirements, architecture decisions, verification plans and readiness remain in these five pillars. An installed `android-module-structure` package supplies concrete Gradle/module implementation procedures after implementation is authorized; it does not run a second product interview or replace a pillar. Detailed screens remain owned by `ui-design`, security assessment by `cybersec`, and code/test review by `peer-review`.
+
 Before presenting a draft, check for these failure modes:
 
 - A consequential requirement lacks a source, an observable acceptance criterion, or a feasible check; identifiers are duplicated or reused.
@@ -98,6 +100,8 @@ Before presenting a draft, check for these failure modes:
 Report genuine gaps instead of removing a difficult concern to make the draft look complete.
 
 ## Readiness and handoff
+
+When another task continues from this specification, pass its canonical requirement/contract IDs, settled versus proposed decisions, actual authorization, target baseline and pending evidence. Reuse that context without a second interview; keep implementation findings in their owner and reconcile material requirement changes here only within scope.
 
 Assess the next increment as `Not assessed`, `Blocked`, or `Ready for the next increment` using the template's PROCESS checklist. Record assessor, scope, basis, and blockers. For each material gap, say which decision or gate it affects. Record who may authorize the work and its actual authorization separately. An unavailable prerequisite for the selected work can block readiness. A future release check needs a feasible plan before development and actual evidence at its gate.
 

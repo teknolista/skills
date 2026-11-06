@@ -17,6 +17,10 @@ Choose a visual direction tied to the subject, audience and task. Compare refere
 - Use semantic states and theme pairs, evaluate actual contrast including opacity/background images, and support color-independent meaning. Check hover/focus/selected/error states and relevant themes. A token's name or a generated palette does not prove contrast.
 - Distinguish interactive affordances from decoration. Keep focus, selection and disabled states recognizable. Disabled controls should have an understandable prerequisite or alternative; tooltips alone do not explain them to every user.
 
+During critique, temporarily disregard color to inspect whether position, spacing and typography still communicate hierarchy. Check whether containers clarify relationships or merely repeat borders/shadows. For dark themes, deliberately specify surface separation, emphasis, imagery and semantic pairs rather than mechanically inverting light values; pure black, native fonts and familiar components remain valid when suited to the product. Use tabular numerals when aligned changing values benefit from them. These are diagnostic techniques, not mandatory palette ratios, font counts or an aesthetic blacklist.
+
+Keep primitive values distinct from semantic roles and component/state usage when that fits the existing system. A role needs its actual foreground/background partners and usage, not only a pleasing swatch. Reuse the canonical project format; the optional [prototype token format](prototyping.md#token-checks) is an interchange/example for local concepts, not a replacement for existing code tokens. Generate foundation specimens from the same source used by the mock so displayed values cannot silently drift. Record theme-specific exceptions, unsupported formats and unverified combinations explicitly.
+
 ## Icons, imagery and graphics
 
 Use the existing icon family and deliberate size/stroke/fill conventions. Give meaningful controls accessible names; hide redundant decorative graphics from assistive technology. Resolve directional icons for RTL semantically, without mirroring logos, numbers or every image blindly.

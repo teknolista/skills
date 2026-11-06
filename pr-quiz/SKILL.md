@@ -1,0 +1,66 @@
+---
+name: pr-quiz
+description: Create or regenerate a decision-comprehension quiz for a GitHub pull request when explicitly requested. Use for PR quizzes or their optional grading workflow; not code review, security assessment, test validation, or automatic action after creating a PR.
+metadata:
+  version: "1.2.0"
+---
+
+# PR Decision Quiz
+
+Create a review aid about this PR's important design decisions and tradeoffs. This skill owns the quiz artifact only. Use `peer-review` for defect/test-effectiveness assessment and `cybersec` for security assessment; a correct quiz answer is not an independent review, authorization check or proof of software quality.
+
+## Scope and authority
+
+Do not activate merely because a PR exists or was just created. Use only when the user requests a quiz, regeneration or quiz-workflow setup. A request to draft questions permits a local draft/preview, not PR edits, comments, CI installation or branch-protection changes. When publishing is requested, publish the concrete quiz after local validation; do not ask for the same authority again. Work in the target repository and resolve this package's script/assets relative to its actual installed directory.
+
+Never create a PR as a side effect. Resolve the requested number/repository or use `gh pr view --json number,title,baseRefName,headRefName,url` in the actual target checkout. Read the diff and relevant owning contracts. If the requested PR or source is unavailable, report that limit rather than inventing questions.
+
+## Write useful questions
+
+Select the consequential decisions: responsibility boundaries, data ownership, caching/retry/offline policy, DI/navigation wiring, compatibility, rejected alternatives and consumer impact. Scale question count to meaningful distinct decisions (the helper supports 1–10); do not add trivia to reach a quota. Use the current source/diff as evidence; mark an intended-but-unimplemented decision as such rather than teaching the wrong implementation as correct.
+
+Prefer four plausible options of similar length, with exactly one defensible correct answer and a short explanation. The helper accepts 2–6 options for existing callers. Do not test syntax, exact constants, naming trivia, private function control flow or unsupported general knowledge. If two answers are reasonable, clarify the decision or omit the question. If defects are found, report/route them; never disguise a blocker as a comprehension exercise.
+
+Write local JSON:
+
+```json
+{
+  "questions": [
+    {
+      "question": "Why is refresh status separate from the stored notes stream in this change?",
+      "options": ["To retain saved notes when refresh fails", "To bypass storage errors", "To treat any timeout as success", "To make authorization a UI-only check"],
+      "correct": 0,
+      "explanation": "The UI observes saved records while refresh has its own pending/error outcome."
+    }
+  ]
+}
+```
+
+This example is illustrative; use the actual PR's contracts and less obvious distractors where appropriate. Do not place secrets or private records in questions/explanations. The JSON, PR key and failure explanations disclose the answer; base64 is encoding, not secrecy.
+
+## Preview and publish
+
+From the target repository, substitute the installed skill path and actual PR number:
+
+```sh
+python3 /installed/path/pr-quiz/scripts/publish_quiz.py 123 /tmp/quiz.json --dry-run
+python3 /installed/path/pr-quiz/scripts/publish_quiz.py 123 /tmp/quiz.json
+```
+
+Dry-run is local and does not call GitHub. Publishing needs Python, `gh`, a resolved target repository and its actual write permission. The script preserves surrounding PR text and replaces exactly one well-formed quiz block; a regenerated ID invalidates earlier quiz passes. Report the PR URL and question count, without displaying the key as an answer aid.
+
+## Optional grading workflow
+
+Only when setup is requested, inspect [the workflow template](assets/pr-quiz.yml) and adapt it to the target repository's policy. It belongs in `.github/workflows/pr-quiz.yml` there, not as an active workflow in this skill repository. The template handles PR metadata and answer comments through trusted base/default-branch code; it never checks out or executes PR-head code. Do not add head-code checkout, dynamic action code or secrets to this metadata workflow.
+
+The asset pins the official [`github-script` v9.0.0 release](https://github.com/actions/github-script/releases/tag/v9.0.0) to its full commit identity. Check supported runner/runtime and organization policy before adopting or updating it; the action's [migration notes](https://github.com/actions/github-script#breaking-changes) describe Node 24 and runner requirements. Preserve literal rendering of questions/explanations and the separation of bot control markers from editable PR text. Review dependency updates; an immutable pin alone does not establish that its contents are safe. See [GitHub's secure-use guidance](https://docs.github.com/en/actions/reference/security/secure-use).
+
+A pass is bound to quiz ID and current PR head SHA; a new commit requires a new answer. Authors are disallowed by default. Requested individual reviewers or prior reviewers are recognized by the template; team-reviewer and custom-role policies require an explicit adaptation. This is an educational convenience, not a tamper-proof approval system: PR content/answers are editable and the key is public. Enforce genuine review requirements independently.
+
+Past reviewers include users who submitted a review, not only maintainers with write permission. Do not treat this eligibility rule as a trusted authorization boundary. The publisher reads then updates the PR body without a transactional compare-and-swap; avoid concurrent body editors and check the resulting description. For a material handoff, retain the PR/head, quiz ID, draft versus published state and actually tested workflow scope; never carry a quiz pass into a code/security verdict.
+
+The workflow posts a result comment/status only after the user has authorized installing this behavior. A status blocks merge only if the repository's rules actually require it, with applicable permissions, plan support and bypass rules. Do not claim a merge gate from a copied YAML file alone. For fork PRs, use the trusted metadata-event setup without running untrusted head code; private/fork token permissions and organization policies must be checked in the real environment. An API failure or unsupported configuration remains an unverified gate, not a pass.
+
+The template reads pull requests/reviews and writes issue comments and commit statuses; it needs no repository-content write permission or PR-approval permission. Check the target environment's actual [comment API permissions](https://docs.github.com/en/rest/issues/comments#create-an-issue-comment) rather than broadening all token permissions after an API failure.
+
+Inspect current GitHub documentation for changes to event/permission/ruleset behavior: [workflow events](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows), [commit statuses](https://docs.github.com/en/rest/commits/statuses), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).

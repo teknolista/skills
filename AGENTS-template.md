@@ -4,7 +4,7 @@ Repository guidance for AI agents. Apply it within the host's instruction hierar
 
 Replace `[FILL IN]` fields with actual project facts or links. Remove irrelevant entries or mark them `Not applicable` with a reason. Unfilled fields are unknown information, not requirements, commands, or authorization. Resolve only gaps that affect the requested work.
 
-When adopting this template, confirm the target repository root, complete the navigation and authority fields, locate the four installed skills, and discover the real verification commands. Keep unresolved setup facts explicit. Review any existing `AGENTS.md` and scoped guidance before combining them; copying this file does not install skills or supply tools.
+When adopting this template, confirm the target repository root, complete the navigation and authority fields, locate the installed generic owners and any relevant optional helpers, and discover the real verification commands. Keep unresolved setup facts explicit. Review any existing `AGENTS.md` and scoped guidance before combining them; copying this file does not install skills or supply tools.
 
 ## Project Facts and Navigation
 
@@ -24,7 +24,9 @@ Keep detailed requirements, decisions, and runbooks in their authoritative docum
 
 ## Skill Selection and Coordination
 
-Use the project's four skills according to the requested work. Read the selected skill's actual `SKILL.md` and the supporting resources relevant to the task. Resolve resource paths from its installed directory. This table routes work; it does not replace the skill instructions or require running all four skills for every change.
+Skills are tools for the requested outcome, not mandatory stages. Ordinary implementation may use project guidance directly. Carry the target snapshot/variant, canonical contracts, actual authority, completed checks and remaining gaps between material subtasks. Reuse existing decisions; do not start duplicate interviews or create competing requirement/review records. Recheck changed source before reusing evidence from an earlier snapshot.
+
+Use the four generic owners according to the requested work; optional implementation/test helpers have narrower responsibilities. Read the selected skill's actual `SKILL.md` and the supporting resources relevant to the task. Resolve resource paths from its installed directory. This table routes work; it does not replace the skill instructions or require running all four skills for every change.
 
 | Skill | When to use it | Expected result and boundary |
 | --- | --- | --- |
@@ -32,6 +34,8 @@ Use the project's four skills according to the requested work. Read the selected
 | `ui-design` | Specify, refine, review, or implement screens and user flows | Cumulative `docs/ui-design.md`, including partial iterations, unless the request is explicitly read-only or conversation-only. Product-code changes require implementation authority. |
 | `peer-review` | Review implementation changes and relevant tests, or re-review fixes | Evidence-backed findings, checks and coverage limits for the selected snapshot. Review alone does not authorize fixes. Prefer a fresh reviewer when available; disclose self-review and any unmet independence requirement. |
 | `cybersec` | Model threats, assess security controls, implement authorized hardening, or check security readiness | Scoped threats, controls, findings, evidence and residual risks. Save reports when requested or required by the workflow; live testing and security changes need authority for their actual effects. |
+
+Optional native Android helpers, when installed, implement Gradle/modules (`android-module-structure`), data/errors (`android-data-layer`, `android-error-handling`), Koin (`android-di-koin`), background jobs (`android-background`) or automated test authoring (`android-unit-testing`, `android-integration-testing`, `android-ui-testing`). They do not replace the generic owner's specifications or assessment. Android UI procedures are already inside `ui-design`; Android security controls are inside `cybersec`. Use one primary owner for a requested outcome instead of parallel workflows or duplicate verdicts. `pr-quiz` creates a comprehension exercise only when requested; creating a PR does not activate it, and a quiz pass is not review approval. Record actual helper paths only where relevant.
 
 If a needed skill or resource is unavailable, identify the missing capability and complete independent work. Do not claim to have executed an unavailable skill or silently replace a required review with self-approval. Select conditional platform references from the actual project stack; a web, Android or KMP project does not require every platform's guidance.
 

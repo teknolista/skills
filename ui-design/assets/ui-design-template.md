@@ -21,6 +21,8 @@ Audience and tasks, context/input constraints, visual direction and its basis, v
 
 Include relevant layout, color pairs, typography, spacing, shape, icons/assets, motion/reduced-motion, forms, feedback and navigation defaults. Link existing owners. Mark illustrative copy/assets and rights/provenance.
 
+When direction was explored: name the alternatives, representative task/content and meaningful differences; link the chosen/remixed decision and rationale. Keep this optional for settled identities and small changes.
+
 ## Screen index
 
 | Stable ID | Name / purpose | Platform / route | Specification / decision status | Detail |
@@ -64,6 +66,8 @@ Repeat the section for each in-scope screen. Mark consequential unknowns explici
 | --- | --- | --- | --- | --- |
 
 Separate planned checks, source inspection, rendered inspection, interaction tests and actual user research. Record unreviewed areas and remaining material checks.
+
+If prototypes support this iteration, link their editable sources, canonical token owner, generated output and exact screen/state/theme/window routes. Record mocked versus implemented behavior, declared contrast pairs, checked combinations and omissions. Do not duplicate the screen contract in a separate mandatory brief.
 
 ## Iteration record and resume
 
