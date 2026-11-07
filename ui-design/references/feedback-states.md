@@ -23,6 +23,8 @@ For data screens consider first-use empty, no filter matches, completed/cleared 
 
 For editors/actions consider pristine/dirty/invalid, pending submission, rejected result, unknown outcome, cancellation/unsaved work and concurrent changes. Permission/session changes can affect multiple screens: describe shared shell behavior once and screen exceptions where needed. Local data loss, background work and account changes must follow actual product/privacy policy.
 
+For delayed results, specify which screen instance and operation still own the result after navigation, dismissal, or a second submission. A late failure should not move focus into a screen the user left. If a completed action removes the original focus target, choose a logical surviving target and verify the announcement and focus in the actual UI. [W3C modal dialog focus guidance](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/)
+
 For relevant controls inspect default, focus, pressed, selected/toggled, disabled, loading and error appearances. Test meaningful content extremes: zero/one/many records, long words/translated strings, large or negative numbers when valid, badges/tag overflow, missing optional values and failed images with stable dimensions. Specify truncation/access to full content instead of designing only ideal demo data.
 
 ## Reviewable artifacts

@@ -57,19 +57,19 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.6.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.10.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersecurity](#cybersecurity) | 1.5.2 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.3 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
-| [Android modules](android-module-structure/SKILL.md) | 1.2.3 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
-| [Android data](android-data-layer/SKILL.md) | 1.2.3 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
-| [Android errors](android-error-handling/SKILL.md) | 1.2.2 | Implement typed domain/HTTP/storage error handling. |
-| [Android Koin](android-di-koin/SKILL.md) | 1.2.2 | Implement dependency bindings and Android lifetimes. |
-| [Android background](android-background/SKILL.md) | 1.2.2 | Implement durable WorkManager jobs and retries. |
-| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.2 | Author/run/debug isolated logic tests. |
-| [Android integration testing](android-integration-testing/SKILL.md) | 1.2.3 | Author/run/debug non-UI integration tests. |
-| [Android UI testing](android-ui-testing/SKILL.md) | 1.2.2 | Author/run/debug native device/emulator Compose tests. |
-| [PR Quiz](pr-quiz/SKILL.md) | 1.2.1 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
+| [PentaPRO](#pentapro) | 2.6.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Peer Review](#peer-review) | 1.10.1 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Cybersecurity](#cybersecurity) | 1.5.3 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI Design](#ui-design) | 1.5.4 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [Android modules](android-module-structure/SKILL.md) | 1.2.4 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [Android data](android-data-layer/SKILL.md) | 1.2.4 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
+| [Android errors](android-error-handling/SKILL.md) | 1.2.3 | Implement typed domain/HTTP/storage error handling. |
+| [Android Koin](android-di-koin/SKILL.md) | 1.2.3 | Implement dependency bindings and Android lifetimes. |
+| [Android background](android-background/SKILL.md) | 1.2.3 | Implement durable WorkManager jobs and retries. |
+| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.3 | Author/run/debug isolated logic tests. |
+| [Android integration testing](android-integration-testing/SKILL.md) | 1.2.4 | Author/run/debug non-UI integration tests. |
+| [Android UI testing](android-ui-testing/SKILL.md) | 1.2.3 | Author/run/debug native device/emulator Compose tests. |
+| [PR Quiz](pr-quiz/SKILL.md) | 1.2.2 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
 The [routing and consolidation map](SKILL-ROUTING.md) records all 14 source skills. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
 
@@ -182,7 +182,7 @@ After changing host, model, or significant instructions, run the relevant [Penta
 
 ## PentaPRO
 
-**Version:** 2.6.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.6.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PentaPRO when defining a product, specifying a substantial feature, maintaining an existing PentaPRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -263,7 +263,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.10.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Version:** 1.10.1 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -354,7 +354,7 @@ Load the review method and applicable references. Source research and evaluation
 
 ## Cybersecurity
 
-**Version:** 1.5.2 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Version:** 1.5.3 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
 Use Cybersecurity for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
@@ -415,7 +415,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 ## UI Design
 
-**Version:** 1.5.3 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
+**Version:** 1.5.4 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
 Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
@@ -482,7 +482,7 @@ Implementation results are source/configuration changes and proportionate execut
 
 Example: `Use $pr-quiz to draft a quiz about the caching and retry decisions in PR 123.` Drafting stays local; publishing requires the requested PR-edit scope. The [Python helper](pr-quiz/scripts/publish_quiz.py) previews with `--dry-run` without GitHub access, then can preserve surrounding PR text while publishing through `gh` when authorized. Resolve its installed path in the target repository.
 
-The [optional workflow asset](pr-quiz/assets/pr-quiz.yml) grades through trusted GitHub metadata events, without running PR-head code. It is not installed as an active workflow here. Authors are ineligible by default; passes bind to quiz ID and head SHA. Adapt reviewer/team policy, reviewed action pinning, token permissions and actual repository rules before enabling it. Merge queues/custom policies need their own integration checks. The answer key is public encoding, so this is not a security or tamper-proof approval boundary. Test setup in a controlled repository before relying on a required status.
+The [optional workflow asset](pr-quiz/assets/pr-quiz.yml) grades through trusted GitHub metadata events, without running PR-head code. It is not installed as an active workflow here. Authors are ineligible by default; passes bind to the quiz content, ID and head SHA. Comment answers use the current revision token shown in the pending status. Review team policy, the pinned action, and token permissions before enabling the template. Keep its commit status informational because PRs can share the same commit SHA. Use repository review requirements for merge authorization.
 
 Offline maintainer checks: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s pr-quiz/scripts/tests -v` and `node pr-quiz/scripts/tests/workflow.cjs`. They exercise rendering/body preservation and the actual embedded grader with API doubles; they do not validate a live GitHub deployment or branch rule.
 

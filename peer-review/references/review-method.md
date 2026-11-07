@@ -80,6 +80,8 @@ When related changes or a moving base affect the same behavior, inspect their se
 
 Maintainability findings need a named consequence: an invariant that can diverge, an incompatible extension point, a concrete maintenance hazard, or a demonstrated unnecessary mechanism. Code smells, file length, naming taste, and a different preferred framework are prompts to investigate, not standalone blockers. Do not demand new product behavior under a claim of reasonable user expectations; identify the existing contract or ask a material question.
 
+If a change introduces an unfamiliar API or configuration key, trace it to the installed version's definition or a verified consumer, then check what happens if it is ignored or unsupported. If implementation and tests introduce the same new assumption, check the expected result against the independent contract before accepting their agreement. Apply these checks regardless of who produced the change.
+
 ## Trace one behavior at a time
 
 For a consequential changed behavior, write a short working trace with source locations. This can remain in review notes and need not become a report section.

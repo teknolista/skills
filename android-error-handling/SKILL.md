@@ -2,16 +2,16 @@
 name: android-error-handling
 description: Implement or debug typed results and expected domain, HTTP and storage error mapping in native Android Kotlin code. Use for concrete error-handling changes; use peer-review for read-only assessment and ui-design for user-facing error interaction design.
 metadata:
-  version: "1.2.2"
+  version: "1.2.3"
 ---
 
 # Android Error Handling
 
-Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+## Start with the target project
 
-Before running project commands, inspect the relevant build/test scripts, plugins, hooks, configured endpoints and inherited credentials. Choose checks within the authorized scope; use isolated fixtures or test accounts when effects are possible. A task named test, lint or build can still contact shared services or publish artifacts. Reuse existing authorization, but do not treat a validation request as permission for deployment or destructive operations.
-
-Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
+1. Identify the owning module, active variant, observable contract, and requested change. Reuse its stack and types. Adapt examples only after checking the resolved APIs and existing call sites. If a linked companion is unavailable, use the project contract.
+2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
+3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
 Use native Android/JVM APIs and the project's selected library versions. Domain error types remain plain Kotlin. Expected failures have typed outcomes; programming defects should remain visible. Preserve coroutine cancellation. See [data ownership](../android-data-layer/SKILL.md) and [UI error rendering](../ui-design/references/android/presentation-mvi.md).
 
@@ -135,7 +135,7 @@ suspend inline fun <reified T : Any> responseToResult(
 
 This is an Android Ktor/OkHttp example, not a promise that all engines and versions expose identical exception classes. Confirm the installed API when adapting imports. Handle additional **known** transport exceptions at this boundary; avoid a catch-all that turns programmer errors into successful control flow. DNS failure does not prove that the entire device is offline; use an appropriately worded message. Do not expose raw exceptions, backend bodies, stack traces, or credentials to users.
 
-Use standard Ktor request functions rather than overloads named `get`/`post` that can resolve ambiguously. Configure a trusted HTTPS base URL once with Ktor's URL builder; define whether routes are relative to its path prefix. Avoid string concatenation and `contains(BASE_URL)` checks. Test leading/trailing slashes, path parameters, queries, and any permitted absolute URLs. Attach credentials only to approved hosts.
+Use standard Ktor request functions rather than overloads named `get`/`post` that can resolve ambiguously. Configure a trusted HTTPS base URL once with Ktor's URL builder; define whether routes are relative to its path prefix. Avoid string concatenation and `contains(BASE_URL)` checks. Test leading/trailing slashes, path parameters, queries, and any permitted absolute URLs. Apply the approved origin and credential policy to the final request and each redirect hop. In a controlled fixture, inspect destination and headers after a cross-origin redirect. Reject an invalid TLS certificate without weakening trust checks.
 
 ```kotlin
 import io.ktor.client.request.get
@@ -152,7 +152,7 @@ For a bodyless endpoint request `safeCall<Unit> { ... }`; do not attempt to deco
 
 Catch storage-specific exceptions in the data layer, rethrow cancellation, and map the actual driver's known failures. `android.database.sqlite.SQLiteFullException` applies to the Android framework driver; a different SQLite driver can expose different exceptions. Do not classify every database failure as disk-full, nor catch arbitrary defects as storage errors.
 
-Map each user-visible domain error to native `R.string.*` in the owning presentation module, using `UiText`. Keep feature-only errors local; put shared mappings in `core:presentation`. Internal retry signals need no user-facing string. Keep logs useful and redacted; do not use unconditional `printStackTrace()` as production logging.
+Map each user-visible domain error to localized text in its presentation owner. Reuse existing conventions such as `R.string.*`, `UiText` or a shared presentation module when present. Internal retry signals need no user-facing string. Keep logs useful and redacted; do not use unconditional `printStackTrace()` as production logging.
 
 ## Verify
 
@@ -160,8 +160,10 @@ Exercise status mapping, DNS/connection/timeout failures, malformed success JSON
 
 Sources: [Ktor response validation](https://ktor.io/docs/client-response-validation.html), [Android coroutine practices](https://developer.android.com/kotlin/coroutines/coroutines-best-practices).
 
+A bodyless success needs its own supported response contract. An HTTP 202 response acknowledges acceptance for processing. Verify the final operation state through the documented completion path before showing a completed result.
+
 ## Failure classification and retry contract
 
-TLS trust/hostname failures are security/configuration failures, not evidence that the device is offline. Do not bypass trust checks or retry them indefinitely. A 429 or 503 may need Retry-After/backoff, but only the owning operation can decide retry safety. A POST timeout can have an unknown server outcome: use a supported status/idempotency contract before resubmitting. Do not parse arbitrary server text into actionable HTML or display it as a trusted localized error.
+TLS trust/hostname failures are security/configuration failures, not evidence that the device is offline. Do not bypass trust checks or retry them indefinitely. Keep retry policy with the operation. If it honors Retry-After on 429 or 503, preserve the needed response metadata before mapping to an enum, bound the delay, and handle absent or invalid values. Check for retries in every layer so a worker, repository, and HTTP client do not multiply each other’s attempts. A POST timeout can have an unknown server outcome: use a supported status/idempotency contract before resubmitting. Do not parse arbitrary server text into actionable HTML or display it as a trusted localized error.
 
 The sample helper models small buffered responses; streaming responses need lifetime/cleanup and cancellation handling appropriate to their body channel. Do not return a Response stream after closing its client/request scope. Preserve original cancellation rather than converting it into UNKNOWN.

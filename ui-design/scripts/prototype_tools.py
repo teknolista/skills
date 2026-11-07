@@ -18,6 +18,9 @@ THRESHOLDS = {"text": 4.5, "large-text": 3.0, "nontext": 3.0}
 IDENT = re.compile(r"^[A-Za-z][A-Za-z0-9_-]*$")
 HEX = re.compile(r"^#(?:[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$")
 INCLUDE = re.compile(r"<!--\s*include:\s*(\S+)\s*-->")
+MAX_FRAGMENT_DEPTH = 32
+MAX_FRAGMENT_READS = 512
+MAX_FRAGMENT_BYTES = 2 * 1024 * 1024
 
 
 class Invalid(ValueError):
@@ -82,17 +85,28 @@ def contrast(foreground, background):
 def load_tokens(path):
     data = read_json(path)
     primitives = object_of(data.get("primitives", {}), "primitives")
-    def resolve(value, stack=()):
-        if isinstance(value, str) and value.startswith("{") and value.endswith("}"):
+    resolved_primitives = {}
+
+    def resolve(value):
+        path = {}
+        while isinstance(value, str) and value.startswith("{") and value.endswith("}"):
             key = name(value[1:-1], "primitive reference")
             require(key in primitives, f"missing primitive {key}")
-            require(key not in stack, f"cyclic primitive reference: {' -> '.join(stack + (key,))}")
-            return resolve(primitives[key], stack + (key,))
+            if key in resolved_primitives:
+                value = resolved_primitives[key]
+                break
+            if key in path:
+                raise Invalid(f"cyclic primitive reference: {' -> '.join([*path, key])}")
+            path[key] = None
+            value = primitives[key]
         color(value)
-        return value.lower()
-    for key, value in primitives.items():
+        normalized = value.lower()
+        resolved_primitives.update(dict.fromkeys(path, normalized))
+        return normalized
+
+    for key in primitives:
         name(key, "primitive name")
-        resolve(value, (key,))
+        resolve(f"{{{key}}}")
     themes = object_of(data.get("themes"), "themes")
     require(bool(themes), "at least one theme is required")
     resolved = {}
@@ -141,12 +155,28 @@ def local_path(root, parent, relative):
     return path
 
 
-def expand(root, path, stack=(), consumed=None):
-    require(path not in stack, f"include cycle at {path}")
-    if consumed is not None:
-        consumed.add(path)
-    value = path.read_text(encoding="utf-8")
-    return INCLUDE.sub(lambda m: expand(root, local_path(root, path.parent, m[1]), stack + (path,), consumed), value)
+class FragmentReader:
+    def __init__(self, root, consumed):
+        self.root = root
+        self.consumed = consumed
+        self.reads = 0
+        self.remaining_bytes = MAX_FRAGMENT_BYTES
+
+    def expand(self, path, stack=()):
+        require(path not in stack, f"include cycle at {path}")
+        require(len(stack) < MAX_FRAGMENT_DEPTH, f"fragment nesting exceeds {MAX_FRAGMENT_DEPTH} files")
+        require(self.reads < MAX_FRAGMENT_READS, f"build exceeds {MAX_FRAGMENT_READS} fragment reads")
+        self.reads += 1
+        self.consumed.add(path)
+        with path.open("rb") as source:
+            raw = source.read(self.remaining_bytes + 1)
+        require(len(raw) <= self.remaining_bytes, f"build exceeds {MAX_FRAGMENT_BYTES} bytes of fragment input")
+        self.remaining_bytes -= len(raw)
+        value = raw.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        return INCLUDE.sub(
+            lambda match: self.expand(local_path(self.root, path.parent, match[1]), stack + (path,)),
+            value,
+        )
 
 
 def safe_css(value):
@@ -212,6 +242,7 @@ def build(manifest, output):
     require(isinstance(language, str) and re.fullmatch(r"[A-Za-z0-9-]+", language), "invalid document language")
     token_path = local_path(root, root, data.get("tokens"))
     consumed = {manifest, token_path}
+    fragments = FragmentReader(root, consumed)
     tokens, report = load_tokens(token_path)
     require(all(row["passed"] for row in report), "declared contrast pair failed; inspect check output")
     widths = data.get("widths", [360, 840])
@@ -221,7 +252,7 @@ def build(manifest, output):
     require(len(set(widths)) == len(widths), "duplicate widths")
     styles = data.get("css", [])
     require(isinstance(styles, list), "css must be a list of local files")
-    css = "\n".join(safe_css(expand(root, local_path(root, root, entry), consumed=consumed)) for entry in styles)
+    css = "\n".join(safe_css(fragments.expand(local_path(root, root, entry))) for entry in styles)
     screens = data.get("screens")
     require(isinstance(screens, list) and bool(screens), "screens must be a nonempty list")
     entries, ids, links, targets, screen_ids = [], [], [], [], set()
@@ -241,7 +272,7 @@ def build(manifest, output):
             route = sid + "/" + name(state.get("id"), "state id")
             require(route not in [e["route"] for e in entries], f"duplicate route {route}")
             label, trigger = text(state.get("label"), "state label"), text(state.get("trigger"), "state trigger")
-            markup = expand(root, local_path(root, root, state.get("html")), consumed=consumed)
+            markup = fragments.expand(local_path(root, root, state.get("html")))
             parser = Markup()
             parser.feed(markup)
             require(all(target in parser.dialogs for target in parser.openers), f"dialog target missing from {route}")

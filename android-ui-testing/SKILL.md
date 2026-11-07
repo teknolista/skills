@@ -2,16 +2,16 @@
 name: android-ui-testing
 description: Author, run or debug automated native Android Compose interaction tests on devices/emulators. Use for UI-test implementation; use ui-design for screen design, usability/accessibility critique or visual acceptance, and peer-review for independent code/test review.
 metadata:
-  version: "1.2.2"
+  version: "1.2.3"
 ---
 
 # Android Compose UI Testing
 
-Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+## Start with the target project
 
-Before running project commands, inspect the relevant build/test scripts, plugins, hooks, configured endpoints and inherited credentials. Choose checks within the authorized scope; use isolated fixtures or test accounts when effects are possible. A task named test, lint or build can still contact shared services or publish artifacts. Reuse existing authorization, but do not treat a validation request as permission for deployment or destructive operations.
-
-Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
+1. Identify the owning module, active variant, observable contract, and requested change. Reuse its stack and types. Adapt examples only after checking the resolved APIs and existing call sites. If a linked companion is unavailable, use the project contract.
+2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
+3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
 Use native AndroidX Compose UI testing and `AndroidJUnitRunner` under `src/androidTest` for real Android behavior. Read [unit testing](../android-unit-testing/SKILL.md) for isolated logic and [integration testing](../android-integration-testing/SKILL.md) for non-UI storage/network boundaries.
 
@@ -41,7 +41,7 @@ Cover relevant rotation/recreation, state save/restore, system back versus toolb
 
 ## Selectors and native resources
 
-Prefer visible text or meaningful semantics for accessible user actions. Use `contentDescription` for non-text icons/images; do not add descriptions to already labeled text just for tests. Use a test tag when repeated/dynamic content or a stable container cannot be identified reliably through user-facing semantics. Scope selectors to a parent or refine matchers for duplicate labels; don't force an ambiguous text selector.
+Prefer visible text or meaningful semantics for accessible user actions. Use localized `contentDescription` for informative graphics or otherwise unlabeled icon controls. Use `null` for purely decorative graphics and avoid duplicating existing labels. Assert the accessible action and name at the owning control. [Compose accessibility defaults](https://developer.android.com/develop/ui/compose/accessibility/api-defaults) Use a test tag when repeated/dynamic content or a stable container cannot be identified reliably through user-facing semantics. Scope selectors to a parent or refine matchers for duplicate labels; don't force an ambiguous text selector.
 
 ```kotlin
 // With a rule that exposes the Android host Activity:
@@ -86,6 +86,6 @@ Sources: [Compose testing](https://developer.android.com/develop/ui/compose/test
 
 ## Check input routing and effective configuration
 
-Drive real pointer/keyboard/semantics actions, not direct calls to onClick or assignment of a field's backing variable. Assert disabled/loading controls cannot submit a duplicate operation. Keep accessible selectors and test data deterministic across locales; using resource IDs avoids copy drift but does not itself test localization, RTL or TalkBack.
+Drive real pointer/keyboard/semantics actions, not direct calls to onClick or assignment of a field's backing variable. Hold the first submission pending with a controlled fake, attempt a second activation through the affected input route, and assert the observable operation count. Use touch or keyboard events when hit-testing, overlays, or focus are the behavior under test. A semantics invocation alone does not exercise pointer routing. Keep accessible selectors and test data deterministic across locales; using resource IDs avoids copy drift but does not itself test localization, RTL or TalkBack.
 
 Test protected screens/deep links under an unauthorized fixture and after a session change. Inspect release-effective permissions and manifest settings separately from a debug test Activity. Keep screenshots and failure artifacts free of real credentials/private records. Passing a Compose semantics assertion is not a screen-reader session or a security assessment.

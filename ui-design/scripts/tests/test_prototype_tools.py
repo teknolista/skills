@@ -35,6 +35,28 @@ class PrototypeTests(unittest.TestCase):
     def run_cli(self, *args):
         return subprocess.run([sys.executable, str(SCRIPT), *map(str, args)], text=True, capture_output=True)
 
+    def test_fragment_limits_preserve_existing_output(self):
+        for i in range(TOOL.MAX_FRAGMENT_DEPTH):
+            (self.example / f"depth-{i}.html").write_text(f"<!-- include: depth-{i + 1}.html -->")
+        (self.example / f"depth-{TOOL.MAX_FRAGMENT_DEPTH}.html").write_text("<p>End</p>")
+
+        fragment = self.example / "notes.html"
+        partial = self.example / "partial.html"
+        partial.write_text("<p>Repeated fragment</p>")
+        self.output.write_text("previous preview")
+        for markup, error in [
+            ("<!-- include: depth-0.html -->", "fragment nesting exceeds"),
+            ("<!-- include: partial.html -->" * TOOL.MAX_FRAGMENT_READS, "fragment reads"),
+            (" " * (TOOL.MAX_FRAGMENT_BYTES + 1), "bytes of fragment input"),
+        ]:
+            with self.subTest(error=error):
+                fragment.write_text(markup)
+                result = self.run_cli("build", self.manifest, self.output)
+                self.assertEqual(1, result.returncode)
+                self.assertIn(error, result.stderr)
+                self.assertNotIn("Traceback", result.stderr)
+                self.assertEqual("previous preview", self.output.read_text())
+
     def assert_bad_tokens(self, mutation):
         self.edit(self.tokens, mutation)
         result = self.run_cli("check", self.tokens)
@@ -73,6 +95,19 @@ class PrototypeTests(unittest.TestCase):
         self.assert_bad_tokens(lambda t: t.update(primitives={"paper": "{ink}", "ink": "{paper}"}))
         self.tokens.write_text((ASSETS / "tokens.json").read_text())
         self.assert_bad_tokens(lambda t: t["themes"]["light"].update(surface="{absent}"))
+
+    def test_long_acyclic_alias_chain_resolves(self):
+        length = sys.getrecursionlimit() + 10
+        primitives = {f"p{i}": f"{{p{i + 1}}}" for i in range(length)}
+        primitives[f"p{length}"] = "#ffffff"
+        self.tokens.write_text(json.dumps({
+            "primitives": primitives,
+            "themes": {"light": {"fg": "#000000", "bg": "{p0}"}},
+            "pairs": [{"fg": "fg", "bg": "bg", "use": "text"}],
+        }))
+        result = self.run_cli("check", self.tokens)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual(21.0, json.loads(result.stdout)["pairs"][0]["ratio"])
 
     def test_example_build_is_local_and_exposes_routes_foundations(self):
         result = self.run_cli("build", self.manifest, self.output)

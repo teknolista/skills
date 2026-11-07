@@ -144,6 +144,8 @@ Set `applicationId`, namespace, version, signing, and app-specific dependencies 
 
 ## Room convention and feature use
 
+This example targets Room 2.x. For a project already using Room 3, inspect the resolved `androidx.room3` artifacts, plugin and driver-specific migration APIs before adapting it. [Room 2 to 3 migration guide](https://developer.android.com/training/data-storage/room/migration-2-to-3)
+
 `app.android.room.gradle.kts`:
 
 ```kotlin

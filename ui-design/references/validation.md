@@ -29,6 +29,8 @@ For runtime checks, reuse the existing harness and record a compact recipe: buil
 
 Capture the action and resulting state, not only a final screenshot or an internal handler call. Where persistence is promised, verify through the contract's supported read-back or re-entry path so a cached optimistic result cannot masquerade as a saved record. Mark alternate entry points and inaccessible prerequisites as pending coverage. A source/harness mismatch may be stale automation or a product regression; establish the intended contract before changing either.
 
+For a changed form or other consequential interaction, verify the recovery path with a concrete input and actor. For example, submit invalid data by keyboard, observe which field and message are exposed, correct it without losing unrelated input, then confirm the resulting state. Where relevant, test an asynchronous error or permission denial as a separate case. Record viewport, zoom/text scaling, locale and assistive technology actually exercised. Automated semantics and a successful render leave manual reading order, announcements and task completion unverified.
+
 ## Evidence record and stopping
 
 Record target revision or local snapshot, screen/state, environment and tool, action, expected and observed result, pass/fail/not-run and artifact reference. Separate `planned`, `source-inspected`, `rendered-inspected`, `interaction-tested` and `user-tested` evidence. Scope claims to the checks actually performed.

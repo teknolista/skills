@@ -3,7 +3,7 @@ name: peer-review
 description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for reviews of backend, frontend, Android, or test code, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.10.0"
+  version: "1.10.1"
 ---
 
 # Peer Review
@@ -41,7 +41,7 @@ Cross-platform changes may need multiple domain references. Read relevant sectio
 2. **Capture and inspect the snapshot.** Record actual revisions/local content and exclusions. Distinguish the index from working files when they differ; staged-only review evaluates the content that would be committed. Map changed files and their purpose, then use [risk triggers](references/review-method.md#choose-proportionate-depth) to prioritize tracing and required expertise. Read every in-scope human-written change plus necessary guards, callers, and consumers; inspect generators and relevant output for generated changes. A committed comparison omits local work unless expressly included.
 3. **Trace consequences.** Check intended behavior and established engineering constraints. Follow one changed behavior from entry point through guards, effects, and consumers using the method's [behavior trace](references/review-method.md#trace-one-behavior-at-a-time). Include meaningful failures, concurrency, cancellation, and compatibility.
 4. **Examine evidence.** Establish the [applicable automated checks](references/verification.md#establish-automated-check-evidence) and project gates; reuse matching evidence or run safe checks. Review in-scope test code and the tests relied on for changed behavior, including discovery, setup, assertion execution, expected results, and sensitivity to realistic defects. Distinguish local execution, matching CI evidence, and unverified author claims. Green automation does not establish contractual correctness; failed or unavailable checks retain their actual gate consequences.
-5. **Challenge candidates.** Verify reachable triggers, existing protections, baseline behavior, and impact. Try to disprove each issue, including suggestions from other reviewers. Deduplicate root causes; separate questions, optional ideas, and unrelated pre-existing defects.
+5. **Challenge candidates.** State a concrete trigger and observable failure for each candidate. Read the guard or consumer that could disprove it. If a necessary premise stays unknown, report the specific evidence gap. Try to disprove each issue, including suggestions from other reviewers. Deduplicate root causes; separate questions, optional ideas, and unrelated pre-existing defects.
 6. **Report the current result.** Recheck snapshot freshness. Give prioritized findings, agreed scope/coverage, evidence and limitations, independence status, and a defensible verdict. Follow the method's finding contract. Do not claim execution, full coverage, or a selected model without evidence.
 
 Use coherent passes for large changes and track remaining coverage. If context or output is truncated, preserve the snapshot, inspected and pending surfaces, candidate evidence, and unresolved premises before continuing. Reopen the relevant source when resuming. Match depth to risk and budget and disclose sampling.

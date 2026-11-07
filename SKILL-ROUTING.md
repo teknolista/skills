@@ -39,6 +39,8 @@ There are **13 discoverable skills**: four generic owners, eight native Android 
 ## Boundaries in common requests
 
 - “Review the requirements, design and handoff in these five pillar files” → PentaPRO. “Review the implementation against those requirements” → Peer Review.
+- “Specify an API migration and its recovery plan” → PentaPRO with the service/API profiles. “Review whether old clients survive the migration” → Peer Review with the backend reference. “Assess cross-tenant access in the API” → Cybersecurity with web/API controls.
+- “Design and implement the approved browser form” → UI Design with the web reference. The backend behavior stays with the project's existing contract and implementation workflow.
 - “Review this Android PR and its tests” → Peer Review with Android/test references. Do not activate a test-writing workflow or modify source from that review request.
 - “Implement retry on this Compose screen” → UI Design with its Android presentation/component procedures; use data/background helpers only for actual subordinate code changes.
 - “Write a Room migration test” → Android integration testing. “Are these migration tests meaningful?” → Peer Review.
@@ -59,6 +61,8 @@ When contracts disagree, identify the actual conflicting records and status/auth
 Project-selected specification and tracking tools retain their canonical records. The five PentaPRO pillars may index external requirement/task artifacts instead of duplicating them; the UI contract links the governing behavior rather than defining a competing business policy. A proposed change, an implemented branch and the deployed baseline are distinct states even when they share a capability ID.
 
 ## Validation scope
+
+For a model or host comparison, pin the skill revision, fixture and starting state. Use the same task, available tools, permissions and budget for the baseline and skill-assisted runs. Supply both matching and non-matching requests, including a case with a missing reference or a misleading tool result. Keep expected outcomes separate from reviewer inputs. Score the selected owner, observable output, preserved files, actual effects and accuracy of evidence claims. Record runs and failures by model/host, and keep structural checks separate from these results.
 
 Inspect descriptions and entrypoint boundaries against the cases above whenever adding a skill. Structural checks can establish unique names, linked resources and absence of retired entrypoints, but cannot guarantee identical automatic routing across models/hosts. Run representative tasks on the actual intended host/model before claiming reliable activation or comparative quality. The PR quiz helper/workflow has offline behavioral tests; its template is not installed as an active repository workflow by this integration.
 
@@ -93,3 +97,11 @@ Concrete corrections: PentaPRO indexes project-selected canonical requirement/ch
 Executed closure checks: all 13 skill validators, README/template version alignment, repository-local Markdown links/anchors, YAML parsing and `git diff --check` passed. The UI helper passed 22 Python tests; the PR publisher passed 10 Python tests; the actual embedded workflow passed 19 offline scenarios. New ambiguous-JSON/numeric regressions failed before their fixes and passed afterward. Compiled Kotlin/SQLite checks reproduced wildcard and REPLACE counterexamples, passed seven literal-query cases, and retained seven orchestration groups plus four concurrency/fake checks with real coroutines.
 
 A fresh PentaPRO forward trial updated only five pillar files in a disposable project, retained canonical OpenSpec records and honest readiness/evidence states, and preserved the other seven files by SHA-256 comparison. Its package evaluation file records the actual scope. This adds one bounded workflow observation, not evidence of smaller-model quality or automatic activation across hosts. No consuming Android app/build, generated Room DAO, device/assistive-technology run, deployed service or live GitHub permission test was performed.
+
+### Final maintenance pass — 2026-11-07
+
+Reviewed all 13 entrypoints and the pending changes. The Android helpers put project, contract, and verification decisions before examples. The generic skills sharpen the traces for durable writes, uncertain outcomes, review evidence, delayed UI results, and authorization at the actual tool effect.
+
+The offline PR Quiz review reproduced stale checkbox and comment submissions and a hidden key pointing to a removed option. The grader now checks the event head or comment revision token, rejects invalid visible option/key combinations, and confirms the current revision before writing a new pass. Bare comment commands from the earlier template need the current token. The prototype checker now resolves long alias chains iteratively and bounds recursive fragment expansion.
+
+All 13 packages passed structural validation. The UI helper passed 24 Python tests, the PR publisher passed 12 Python tests, and the actual embedded grader passed 25 offline scenarios with GitHub API doubles. In a disposable project, a separate PentaPRO trial produced five linked drafts, preserved all three existing files, and recorded blocked readiness for a proposed inventory API retry contract. The Peer Review trial and PentaPRO trial used the same model as this maintenance pass. Smaller models, consuming Android apps, and a hosted GitHub workflow were outside these checks.

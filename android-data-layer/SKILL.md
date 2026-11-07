@@ -2,16 +2,16 @@
 name: android-data-layer
 description: Implement or debug native Android repositories, Ktor/OkHttp clients, Room persistence, DataStore and synchronization. Use for data-layer code changes; use peer-review for independent assessment and cybersec for security audits.
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
 ---
 
 # Android Data Layer
 
-Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+## Start with the target project
 
-Before running project commands, inspect the relevant build/test scripts, plugins, hooks, configured endpoints and inherited credentials. Choose checks within the authorized scope; use isolated fixtures or test accounts when effects are possible. A task named test, lint or build can still contact shared services or publish artifacts. Reuse existing authorization, but do not treat a validation request as permission for deployment or destructive operations.
-
-Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
+1. Identify the owning module, active variant, observable contract, and requested change. Reuse its stack and types. Adapt examples only after checking the resolved APIs and existing call sites. If a linked companion is unavailable, use the project contract.
+2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
+3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
 Use Android libraries and standard `src/main`, `src/test`, and `src/androidTest` directories. Domain contracts are Kotlin/JVM code without Android framework dependencies. See [module ownership](../android-module-structure/SKILL.md), [typed errors](../android-error-handling/SKILL.md), and [Koin wiring](../android-di-koin/SKILL.md).
 
@@ -34,9 +34,9 @@ Enable verbose logging only in debug builds and sanitize authorization/cookie he
 
 ## Authentication and DataStore
 
-Use Ktor bearer authentication with injected token storage, bounded refresh, and explicit session invalidation. Serialize concurrent refreshes or use the selected plugin version's coordination; test concurrent 401s, rejected refresh, logout during refresh, and stale responses. Avoid recursion when the refresh call itself receives 401. Restrict token transmission to intended hosts.
+Use Ktor bearer authentication with injected token storage, bounded refresh, and explicit session invalidation. Serialize concurrent refreshes or use the selected plugin version's coordination; test concurrent 401s, rejected refresh, logout during refresh, and stale responses. Avoid recursion when the refresh call itself receives 401. Apply the approved origin and credential policy at every redirect hop, including credentials attached by an interceptor. Disable automatic redirects for authenticated requests if the installed client cannot enforce that policy. Test the actual destination and headers with synthetic credentials on controlled endpoints.
 
-DataStore persists small preferences/settings. It does not by itself establish an encrypted credential vault. Choose credential protection from the threat model; Android Keystore protects cryptographic keys, not arbitrary strings. Never describe APK constants or `local.properties` as protection for backend secrets.
+DataStore persists small preferences/settings. It does not by itself establish an encrypted credential vault. Choose credential protection from the threat model; Android Keystore protects cryptographic keys, not arbitrary strings. Never describe APK constants or `local.properties` as protection for backend secrets. Decide which credential artifacts can be backed up or transferred, what happens when restored data cannot be decrypted or its session was revoked, and when reauthentication is required. Verify backup rules and logout/restore behavior for the supported environments.
 
 Keep **one DataStore instance per file per process**. A top-level Android delegate is a simple native construction:
 
@@ -47,13 +47,13 @@ import androidx.datastore.preferences.preferencesDataStore
 val Context.sessionDataStore by preferencesDataStore(name = "session")
 ```
 
-Provide `androidContext().sessionDataStore` as a Koin singleton. Do not also create a second factory instance for that file. For multiple processes, explicitly choose the supported multiprocess API and use it consistently. Keep stored values immutable, handle corruption according to a documented recovery policy, and use transactional updates for related fields.
+If the project uses Koin, it can provide `androidContext().sessionDataStore` as a singleton. Reuse the existing owner in other setups. Do not also create a second factory instance for that file. For multiple processes, explicitly choose the supported multiprocess API and use it consistently. Keep stored values immutable, handle corruption according to a documented recovery policy, and use transactional updates for related fields.
 
 ## Room setup and storage errors
 
-Place a shared database in `:core:database`; use `:feature:<name>:database` only when independent ownership justifies it. Keep entities, DAOs, the database class, exported schemas, and migrations together. Data modules depend on that database module; presentation does not access DAOs directly.
+Keep a shared database with its existing owner. For example, `:core:database` can own shared data and a feature database can remain with an independently owned feature. Keep entities, DAOs, the database class, exported schemas, and migrations together. Data modules depend on that database module; presentation does not access DAOs directly.
 
-Use `androidx.room:room-runtime`, the Room compiler through KSP, and `androidx.room`'s Gradle plugin with `schemaDirectory(...)`. Match compiler/runtime/plugin versions and commit exported schemas. Construct a singleton with `Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app.db")`. No generated-constructor abstraction is required. Prefer suspend DAO operations and observable `Flow` queries; do not enable main-thread queries in production.
+For a project on Room 2.x, use `androidx.room:room-runtime`, the Room compiler through KSP, and `androidx.room`'s Gradle plugin with `schemaDirectory(...)`. Match compiler/runtime/plugin versions and commit exported schemas. Construct a singleton with `Room.databaseBuilder(applicationContext, AppDatabase::class.java, "app.db")`. No generated-constructor abstraction is required. Prefer suspend DAO operations and observable `Flow` queries; do not enable main-thread queries in production.
 
 Catch only known storage failures when a typed result is required. Rethrow `CancellationException` before broader catches. A flow query can also fail during collection: define whether that failure is propagated or materialized as state, rather than silently completing or reporting an empty database.
 
@@ -113,5 +113,7 @@ Sources: [Room migrations](https://developer.android.com/training/data-storage/r
 Scope the repository and its local source to one account/tenant. Serialize competing refresh commits or compare request/version identities so a slow response cannot overwrite newer data. For the simple repository example, a single instance serializes refreshes; this is not cross-process synchronization. Before committing, verify that the captured session is still current. Test logout during a request and account switches with pending writes.
 
 Bind queries and writes to the captured account's storage key/database. A session check followed by a suspending write to a shared “current account” store still has a race. Coordinate the check and commit with session replacement at the actual writer boundary, or keep storage strictly account-partitioned and prevent stale results from becoming visible. A Mutex protects only participants using that same lock; logout, another repository instance or another process is not automatically covered. The sample above omits session policy and must not be presented as a complete multi-account implementation.
+
+For an outbox, persist the local change and pending operation together when they must survive process loss as a unit. A worker can crash after the server accepts a mutation and before the outbox row is acknowledged. Verify replay with the same operation ID and preserve pending edits during refresh.
 
 Validate DTO domain constraints after decoding; well-formed JSON can still contain invalid IDs, amounts or sizes. Bound pagination, response/media sizes and in-memory accumulation. Do not interpolate external strings into SQL or filesystem paths. See [security boundaries](../cybersec/references/android-controls.md) for credential hosts, backups, file sharing and account-scoped caches.

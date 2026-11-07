@@ -2,18 +2,18 @@
 name: android-module-structure
 description: Implement native Android/Kotlin JVM module boundaries, Gradle conventions and build configuration in an existing or authorized project. Use for concrete module/build changes; use penta-pro for requirements, architecture proposals and readiness specifications, and peer-review for read-only code review.
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
 ---
 
 # Native Android Module Structure
 
-Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+## Start with the target project
 
-Before running project commands, inspect the relevant build/test scripts, plugins, hooks, configured endpoints and inherited credentials. Choose checks within the authorized scope; use isolated fixtures or test accounts when effects are possible. A task named test, lint or build can still contact shared services or publish artifacts. Reuse existing authorization, but do not treat a validation request as permission for deployment or destructive operations.
+1. Identify the owning module, active variant, observable contract, and requested change. Reuse its stack and types. Adapt examples only after checking the resolved APIs and existing call sites. If a linked companion is unavailable, use the project contract.
+2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
+3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
-Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
-
-Build Android applications with `com.android.application`, Android libraries with `com.android.library`, and framework-free modules with `org.jetbrains.kotlin.jvm`. Use Jetpack Compose and AndroidX artifacts. Project/source-set boundaries are Android and JVM: `src/main`, `src/test`, `src/androidTest`, and Android build variants.
+For new native modules, use `com.android.application` for apps, `com.android.library` for Android libraries, and `org.jetbrains.kotlin.jvm` for framework-free Kotlin modules. Match the app’s existing UI toolkit, variants, dependency injection and resource ownership.
 
 ## Choose boundaries from ownership
 
@@ -85,7 +85,7 @@ The retained stack is used only through Android/JVM artifacts and Android source
 1. Select the smallest useful module boundaries; add chosen modules to `settings.gradle.kts`.
 2. Apply the native conventions and assign a unique namespace where required.
 3. Add explicit permitted dependencies, native resources, and the feature API.
-4. Register its data/ViewModel bindings through [Koin](../android-di-koin/SKILL.md) and routes through [navigation](../ui-design/references/android/navigation.md).
+4. Register the feature in the app’s existing composition root and navigation when required. Use the [Koin](../android-di-koin/SKILL.md) and [Compose navigation](../ui-design/references/android/navigation.md) examples when they match the project.
 5. If using Room, configure KSP/schema export and migration coverage in the owning database module.
 6. Run affected unit tests, lint, and a representative debug/release assembly. Run relevant device tests; do not report a documented command as an executed result.
 

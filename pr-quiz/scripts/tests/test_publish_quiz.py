@@ -73,4 +73,28 @@ class QuizTests(unittest.TestCase):
             with patch.object(sys,'argv',['publish_quiz.py','123',str(p),'--dry-run']), patch.object(quiz.subprocess,'run',side_effect=AssertionError('No GitHub call expected')), patch('builtins.print'):
                 quiz.main()
 
+    def test_changed_description_aborts_before_edit(self):
+        with tempfile.TemporaryDirectory() as folder:
+            fixture = Path(folder) / "quiz.json"
+            fixture.write_text(json.dumps(self.fixture()))
+            bodies = [json.dumps({"body": body}) for body in ("Original", "Concurrent edit")]
+            with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture)]), \
+                 patch.object(quiz, "gh", side_effect=bodies), \
+                 patch.object(quiz.subprocess, "run") as edit:
+                with self.assertRaisesRegex(ValueError, "changed before publication"):
+                    quiz.main()
+                edit.assert_not_called()
+
+    def test_publication_checks_result_without_overwriting_again(self):
+        with tempfile.TemporaryDirectory() as folder:
+            fixture = Path(folder) / "quiz.json"
+            fixture.write_text(json.dumps(self.fixture()))
+            with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture)]), \
+                 patch.object(quiz, "gh", return_value=json.dumps({"body": "Unchanged"})), \
+                 patch.object(quiz.subprocess, "run") as edit:
+                with self.assertRaisesRegex(ValueError, "could not be confirmed"):
+                    quiz.main()
+                edit.assert_called_once()
+                self.assertTrue(edit.call_args.kwargs["input"].startswith("Unchanged"))
+
 if __name__=='__main__':unittest.main()

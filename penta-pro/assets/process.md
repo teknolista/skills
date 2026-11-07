@@ -6,7 +6,7 @@
 
 | Field | Value |
 | --- | --- |
-| Template version | 2.6.0 |
+| Template version | 2.6.1 |
 | Product name and one-sentence purpose | [FILL IN] |
 | Document owner and decision-makers | [FILL IN] |
 | Specification version, updated date, and document status | [FILL IN: Draft / Reviewed / Accepted / Superseded] |
@@ -112,6 +112,8 @@ For example, a fully specified local parser can be `Ready for the next increment
 Before recording specification acceptance, review the selected revision. Check coverage dispositions and canonical links, sources and observable acceptance for scoped requirements, feasible planned checks for scoped `Must` requirements, and measurement details for scoped quality targets. Identify any gaps, their owners, the affected increment or gate, and the needed-by point. Record what the responsible person actually accepted, including scope, revision, date, and conditions. A review can find the document coherent while the increment still has a blocker. Assess its readiness and authorization separately.
 
 For the first consolidated draft or a material revision, record the reviewed document revision or snapshot, affected scope, review method (author or independent), coverage gaps and a brief journey reconstruction or link to it. For material findings, record the affected IDs, consequence, disposition, owner and next action using existing records where possible. Mark a repair verified only after rereading the changed records and their affected links. Keep the review result separate from the acceptance and implementation gates below.
+
+When handing off an incomplete increment, record the next allowed action, the affected IDs and the specific decision or evidence needed to proceed. If a linked contract is inaccessible, state which conclusion still depends on it.
 
 | Gate or authority | Responsible assessor / decision-maker | Required basis | Actual state / source / date / scope |
 | --- | --- | --- | --- |

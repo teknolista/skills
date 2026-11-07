@@ -94,15 +94,14 @@ def render(questions):
 
     key = json.dumps({"id": quiz_id, "answers": answers, "explanations": explanations})
     encoded = base64.b64encode(key.encode("utf-8")).decode("ascii")
-    example = " ".join(f"{n}A" for n in answers)
 
     block = "\n".join([
         START,
         "## PR Quiz",
         "",
-        "Decision-comprehension aid. Merge enforcement depends on the repository rules; this is not code-review approval.",
+        "Decision-comprehension aid. Follow the repository's separate review and merge requirements.",
         "Tick exactly one answer per question. The result is posted as a comment once all questions are answered.",
-        f"You can also answer with a single comment like `/answer {example}`.",
+        "If automatic grading is enabled, copy the example command from the current pr-quiz commit status and replace its option letters.",
         "",
         *lines,
         f"<!-- pr-quiz-key:{encoded} -->",
@@ -140,10 +139,17 @@ def main():
         print(block)
         return
 
-    body = json.loads(gh("pr", "view", pr, "--json", "body"))["body"] or ""
-    body = replace_quiz(body, block)
+    def current_body():
+        return json.loads(gh("pr", "view", pr, "--json", "body"))["body"] or ""
 
-    subprocess.run(["gh", "pr", "edit", pr, "--body-file", "-"], input=body, text=True, check=True)
+    original = current_body()
+    updated = replace_quiz(original, block)
+    if current_body() != original:
+        raise ValueError("PR description changed before publication; inspect the new body and retry.")
+    subprocess.run(["gh", "pr", "edit", pr, "--body-file", "-"], input=updated, text=True, check=True)
+    observed = current_body()
+    if observed.count(START) != 1 or observed.count(END) != 1 or block not in observed:
+        raise ValueError("PR update was sent, but the quiz block could not be confirmed; inspect the current body.")
     print(f"Quiz {quiz_id} published to PR #{pr}.")
 
 

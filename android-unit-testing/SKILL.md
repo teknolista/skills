@@ -2,16 +2,16 @@
 name: android-unit-testing
 description: Author, run or debug isolated Kotlin/JVM and Android logic tests using fakes and deterministic coroutine scheduling. Use for test implementation tasks; use peer-review to assess test effectiveness without changing source and ui-design for screen acceptance design.
 metadata:
-  version: "1.2.2"
+  version: "1.2.3"
 ---
 
 # Android Unit Testing
 
-Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+## Start with the target project
 
-Before running project commands, inspect the relevant build/test scripts, plugins, hooks, configured endpoints and inherited credentials. Choose checks within the authorized scope; use isolated fixtures or test accounts when effects are possible. A task named test, lint or build can still contact shared services or publish artifacts. Reuse existing authorization, but do not treat a validation request as permission for deployment or destructive operations.
-
-Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
+1. Identify the owning module, active variant, observable contract, and requested change. Reuse its stack and types. Adapt examples only after checking the resolved APIs and existing call sites. If a linked companion is unavailable, use the project contract.
+2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
+3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
 Test the public contract and observable behavior. Before writing tests, enumerate plausible ways the behavior could fail: inputs, boundaries, collaborator errors, ordering, cancellation, and restoration. Spend coverage on distinct failure modes, not duplicated assertions. Use the [case catalogue](references/test-cases.md) when the unit handles text, arithmetic, time, or complex state.
 
@@ -73,6 +73,8 @@ Prefer working in-memory fakes for repository/service contracts. Expose configur
 
 A shared `:core:testing` JVM/Android test-fixtures module can own reusable fakes and clock utilities. Test-only dependencies must not leak into production. Keep mutable fake state per test, and use real pure collaborators where useful. Clock injection should distinguish wall time from monotonic elapsed time.
 
+For an out-of-order response test, give calls A and B independent completion gates on the same test scheduler. Confirm that both calls reached the fake, finish B first, then A, and assert that A cannot overwrite B when the contract requires the latest result. One shared immediate response cannot exercise this ordering.
+
 ## Saved state and scope
 
 Construct a real `SavedStateHandle(mapOf("noteId" to "n1"))` to test initialization and required-key validation. Test updates to the handle and restoration from captured values. This verifies the ViewModel contract, not the OS save/restore path; use Android lifecycle/restoration tests for that path. Do not mock the handle or promise persistence after force-stop.
@@ -93,4 +95,4 @@ Sources: [coroutine testing](https://developer.android.com/kotlin/coroutines/tes
 
 Dispatchers.setMain changes global process state. Do not run tests that replace Main concurrently without isolation; use the test engine's supported serialization/resource-lock configuration or separate processes. Reuse one scheduler for all dispatchers under test, but create independent fixture state per test. If a fake completes immediately, it may conceal the loading, cancellation or interleaving behavior you intended to test: add controllable suspension before asserting that behavior.
 
-Use the same domain interface in the fake and production owner. Test each error that changes observable behavior; use tables for equivalent mappings. Include cancellation identity and stale-account/stale-request rejection when relevant. A passing test against a fake that silently reports every write as success does not exercise storage failure.
+Use the same domain interface in the fake and production owner. Test each error that changes observable behavior; use tables for equivalent mappings. For cancellation, wait until a collaborator is suspended, cancel the owning job, and assert both cancellation propagation and the absence of a later success or stale write. When testing a race, assert that the intended interleaving occurred before trusting the final-state assertion. A passing test against a fake that silently reports every write as success does not exercise storage failure.

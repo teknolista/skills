@@ -33,6 +33,8 @@ Reuse accessible project facts before asking questions. Attribute evidence to it
 - **PRODUCTION:** Link service indicators to quality targets; define rollout, rollback or roll-forward, capacity and cost signals, actionable alerts, and ownership. State user impact when dependencies or features are disabled.
 - **PROCESS:** Identify service and integration owners, incident escalation, and who can change entitlements or enable features. Define access needed for verification without inventing deployment authority.
 
+For service changes with durable writes, external effects, or asynchronous work, [trace one operation](specification-patterns.md#work-through-consequential-operations) from the caller through commit, response, retry, and recovery. Define the outcome when the commit succeeds and the response is lost, even for a synchronous endpoint. For deduplication, determine how callers distinguish a retry from a second intentional operation with identical input. If legacy clients supply no stable operation identity, preserve their documented behavior and record their coverage as a separate decision. [Amazon Builders’ Library on idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)
+
 ## Mobile, desktop, and offline
 
 - **PRODUCT:** Identify supported devices, operating systems, input methods, permissions, and connectivity conditions. Define behavior when permissions are denied, the app is suspended, local storage fills, or the user changes accounts.
