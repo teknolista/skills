@@ -8,7 +8,7 @@ Ordinary backend, CLI or other implementation can proceed under the project's in
 
 | Requested result | Primary owner | Boundary |
 | --- | --- | --- |
-| Requirements, architecture proposal, verification plan or readiness specification | [PentaPRO](penta-pro/SKILL.md) | Five pillars; ordinary coding does not start a new interview |
+| Requirements, architecture proposal, verification plan or review of specification artifacts | [PentaPRO](penta-pro/SKILL.md) | Five pillars, including their coherence and implementation readiness |
 | Screen/flow/visual/accessibility design or critique; authorized UI implementation | [UI Design](ui-design/SKILL.md) | One cumulative UI contract, native Android procedures loaded conditionally |
 | Read-only source/PR/test-effectiveness assessment or re-review | [Peer Review](peer-review/SKILL.md) | Evidence-backed findings; test-authoring is a different implementation task |
 | Threat modeling, security audit, authorized hardening or security gate | [Cybersecurity](cybersec/SKILL.md) | One threat/control/evidence record, native Android controls loaded conditionally |
@@ -38,6 +38,7 @@ There are **13 discoverable skills**: four generic owners, eight native Android 
 
 ## Boundaries in common requests
 
+- “Review the requirements, design and handoff in these five pillar files” → PentaPRO. “Review the implementation against those requirements” → Peer Review.
 - “Review this Android PR and its tests” → Peer Review with Android/test references. Do not activate a test-writing workflow or modify source from that review request.
 - “Implement retry on this Compose screen” → UI Design with its Android presentation/component procedures; use data/background helpers only for actual subordinate code changes.
 - “Write a Room migration test” → Android integration testing. “Are these migration tests meaningful?” → Peer Review.

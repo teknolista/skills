@@ -58,9 +58,13 @@ Build the initial change map from the complete file list, including deletions, r
 
 Follow explicit project requirements for specialist or human review on these surfaces. Otherwise request additional expertise only for a concrete consequential uncertainty; disclose what remains unverified. Do not silently replace missing expertise with a confident approval.
 
+For changes with material rollout or recovery risk, trace who is exposed, what observable signal would trigger containment and what the proposed recovery actually restores. A flag may stop new writes while leaving incompatible data already written. A binary rollback may leave old readers unable to load a migrated schema. Use the rollout plan, code or available evidence to distinguish a demonstrated flaw from an unverified recovery premise. Name the specific pending decision or check and its owner when known. Risk informs review depth and handoff while required approvals follow project policy.
+
 ## Reason from contracts and consequences
 
 Review two complementary questions: does the change deliver the intended behavior, and does it satisfy established engineering constraints? Use repository standards and supported versions before generic preferences. When no formal specification exists, use observable API contracts, tests, existing behavior, and the request, stating the limitation on requirements coverage.
+
+When changed behavior or documentation makes a current claim about a public interface, configuration, schema or runbook, compare the exact claim with its canonical record and the applicable source in the reviewed snapshot. Check version and rollout scope before classifying the difference: a future or deferred feature can be absent by design, and a stale example can mislead callers even when the implementation is correct. Cite both sides and the affected consumer or operator. If the intended contract is unsettled, report the ambiguity and affected decision. Keep this trace within the reviewed change and its dependencies.
 
 When a candidate depends on framework, compiler, library, database, or platform semantics, establish the project's actual resolved version and relevant configuration. Inspect local definitions or official documentation for that version before relying on recalled behavior. A lockfile, runtime artifact, and declared dependency range can describe different facts. Do not invent an API guarantee or conclude that a symbol is missing merely because it is unfamiliar. If the necessary semantics remain unknown, keep the candidate as a specific question or evidence gap.
 

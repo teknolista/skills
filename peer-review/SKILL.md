@@ -3,7 +3,7 @@ name: peer-review
 description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for reviews of backend, frontend, Android, or test code, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.9.0"
+  version: "1.10.0"
 ---
 
 # Peer Review
@@ -57,6 +57,8 @@ Prefer a fresh reviewer that did not implement the change. An already assigned r
 Each finding needs a stable ID, P0–P3 severity, blocking disposition, precise location/origin, reachable trigger, expected/actual behavior, impact, confidence/evidence, correction direction, and regression check. Use `Changes requested` for validated blockers, `No blocking findings` for completed agreed coverage without blockers, or `Incomplete` for material gaps. Confirmed blockers may coexist with partial coverage. A verdict is not release approval.
 
 When fixes are authorized, hand off findings and acceptance checks; evaluate disagreements against evidence. Re-review the new snapshot, verify resolution, inspect affected paths, and repeat relevant checks. A resolved thread does not prove a fix. Stop when coverage is complete with no blockers, or escalate a specific unresolved decision/execution limit instead of looping indefinitely.
+
+For follow-up passes, use [the focused re-review procedure](references/independent-review.md#focus-the-next-pass) to carry forward valid evidence and revisit changes that could affect earlier conclusions.
 
 For a known defect that escaped previous checks, assess the regression protection and the specific review/process gap using [the learning loop](references/verification.md#learn-from-escaped-defects). Recommend proportionate improvements within the requested scope; a review request does not authorize implementation or pipeline changes.
 

@@ -30,7 +30,7 @@ Use the four generic owners according to the requested work; optional implementa
 
 | Skill | When to use it | Expected result and boundary |
 | --- | --- | --- |
-| `penta-pro` | Explore, create, resume, update, or review requirements and software specifications | Five pillar documents when specification creation is requested; exploration or review follows the requested scope. Ordinary coding does not restart an interview. |
+| `penta-pro` | Explore, create, resume, update, or review requirements and software specifications | Five pillar documents for a new specification by default. Review the written artifacts and record scope, findings and next action in PROCESS when specification writing is authorized. |
 | `ui-design` | Specify, refine, review, or implement screens and user flows | Cumulative `docs/ui-design.md`, including partial iterations, unless the request is explicitly read-only or conversation-only. Product-code changes require implementation authority. |
 | `peer-review` | Review implementation changes and relevant tests, or re-review fixes | Evidence-backed findings, checks and coverage limits for the selected snapshot. Review alone does not authorize fixes. Prefer a fresh reviewer when available; disclose self-review and any unmet independence requirement. |
 | `cybersec` | Model threats, assess security controls, implement authorized hardening, or check security readiness | Scoped threats, controls, findings, evidence and residual risks. Save reports when requested or required by the workflow; live testing and security changes need authority for their actual effects. |

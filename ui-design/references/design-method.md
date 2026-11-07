@@ -51,4 +51,6 @@ Retain the chosen direction, rejected concerns and any remix by decision ID in `
 
 ## Critique and refinement
 
+For a consequential journey or implementation handoff, start at a documented entry with a realistic task. Use the screen contract and its linked sources to reconstruct the first available action, visible result and recovery path before consulting interview notes. If a step relies on an unlabeled gesture, an undocumented destination or knowledge of an invisible state, identify the exact missing cue or contract. Separate what is discoverable in the interface from what is merely explained in the specification. Record which screens and states were examined and whether the walkthrough used a specification, a mock or a running app.
+
 Inspect the selected flow and rendered evidence when available. Report location/state, user barrier, evidence, impact, recommendation and verification. Separate reproducible defects, design-contract deviations, usability hypotheses and optional aesthetic suggestions. A source-only pass can establish bindings or semantic markup, but not a measured usability outcome. Reuse what already works; a polish request does not authorize replacing identity, product claims or navigation architecture.

@@ -34,6 +34,23 @@ Match the user's preferred role when they express one: elicit their ideas, devel
 
 Recommend a direction with its trade-offs and consequential assumptions. Keep only materially different options and why they were selected, deferred, or ruled out. Record product options in PRODUCT and design options in PROJECT. Distinguish who proposed an option from who decided on it when that distinction affects authority or follow-up. Respect delegated choices and escalate material decisions outside that authority.
 
+### Challenge the working concept
+
+Before elaborating a consequential direction, write a short working hypothesis: which actor has which problem, what change is expected to help, and what observation would make the direction worth pursuing or cause it to change. Keep goals, exclusions, hard constraints and untested premises visible. Ask for correction when a different interpretation would change the decision.
+
+Select the perspectives that could overturn the proposal. Start with the strongest concrete objection and ask which evidence would change the recommendation. Use only relevant prompts:
+
+| Perspective | Question to investigate |
+| --- | --- |
+| Necessity and reuse | What happens if we keep the current workflow or reuse an existing capability? Which confirmed need would remain unmet? |
+| User or developer experience | Walk the same task with realistic input and a failure. What work, errors or ambiguity move to the user or caller? |
+| Costs and capacity | Which workload, quota or budget could invalidate the option? What is known about the limit and how would we observe it? |
+| Migration and recovery | How do old clients or existing data behave during partial rollout? Which effects can actually be reversed? |
+| Operations and maintenance | Who can detect and diagnose failure, and which new state, dependency or manual work must they maintain? |
+| Conflicting goals | Can separating timing, scope or ownership satisfy both needs? Compare the revised option using the same evidence and explain the cost it introduces. |
+
+Capture the consequence, smallest useful discriminator, and decision or open question in the existing records. Carry observed rejection reasons into PROJECT or PRODUCT with their actual attribution. If evidence is missing, keep the candidate open or defer it explicitly. During exploration-only work, keep this synthesis in the conversation. During specification work, use the pillar records directly.
+
 For a risky assumption, identify the cheapest useful evidence: repository inspection, a user example, research, a sketch, or a bounded prototype. Define the question and stopping condition. Creating executable prototypes follows actual task authorization; illustrative output is not production validation. Link surviving assumptions and their checks to PROJECT and PROOF, and park deferred ideas outside the current scope.
 
 If successive experiments or fixes fail while assuming the same fact, state that premise and seek an observation that distinguishes it from a credible alternative before repeating the approach. Update the affected assumption and decision from the evidence; repeated failure alone does not authorize a redesign or settle a product choice.
@@ -44,6 +61,6 @@ Reflect consequential conclusions in plain language, including what they change 
 
 When a specification is requested and the user is unavailable, use existing delegation for routine choices, retain consequential unresolved questions as blockers, and complete independent specification work. Return a resumable draft with those questions still open.
 
-Read the specification as an implementer without the conversation. Identify only guesses whose wrong answer would materially change the outcome or plan. Resolve accessible facts, leave routine choices within delegated authority, and surface the remaining consequential questions with their impact. No separate reviewer or external skill is required.
+Use the [saved-draft review](specification-review.md) to check what a reader can recover from the artifacts, including which consequential choices are still open.
 
 Check that objectives and hypotheses lead to requirements, acceptance criteria, feasible checks, and a way to evaluate the intended outcome. Reconcile contradictions, missing authoritative links, unexplained deferrals, and stale evidence. After a material clarification, update supported records and recheck affected dependencies and readiness. For a saved specification, record shared coverage and the next action in `process.md`, linking remaining questions in `project.md`, so another session can resume without repeating the interview or treating a draft as accepted. Follow an existing single-file layout when that is authoritative.

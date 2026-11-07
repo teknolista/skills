@@ -49,6 +49,13 @@ Re-review the resulting snapshot. Mark findings `Resolved`, `Still present`, `Re
 
 Read relevant replies and previous automatic findings before closing the loop. Check each claim against the latest source; a dismissed thread is not proof that behavior changed. Update the existing finding's status when possible rather than reporting the same unresolved root cause as a new issue. Keep proposed comments as drafts until publication is authorized, and verify the current repository, revision, file, and lines before posting.
 
+### Focus the next pass
+
+1. Identify the last reviewed snapshot and compare it with the current one. Start with open findings, the new delta and the affected guards, consumers, tests and configuration. If the earlier snapshot is unavailable, establish what can be verified on the current one and label the comparison gap.
+2. Carry forward a prior conclusion only if its behavior, contracts, dependencies and evidence still apply. Expand coverage if the fix changes a shared invariant, the base or policy changes the review assumptions, or important coverage was missing. Report a newly substantiated in-scope blocker even if its line was untouched in this round.
+3. Keep the same finding ID for a recurring root cause. When a fix handles one instance of a shared flaw, check sibling paths in the affected scope and record remaining instances under that finding. For example, after a tenant guard is fixed on the detail route, verify the export route if it relies on the same access rule.
+4. If a blocker survives repeated passes and the latest pass adds no meaningful evidence or progress, summarize what failed, the invariant still at risk and the next decision or experiment. Hand it back to the responsible owner before another equivalent round. Honor the project's agreed limits and carry forward unresolved blockers and required gates.
+
 ## Coordinate related changes
 
 Use for a requested batch review, related PRs, or review-process planning. An ordinary single-change review need not inventory the team's queue or open additional tasks.

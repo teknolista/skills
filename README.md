@@ -57,18 +57,18 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.5.4 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.9.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [PentaPRO](#pentapro) | 2.6.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Peer Review](#peer-review) | 1.10.0 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersecurity](#cybersecurity) | 1.5.2 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.2 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
-| [Android modules](android-module-structure/SKILL.md) | 1.2.2 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
-| [Android data](android-data-layer/SKILL.md) | 1.2.2 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
-| [Android errors](android-error-handling/SKILL.md) | 1.2.1 | Implement typed domain/HTTP/storage error handling. |
-| [Android Koin](android-di-koin/SKILL.md) | 1.2.1 | Implement dependency bindings and Android lifetimes. |
-| [Android background](android-background/SKILL.md) | 1.2.1 | Implement durable WorkManager jobs and retries. |
-| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.1 | Author/run/debug isolated logic tests. |
-| [Android integration testing](android-integration-testing/SKILL.md) | 1.2.2 | Author/run/debug non-UI integration tests. |
-| [Android UI testing](android-ui-testing/SKILL.md) | 1.2.1 | Author/run/debug native device/emulator Compose tests. |
+| [UI Design](#ui-design) | 1.5.3 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [Android modules](android-module-structure/SKILL.md) | 1.2.3 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [Android data](android-data-layer/SKILL.md) | 1.2.3 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
+| [Android errors](android-error-handling/SKILL.md) | 1.2.2 | Implement typed domain/HTTP/storage error handling. |
+| [Android Koin](android-di-koin/SKILL.md) | 1.2.2 | Implement dependency bindings and Android lifetimes. |
+| [Android background](android-background/SKILL.md) | 1.2.2 | Implement durable WorkManager jobs and retries. |
+| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.2 | Author/run/debug isolated logic tests. |
+| [Android integration testing](android-integration-testing/SKILL.md) | 1.2.3 | Author/run/debug non-UI integration tests. |
+| [Android UI testing](android-ui-testing/SKILL.md) | 1.2.2 | Author/run/debug native device/emulator Compose tests. |
 | [PR Quiz](pr-quiz/SKILL.md) | 1.2.1 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
 The [routing and consolidation map](SKILL-ROUTING.md) records all 14 source skills. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
@@ -182,7 +182,7 @@ After changing host, model, or significant instructions, run the relevant [Penta
 
 ## PentaPRO
 
-**Version:** 2.5.4 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.6.0 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PentaPRO when defining a product, specifying a substantial feature, maintaining an existing PentaPRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -230,6 +230,8 @@ When the project already assigns normative requirements or implementation tasks 
 
 Creation saves all five initial drafts before pausing for answers. Later rounds update the affected records, with stable IDs and links to their authoritative definitions. PROCESS records an `In progress` state for material updates across files and a `Consistent` state after reconciliation. Resumption inspects actual contents and completes any interrupted update. Proposed changes retain their baseline, compatibility commitments, and separate status until settled.
 
+For consequential ideas, PentaPRO records a working hypothesis and challenges it from the perspectives that could change the decision. Before handoff or authorized implementation, it reviews the consolidated specification by reconstructing a representative journey from the artifacts, comparing that reading with confirmed intent, and tracing material dependencies through the pillars. PROCESS holds the scoped review result, open items and next action. The author can run this review directly. Fresh independent review is available when authorized and supported by the host. [Specification review](penta-pro/references/specification-review.md)
+
 The skill distinguishes confirmed information, proposals, and pending decisions. Routine decisions made within explicit delegation are attributed to the agent and can be settled for readiness without being presented as user requirements or document acceptance. When the user is unavailable, retain consequential blockers and complete independent specification work. If saving is unavailable, return an explicitly unsaved draft.
 
 PentaPRO drafts from accessible evidence and delegated choices with provenance. It identifies unresolved research, baselines, legal applicability, approvals, and test evidence. The interview targets consequential missing decisions. All five pillars remain, with coverage recorded as included, linked, pending, deferred, or not applicable. Larger specifications can link feature details, increment plans, and contracts from their owning pillar. The skill loads specialized forms and examples as needed.
@@ -248,6 +250,7 @@ The workflow is model-neutral. Use a host that can load the complete skill folde
 | [Template index](penta-pro/assets/penta-pro-template.md) | Authoring guidance and links to the five pillar templates. |
 | [Document maintenance](penta-pro/references/document-maintenance.md) | Canonical ownership, coordinated updates, resumption, and migration. |
 | [Focused discovery](penta-pro/references/discovery.md) | Conditional techniques for unclear intent, dependent questions, alternatives, and consequential missing information. |
+| [Specification review](penta-pro/references/specification-review.md) | Artifact-based comprehension, cross-pillar checks, finding resolution and readiness handoff. |
 | [Software profiles](penta-pro/references/software-profiles.md) | Coverage prompts for software types and cross-cutting concerns, including accessibility, privacy, and impacts on people and the environment. |
 | [Specification patterns](penta-pro/references/specification-patterns.md) | Conditional forms for data, interfaces, decisions, threats, evidence, and runbooks. |
 | [Worked example](penta-pro/references/worked-example.md) | Fictional example of linked requirements and planned evidence, with explicit uncertainty. |
@@ -260,7 +263,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.9.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Version:** 1.10.0 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -295,6 +298,8 @@ The review preserves the selected source and Git state. Fixes, remote comments o
 The reviewer follows consequential behavior from its contract through entry points, guards, effects, and consumers. Concrete inputs and event order help investigate authorization, races, retries, and stale asynchronous results. Existing protections and unknown premises are checked before retaining a finding. Cross-file change maps and guided summaries are reconciled with the full in-scope diff. For related PRs, the skill checks shared behavior and distinguishes branch evidence from the actual integration state. [Conditional coordination guidance](peer-review/references/independent-review.md#coordinate-related-changes) covers owners, dependencies, review capacity and workflow evaluation without imposing queue limits or authorizing Git integration.
 
 The [automated-check layer](peer-review/references/verification.md#establish-automated-check-evidence) separates formatting/static/build checks, security/secret scans and behavioral tests from semantic review. Evidence must match the snapshot; required gates retain their consequences. Migrations, authentication/configuration, dependencies and weakened test/CI protection trigger deeper tracing. Test retirement or replacement is assessed against the affected contract and remaining protection. For known escaped defects, the [learning loop](peer-review/references/verification.md#learn-from-escaped-defects) connects the root cause to a meaningful regression check and proportionate process improvement under the existing authorization.
+
+Follow-up reviews compare the current snapshot with the last reviewed one, check outstanding findings and trace affected paths. For consequential releases, the reviewer checks what the proposed recovery would actually restore. [Focused re-review](peer-review/references/independent-review.md#focus-the-next-pass) · [Risk and recovery](peer-review/references/review-method.md#choose-proportionate-depth)
 
 ### Test effectiveness
 
@@ -410,7 +415,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 ## UI Design
 
-**Version:** 1.5.2 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
+**Version:** 1.5.3 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
 Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
@@ -549,6 +554,8 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 ### Validation and improvement
 
 The pstack-informed update adds caller-facing contract sketches and verification recipes to PentaPRO, safety-premise and measurement checks to Peer Review, model/enforcement distinctions to Cybersecurity, and instance-aware journey evidence to UI Design. These additions are conditional; the skills keep their existing output contracts and introduce no pstack dependency. [Research attribution and limits](THIRD-PARTY-NOTICES.md#cursor-pstack-research) identify the pinned source and adaptations.
+
+The Elephant & Goldfish Model informed PentaPRO's hypothesis challenge and review of the five pillar artifacts, Peer Review's checks of current documentation claims affected by a change, and UI Design's walkthrough from the documented entry to the result and recovery. [Research attribution and limits](THIRD-PARTY-NOTICES.md#elephant--goldfish-model-research)
 
 Use each skill's evaluation cases before expanding its instructions. Compare matched tasks with and without the skill on the models and hosts actually used. Check activation, preserved decisions, invented facts, unnecessary questions, substantiated defects, false positives, material misses, coverage honesty, and unintended actions. Record actual time and usage when available, and retest after relevant model or instruction changes.
 

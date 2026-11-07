@@ -2,12 +2,14 @@
 name: android-error-handling
 description: Implement or debug typed results and expected domain, HTTP and storage error mapping in native Android Kotlin code. Use for concrete error-handling changes; use peer-review for read-only assessment and ui-design for user-facing error interaction design.
 metadata:
-  version: "1.2.1"
+  version: "1.2.2"
 ---
 
 # Android Error Handling
 
 Before editing, inspect the actual project, toolchain, contracts and authorized scope. Implement a coherent change, run the relevant available checks, and distinguish executed evidence from pending work. Cross-package references are optional navigation: if a companion is unavailable, use the project-owned contract rather than inventing that companion's contents.
+
+Before running project commands, inspect the relevant build/test scripts, plugins, hooks, configured endpoints and inherited credentials. Choose checks within the authorized scope; use isolated fixtures or test accounts when effects are possible. A task named test, lint or build can still contact shared services or publish artifacts. Reuse existing authorization, but do not treat a validation request as permission for deployment or destructive operations.
 
 Reuse the project's existing types and selected libraries; sample Result, route, DI and test definitions are conditional patterns, not authority for a stack migration. For a material handoff, carry the target snapshot/variant, governing behavior, actual checks and remaining gap. Implementation completion, independent review and release acceptance remain separate.
 
@@ -45,7 +47,7 @@ sealed interface DataError : AppError {
     enum class Network : DataError {
         BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, REQUEST_TIMEOUT,
         CONFLICT, PAYLOAD_TOO_LARGE, TOO_MANY_REQUESTS, SERVER_ERROR,
-        SERVICE_UNAVAILABLE, NO_INTERNET, CONNECTION_FAILED, TLS_FAILURE,
+        SERVICE_UNAVAILABLE, NAME_RESOLUTION_FAILED, CONNECTION_FAILED, TLS_FAILURE,
         SERIALIZATION, UNKNOWN
     }
     enum class Local : DataError { DISK_FULL, NOT_FOUND, UNKNOWN }
@@ -83,9 +85,9 @@ suspend inline fun <reified T : Any> safeCall(
 } catch (e: CancellationException) {
     throw e
 } catch (e: UnknownHostException) {
-    Result.Error(DataError.Network.NO_INTERNET)
+    Result.Error(DataError.Network.NAME_RESOLUTION_FAILED)
 } catch (e: UnresolvedAddressException) {
-    Result.Error(DataError.Network.NO_INTERNET)
+    Result.Error(DataError.Network.NAME_RESOLUTION_FAILED)
 } catch (e: HttpRequestTimeoutException) {
     Result.Error(DataError.Network.REQUEST_TIMEOUT)
 } catch (e: ConnectTimeoutException) {

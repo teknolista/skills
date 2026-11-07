@@ -6,7 +6,7 @@
 
 | Field | Value |
 | --- | --- |
-| Template version | 2.5.4 |
+| Template version | 2.6.0 |
 | Product name and one-sentence purpose | [FILL IN] |
 | Document owner and decision-makers | [FILL IN] |
 | Specification version, updated date, and document status | [FILL IN: Draft / Reviewed / Accepted / Superseded] |
@@ -110,6 +110,8 @@ Mark `Blocked` if any unmet condition prevents this increment; record what would
 For example, a fully specified local parser can be `Ready for the next increment` while its planned software tests remain `Unverified` and document acceptance is pending. If its overflow behavior is undecided and affects the selected inputs, that increment is `Blocked`. If release signing access is needed only for later distribution, record that dependency at the release gate. Reassess if the selected work requires signing earlier.
 
 Before recording specification acceptance, review the selected revision. Check coverage dispositions and canonical links, sources and observable acceptance for scoped requirements, feasible planned checks for scoped `Must` requirements, and measurement details for scoped quality targets. Identify any gaps, their owners, the affected increment or gate, and the needed-by point. Record what the responsible person actually accepted, including scope, revision, date, and conditions. A review can find the document coherent while the increment still has a blocker. Assess its readiness and authorization separately.
+
+For the first consolidated draft or a material revision, record the reviewed document revision or snapshot, affected scope, review method (author or independent), coverage gaps and a brief journey reconstruction or link to it. For material findings, record the affected IDs, consequence, disposition, owner and next action using existing records where possible. Mark a repair verified only after rereading the changed records and their affected links. Keep the review result separate from the acceptance and implementation gates below.
 
 | Gate or authority | Responsible assessor / decision-maker | Required basis | Actual state / source / date / scope |
 | --- | --- | --- | --- |

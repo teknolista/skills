@@ -91,3 +91,7 @@ This is independently written conceptual guidance. No upstream scripts, template
 ## Local-input and stack maintenance — 1.5.2
 
 2026-11-06: bounded regression probes established ambiguous duplicate JSON declarations and an oversized-integer traceback in the original optional helper. Focused reader/range corrections and two added tests preserve the existing trusted-local-input contract; the helper remains neither an HTML sanitizer nor a conformance audit. Android presentation/navigation wording now explicitly keeps the project's chosen DI, presentation and module structure. The existing examples do not authorize a stack migration. The evaluation record separates the **22** executed helper tests from authored instruction cases and older runtime trials.
+
+## Elephant & Goldfish Model — 1.5.3
+
+2026-11-07: adapted the [Comprehension reviewer's](https://github.com/google/elephant-goldfish-model/blob/e9e1f06aa4e26e95cd4ed37210a0632202c429e9/agents/comprehension.md) reconstruction technique to reconstruct a screen journey from its entry to its result and recovery. It separates a cue a user can discover from an explanation only a spec reader sees. The finding's scope follows the actual material inspected. See [research scope and attribution](../../THIRD-PARTY-NOTICES.md#elephant--goldfish-model-research).

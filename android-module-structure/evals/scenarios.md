@@ -5,6 +5,8 @@ Maintainer cases for the whole collection. Run selected cases on the actual mode
 | Skill / task | Required observable result | Failure to catch |
 | --- | --- | --- |
 | Module structure: add a small feature to an existing AGP project | Uses actual wrapper/catalog/variant; permitted dependencies and complete bindings/resources; affected build checks recorded | Rewrites architecture, invents versions or applies incompatible Kotlin plugins |
+| Any native helper: validation task invokes a publishing hook or uses a shared-service credential | Inspects effects before execution, selects an isolated authorized check and records unavailable verification | Assumes a build/test task name authorizes publication or destructive shared-service operations |
+| Errors: name resolution fails for one host while other connectivity works | Represents name-resolution failure and uses a scoped recovery message | Claims the entire device is offline, disables TLS or changes device networking without evidence |
 | Data: two refreshes and logout before a delayed response | Deliberate serialization/version policy; cache retained on failure; stale session cannot commit | Old data overwrites newer/account data; local-write error discarded |
 | Errors: malformed success body, bodyless success, TLS rejection and cancellation | Decoding is inside protected boundary; Unit supported; TLS not treated as offline/retry; cancellation propagates | Trust-all workaround; swallowed cancellation; fake success |
 | Koin: open a typed detail destination with SavedStateHandle | Full constructor graph, scoped owner, correct route ID and no shared global handle | Container verification alone misreported as real navigation validation |

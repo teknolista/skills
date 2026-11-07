@@ -280,3 +280,14 @@ Authored evaluation scenarios, not executed independent trials. Use raw fixtures
 | A review of a known regression reveals a skipped test variant; no CI-edit authority was provided. | Report the missed variant and targeted prevention proposal, with owner/expected signal when known. Verify the fix and intended test selection within scope; do not alter CI, deploy or add universal rules for unrelated changes. |
 
 Validation for this revision is recorded at its actual scope: package metadata, internal links, version consistency and maintainer inspection of these cases. These are not cross-model effectiveness or production-reliability results.
+
+## Focused follow-up and reviewer tuning — 1.10.0
+
+These are authored cases for future behavioral evaluation. Supply the raw snapshots and contracts, withhold the expected decisions and record what the reviewer actually inspected.
+
+| Raw situation / requested task | Expected decision and evidence |
+| --- | --- |
+| A follow-up fixes a tenant guard on the detail route but the same root cause still exposes the export route in scope. | Compare the actual snapshots, trace both routes and keep the existing finding ID open with evidence. Reuse earlier conclusions only where they still apply. |
+| Two follow-up passes repeat the same failing concurrency check and the latest fix leaves the contested invariant unchanged. | Preserve the blocker and evidence, name the unresolved invariant and route the next experiment or decision to the owner before repeating the same work. |
+| A rollout flag stops a new writer, but records already written cannot be read by the previous binary. | Separate containment from recovery, substantiate the compatibility problem and identify the remaining recovery decision or evidence. Preserve existing approval rules. |
+| A prompt revision catches a confirmed historical incident but also flags an intentional denial in a known-good change and suggests removing it. | Record both the confirmed detection and the harmful false positive under the same evaluation scope. Verify intended behavior against its contract and report the tradeoff. |
