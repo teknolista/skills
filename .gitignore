@@ -187,8 +187,11 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 
-# VS Code files
+# Visual Studio Code files
 .vscode/
+.history/
+prettierignore.txt
+*.code-workspace
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
@@ -203,5 +206,4 @@ vite.config.ts.timestamp-*
 .cursorrules
 .windsurfrules
 .opencode/
-openspec/
 skills-lock.json
