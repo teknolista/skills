@@ -3,7 +3,7 @@ name: penta-pro
 description: "Explores software requirements through focused interviews and creates, updates, or reviews PentaPRO specifications. Use for new software, substantial feature specifications, resuming a PentaPRO document, or reviewing written requirements, design and implementation readiness."
 license: MIT
 metadata:
-  version: "2.6.1"
+  version: "2.6.3"
 ---
 
 # PentaPRO

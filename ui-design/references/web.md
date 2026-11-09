@@ -22,6 +22,8 @@ Provide text alternatives, caption/transcript support where applicable, clear er
 
 Model remote state separately from local editing, keep stable item identity and account for races, cancellation, stale data and pending mutations. Reserve media space and load assets proportionately; virtualize large collections only with keyboard/search/assistive behavior considered. Address demonstrated performance bottlenecks before speculative memoization.
 
+For a slow browser route, trace the requests that delay the first usable state. Check which requests can start independently and which wait for identity, permissions, or prior results. Keep those dependencies and bound concurrency. Verify the changed timing and relevant partial-failure states on a comparable run.
+
 Render untrusted content as text through the framework's supported escaping path. If actual rich HTML is required, use the project's reviewed sanitization policy and safe rendering integration; do not enable raw HTML insertion just to reproduce a mock. Treat destination URLs separately from display text and validate supported schemes according to the actual use. Output escaping, sanitization and URL handling address different contexts. See [MDN's XSS guidance](https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS).
 
 Use existing project build/lint/type/component/browser checks appropriate to the change. Drive actual controls and navigation with representative data; inspect console/network failures without exposing secrets. A DOM value assignment or direct event-handler call does not prove the keyboard/pointer interaction works. Use browser screenshot/DOM/accessibility-tree evidence together; do not infer screen-reader output from the tree alone.

@@ -27,4 +27,6 @@ Approval of a mutable reference needs a check at the moment of use. For example,
 
 If MCP or another tool gateway is present, include its server identity, exposed operations, credentials and downstream resource checks. Test with a permitted call and an otherwise identical call outside that principal's scope. Tool descriptions and schemas help select calls. Enforcement belongs to the authenticated service or gateway.
 
+For an MCP server that proxies requests, inspect the authorization boundary on both sides. Test an otherwise valid token issued for another audience and confirm rejection before a downstream call. Where the selected revision or SDK uses server-issued handles, verify that replay under a different principal cannot read or continue another caller's work. Scope each claim to the tested transport, revision, principal, and downstream effect. [MCP security guidance](https://modelcontextprotocol.io/specification/basic/security_best_practices)
+
 Primary guidance: [OWASP AI Agent Security](https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html), [OWASP prompt injection prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html).

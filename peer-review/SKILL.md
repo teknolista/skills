@@ -3,7 +3,7 @@ name: peer-review
 description: "Reviews code changes, pull requests, commit ranges, selected files, and test effectiveness for substantiated defects. Use for reviews of backend, frontend, Android, or test code, pre-merge checks, independent second opinions, and re-review after fixes; not ordinary implementation or specification review."
 license: MIT
 metadata:
-  version: "1.10.1"
+  version: "1.10.2"
 ---
 
 # Peer Review

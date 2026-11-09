@@ -1,8 +1,8 @@
-# Skill ownership and Android integration
+# Skill ownership and integration
 
 Choose the primary owner from the requested outcome and mode, not from an Android keyword alone. Load relevant platform references inside that owner. Use an implementation/test helper only for its narrower task; do not run two interviews, create competing canonical documents or report two verdicts for the same assessment. A request may contain several different tasks, each with its own owner and existing authorization.
 
-Ordinary backend, CLI or other implementation can proceed under the project's instructions without invoking a skill from this collection. The four generic owners do not form a mandatory pipeline. A security defect found during peer review can be reported there; it does not automatically start a second audit. An implementation helper must apply relevant security controls without requiring a full security assessment for every edit.
+Ordinary backend, CLI or other implementation can proceed under the project's instructions without invoking a skill from this collection. The owners compose according to the requested work and the project’s established workflow. A security defect found during peer review can be reported there; it does not automatically start a second audit. An implementation helper must apply relevant security controls without requiring a full security assessment for every edit.
 
 ## Generic owners
 
@@ -12,8 +12,22 @@ Ordinary backend, CLI or other implementation can proceed under the project's in
 | Screen/flow/visual/accessibility design or critique; authorized UI implementation | [UI Design](ui-design/SKILL.md) | One cumulative UI contract, native Android procedures loaded conditionally |
 | Read-only source/PR/test-effectiveness assessment or re-review | [Peer Review](peer-review/SKILL.md) | Evidence-backed findings; test-authoring is a different implementation task |
 | Threat modeling, security audit, authorized hardening or security gate | [Cybersecurity](cybersec/SKILL.md) | One threat/control/evidence record, native Android controls loaded conditionally |
+| Ambiguous defect, intermittent failure, or performance regression | [Diagnose Defect](diagnose-defect/SKILL.md) | Reproduction, cause evidence, and verification of an authorized fix |
+| Automated test authoring or explicit test-first implementation outside native Android | [Behavior Testing](behavior-testing/SKILL.md) | Executed behavioral checks in the existing runner |
+| Concrete HTTP API server changes | [HTTP API](http-api/SKILL.md) | Handler and integration implementation against the caller contract |
+| Concrete MCP server changes | [MCP Server](mcp-server/SKILL.md) | Protocol capabilities, transport, and actual downstream behavior |
 
-## Every source skill and its destination
+The closure round adds four portable owners, bringing the collection to **21**. See [all upstream dispositions](COLLECTION-REVIEW.md).
+
+- [Software Delivery](software-delivery/SKILL.md) — Plan and execute verified software increments.
+
+- [Technical Research](technical-research/SKILL.md) — Resolve technical uncertainty with traceable evidence.
+
+- [Git Delivery](git-delivery/SKILL.md) — Review, commit and publish the authorized Git snapshot.
+
+- [Agent Instructions](agent-instructions/SKILL.md) — Maintain portable software-development agent guidance.
+
+## Every Android source skill and its destination
 
 Source inventory: the 14 entrypoints in the user-supplied local `android-skills` directory on 2026-11-06. The project attributes the Android and PR-quiz source skills to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for attribution and license limits. The earlier `design` consolidation remains recorded in UI Design; it is absent from this source inventory. Integration copies and adapts the source; it does not delete or install anything in that directory or a user's agent profile.
 
@@ -34,7 +48,7 @@ Source inventory: the 14 entrypoints in the user-supplied local `android-skills`
 | `android-ui-testing` | [Native UI-test authoring](android-ui-testing/SKILL.md) | Retained: automate device/emulator tests; visual/interaction critique stays in UI Design |
 | `pr-quiz` | [PR decision quiz](pr-quiz/SKILL.md) | Retained, generic: explicitly requested comprehension exercise, not review approval/security evidence |
 
-There are **13 discoverable skills**: four generic owners, eight native Android implementation/test helpers and the generic PR quiz. The five consolidated Android names are not separate SKILL.md entrypoints or forwarding aliases, preventing duplicate discovery. Their material remains in conditional references, with local links redirected to the canonical owner.
+The Android integration stage brought the collection to **13 discoverable skills**. With the four engineering packages above, that research stage reached **17**. The five consolidated Android names are not separate SKILL.md entrypoints or forwarding aliases, preventing duplicate discovery. Their material remains in conditional references, with local links redirected to the canonical owner.
 
 ## Boundaries in common requests
 
@@ -46,6 +60,9 @@ There are **13 discoverable skills**: four generic owners, eight native Android 
 - “Write a Room migration test” → Android integration testing. “Are these migration tests meaningful?” → Peer Review.
 - “Audit login/deep links/WebView” → Cybersecurity with Android controls, not an additional Android security audit.
 - “Plan an Android architecture” → PentaPRO. “Add this approved Gradle module” → Android module structure.
+- “Find why this Android sync sometimes drops writes” → Diagnose Defect while the cause is unclear. Use the native data helper for the concrete fix when applicable.
+- “Add a browser regression for retry after a failed save” → Behavior Testing. A native Compose interaction test uses the native Android UI test owner.
+- “Implement this HTTP write endpoint” → HTTP API. “Expose the action as an MCP tool” → MCP Server. An implementation that touches both uses the actual transport and owning service contract at each boundary.
 - “Create a PR” alone → no quiz. “Add a comprehension quiz to this PR” → PR Quiz. Drafting, publishing, workflow installation and branch-rule changes retain their distinct authorization scopes.
 
 Cross-package links are optional navigation within this collection. A separately installed helper uses its own core instructions and project-owned contracts; it must not claim to have loaded an absent companion. Install related packages when desired, and preserve each package's internal references. Generic owners do not require the Android helper packages for non-Android work.
@@ -61,6 +78,8 @@ When contracts disagree, identify the actual conflicting records and status/auth
 Project-selected specification and tracking tools retain their canonical records. The five PentaPRO pillars may index external requirement/task artifacts instead of duplicating them; the UI contract links the governing behavior rather than defining a competing business policy. A proposed change, an implemented branch and the deployed baseline are distinct states even when they share a capability ID.
 
 ## Validation scope
+
+The [skill evaluation procedure](SKILL-EVALUATION.md) defines candidate screening, paired runs, evidence and adoption decisions. The [assessment](SKILL-ASSESSMENT.md#validation-record) records the initial new-skill trial.
 
 For a model or host comparison, pin the skill revision, fixture and starting state. Use the same task, available tools, permissions and budget for the baseline and skill-assisted runs. Supply both matching and non-matching requests, including a case with a missing reference or a misleading tool result. Keep expected outcomes separate from reviewer inputs. Score the selected owner, observable output, preserved files, actual effects and accuracy of evidence claims. Record runs and failures by model/host, and keep structural checks separate from these results.
 

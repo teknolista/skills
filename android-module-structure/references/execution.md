@@ -1,6 +1,6 @@
 # Execution contract for native Android work
 
-Use this short contract when a task changes code, build configuration or a test suite. Skill examples are teaching fragments, not complete generated applications. Preserve existing architecture and the user's authorized scope. This collection targets native Android and Kotlin/JVM only.
+Use this short contract when a task changes code, build configuration or a test suite. Skill examples are teaching fragments, not complete generated applications. Preserve existing architecture and the user's authorized scope. These native implementation helpers target Android and Kotlin/JVM.
 
 ## Inspect before changing
 

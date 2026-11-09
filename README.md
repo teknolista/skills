@@ -1,6 +1,6 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. Four generic skills own specification, UI work, peer review and security. Optional native Android implementation/test helpers and a generic PR quiz complement them; see [skill ownership](SKILL-ROUTING.md). Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. The collection covers specification, implementation, research, testing, review, security, Git delivery and agent guidance. Optional native Android implementation/test helpers and a generic PR quiz complement them; see [skill ownership](SKILL-ROUTING.md). Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
@@ -44,6 +44,14 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [UI Design](#ui-design)
     - [Examples and output](#examples-and-output)
     - [UI Design resources](#ui-design-resources)
+  - [Diagnose Defect](#diagnose-defect)
+  - [Behavior Testing](#behavior-testing)
+  - [HTTP API](#http-api)
+  - [MCP Server](#mcp-server)
+  - [Software Delivery](#software-delivery)
+  - [Technical Research](#technical-research)
+  - [Git Delivery](#git-delivery)
+  - [Agent Instructions](#agent-instructions)
   - [Native Android implementation and testing](#native-android-implementation-and-testing)
   - [PR Quiz](#pr-quiz)
   - [Project AGENTS.md template](#project-agentsmd-template)
@@ -57,11 +65,19 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.6.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.10.1 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersecurity](#cybersecurity) | 1.5.3 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.4 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
-| [Android modules](android-module-structure/SKILL.md) | 1.2.4 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [PentaPRO](#pentapro) | 2.6.3 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Peer Review](#peer-review) | 1.10.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Cybersecurity](#cybersecurity) | 1.5.4 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI Design](#ui-design) | 1.5.5 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [Diagnose Defect](#diagnose-defect) | 1.0.0 | Reproduce unclear failures, distinguish causes, and verify authorized fixes. |
+| [Behavior Testing](#behavior-testing) | 1.0.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
+| [HTTP API](#http-api) | 1.0.0 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
+| [MCP Server](#mcp-server) | 1.0.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
+| [Software Delivery](#software-delivery) | 1.0.0 | Plan and execute verified software increments. |
+| [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
+| [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
+| [Agent Instructions](#agent-instructions) | 1.0.0 | Maintain portable software-development agent guidance. |
+| [Android modules](android-module-structure/SKILL.md) | 1.2.5 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
 | [Android data](android-data-layer/SKILL.md) | 1.2.4 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
 | [Android errors](android-error-handling/SKILL.md) | 1.2.3 | Implement typed domain/HTTP/storage error handling. |
 | [Android Koin](android-di-koin/SKILL.md) | 1.2.3 | Implement dependency bindings and Android lifetimes. |
@@ -71,7 +87,9 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Android UI testing](android-ui-testing/SKILL.md) | 1.2.3 | Author/run/debug native device/emulator Compose tests. |
 | [PR Quiz](pr-quiz/SKILL.md) | 1.2.2 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
-The [routing and consolidation map](SKILL-ROUTING.md) records all 14 source skills. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
+The [routing and consolidation map](SKILL-ROUTING.md) records the 14 Android/quiz source skills. The [closure review](COLLECTION-REVIEW.md) maps all 54 entrypoints in the two requested upstream repositories. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
+
+The current collection contains **21 skills**. It is a curated adaptation, not a mirror of upstream packages. No Matt Pocock or Superpowers installation is required.
 
 ## Installation and activation
 
@@ -98,7 +116,7 @@ npx skills@latest add teknolista/skills --skill ui-design -a codex
 npx skills@latest add teknolista/skills --list
 ```
 
-Available skill names are `penta-pro`, `peer-review`, `cybersec`, `ui-design`, `android-module-structure`, `android-data-layer`, `android-error-handling`, `android-di-koin`, `android-background`, `android-unit-testing`, `android-integration-testing`, `android-ui-testing`, and `pr-quiz`. Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Keep the quotes around `'*'` so the shell passes it to the CLI.
+Available skill names are `agent-instructions`, `android-background`, `android-data-layer`, `android-di-koin`, `android-error-handling`, `android-integration-testing`, `android-module-structure`, `android-ui-testing`, `android-unit-testing`, `behavior-testing`, `cybersec`, `diagnose-defect`, `git-delivery`, `http-api`, `mcp-server`, `peer-review`, `penta-pro`, `pr-quiz`, `software-delivery`, `technical-research`, `ui-design`. Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Keep the quotes around `'*'` so the shell passes it to the CLI.
 
 Installation defaults to the current project. Add `-g` for user-level installation across projects:
 
@@ -113,19 +131,27 @@ Use `npx skills@latest check` to check for updates and `npx skills@latest update
 Copy the complete directory of each desired skill into the skills location supported by your agent. Preserve its internal relative paths. For a Codex project, the installed entrypoints are:
 
 ```text
-your-project/.agents/skills/penta-pro/SKILL.md
-your-project/.agents/skills/peer-review/SKILL.md
-your-project/.agents/skills/cybersec/SKILL.md
-your-project/.agents/skills/ui-design/SKILL.md
-your-project/.agents/skills/android-module-structure/SKILL.md
-your-project/.agents/skills/android-data-layer/SKILL.md
-your-project/.agents/skills/android-error-handling/SKILL.md
-your-project/.agents/skills/android-di-koin/SKILL.md
+your-project/.agents/skills/agent-instructions/SKILL.md
 your-project/.agents/skills/android-background/SKILL.md
-your-project/.agents/skills/android-unit-testing/SKILL.md
+your-project/.agents/skills/android-data-layer/SKILL.md
+your-project/.agents/skills/android-di-koin/SKILL.md
+your-project/.agents/skills/android-error-handling/SKILL.md
 your-project/.agents/skills/android-integration-testing/SKILL.md
+your-project/.agents/skills/android-module-structure/SKILL.md
 your-project/.agents/skills/android-ui-testing/SKILL.md
+your-project/.agents/skills/android-unit-testing/SKILL.md
+your-project/.agents/skills/behavior-testing/SKILL.md
+your-project/.agents/skills/cybersec/SKILL.md
+your-project/.agents/skills/diagnose-defect/SKILL.md
+your-project/.agents/skills/git-delivery/SKILL.md
+your-project/.agents/skills/http-api/SKILL.md
+your-project/.agents/skills/mcp-server/SKILL.md
+your-project/.agents/skills/peer-review/SKILL.md
+your-project/.agents/skills/penta-pro/SKILL.md
 your-project/.agents/skills/pr-quiz/SKILL.md
+your-project/.agents/skills/software-delivery/SKILL.md
+your-project/.agents/skills/technical-research/SKILL.md
+your-project/.agents/skills/ui-design/SKILL.md
 ```
 
 A skill stored in this repository is not automatically installed into other projects. Codex discovers repository skills from `.agents/skills/`; if a copied skill does not appear, restart the session. Other hosts use their own discovery locations and invocation syntax. See [agent and model compatibility](#agent-and-model-compatibility) for documented locations, capabilities, and integration limits.
@@ -182,7 +208,7 @@ After changing host, model, or significant instructions, run the relevant [Penta
 
 ## PentaPRO
 
-**Version:** 2.6.1 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Version:** 2.6.3 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PentaPRO when defining a product, specifying a substantial feature, maintaining an existing PentaPRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -263,7 +289,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.10.1 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Version:** 1.10.2 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -354,7 +380,7 @@ Load the review method and applicable references. Source research and evaluation
 
 ## Cybersecurity
 
-**Version:** 1.5.3 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Version:** 1.5.4 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
 Use Cybersecurity for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
@@ -415,7 +441,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 ## UI Design
 
-**Version:** 1.5.4 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
+**Version:** 1.5.5 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
 Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
@@ -459,6 +485,38 @@ An optional standard-library Python helper checks explicitly declared token cont
 | [Evaluation scenarios](ui-design/evals/scenarios.md) | Realistic cases and validation record. |
 | [OpenAI metadata](ui-design/agents/openai.yaml) | Optional host presentation and invocation prompt. |
 
+## Diagnose Defect
+
+Use for an ambiguous failure, intermittent regression, or slowdown that needs a discriminating reproduction. For example, “Diagnose why retries sometimes lose a queued job.” The result records the cause evidence and remaining uncertainty. A fix and its verification follow the requested scope. [Skill](diagnose-defect/SKILL.md)
+
+## Behavior Testing
+
+Use to author or improve automated behavior tests for web, backend, desktop, or CLI software. For example, “Add a regression test for submitting twice after a lost response.” Use the existing runner and observe the actual effect. For native Android test authoring, select the applicable native helper. [Skill](behavior-testing/SKILL.md)
+
+## HTTP API
+
+Use for concrete server changes under an existing or authorized contract. For example, “Implement this endpoint with retry-safe writes and preserve current client errors.” The output includes contract and implementation changes, caller impact, and executed checks. [Skill](http-api/SKILL.md)
+
+## MCP Server
+
+Use to implement an MCP server or an exposed capability. For example, “Expose the existing document lookup through our supported MCP client.” Keep protocol revision, transport, permission enforcement, and downstream test effects explicit. [Skill](mcp-server/SKILL.md)
+
+## Software Delivery
+
+Plan and execute verified software increments. Read [software-delivery/SKILL.md](software-delivery/SKILL.md) for scope and conditional resources. Invoke `$software-delivery` for this outcome. Existing project tools, contracts and authorization remain authoritative.
+
+## Technical Research
+
+Resolve technical uncertainty with traceable evidence. Read [technical-research/SKILL.md](technical-research/SKILL.md) for scope and conditional resources. Invoke `$technical-research` for this outcome. Existing project tools, contracts and authorization remain authoritative.
+
+## Git Delivery
+
+Review, commit and publish the authorized Git snapshot. Read [git-delivery/SKILL.md](git-delivery/SKILL.md) for scope and conditional resources. Invoke `$git-delivery` for this outcome. Existing project tools, contracts and authorization remain authoritative.
+
+## Agent Instructions
+
+Maintain portable software-development agent guidance. Read [agent-instructions/SKILL.md](agent-instructions/SKILL.md) for scope and conditional resources. Invoke `$agent-instructions` for this outcome. Existing project tools, contracts and authorization remain authoritative.
+
 ## Native Android implementation and testing
 
 These helpers implement concrete native Kotlin/JVM/Android changes. They do not create another specification or assessment workflow. Design and implement Android screens through UI Design's conditional Compose/presentation/navigation references; assess Android security through Cybersecurity's Android controls. Review source and test effectiveness through Peer Review. [Ownership and every source destination](SKILL-ROUTING.md) explain the boundaries.
@@ -490,7 +548,7 @@ Offline maintainer checks: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discov
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
-The template supplies general rules for scoped work, implementation, validation, test-effectiveness review, security, collaboration, and handoff. It routes work to `penta-pro`, `ui-design`, `peer-review`, and `cybersec`, identifies the five pillar documents plus the cumulative UI specification, and explains ownership, resumption and evidence states. Optional Android implementation/test helpers and PR Quiz have separate task boundaries in the routing table. Fill in actual skill locations and commands; copying the template does not install the packages or require all four on every task. It leaves the stack, source layout, model and test framework to the project. Its artifact-language default is English, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their own authoritative documents and link them from the project guide.
+The template supplies rules for scoped work, implementation, validation, review, security, collaboration, and handoff. It routes work by outcome, identifies the five pillar documents and the cumulative UI specification, and explains ownership, resumption, and evidence states. Fill in the project's skill locations and commands. Use the packages relevant to each task. The project chooses its stack, source layout, model, and test framework. Artifacts use English by default, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their authoritative documents and link them from the project guide.
 
 ## Repository structure
 
@@ -503,6 +561,16 @@ skills/
 ├── THIRD-PARTY-NOTICES.md
 ├── AGENTS-template.md
 ├── SKILL-ROUTING.md
+├── SKILL-EVALUATION.md
+├── SKILL-ASSESSMENT.md
+├── software-delivery/
+├── technical-research/
+├── git-delivery/
+├── agent-instructions/
+├── diagnose-defect/
+├── behavior-testing/
+├── http-api/
+├── mcp-server/
 ├── android-module-structure/
 ├── android-data-layer/
 ├── android-error-handling/
@@ -552,6 +620,10 @@ skills/
 Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/docs/build-skills) and [Anthropic's best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) on 2026-10-25. These are maintainer references, not runtime dependencies. Recheck relevant guidance when changing packaging, discovery, or model support; evaluate upstream changes deliberately rather than importing them automatically.
 
 ### Validation and improvement
+
+Run `python3 scripts/validate_collection.py` from this repository root to check local links/anchors, names, catalog versions and complete manual-install coverage. This standard-library check complements host skill validation and behavioral trials.
+
+Use the [evaluation procedure](SKILL-EVALUATION.md) to decide whether to add, revise, or retire a skill. The [software factory assessment](SKILL-ASSESSMENT.md) records the previous round. The [closure review](COLLECTION-REVIEW.md) records this round, source coverage and remaining limits.
 
 The pstack-informed update adds caller-facing contract sketches and verification recipes to PentaPRO, safety-premise and measurement checks to Peer Review, model/enforcement distinctions to Cybersecurity, and instance-aware journey evidence to UI Design. These additions are conditional; the skills keep their existing output contracts and introduce no pstack dependency. [Research attribution and limits](THIRD-PARTY-NOTICES.md#cursor-pstack-research) identify the pinned source and adaptations.
 

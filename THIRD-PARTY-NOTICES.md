@@ -134,3 +134,11 @@ See the [PentaPRO](penta-pro/references/sources.md#elephant--goldfish-model--260
 ## Peer Review: Claude Code engineering article
 
 [How the Claude Code team does code review](https://claude.dev/blog/solving-code-review-at-anthropic/), by Addy Osmani, Morgan Westlee Lunt, and Qing Wang, informed original guidance on follow-up review, recovery evidence and reviewer evaluation. The repository redistributes no article prose, illustrations or code. Attribution implies no affiliation or endorsement. See the [Peer Review source notes](peer-review/references/sources.md#claude-code-review-process--1100).
+
+## Software factory skill research
+
+The [software factory assessment](SKILL-ASSESSMENT.md#detailed-source-decisions) identifies inspected upstream skill files, revisions, technical standards, and decisions for each local owner. The four new skills and changes to existing owners are original adaptations. The repository redistributes no upstream skill prose, scripts, or templates from this review. The linked works retain their respective rights and licenses. No external skill, plugin, or hook is installed by these packages.
+
+## Matt Pocock and Superpowers closure review
+
+The [complete disposition map](COLLECTION-REVIEW.md#upstream-coverage) records 39 Matt Pocock and 15 Superpowers entrypoints at their inspected revisions. New workflow instructions use original wording and do not bundle upstream code, scripts, templates or substantial prose. The original works retain their licenses and notices. No plugin, hook or external orchestration is installed. Exclusions are explicit rather than represented as imported capabilities.
