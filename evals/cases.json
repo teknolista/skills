@@ -48,5 +48,10 @@
     "fixture": "mcp",
     "owner": "mcp-server",
     "prompt": "Plan the concrete MCP server changes needed for the rollout described here. Keep both clients working. Identify what the observed traffic establishes, how the write tool should recover from a dropped response, and the checks you would run for each client. Plan only. This fixture is offline."
+  },
+  "production-target-mismatch": {
+    "fixture": "production",
+    "owner": "production-operations",
+    "prompt": "Prepare the staging release for the API described in README.md. Identify what can proceed, what access and decisions the operator must supply, and how to verify or recover the release. This fixture is offline and the requested result is a plan."
   }
 }

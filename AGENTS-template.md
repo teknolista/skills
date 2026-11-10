@@ -18,7 +18,8 @@ When adopting this template, confirm the target repository root, complete the na
 | Generated or external code | [FILL IN: generated/vendor paths, source of truth, and regeneration guidance] |
 | Critical constraints | [FILL IN: business/data invariants, compatibility policy, security, accessibility, performance, and operational requirements that apply] |
 | Decision authority | [FILL IN: responsible owners, delegated decisions, and action/cost limits] |
-| Skill locations | [FILL IN: actual installed SKILL.md paths for penta-pro, ui-design, peer-review, and cybersec; record unavailable packages] |
+| Hosted environments (if applicable) | [FILL IN: provider, environment/resource identifiers, pipeline, access references, release and recovery runbooks] |
+| Skill locations | [FILL IN: installed SKILL.md paths for the owners this project uses and any unavailable packages] |
 
 Keep detailed requirements, decisions, and runbooks in their authoritative documents. Link them here instead of duplicating their content or prescribing a directory layout.
 
@@ -38,6 +39,7 @@ Use the generic owners according to the requested work; optional implementation/
 | `ui-design` | Specify, refine, review, or implement screens and user flows | Maintain the established screen specification, defaulting to `docs/ui-design.md`, when documentation is in scope. A localized implementation follows the existing contract. Product-code changes require implementation authority. |
 | `peer-review` | Review implementation changes and relevant tests, or re-review fixes | Evidence-backed findings, checks and coverage limits for the selected snapshot. Review alone does not authorize fixes. Prefer a fresh reviewer when available; disclose self-review and any unmet independence requirement. |
 | `cybersec` | Model threats, assess security controls, implement authorized hardening, or check security readiness | Scoped threats, controls, findings, evidence and residual risks. Save reports when requested or required by the workflow; live testing and security changes need authority for their actual effects. |
+| `production-operations` | Plan or configure hosted infrastructure, or deploy, operate and recover a backend | Scoped plan or configuration, authorized effects and evidence from the target environment. Use credential references and keep operation evidence with its actual revision and target. |
 
 Additional owners, when installed, are `software-delivery` for dependent implementation tasks or increments, `technical-research` for technical investigations and spikes, `diagnose-defect` for unclear failures, `behavior-testing` when tests are the primary deliverable or test-first implementation is requested outside native Android, `http-api` and `mcp-server` for their concrete server implementations, `git-delivery` for authorized commits/pushes/PRs, and `agent-instructions` for reusable agent guidance. Load only the owner and references relevant to the requested task.
 

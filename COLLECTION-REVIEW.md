@@ -1,6 +1,6 @@
 # Collection closure review
 
-This records the earlier collection closure. See the [distribution review](FINAL-SKILL-REVIEW.md#distribution-review) for the later license and release status.
+This records the earlier collection closure. See the [distribution review](FINAL-SKILL-REVIEW.md#distribution-review) for the later license and release status and the [Production Operations addition](FINAL-SKILL-REVIEW.md#production-operations-addition) for the 22nd package.
 
 ## Scope and conclusion
 

@@ -1,13 +1,13 @@
 # ✨ AI Agent Skills
 
-My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. The collection covers specification, implementation, research, testing, review, security, Git delivery and agent guidance. Optional native Android implementation/test helpers and a generic PR quiz complement them; see [skill ownership](SKILL-ROUTING.md). Each skill can be used independently.
+My personal collection of reusable skills for developers building software with AI coding agents. PentaPRO turns intent into an actionable specification; Peer Review checks implementation against requirements and concrete evidence; Cybersecurity assesses security risks and controls across software, DevOps, and IT systems. UI Design turns requirements into screen and interaction specifications for web and Android, with authorized implementation and verification. The collection covers specification, implementation, research, testing, review, security, Git delivery, production operations and agent guidance. Optional native Android implementation/test helpers and a generic PR quiz complement them; see [skill ownership](SKILL-ROUTING.md). Each skill can be used independently.
 
 All skill instructions and generated artifacts are in English. Conversation can use the user's preferred language.
 
 > [!IMPORTANT]
 > These skills are still in development. They are based on my personal experience developing my own applications and may need adjustments for other projects, teams, models, and workflows.
 >
-> All 21 skills are distributed under the [MIT License](LICENSE), with source attribution in the [third-party notices](THIRD-PARTY-NOTICES.md).
+> All 22 skills are distributed under the [MIT License](LICENSE), with source attribution in the [third-party notices](THIRD-PARTY-NOTICES.md).
 >
 > Feedback from actual use, constructive criticism, and suggestions are very welcome through [GitHub Issues](https://github.com/teknolista/skills/issues).
 
@@ -51,6 +51,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [HTTP API](#http-api)
   - [MCP Server](#mcp-server)
   - [Software Delivery](#software-delivery)
+  - [Production Operations](#production-operations)
   - [Technical Research](#technical-research)
   - [Git Delivery](#git-delivery)
   - [Agent Instructions](#agent-instructions)
@@ -76,6 +77,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
 | [MCP Server](#mcp-server) | 1.1.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
 | [Software Delivery](#software-delivery) | 1.2.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
+| [Production Operations](#production-operations) | 1.0.0 | Plan and configure hosted backends, deploy verified artifacts, and operate or recover the service. |
 | [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
 | [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
 | [Agent Instructions](#agent-instructions) | 1.0.1 | Maintain portable software-development agent guidance. |
@@ -91,7 +93,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 The [routing and consolidation map](SKILL-ROUTING.md) records the 14 Android/quiz source skills. The [closure review](COLLECTION-REVIEW.md) maps all 54 entrypoints in the two requested upstream repositories. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
 
-The current collection contains **21 skills**. It is a curated adaptation, not a mirror of upstream packages. No Matt Pocock or Superpowers installation is required.
+The current collection contains **22 skills**. It is a curated adaptation, not a mirror of upstream packages. No Matt Pocock or Superpowers installation is required.
 
 ## Choose a workflow
 
@@ -99,7 +101,7 @@ Use a short request for a clear, reversible, low-risk edit. Work from the existi
 
 For consequential work or when the project requires spec-driven development (SDD), use the governing specification or change record before implementation. The agent can draft it from the developer's intent, repository evidence and examples, then ask for unresolved decisions that affect the outcome. Use [PentaPRO](#pentapro) for a broader specification and [Software Delivery](#software-delivery) for dependent implementation tasks. Preserve the project's authoritative tickets, schemas and acceptance checks, and link them from the specification where useful.
 
-If you require the entire selected scope specified before coding, say so in the request or project policy. Otherwise settle each increment's behavior, constraints and checks before implementing that increment. Give the agent autonomy over routine implementation choices within the agreed scope. Keep verification and any release authority explicit. The [routing guide](SKILL-ROUTING.md#choose-the-depth-of-the-workflow) shows how to apply this to common tasks.
+If you require the entire selected scope specified before coding, say so in the request or project policy. Otherwise settle each increment's behavior, constraints and checks before implementing that increment. Give the agent autonomy over routine implementation choices within the agreed scope. Keep verification and any release authority explicit. For a hosted backend, use [Production Operations](#production-operations) when planning environments, configuring the release pipeline or carrying out an authorized deployment and verifying the running service. The [routing guide](SKILL-ROUTING.md#choose-the-depth-of-the-workflow) shows how to apply this to common tasks.
 
 ## Installation and activation
 
@@ -114,7 +116,7 @@ npx skills@latest add teknolista/skills --skill penta-pro -a codex
 npx skills@latest add teknolista/skills --list
 ```
 
-Install all 21 skills for Codex with this command. Quoting `'*'` passes the wildcard to the installer.
+Install all 22 skills for Codex with this command. Quoting `'*'` passes the wildcard to the installer.
 
 ```bash
 npx skills@latest add teknolista/skills --skill '*' -a codex -y
@@ -149,6 +151,7 @@ your-project/.agents/skills/mcp-server/SKILL.md
 your-project/.agents/skills/peer-review/SKILL.md
 your-project/.agents/skills/penta-pro/SKILL.md
 your-project/.agents/skills/pr-quiz/SKILL.md
+your-project/.agents/skills/production-operations/SKILL.md
 your-project/.agents/skills/software-delivery/SKILL.md
 your-project/.agents/skills/technical-research/SKILL.md
 your-project/.agents/skills/ui-design/SKILL.md
@@ -167,9 +170,10 @@ The core instructions use Markdown and optional references/templates. Cross-pack
 1. Install the packages needed for your work and confirm that your agent can discover and read them, including their supporting files. Use a small task in a disposable project to check activation and tool access before relying on a new host/model combination.
 2. Open the software project's root and provide the intended outcome, relevant constraints and expected result. Reuse existing project instructions. The optional [AGENTS.md template](AGENTS-template.md) helps record commands, contracts and authority; adapt it rather than overwriting existing guidance or leaving placeholders as executable instructions.
 3. Choose the [workflow depth](#choose-a-workflow). For a new specification, ask `Use $penta-pro to specify an offline notes application. Save the specification and identify unresolved decisions before implementation.` For an existing accepted plan, ask `Use $software-delivery to implement the next ready increment and run the required checks.` For a clear copy edit, identify the exact text and intended replacement directly.
-4. Inspect the actual artifacts and verification evidence. Confirm that the result meets the requested behavior, preserves existing constraints and names untested boundaries. Review and release follow the project's own gates. Resume material work from its saved contracts and evidence.
+4. For a hosted backend, try a plan or staging configuration with `$production-operations`. Use the [deployment brief](production-operations/assets/deployment-brief.md) to identify the exact target, access and permitted effects. Verify the running revision and a critical path if deployment is in scope.
+5. Inspect the actual artifacts and verification evidence. Confirm that the result meets the requested behavior, preserves existing constraints and names untested boundaries. Review and release follow the project's own gates. Resume material work from its saved contracts and evidence.
 
-The collection supplies reusable methods and selected platform procedures. Generic workflows apply across stacks, while the bundled implementation detail is strongest for native Android, web UI, HTTP APIs and MCP. Other stacks require their own tooling and applicable documentation. Installation, a generated specification and passing collection tests do not certify the software produced with these skills. Consult the [maintenance review](FINAL-SKILL-REVIEW.md) and [evaluation results](evals/RESULTS.md) for the scope actually checked.
+The collection supplies reusable methods and selected platform procedures. Generic workflows apply across stacks, with implementation procedures for native Android, web UI, HTTP APIs and MCP, and deployment guides for AWS, Azure, Google Cloud, Cloudflare and VPS. Other stacks require their own tooling and applicable documentation. Installation, a generated specification and passing collection tests do not certify the software produced with these skills. Consult the [maintenance review](FINAL-SKILL-REVIEW.md) and [evaluation results](evals/RESULTS.md) for the scope actually checked.
 
 ## Agent and model compatibility
 
@@ -199,6 +203,7 @@ Invocation and consent differ by host. For example, Codex documents `$name`, Cla
 | Code inspection | Actual selected source/snapshot, relevant requirements/contracts, and applicable references | Report material missing coverage; do not infer a clean review from a description alone. |
 | Cybersecurity assessment | Authorized target/snapshot, relevant security requirements, applicable domain references, and evidence of the controls being claimed | Separate source/configuration from deployed/runtime evidence; mark inaccessible areas and avoid security or compliance guarantees. |
 | Executed verification | The project's actual tools and isolated data/environment | Label unexecuted checks and distinguish static conclusions from runtime evidence. |
+| Hosted backend deployment or recovery | Project pipeline or provider tooling, target and scoped identity, action authority, and applicable traffic, data and recovery checks | Complete accessible plan or configuration work and mark live effects or checks pending when the target is unavailable. |
 | Independent review | A separate reviewer/session with actual source access | Disclose self-review or prepare a factual handoff; do not claim independence from a model label. |
 
 Git, shell execution, browsers, Android SDKs, credentials, connectors, and additional agents are not supplied by installing a skill. Git is useful for comparisons, but an explicitly selected source snapshot can be reviewed without it. The skills can be used independently. Cybersecurity live testing and remediation require actual target/action authorization; capability does not imply permission.
@@ -514,6 +519,20 @@ Use to implement an MCP server or an exposed capability. For example, “Expose 
 
 Coordinate dependent tasks and verify the integrated result. For example, “Implement the accepted retry change across the API, worker and existing clients.” Use the governing baseline and applicable active change, or establish the intended behavior from the request and existing project contracts. Reconcile material changes with the owning records and keep verification tied to the resulting revision. A clear localized change can use its domain procedure directly. See [Software Delivery](software-delivery/SKILL.md) and its [change contract guide](software-delivery/references/change-contracts.md).
 
+## Production Operations
+
+Use [Production Operations](production-operations/SKILL.md) to choose a deployment model, configure infrastructure and CI/CD, release an exact backend revision, or operate and recover a hosted service. It covers APIs, functions, containers, workers, scheduled and batch jobs, Kubernetes, VMs and stateful dependencies. Load the relevant [AWS](production-operations/references/providers/aws.md), [Azure](production-operations/references/providers/azure.md), [Google Cloud](production-operations/references/providers/gcp.md), [Cloudflare](production-operations/references/providers/cloudflare.md) or [VPS](production-operations/references/providers/vps.md) guide.
+
+Give the agent the repository and release ref, exact target environment and resource identifiers, approved login or runner, allowed changes and cost scope, and links to the relevant deployment and recovery procedures. Complete human login, MFA or consent directly with the provider. Supply references to secrets in the approved vault or CI store. The [access guide](production-operations/references/access-and-mcp.md) separates bootstrap, pipeline, runtime and observation identities and explains when to use an official MCP server, CLI or the existing pipeline.
+
+```text
+Use $production-operations to compare AWS, Cloudflare, and a VPS for this API. Identify compatibility, cost assumptions, and what access staging needs.
+Use $production-operations to prepare the Cloud Run staging pipeline with federated CI access. Validate the repository changes and provide the bootstrap handoff.
+Use $production-operations to deploy this image digest to the authorized staging ECS service and verify the running revision and critical API flow.
+```
+
+The [deployment brief](production-operations/assets/deployment-brief.md) captures inputs and authority. The [operations record](production-operations/assets/operations-record.md) captures what ran, which revision served, observed checks and recovery evidence. See the [worked examples](production-operations/references/worked-examples.md), [evaluation scenarios](production-operations/evals/scenarios.md) and [source notes](production-operations/references/sources.md). Cloud credentials and MCP tools are configured separately for the actual target.
+
 ## Technical Research
 
 Resolve technical uncertainty with traceable evidence. Read [technical-research/SKILL.md](technical-research/SKILL.md) for scope and conditional resources. Invoke `$technical-research` for this outcome. Existing project tools, contracts and authorization remain authoritative.
@@ -578,6 +597,12 @@ skills/
 ├── evals/
 ├── scripts/
 ├── software-delivery/
+├── production-operations/
+│   ├── SKILL.md
+│   ├── agents/
+│   ├── assets/
+│   ├── evals/
+│   └── references/
 ├── technical-research/
 ├── git-delivery/
 ├── agent-instructions/
@@ -630,7 +655,7 @@ skills/
 The two directories at the repository root support collection maintenance:
 
 - `evals/` holds [evaluation cases](evals/cases.json), synthetic project fixtures, project-policy overlays, independent checks, and [trial results](evals/RESULTS.md). These let maintainers compare agent behavior on the same tasks and inspect the resulting artifacts.
-- `scripts/` holds the [collection validator](scripts/validate_collection.py), its dependency list, the [evaluation runner](scripts/run_skill_evals.py), and runner tests. Use the [validation instructions](#validation-and-improvement) and [evaluation procedure](SKILL-EVALUATION.md) from a checkout of the collection. A full repository clone includes both directories.
+- `scripts/` holds the [collection validator](scripts/validate_collection.py), its dependency list, the [evaluation runner](scripts/run_skill_evals.py), and offline validator/runner tests. Use the [validation instructions](#validation-and-improvement) and [evaluation procedure](SKILL-EVALUATION.md) from a checkout of the collection. A full repository clone includes both directories.
 
 Inside a skill package, `SKILL.md` contains metadata and runtime instructions. Optional `agents/` files adapt host presentation, `assets/` holds output templates, and `references/` holds conditional detail. Some packages also carry their own `evals/` maintenance cases or `scripts/` helpers and tests. These nested directories belong to the package and can accompany its installation. For example, UI Design carries its [local prototype helper](ui-design/scripts/prototype_tools.py). Create only the directories a skill needs.
 
@@ -640,9 +665,9 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 ### Validation and improvement
 
-Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root to check frontmatter, local links and anchors, catalog versions, and installation coverage. The [validation workflow](.github/workflows/validate.yml) runs these checks and the offline Python and Node helper tests. It uses no model evaluation credentials.
+Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root to check frontmatter, local inline links and ATX-heading anchors outside fenced examples, catalog versions, standalone licenses, installation coverage, and the supported fields of optional `agents/openai.yaml` files. Host metadata checks cover mapping shape, duplicate keys, UI text, the owning skill in the default prompt, packaged icons, color format and invocation-policy types; they are not a complete host schema or a host-discovery test. The [validation workflow](.github/workflows/validate.yml) runs these checks and the offline Python and Node helper tests. It discovers every root skill package, including Production Operations, and uses no model evaluation or cloud credentials.
 
-To reproduce the local collection checks, use a POSIX development environment with Git, Python 3.12+ and Node.js 24, matching the CI runtime family. After installing the dependency above, run these commands from the collection root. The evaluator lifecycle tests launch bounded local subprocesses; the quiz tests use API doubles and do not publish to GitHub.
+To reproduce the local collection checks, use a POSIX development environment with Git, Python 3.12+ and Node.js 24, matching the CI runtime family. After installing the dependency above, run these commands from the collection root. The validator tests use disposable Git inventories and exercise valid and invalid collections. The evaluator lifecycle tests launch bounded local subprocesses; the quiz tests use API doubles and do not publish to GitHub.
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/validate_collection.py
@@ -680,6 +705,6 @@ Where present, evaluation files and executable tests record the package's actual
 
 ## License and attribution
 
-All 21 packages use the [MIT License](LICENSE) and include a copy of its notice. This covers the imported Android and PR Quiz material, including references embedded in UI Design and Cybersecurity, under the MIT redistribution permission confirmed by the repository maintainer. Retain the license and applicable attribution when redistributing a package. See [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for the source mapping.
+All 22 packages use the [MIT License](LICENSE) and include a copy of its notice. This covers the imported Android and PR Quiz material, including references embedded in UI Design and Cybersecurity, under the MIT redistribution permission confirmed by the repository maintainer. Retain the license and applicable attribution when redistributing a package. See [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for the source mapping.
 
 The source research for [PentaPRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersecurity](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.

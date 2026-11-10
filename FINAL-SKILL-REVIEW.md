@@ -1,6 +1,6 @@
 # Final skill maintenance review
 
-This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [final adoption review](#final-adoption-review) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
+This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [22-package closing review](#22-package-closing-review) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
 
 Date: 2026-11-09. Scope: the current working collection of 21 packages, including the preceding maintenance changes on top of `95abba607180cda548749edb76034efe5dbcac32`. This is a maintainer self-review, not an independent approval or a claim of globally optimal skills.
 
@@ -100,3 +100,47 @@ Rechecked primary documentation for the [Agent Skills format](https://agentskill
 Fresh local verification passed all 21 skill metadata checks, collection metadata/catalog/license/link validation, and all 68 offline tests (3 evaluator lifecycle, 26 UI helper, 12 PR publisher and 27 grader scenarios). The local runtimes were Python 3.12.6 and Node.js 26.10.0; hosted CI declares Python 3.12 and Node.js 24. The exact reproduction commands are in [README validation](README.md#validation-and-improvement). Whitespace checks passed. The root MIT notice and standalone notices remain aligned, using the maintainer's recorded redistribution authorization.
 
 No blocking finding remains in the inspected collection scope. The collection is usable with the documented prerequisites and project checks. Universal correctness, security certification, effectiveness on every model and readiness of every generated application are not established. This pass did not repeat model comparisons, browser/device sessions, the MCP SDK smoke test, installation trials or hosted CI; their earlier results remain scoped to their recorded snapshots. Publication of the pending changes is a separate step; this pass created no commit or push.
+
+## Production Operations addition
+
+On 2026-11-10 the collection added [Production Operations](production-operations/SKILL.md) as its 22nd package. It owns hosted backend planning, pipeline and infrastructure configuration, authorized deployment, runtime verification and recovery. PentaPRO retains specification, Software Delivery retains dependent application implementation, and Git Delivery retains Git publication. The package ships five conditional provider guides, two adaptable templates, worked examples and [offline evaluation scenarios](production-operations/evals/scenarios.md). Its [source notes](production-operations/references/sources.md) record original synthesis and linked primary references. The earlier validation records refer to their own snapshots.
+
+Local validation passed all 22 skill metadata checks, the collection catalog/license/link validator and all 68 offline helper tests. Skills CLI 1.7.6 installed only the new package into a disposable Codex project, where its 18 files matched the source byte for byte.
+
+Two independent same-model forward scenarios exercised planning and safety decisions without cloud access. A Cloud Run runner context mismatch and partial backfill prompted explicit cross-project federation and job execution reconciliation guidance. A Cloudflare staging binding to production data and a Durable Object rename prompted exact lifecycle and rollback rules and checks of the prior revision's bindings. These runs exercised responses to fictional inputs. They supplied no live deployment, provider login, MCP connection, recovery or comparative model evidence.
+
+### Integration follow-up
+
+The adoption path and capability table now route hosted work to Production Operations. The [evaluation runner](SKILL-EVALUATION.md#score-the-outputs) registers a synthetic target mismatch and partial migration fixture. The follow-up verified fixture and owner paths. The new runner case has no model trial result yet.
+
+The existing [GitHub validation workflow](.github/workflows/validate.yml) discovers root skill packages through the collection validator. A disposable Git snapshot passed, and separate controls rejected a missing AWS guide and a mismatched README version for Production Operations. All 22 packages, 768 local links and anchors, and 68 offline tests passed in the follow-up. Hosted CI and live cloud deployment were outside these checks.
+
+
+## 22-package closing review
+
+Date: 2026-11-10. Reviewed the local collection over `648fe9c`, preserving the pending Production Operations addition and integration changes. This was a maintainer self-review. Read all 22 entrypoints, checked their requested outcomes, authority, failure handling and evidence requirements, and traced selected security, Android, MCP, delivery and operations references. Checked the catalog, routing, project template, provenance, installation instructions and validation workflow. Supporting references received risk-directed inspection, not exhaustive re-execution of every example.
+
+| Packages | Assessment |
+| --- | --- |
+| PentaPRO; Software Delivery; Agent Instructions | Keep the separation of accepted contracts, proposals, implementation authority and observed evidence. Existing SDD records remain canonical; ordinary scoped work does not need a new specification framework. |
+| Technical Research; Diagnose Defect | Keep primary-source applicability, bounded experiments, controls and cause uncertainty. A plausible explanation is not a reproduced cause. |
+| HTTP API; MCP Server | Keep tenant/resource authorization, compatibility, uncertain outcomes and durable idempotency. Protocol revision and actual SDK/client support remain separate checks. |
+| Behavior Testing; Android Unit Testing; Android Integration Testing; Android UI Testing | Keep independent expectations, actual failure boundaries, deterministic scheduling and the distinction between mocked, host, device and live-service evidence. |
+| Android Module Structure; Android Data Layer; Android Error Handling; Android DI Koin; Android Background | Keep version-aware examples, cancellation, account-bound commits, migration preservation, component ownership and effective startup/release checks. |
+| UI Design; Peer Review; Cybersecurity | Keep observable interaction/accessibility contracts, substantiated findings, threat/control evidence, actual independence and scoped verdicts. No additional instruction defect was established in the inspected paths. |
+| Git Delivery; PR Quiz; Production Operations | Keep publication and deployment scoped to actual authorization, exact revision/target verification and recovery. The quiz remains an educational aid. Provider access and real deployment remain environment-specific. |
+
+Rechecked the [Agent Skills specification](https://agentskills.io/specification), [AGP built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin), [Koin verification](https://insert-koin.io/docs/reference/koin-test/verify/), [Compose v2 testing](https://developer.android.com/develop/ui/compose/testing/migrate-v2), and [MCP revision changes](https://modelcontextprotocol.io/specification/2026-07-28/changelog). No new third-party skill implementation was incorporated. Existing notices and runtime package versions remain unchanged.
+
+### Corrections to the collection gate
+
+- The anchor validator previously counted headings inside fenced code. A link could therefore pass without a rendered heading, and an example could shift duplicate-heading numbering. Link and heading checks now share the same fenced-example filtering.
+- Optional host metadata was not checked by the automated collection gate. It now checks YAML mapping shape and duplicate keys, supported UI fields, owner invocation in the default prompt, packaged icon paths, color syntax and boolean invocation policy. Files remain optional; this does not claim full host-schema or runtime-discovery validation.
+- Added 12 offline validator regression/control tests. Six negative cases failed under the old gate because invalid fixtures were accepted; all now pass with the correction. The tests also cover valid collections, real duplicate headings, ignored targets, catalog drift and valid host metadata.
+- Updated README validation scope and test descriptions. The existing GitHub Actions job already discovers `scripts/tests`, so it executes the new tests without a workflow edit. No cloud credentials or model calls are needed.
+
+### Observed verification and readiness
+
+All 22 installed skill-creator metadata checks passed. The collection gate passed catalog, license, installation, local-link/anchor and optional host-metadata checks. All 80 offline tests passed: 15 collection/evaluator tests, 26 UI helper tests, 12 PR publisher tests and 27 Node workflow scenarios. Whitespace checks passed. Local runtimes remain Python 3.12.6 and Node.js 26.10.0; hosted CI declares Python 3.12 and Node.js 24.
+
+The collection is ready for use with its documented prerequisites and project-specific verification; no substantiated blocker remains in the inspected scope. This does not establish universal correctness, security certification, or best-in-class performance across models. This closing pass did not rerun model comparisons, live deployments, Android devices, browser/assistive sessions, installation trials or hosted CI. Their earlier evidence retains its original scope. Changes remain local; no commit, push or deployment was performed.

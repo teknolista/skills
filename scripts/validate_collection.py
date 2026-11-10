@@ -42,10 +42,28 @@ for file in files:
 markdown = sorted(file for file in files if file.suffix == ".md")
 headings = re.compile(r"^ {0,3}#{1,6}\s+(.+?)\s*#*\s*$", re.M)
 links = re.compile(r"(?<!!)\[[^\]\n]*\]\((<[^>]+>|[^)\s]+)\)")
+
+
+def prose_lines(path):
+    """Yield source line numbers outside fenced examples for links and headings."""
+    fenced = None
+    for number, row in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        fence = re.match(r"^\s*(`{3,}|~{3,})(.*)$", row)
+        if fenced:
+            if (fence and fence[1][0] == fenced[0]
+                    and len(fence[1]) >= len(fenced) and not fence[2].strip()):
+                fenced = None
+            continue
+        if fence:
+            fenced = fence[1]
+            continue
+        yield number, row
+
+
 def anchors(path):
     counts = Counter()
     result = set()
-    for title in headings.findall(path.read_text()):
+    for title in headings.findall("\n".join(row for _, row in prose_lines(path))):
         slug = re.sub(r"[^\w -]", "", title.lower()).replace(" ", "-")
         seq = counts[slug]
         counts[slug] += 1
@@ -58,18 +76,7 @@ for file in markdown:
     if not file.is_file() or file.resolve() not in files:
         problems.append(f"{file.relative_to(root)} is missing or resolves outside the collection")
         continue
-    fenced = None
-    for number, row in enumerate(file.read_text().splitlines(), 1):
-        fence = re.match(r"^\s*(`{3,}|~{3,})", row)
-        if fence:
-            marker = fence[1]
-            if not fenced:
-                fenced = marker
-            elif marker[0] == fenced[0] and len(marker) >= len(fenced):
-                fenced = None
-            continue
-        if fenced:
-            continue
+    for number, row in prose_lines(file):
         for raw in links.findall(row):
             parsed = urlsplit(raw.strip("<>"))
             if parsed.scheme or parsed.netloc:
@@ -88,15 +95,62 @@ readme = (root / "README.md").read_text()
 labels = {
     "penta-pro":"PentaPRO", "peer-review":"Peer Review", "cybersec":"Cybersecurity",
     "ui-design":"UI Design", "diagnose-defect":"Diagnose Defect",
+    "production-operations": "Production Operations",
     "software-delivery":"Software Delivery", "technical-research":"Technical Research", "git-delivery":"Git Delivery", "agent-instructions":"Agent Instructions", "behavior-testing":"Behavior Testing", "http-api":"HTTP API", "mcp-server":"MCP Server",
 }
 versions = {}
 descriptions = {}
 mit_notice = (root / "LICENSE").read_bytes()
+
+
+def check_host_metadata(entry):
+    """Check the optional fields used by this collection, not a full host schema."""
+    path = entry.parent / "agents/openai.yaml"
+    if path not in files and not path.exists():
+        return
+    prefix = f"{entry.parent.name}: agents/openai.yaml"
+    if path not in files or not path.is_file() or path.resolve() not in files:
+        problems.append(f"{prefix} must be included in the collection")
+        return
+    try:
+        config = yaml.load(path.read_text(encoding="utf-8"), Loader=FrontmatterLoader)
+        if not isinstance(config, dict):
+            raise ValueError("expected a mapping")
+        interface = config.get("interface", {})
+        if not isinstance(interface, dict):
+            raise ValueError("interface must be a mapping")
+        for key in ("display_name", "short_description", "default_prompt", "icon_small", "icon_large", "brand_color"):
+            if key not in interface:
+                continue
+            value = interface[key]
+            if not isinstance(value, str) or not value.strip():
+                raise ValueError(f"{key} must be a nonempty string")
+            if key == "short_description" and not 25 <= len(value) <= 64:
+                raise ValueError("short_description must have 25–64 characters")
+            if key == "default_prompt" and not re.search(r"\$" + re.escape(entry.parent.name) + r"(?![a-z0-9-])", value):
+                raise ValueError("default_prompt must invoke its owning skill")
+            if key == "brand_color" and not re.fullmatch(r"#[0-9a-fA-F]{6}", value):
+                raise ValueError("brand_color must be a six-digit hex color")
+            if key in ("icon_small", "icon_large"):
+                icon = entry.parent / value
+                if (Path(value).is_absolute() or not icon.is_file()
+                        or icon.resolve() not in files
+                        or not icon.resolve().is_relative_to(entry.parent)):
+                    raise ValueError(f"{key} must reference a shipped package file")
+        policy = config.get("policy", {})
+        if not isinstance(policy, dict):
+            raise ValueError("policy must be a mapping")
+        if "allow_implicit_invocation" in policy and not isinstance(policy["allow_implicit_invocation"], bool):
+            raise ValueError("allow_implicit_invocation must be a boolean")
+    except (ValueError, yaml.YAMLError) as exc:
+        problems.append(f"{prefix}: {exc}")
+
+
 for entry in entries:
     package = entry.parent.name
     if not entry.is_file() or entry.resolve() not in files:
         continue
+    check_host_metadata(entry)
     if f"your-project/.agents/skills/{package}/SKILL.md" not in readme:
         problems.append(f"Missing manual installation entry for {package}")
     try:

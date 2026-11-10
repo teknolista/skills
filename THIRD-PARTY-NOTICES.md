@@ -151,3 +151,7 @@ The [software factory assessment](SKILL-ASSESSMENT.md#detailed-source-decisions)
 ## Matt Pocock and Superpowers closure review
 
 The [complete disposition map](COLLECTION-REVIEW.md#upstream-coverage) records 39 Matt Pocock and 15 Superpowers entrypoints at their inspected revisions. New workflow instructions use original wording and do not bundle upstream code, scripts, templates or substantial prose. The original works retain their licenses and notices. No plugin, hook or external orchestration is installed. Exclusions are explicit rather than represented as imported capabilities.
+
+## Production Operations
+
+[Production Operations](production-operations/SKILL.md) uses original workflow instructions and templates based on the primary technical references in its [source notes](production-operations/references/sources.md). OpenAI's Skill Creator and Matt Pocock's [Writing for Agents](https://github.com/mattpocock/skills/tree/main/skills/productivity/writing-for-agents) informed the authoring structure. The Matt Pocock license is listed above. No external skill, provider code, deployment template or connector is redistributed. Linked works and services retain their respective terms.

@@ -29,8 +29,9 @@ Use an existing issue, specification, schema or contract to record decisions at 
 | Tests as the primary deliverable or requested test-first implementation outside native Android | [Behavior Testing](behavior-testing/SKILL.md) | Executed behavioral checks in the existing runner |
 | Concrete HTTP API server changes | [HTTP API](http-api/SKILL.md) | Handler and integration implementation against the caller contract |
 | Concrete MCP server changes | [MCP Server](mcp-server/SKILL.md) | Protocol capabilities, transport, and actual downstream behavior |
+| Hosted backend deployment plan, infrastructure/pipeline configuration, authorized rollout, live verification or operational recovery | [Production Operations](production-operations/SKILL.md) | Target identity, deployed revision and operational effects |
 
-The closure round adds four portable owners, bringing the collection to **21**. See [all upstream dispositions](COLLECTION-REVIEW.md).
+The earlier closure round added four portable owners and brought the collection to **21**. Production Operations brings it to **22**. See [upstream dispositions](COLLECTION-REVIEW.md).
 
 - [Software Delivery](software-delivery/SKILL.md) — Coordinate dependent implementation tasks or increments and verify their integrated result.
 
@@ -76,6 +77,8 @@ The Android integration stage brought the collection to **13 discoverable skills
 - “Find why this Android sync sometimes drops writes” → Diagnose Defect while the cause is unclear. Use the native data helper for the concrete fix when applicable.
 - “Add a browser regression for retry after a failed save” → Behavior Testing. A native Compose interaction test uses the native Android UI test owner.
 - “Implement this HTTP write endpoint and its regression checks” → HTTP API. “Expose the action as an MCP tool” → MCP Server. An implementation that touches both uses the actual transport and owning service contract at each boundary. Coordinate through Software Delivery when dependent tasks or increments need a shared execution plan.
+- “Configure a staging pipeline and deploy the accepted API revision” → Production Operations for infrastructure, release and runtime evidence. PentaPRO owns the intended operating contract when specification is requested. Git Delivery owns any separately requested Git publication.
+- “Restore service after a failed rollout” → Production Operations for mitigation and recovery. Diagnose Defect owns causal investigation and Cybersecurity handles security assessment where applicable.
 - “Create a PR” alone → no quiz. “Add a comprehension quiz to this PR” → PR Quiz. Drafting, publishing, workflow installation and branch-rule changes retain their distinct authorization scopes.
 
 Cross-package links are optional navigation within this collection. A separately installed helper uses its own core instructions and project-owned contracts; it must not claim to have loaded an absent companion. Install related packages when desired, and preserve each package's internal references. Generic owners do not require the Android helper packages for non-Android work.
