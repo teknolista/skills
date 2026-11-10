@@ -1,6 +1,7 @@
 ---
 name: android-integration-testing
 description: Author, run or debug non-UI native Android boundary tests for Room, Ktor clients, DataStore, DI and WorkManager. Use for integration-test implementation; use peer-review for independent evidence assessment and cybersec for security audits.
+license: MIT
 metadata:
   version: "1.2.4"
 ---

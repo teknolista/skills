@@ -7,7 +7,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 > [!IMPORTANT]
 > These skills are still in development. They are based on my personal experience developing my own applications and may need adjustments for other projects, teams, models, and workflows.
 >
-> Everyone is welcome to use, improve, and adapt them. The [MIT License](LICENSE) covers repository-original work, subject to its notice requirements. Imported material retains its source terms; see [third-party notices](THIRD-PARTY-NOTICES.md).
+> All 21 skills are distributed under the [MIT License](LICENSE), with source attribution in the [third-party notices](THIRD-PARTY-NOTICES.md).
 >
 > Feedback from actual use, constructive criticism, and suggestions are very welcome through [GitHub Issues](https://github.com/teknolista/skills/issues).
 
@@ -68,7 +68,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [PentaPRO](#pentapro) | 2.6.3 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
 | [Peer Review](#peer-review) | 1.10.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersecurity](#cybersecurity) | 1.6.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.6 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [UI Design](#ui-design) | 1.5.6 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
 | [Diagnose Defect](#diagnose-defect) | 1.0.0 | Reproduce unclear failures, distinguish causes, and verify authorized fixes. |
 | [Behavior Testing](#behavior-testing) | 1.1.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
 | [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
@@ -95,40 +95,28 @@ The current collection contains **21 skills**. It is a curated adaptation, not a
 
 ### Install with the skills CLI
 
-Install [Node.js 22.20 or later](https://github.com/vercel-labs/skills#install-a-skill), with npm/npx available, and run the command from the project where you want to use the skills. The CLI downloads the published GitHub contents; local unpublished changes in this repository are not included.
+Install [Node.js 22.20 or later](https://github.com/vercel-labs/skills#install-a-skill), with npm/npx available, and run the command from the project where you want to use the skills. The CLI installs from the published GitHub repository.
 
-Choose which skills to install for Codex:
+To install PentaPRO for Codex or list the available skills, use the corresponding command:
 
 ```bash
-npx skills@latest add teknolista/skills -a codex
+npx skills@latest add teknolista/skills --skill penta-pro -a codex
+npx skills@latest add teknolista/skills --list
 ```
 
-Install all available skills for Codex without selection prompts:
+Install all 21 skills for Codex with this command. Quoting `'*'` passes the wildcard to the installer.
 
 ```bash
 npx skills@latest add teknolista/skills --skill '*' -a codex -y
 ```
 
-Install only one skill, or inspect the available skills without installing:
-
-```bash
-npx skills@latest add teknolista/skills --skill ui-design -a codex
-npx skills@latest add teknolista/skills --list
-```
-
-Available skill names are `agent-instructions`, `android-background`, `android-data-layer`, `android-di-koin`, `android-error-handling`, `android-integration-testing`, `android-module-structure`, `android-ui-testing`, `android-unit-testing`, `behavior-testing`, `cybersec`, `diagnose-defect`, `git-delivery`, `http-api`, `mcp-server`, `peer-review`, `penta-pro`, `pr-quiz`, `software-delivery`, `technical-research`, `ui-design`. Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Keep the quotes around `'*'` so the shell passes it to the CLI.
-
-Installation defaults to the current project. Add `-g` for user-level installation across projects:
-
-```bash
-npx skills@latest add teknolista/skills --skill '*' -a codex -g -y
-```
+Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Installation defaults to the current project. Add `-g` for user-level installation across projects.
 
 Use `npx skills@latest check` to check for updates and `npx skills@latest update` to update installed skills. See the [official CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) for installation options and update scopes.
 
 ### Manual installation
 
-Copy the complete directory of each desired skill into the skills location supported by your agent. Preserve its internal relative paths. For a Codex project, the installed entrypoints are:
+Copy each desired skill directory into the location supported by your agent. Preserve its internal paths and included `LICENSE`. The complete Codex path inventory is below.
 
 ```text
 your-project/.agents/skills/agent-instructions/SKILL.md
@@ -208,7 +196,7 @@ After changing host, model, or significant instructions, run the relevant [Penta
 
 ## PentaPRO
 
-**Version:** 2.6.3 · **Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
+**Entrypoint:** [penta-pro/SKILL.md](penta-pro/SKILL.md)
 
 Use PentaPRO when defining a product, specifying a substantial feature, maintaining an existing PentaPRO document, or checking whether the next increment is ready for development. It uses existing project information and asks about consequential gaps. Ordinary coding tasks and small, clear specification updates do not restart a full interview.
 
@@ -289,7 +277,7 @@ For creation, read the template index and five pillar templates. For updates and
 
 ## Peer Review
 
-**Version:** 1.10.2 · **Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
+**Entrypoint:** [peer-review/SKILL.md](peer-review/SKILL.md)
 
 Use Peer Review for backend services, frontend applications, Android software, and the effectiveness of their tests. It supports local edits, selected files or snippets, pull requests, commit comparisons, independent second opinions, and re-review after fixes. Reports separate substantiated defects, verification gaps, optional improvements, and remaining release requirements.
 
@@ -380,7 +368,7 @@ Load the review method and applicable references. Source research and evaluation
 
 ## Cybersecurity
 
-**Version:** 1.5.4 · **Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
+**Entrypoint:** [cybersec/SKILL.md](cybersec/SKILL.md)
 
 Use Cybersecurity for explicit security assessments, threat modeling, secure implementation, hardening, and security readiness checks. It covers web/frontends, backend/APIs, desktop/native applications, Android/iOS, CI/CD, supply chains, cloud/IaC/containers, enterprise IT, and AI/agentic systems when present. It selects the relevant surfaces instead of running every checklist for every project.
 
@@ -441,7 +429,7 @@ The skill was informed by Silva97's [Bem-vindo ao ciberapocalipse](https://www.t
 
 ## UI Design
 
-**Version:** 1.5.5 · **Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
+**Entrypoint:** [ui-design/SKILL.md](ui-design/SKILL.md)
 
 Use UI Design to discover, specify, refine, review, or implement screens and multi-screen journeys. A shared method covers task completion, hierarchy, content, components, states, accessibility and evidence; conditional references handle web and native Android (Compose/Views). Other platforms use the common method and actual official framework guidance with explicit coverage limits.
 
@@ -457,7 +445,7 @@ Use $ui-design to compare two visual directions for the same search screen and c
 
 Feedback guidance chooses field, form, transient, persistent, content-area or decision surfaces by task consequence, retaining usable content and truthful recovery. Compose guidance covers component contracts, state ownership, previews and shared/platform resources without imposing MVI or a DI library.
 
-The default output is the target project's cumulative **`docs/ui-design.md`**, with a screen index, shared visual/interaction rules, flows, per-screen contracts, decision status, acceptance scenarios, verification evidence and a resume pointer. It is saved during partial interviews and updated across iterations. Additional mockups or assets are optional linked evidence. A request to specify screens produces documentation; implementation follows the user's requested scope.
+When screen documentation is in scope, maintain the target project's cumulative **`docs/ui-design.md`** with screen contracts, decisions, acceptance scenarios, verification evidence and a resume pointer. Save partial specification iterations and preserve the project's established document location. For a localized implementation, use the existing contract and update it when the authorized change affects it. Return read-only review findings in the response unless the user requests a document.
 
 When PentaPRO files exist, this UI document supplements their five pillars and links canonical requirements, checks, architecture and process records. Existing design systems remain authoritative for their owned tokens/components. The skill has no mandatory dependency on the other skills, BMAD, OpenSpec, Figma, a browser plugin, image generation or a paid service. Runtime checks require available project tools; HTML concepts do not prove Android behavior. Research observations, proposals, accepted decisions and executed checks remain distinct. No production usability or cross-model efficiency benchmark is claimed.
 
@@ -552,7 +540,7 @@ The template supplies rules for scoped work, implementation, validation, review,
 
 ## Repository structure
 
-Each skill lives directly under this repository's root and follows the [Agent Skills specification](https://agentskills.io/specification). There is no additional nested `skills/` directory. Shared usage documentation and licensing live at the root.
+Each skill lives directly under this repository's root and follows the [Agent Skills specification](https://agentskills.io/specification). Shared usage documentation and notices live at the root. Every skill carries the MIT notice inside its directory for standalone installation.
 
 ```text
 skills/
@@ -563,6 +551,11 @@ skills/
 ├── SKILL-ROUTING.md
 ├── SKILL-EVALUATION.md
 ├── SKILL-ASSESSMENT.md
+├── COLLECTION-REVIEW.md
+├── FINAL-SKILL-REVIEW.md
+├── .github/workflows/validate.yml
+├── evals/
+├── scripts/
 ├── software-delivery/
 ├── technical-research/
 ├── git-delivery/
@@ -623,7 +616,7 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root to check frontmatter, local links and anchors, catalog versions, and installation coverage. The [validation workflow](.github/workflows/validate.yml) runs these checks and the offline Python and Node helper tests. It uses no model evaluation credentials.
 
-Use the [evaluation procedure and synthetic Codex trials](SKILL-EVALUATION.md) to decide whether to add, revise, or retire a skill. The [software factory assessment](SKILL-ASSESSMENT.md) and [collection review](COLLECTION-REVIEW.md) retain earlier source decisions and validation limits.
+Use the [evaluation procedure and synthetic Codex trials](SKILL-EVALUATION.md) to decide whether to add, revise, or retire a skill. The [software factory assessment](SKILL-ASSESSMENT.md) and [collection review](COLLECTION-REVIEW.md) retain earlier source decisions and validation limits. The [final maintenance review](FINAL-SKILL-REVIEW.md) records the later per-package assessment and distribution review.
 
 The pstack-informed update adds caller-facing contract sketches and verification recipes to PentaPRO, safety-premise and measurement checks to Peer Review, model/enforcement distinctions to Cybersecurity, and instance-aware journey evidence to UI Design. These additions are conditional; the skills keep their existing output contracts and introduce no pstack dependency. [Research attribution and limits](THIRD-PARTY-NOTICES.md#cursor-pstack-research) identify the pinned source and adaptations.
 
@@ -644,12 +637,10 @@ Where present, evaluation files and executable tests record the package's actual
 1. Create a root-level directory whose name matches the skill's `name`, using lowercase letters and hyphens.
 2. Add `SKILL.md` with a clear description, focused instructions, and only the supporting resources the workflow needs.
 3. Add an entry to [Available skills](#available-skills) and a dedicated section in this README covering purpose, example requests, output/boundaries, and resource links. Keep shared installation and maintenance guidance in their common sections.
-4. Keep README and LICENSE files at repository root. Preserve applicable third-party notices where needed, validate metadata and internal links, and run meaningful evaluation cases before claiming improvements.
+4. Keep the shared README and canonical MIT notice at the repository root. Include a matching `LICENSE` inside each skill for standalone installation. Establish redistribution terms for any new import and preserve its applicable notices. Validate metadata and internal links, and run meaningful evaluation cases before claiming improvements.
 
 ## License and attribution
 
-Repository-original work uses the root [MIT License](LICENSE). The Android/PR-quiz source material is attributed to Philipp Lackner and PL Coding; no bundle-specific redistribution license was supplied or established, and the repository license does not relicense it. See [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for provenance and limits. Skill directories do not contain duplicate LICENSE or README files.
-
-When copying or redistributing individual skills, retain the repository-level license notice and applicable third-party notices with the distributed material.
+All 21 packages use the [MIT License](LICENSE) and include a copy of its notice. This covers the imported Android and PR Quiz material, including references embedded in UI Design and Cybersecurity, under the MIT redistribution permission confirmed by the repository maintainer. Retain the license and applicable attribution when redistributing a package. See [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for the source mapping.
 
 The source research for [PentaPRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersecurity](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.

@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-This repository's newly written instructions and templates were informed by the public methods listed in the [PentaPRO](penta-pro/references/sources.md) [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No implementation from those public research collections is bundled. The separately supplied local Android/PR-quiz import below contains source files and has its own provenance record. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersecurity's article attribution and UI Design research attributions appear separately after that notice.
+This repository's newly written instructions and templates were informed by the public methods listed in the [PentaPRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), and [UI Design](ui-design/references/sources.md) source notes. No implementation from those public research collections is bundled. The separately supplied local Android/PR-quiz import below contains source files and has its own provenance record. These notices preserve source attribution and the common MIT permission notice for the MIT-licensed works consulted. Cybersecurity's article attribution and UI Design research attributions appear separately after that notice.
 
 | Work | Copyright notice | License |
 | --- | --- | --- |
@@ -61,7 +61,7 @@ Cybersecurity is an original English synthesis; no article text, code, or illust
 
 ## UI Design: researched skills, standards and discovery sources
 
-[UI Design source notes](ui-design/references/sources.md) record the 2026-11-05 survey of all nine previously cited skill repositories, their pinned revisions, relevant entrypoints, additional design collections, adoption decisions and limits. The new package is independently written: it does not redistribute upstream scripts, datasets, images, fonts, branding, or substantial instruction text. Linked external materials retain their own terms; this repository's MIT license does not relicense them.
+[UI Design source notes](ui-design/references/sources.md) record the 2026-11-05 survey of all nine previously cited skill repositories, their pinned revisions, relevant entrypoints, additional design collections, adoption decisions and limits. The guidance added from that survey was independently written. The later Android references have a separate [import record](#pl-coding-android-and-pr-quiz-skills). Linked external materials retain their own terms.
 
 Additional primary sources consulted conceptually:
 
@@ -89,8 +89,17 @@ The 2026-11-06 source inventory records 14 supplied entrypoints. Eight native An
 
 The earlier local bundle inspected on 2026-11-05 contained 20 entrypoints covering Android, Kotlin Multiplatform, design and PR comprehension. At that research stage, only independently written conceptual guidance was added, without redistributing source text or tooling. Those historical records precede the source attribution and subsequent imports and retain their original scope.
 
-The supplied local bundle included no license file or release manifest, and no bundle-specific redistribution license was established for this record. The website attribution does not itself establish a license. The root MIT license covers repository-original material only and does not relicense the imported source-derived skills or grant redistribution rights. Check the source's applicable terms before redistributing those materials. Attribution does not imply affiliation or endorsement.
+The repository maintainer confirmed permission to redistribute all imported material in this repository under the MIT License. This confirmation covers the standalone imports and the embedded references listed below. The [repository license](LICENSE) and the copies included in each skill retain the attribution to Philipp Lackner and PL Coding.
 
+The affected package directories are the eight `android-*` packages and `pr-quiz`, plus `ui-design` and `cybersec`. Comparison against the local bundle confirmed substantial matching text or examples in these embedded references:
+
+| Repository file | Local bundle source |
+| --- | --- |
+| [Compose architecture](ui-design/references/android/compose-architecture.md) | `android-compose-architecture/SKILL.md` |
+| [Compose components](ui-design/references/android/compose-components.md) | `android-compose-components/SKILL.md` |
+| [Navigation](ui-design/references/android/navigation.md) | `android-navigation/SKILL.md` |
+| [Presentation and MVI](ui-design/references/android/presentation-mvi.md) | `android-presentation-mvi/SKILL.md` |
+| [Android security controls](cybersec/references/android-controls.md) | `android-security/SKILL.md` |
 
 ## Peer Review: review-coordination article
 
@@ -117,9 +126,9 @@ A bounded source experiment reproduced upstream token-checker omissions; it is r
 
 ## Native Android and PR-quiz integration — 2026-11-06
 
-The user subsequently requested import of the current local `/home/dever/workspace/android-skills` collection, consolidating overlapping objectives into the four generic owners first. [Skill routing and the source inventory](SKILL-ROUTING.md) map all 14 supplied entrypoints: four native UI procedures were incorporated into UI Design, Android security controls into Cybersecurity, and eight native implementation/test packages plus PR Quiz were imported as separate packages with narrower activation boundaries. The source directory was copied, not removed or installed into an agent profile.
+The user subsequently requested import of the supplied local `android-skills` collection, consolidating overlapping objectives into the four generic owners first. [Skill routing and the source inventory](SKILL-ROUTING.md) map all 14 supplied entrypoints: four native UI procedures were incorporated into UI Design, Android security controls into Cybersecurity, and eight native implementation/test packages plus PR Quiz were imported as separate packages with narrower activation boundaries.
 
-This import includes source-derived local instructions, Kotlin examples, supporting references, and the PR-quiz Python helper/GitHub Actions template, with changes to routing, validation, author eligibility and head-commit-bound pass behavior. The source attribution and redistribution limits are recorded in [PL Coding Android and PR-quiz skills](#pl-coding-android-and-pr-quiz-skills). Repository-original additions retain the repository license; that license does not purport to relicense supplied third-party material. Earlier research dates, no-copy statements and trial results remain scoped to their recorded stages.
+This import includes source-derived local instructions, Kotlin examples, supporting references, and the PR-quiz Python helper/GitHub Actions template, with changes to routing, validation, author eligibility and head-commit-bound pass behavior. The attribution and maintainer confirmation of MIT redistribution permission are recorded in [PL Coding Android and PR-quiz skills](#pl-coding-android-and-pr-quiz-skills). Earlier research dates, source inspections and trial results retain their original scope.
 
 The PR-quiz workflow is an inactive asset. No remote PR, comment, status, workflow or repository rule was changed by this integration. Its grading key is public and its educational status is separate from code review, security assessment and genuine branch protection.
 

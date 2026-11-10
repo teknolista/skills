@@ -1,6 +1,7 @@
 ---
 name: android-di-koin
 description: Implement or debug Koin bindings, Android ViewModel ownership and application/worker dependency wiring. Use for concrete DI code changes; use peer-review for independent inspection and ui-design for screen design.
+license: MIT
 metadata:
   version: "1.2.3"
 ---

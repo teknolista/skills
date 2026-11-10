@@ -1,6 +1,7 @@
 ---
 name: android-data-layer
 description: Implement or debug native Android repositories, Ktor/OkHttp clients, Room persistence, DataStore and synchronization. Use for data-layer code changes; use peer-review for independent assessment and cybersec for security audits.
+license: MIT
 metadata:
   version: "1.2.4"
 ---

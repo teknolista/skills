@@ -1,5 +1,7 @@
 # Collection closure review
 
+This records the earlier collection closure. See the [distribution review](FINAL-SKILL-REVIEW.md#distribution-review) for the later license and release status.
+
 ## Scope and conclusion
 
 Reviewed on 2026-11-09 against the pending previous-round changes and baseline `fd8633a`. The previous round integrated selected techniques, not every upstream entrypoint. This round closes useful workflow gaps and records every source disposition. This is a curated collection of 21 packages, not a literal mirror or a claim of identical behavior. Installing Matt Pocock or Superpowers is unnecessary for these workflows.

@@ -49,6 +49,16 @@ Current official documentation was also consulted for [AGP built-in Kotlin](http
 - The lifecycle negative control failed for the intended late-write assertion under the old implementation, and passed with the correction.
 - Whitespace validation passed. The CI workflow was parsed locally; hosted execution remains pending publication.
 
-The previous [model trial results](evals/RESULTS.md) retain their original snapshots and limitations; the latest wording changes have source/contract review, not a new matched model trial. This pass did not execute consuming Android builds, browser/assistive sessions, production security checks or the complete MCP client matrix. Those remain project-specific evidence, not defects to hide with broader prose. Source-derived package license omissions remain as documented in [third-party notices](THIRD-PARTY-NOTICES.md).
+The previous [model trial results](evals/RESULTS.md) retain their original snapshots and limitations. The wording changes received source and contract review. Consuming Android builds, browser and assistive sessions, production security checks and the complete MCP client matrix remain project-specific verification.
 
 No substantiated blocker remains in the inspected maintenance scope after these corrections. This supports using the collection with actual project checks; it does not establish exhaustive correctness, universal model efficacy or security certification. Changes remain local, with no commit, push or deployment performed.
+
+## Distribution review
+
+The maintenance snapshot was subsequently published as `bbd941da590e84c4594cd45d49e3aab9fd0d852e`. The [hosted validation run](https://github.com/teknolista/skills/actions/runs/42731202186) passed for that commit. This run is evidence for the published snapshot. The distribution corrections below were checked locally.
+
+The README now uses one version catalog. The README, project template, routing guide and UI evaluation cases describe the same documentation scope and task ownership as the entrypoints. The seven synthetic case definitions still resolve to their intended fixtures and owners. The earlier trial count, routing observations and input-token figures were checked against the retained run summaries. The original trial scope and limitations remain in the [trial record](evals/RESULTS.md).
+
+The local source comparison found matching material in five references embedded in UI Design and Cybersecurity, in addition to the nine standalone imports already recorded. The maintainer subsequently confirmed MIT redistribution permission for all imported material. All 21 packages declare MIT and carry a matching license notice with source attribution. See the [affected paths and provenance](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills).
+
+The local review passed collection and skill metadata validation, checked the four UI metadata files, and passed all 64 offline helper tests and the in-process MCP SDK smoke test. The current validator requires MIT metadata and the canonical notice in every package. After the license update, Skills CLI `1.7.6` installed all 21 packages from a local source into a disposable Codex project. Every installed file matched its source bytes, including all 21 license notices.

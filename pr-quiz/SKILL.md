@@ -1,6 +1,7 @@
 ---
 name: pr-quiz
 description: Create or regenerate a decision-comprehension quiz for a GitHub pull request when explicitly requested. Use for PR quizzes or their optional grading workflow; not code review, security assessment, test validation, or automatic action after creating a PR.
+license: MIT
 metadata:
   version: "1.2.2"
 ---

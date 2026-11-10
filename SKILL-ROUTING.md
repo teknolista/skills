@@ -9,17 +9,17 @@ Ordinary backend, CLI or other implementation can proceed under the project's in
 | Requested result | Primary owner | Boundary |
 | --- | --- | --- |
 | Requirements, architecture proposal, verification plan or review of specification artifacts | [PentaPRO](penta-pro/SKILL.md) | Five pillars, including their coherence and implementation readiness |
-| Screen/flow/visual/accessibility design or critique; authorized UI implementation | [UI Design](ui-design/SKILL.md) | One cumulative UI contract, native Android procedures loaded conditionally |
+| Screen/flow/visual/accessibility design or critique; authorized UI implementation | [UI Design](ui-design/SKILL.md) | Maintain one cumulative UI contract when documentation is in scope. Load native Android procedures conditionally. |
 | Read-only source/PR/test-effectiveness assessment or re-review | [Peer Review](peer-review/SKILL.md) | Evidence-backed findings; test-authoring is a different implementation task |
 | Threat modeling, security audit, authorized hardening or security gate | [Cybersecurity](cybersec/SKILL.md) | One threat/control/evidence record, native Android controls loaded conditionally |
 | Ambiguous defect, intermittent failure, or performance regression | [Diagnose Defect](diagnose-defect/SKILL.md) | Reproduction, cause evidence, and verification of an authorized fix |
-| Automated test authoring or explicit test-first implementation outside native Android | [Behavior Testing](behavior-testing/SKILL.md) | Executed behavioral checks in the existing runner |
+| Tests as the primary deliverable or requested test-first implementation outside native Android | [Behavior Testing](behavior-testing/SKILL.md) | Executed behavioral checks in the existing runner |
 | Concrete HTTP API server changes | [HTTP API](http-api/SKILL.md) | Handler and integration implementation against the caller contract |
 | Concrete MCP server changes | [MCP Server](mcp-server/SKILL.md) | Protocol capabilities, transport, and actual downstream behavior |
 
 The closure round adds four portable owners, bringing the collection to **21**. See [all upstream dispositions](COLLECTION-REVIEW.md).
 
-- [Software Delivery](software-delivery/SKILL.md) — Plan and execute verified software increments.
+- [Software Delivery](software-delivery/SKILL.md) — Coordinate dependent implementation tasks or increments and verify their integrated result.
 
 - [Technical Research](technical-research/SKILL.md) — Resolve technical uncertainty with traceable evidence.
 

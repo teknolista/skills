@@ -1,6 +1,7 @@
 ---
 name: android-error-handling
 description: Implement or debug typed results and expected domain, HTTP and storage error mapping in native Android Kotlin code. Use for concrete error-handling changes; use peer-review for read-only assessment and ui-design for user-facing error interaction design.
+license: MIT
 metadata:
   version: "1.2.3"
 ---

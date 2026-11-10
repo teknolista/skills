@@ -64,7 +64,7 @@ The package adds a single cumulative screen contract, stable IDs and explicit de
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. No public origin or redistribution license was supplied; this package contains independently written guidance, not copied source/tooling. Historical trials above remain scoped to their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. At this research stage, the additions were independently written. The subsequent native Android integration imported four UI procedure references from the local bundle. See the [source map and redistribution status](../../THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills). Historical trials retain their recorded versions.
 
 ## Local design consolidation — version 1.4.0
 

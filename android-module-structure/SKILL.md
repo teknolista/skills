@@ -1,6 +1,7 @@
 ---
 name: android-module-structure
 description: Implement native Android/Kotlin JVM module boundaries, Gradle conventions and build configuration in an existing or authorized project. Use for concrete module/build changes; use penta-pro for requirements, architecture proposals and readiness specifications, and peer-review for read-only code review.
+license: MIT
 metadata:
   version: "1.2.6"
 ---

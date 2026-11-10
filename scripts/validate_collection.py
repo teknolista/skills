@@ -92,12 +92,7 @@ labels = {
 }
 versions = {}
 descriptions = {}
-# See THIRD-PARTY-NOTICES.md. No bundle-specific redistribution license is established.
-source_derived = {
-    "android-background", "android-data-layer", "android-di-koin", "android-error-handling",
-    "android-integration-testing", "android-module-structure", "android-ui-testing",
-    "android-unit-testing", "pr-quiz",
-}
+mit_notice = (root / "LICENSE").read_bytes()
 for entry in entries:
     package = entry.parent.name
     if not entry.is_file() or entry.resolve() not in files:
@@ -119,11 +114,11 @@ for entry in entries:
         if normalized in descriptions:
             problems.append(f"Duplicate description for {package} and {descriptions[normalized]}")
         descriptions[normalized] = package
-    if package in source_derived:
-        if "license" in data:
-            problems.append(f"{package}: package license needs resolved third-party provenance")
-    elif data.get("license") != "MIT":
+    if data.get("license") != "MIT":
         problems.append(f"{package}: expected MIT license metadata")
+    notice = entry.parent / "LICENSE"
+    if notice not in files or notice.is_symlink() or not notice.is_file() or notice.read_bytes() != mit_notice:
+        problems.append(f"{package}: standalone LICENSE must match the repository MIT notice")
     metadata = data.get("metadata")
     version = metadata.get("version") if isinstance(metadata, dict) else None
     if not isinstance(version, str) or not re.fullmatch(r"(?:0|[1-9][0-9]*)(?:\.(?:0|[1-9][0-9]*)){2}", version):

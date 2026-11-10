@@ -1,6 +1,7 @@
 ---
 name: android-background
 description: Implement or debug native Android WorkManager jobs, constraints, retries, idempotency and worker initialization. Use for concrete durable-work changes; use penta-pro for product/operating requirements and cybersec for security assessment.
+license: MIT
 metadata:
   version: "1.2.3"
 ---
