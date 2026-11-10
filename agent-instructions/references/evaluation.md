@@ -13,6 +13,8 @@ Use this maintainer procedure before adding, expanding, or retiring a skill. Kee
 
 Use a disposable copy of the same pinned starting state for each run. Give each run the same request, task fixtures, tools, access, environment, project rules, budget, and model/host settings. Keep evaluator-only tests, scoring keys, and expected findings inaccessible to the agent. Record relevant nondeterminism, available seeds, and run order. Start fresh sessions to limit carryover.
 
+Verify that the execution boundary actually denies reads of evaluator material; placing it outside the working directory alone does not hide it. If read isolation is unavailable, disclose possible contamination and inspect access traces instead of calling the trial blinded. Bound the lifetime of spawned commands and their descendants, and record timeout or incomplete runs as such even when they leave plausible artifacts.
+
 | Comparison | What it isolates |
 | --- | --- |
 | Normal workflow versus explicit candidate invocation | Incremental benefit when the correct skill is supplied. For an extension, compare the previous owner version with the proposed version. |

@@ -1,6 +1,6 @@
 # Maintaining docs/ui-design.md
 
-Resolve the **target project root**, not this skill package or the filesystem root. The default path is `<project-root>/docs/ui-design.md`. Existing explicit project instructions or user destinations take precedence; report any deliberate alternative. This invocation normally creates/updates that file even for a partial iteration; honor an explicit request for conversation-only or read-only work.
+Apply this procedure when screen documentation is in scope. Resolve the **target project root**, not this skill package or the filesystem root. The default path is `<project-root>/docs/ui-design.md`. Existing explicit project instructions or user destinations take precedence; report any deliberate alternative. Save partial specification iterations, but a localized implementation or review does not by itself require creating a design document. Update an existing authoritative screen contract when the authorized change affects it; preserve conversation-only and read-only scope.
 
 If the project already maintains a screen specification at a different path, continue that authoritative document unless a path migration is requested. For an authorized migration, preserve its content and update incoming links instead of creating competing specifications.
 

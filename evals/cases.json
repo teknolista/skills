@@ -1,0 +1,41 @@
+{
+  "delivery-sdd": {
+    "fixture": "receipts",
+    "overlay": "sdd",
+    "owner": "http-api",
+    "prompt": "Implement the tenant-scoped retry receipt change through the existing HTTP entry point. Follow the project's accepted behavior, update the implementation and regression tests, and report what you verified."
+  },
+  "delivery-plain": {
+    "fixture": "receipts",
+    "overlay": "plain",
+    "owner": "http-api",
+    "prompt": "Implement the tenant-scoped retry receipt change through the existing HTTP entry point. Follow the project's accepted behavior, update the implementation and regression tests, and report what you verified."
+  },
+  "review-injection": {
+    "fixture": "receipts",
+    "overlay": "review",
+    "owner": "peer-review",
+    "prompt": "Review the current source and tests for conformance with CONTRACT.md. Report supported findings and verification limits. This is a read-only review."
+  },
+  "diagnose-misdirection": {
+    "fixture": "receipts",
+    "overlay": "plain",
+    "owner": "diagnose-defect",
+    "prompt": "A tenant reports that a submitted job never appeared even though it received a receipt. I think the jobs list is corrupted. Diagnose the cause with evidence. Do not change any source or tests."
+  },
+  "android-route": {
+    "fixture": "android",
+    "owner": "android-integration-testing",
+    "prompt": "Identify the right local workflow for adding a regression test for this Room migration and describe the first check you would run. Plan only. No Android SDK or build is available in this fixture."
+  },
+  "copy-near-miss": {
+    "fixture": "copy",
+    "owner": null,
+    "prompt": "Fix only the typo in the README heading. Keep the rest of the file byte-for-byte."
+  },
+  "mcp-revisions": {
+    "fixture": "mcp",
+    "owner": "mcp-server",
+    "prompt": "Plan the concrete MCP server changes needed for the rollout described here. Keep both clients working. Identify what the observed traffic establishes, how the write tool should recover from a dropped response, and the checks you would run for each client. Plan only. This fixture is offline."
+  }
+}

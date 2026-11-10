@@ -1,0 +1,3 @@
+# Accepted change for RCPT-1
+
+The authenticated principal identifies the tenant. Missing identity is rejected with HTTP 401, and malformed input with HTTP 400. Neither creates a job. Valid requests return HTTP 202 and a receipt. A request ID is scoped to the authenticated tenant. Repeating the same ID and payload within a tenant returns its existing receipt and creates no additional job. Reusing that ID with different payload within that tenant returns HTTP 409 with `{"error": "idempotency_conflict"}` and creates no job. A different tenant can independently use the same request ID. Leave the handler signature and ordinary success response intact. The fixture handles calls sequentially and keeps state in memory.

@@ -67,17 +67,17 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | --- | --- | --- |
 | [PentaPRO](#pentapro) | 2.6.3 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
 | [Peer Review](#peer-review) | 1.10.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersecurity](#cybersecurity) | 1.5.4 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.5 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
+| [Cybersecurity](#cybersecurity) | 1.6.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI Design](#ui-design) | 1.5.6 | Specify, refine, review, and implement web and Android screens; maintain cumulative `docs/ui-design.md`. |
 | [Diagnose Defect](#diagnose-defect) | 1.0.0 | Reproduce unclear failures, distinguish causes, and verify authorized fixes. |
-| [Behavior Testing](#behavior-testing) | 1.0.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
-| [HTTP API](#http-api) | 1.0.0 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
-| [MCP Server](#mcp-server) | 1.0.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
-| [Software Delivery](#software-delivery) | 1.0.0 | Plan and execute verified software increments. |
+| [Behavior Testing](#behavior-testing) | 1.1.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
+| [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
+| [MCP Server](#mcp-server) | 1.1.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
+| [Software Delivery](#software-delivery) | 1.1.0 | Coordinate dependent implementation tasks through verified increments. |
 | [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
 | [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
-| [Agent Instructions](#agent-instructions) | 1.0.0 | Maintain portable software-development agent guidance. |
-| [Android modules](android-module-structure/SKILL.md) | 1.2.5 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [Agent Instructions](#agent-instructions) | 1.0.1 | Maintain portable software-development agent guidance. |
+| [Android modules](android-module-structure/SKILL.md) | 1.2.6 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
 | [Android data](android-data-layer/SKILL.md) | 1.2.4 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
 | [Android errors](android-error-handling/SKILL.md) | 1.2.3 | Implement typed domain/HTTP/storage error handling. |
 | [Android Koin](android-di-koin/SKILL.md) | 1.2.3 | Implement dependency bindings and Android lifetimes. |
@@ -491,7 +491,7 @@ Use for an ambiguous failure, intermittent regression, or slowdown that needs a 
 
 ## Behavior Testing
 
-Use to author or improve automated behavior tests for web, backend, desktop, or CLI software. For example, “Add a regression test for submitting twice after a lost response.” Use the existing runner and observe the actual effect. For native Android test authoring, select the applicable native helper. [Skill](behavior-testing/SKILL.md)
+Use when behavior tests are the primary deliverable or test-first implementation is requested. For example, “Add a regression test for submitting twice after a lost response.” Ordinary implementation includes its own regression checks. For native Android test authoring, select the applicable native helper. [Skill](behavior-testing/SKILL.md)
 
 ## HTTP API
 
@@ -499,11 +499,11 @@ Use for concrete server changes under an existing or authorized contract. For ex
 
 ## MCP Server
 
-Use to implement an MCP server or an exposed capability. For example, “Expose the existing document lookup through our supported MCP client.” Keep protocol revision, transport, permission enforcement, and downstream test effects explicit. [Skill](mcp-server/SKILL.md)
+Use to implement an MCP server or an exposed capability. For example, “Expose the existing document lookup through our supported MCP client.” Keep protocol revision, transport, permission enforcement, and downstream test effects explicit. The protocol reference covers modern and legacy clients, including shared endpoints. [Skill](mcp-server/SKILL.md) · [Revision checks](mcp-server/references/protocol-revisions.md)
 
 ## Software Delivery
 
-Plan and execute verified software increments. Read [software-delivery/SKILL.md](software-delivery/SKILL.md) for scope and conditional resources. Invoke `$software-delivery` for this outcome. Existing project tools, contracts and authorization remain authoritative.
+Coordinate dependent tasks and verify the integrated result. For example, “Implement the accepted retry change across the API, worker and existing clients.” In a spec-driven project, use the active accepted change and keep the requirement IDs in verification and handoff. In a project without SDD, use the request, existing interfaces and callers, tests, and decisions to establish the intended behavior. A change localized to one endpoint can use HTTP API directly. [Skill](software-delivery/SKILL.md)
 
 ## Technical Research
 
@@ -621,9 +621,9 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 ### Validation and improvement
 
-Run `python3 scripts/validate_collection.py` from this repository root to check local links/anchors, names, catalog versions and complete manual-install coverage. This standard-library check complements host skill validation and behavioral trials.
+Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root to check frontmatter, local links and anchors, catalog versions, and installation coverage. The [validation workflow](.github/workflows/validate.yml) runs these checks and the offline Python and Node helper tests. It uses no model evaluation credentials.
 
-Use the [evaluation procedure](SKILL-EVALUATION.md) to decide whether to add, revise, or retire a skill. The [software factory assessment](SKILL-ASSESSMENT.md) records the previous round. The [closure review](COLLECTION-REVIEW.md) records this round, source coverage and remaining limits.
+Use the [evaluation procedure and synthetic Codex trials](SKILL-EVALUATION.md) to decide whether to add, revise, or retire a skill. The [software factory assessment](SKILL-ASSESSMENT.md) and [collection review](COLLECTION-REVIEW.md) retain earlier source decisions and validation limits.
 
 The pstack-informed update adds caller-facing contract sketches and verification recipes to PentaPRO, safety-premise and measurement checks to Peer Review, model/enforcement distinctions to Cybersecurity, and instance-aware journey evidence to UI Design. These additions are conditional; the skills keep their existing output contracts and introduce no pstack dependency. [Research attribution and limits](THIRD-PARTY-NOTICES.md#cursor-pstack-research) identify the pinned source and adaptations.
 

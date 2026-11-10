@@ -1,10 +1,35 @@
-"""Check collection links, catalog versions and complete manual-install coverage. Run from the repository root."""
+"""Check skill metadata, collection links, catalog versions, and installation coverage."""
 from collections import Counter
 import os
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 import re
 import subprocess
+
+import yaml
+
+
+class FrontmatterLoader(yaml.SafeLoader):
+    def construct_mapping(self, node, deep=False):
+        mapping = super().construct_mapping(node, deep=deep)
+        if len(mapping) != len(node.value):
+            raise yaml.YAMLError("duplicate mapping key")
+        return mapping
+
+
+def frontmatter(entry):
+    lines = entry.read_text(encoding="utf-8").splitlines()
+    if not lines or lines[0] != "---":
+        raise ValueError("missing YAML frontmatter")
+    try:
+        end = lines.index("---", 1)
+    except ValueError as exc:
+        raise ValueError("unterminated YAML frontmatter") from exc
+    data = yaml.load("\n".join(lines[1:end]), Loader=FrontmatterLoader)
+    if not isinstance(data, dict):
+        raise ValueError("frontmatter must be a YAML mapping")
+    return data
+
 
 root = Path.cwd()
 inventory = subprocess.check_output(
@@ -66,15 +91,44 @@ labels = {
     "software-delivery":"Software Delivery", "technical-research":"Technical Research", "git-delivery":"Git Delivery", "agent-instructions":"Agent Instructions", "behavior-testing":"Behavior Testing", "http-api":"HTTP API", "mcp-server":"MCP Server",
 }
 versions = {}
+descriptions = {}
+# See THIRD-PARTY-NOTICES.md. No bundle-specific redistribution license is established.
+source_derived = {
+    "android-background", "android-data-layer", "android-di-koin", "android-error-handling",
+    "android-integration-testing", "android-module-structure", "android-ui-testing",
+    "android-unit-testing", "pr-quiz",
+}
 for entry in entries:
     package = entry.parent.name
     if not entry.is_file() or entry.resolve() not in files:
         continue
-    match = re.search(r'^  version: "(.*?)"$', entry.read_text(), re.M)
-    if not match:
-        problems.append(f"Missing version metadata for {package}")
+    if f"your-project/.agents/skills/{package}/SKILL.md" not in readme:
+        problems.append(f"Missing manual installation entry for {package}")
+    try:
+        data = frontmatter(entry)
+    except (ValueError, yaml.YAMLError) as exc:
+        problems.append(f"{package}: {exc}")
         continue
-    version = match[1]
+    if data.get("name") != package or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", package) or len(package) > 64:
+        problems.append(f"Invalid or mismatched skill name for {package}")
+    description = data.get("description")
+    if not isinstance(description, str) or not description.strip() or len(description) > 1024:
+        problems.append(f"Invalid description for {package}")
+    else:
+        normalized = " ".join(description.casefold().split())
+        if normalized in descriptions:
+            problems.append(f"Duplicate description for {package} and {descriptions[normalized]}")
+        descriptions[normalized] = package
+    if package in source_derived:
+        if "license" in data:
+            problems.append(f"{package}: package license needs resolved third-party provenance")
+    elif data.get("license") != "MIT":
+        problems.append(f"{package}: expected MIT license metadata")
+    metadata = data.get("metadata")
+    version = metadata.get("version") if isinstance(metadata, dict) else None
+    if not isinstance(version, str) or not re.fullmatch(r"(?:0|[1-9][0-9]*)(?:\.(?:0|[1-9][0-9]*)){2}", version):
+        problems.append(f"Invalid release version metadata for {package}")
+        continue
     versions[package] = version
     if package in labels:
         label = labels[package]
@@ -93,14 +147,6 @@ if (
     or f"| Template version | {versions['penta-pro']} |" not in process_template.read_text()
 ):
     problems.append("PentaPRO template version mismatch")
-for entry in entries:
-    if not entry.is_file() or entry.resolve() not in files:
-        continue
-    name = entry.parent.name
-    if f"your-project/.agents/skills/{name}/SKILL.md" not in readme:
-        problems.append(f"Missing manual installation entry for {name}")
-    if not re.search(r"^name: " + re.escape(name) + r"$", entry.read_text(), re.M):
-        problems.append(f"Directory/name mismatch for {name}")
 print(f"{len(markdown)} Markdown files, {checked} local links/anchors, {len(entries)} version checks, {len(problems)} issues")
 for problem in problems:
     print(problem)

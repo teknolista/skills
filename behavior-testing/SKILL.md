@@ -1,12 +1,14 @@
 ---
 name: behavior-testing
-description: Add or improve automated behavior and regression tests for web, backend, desktop, CLI, and other non-native-Android projects. Use for concrete test authoring or explicitly requested test-first implementation in these projects. Native Android test authoring and read-only test reviews have separate workflows.
+description: Author automated behavior tests outside native Android. Use when tests are the primary deliverable or test-first implementation is requested.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Test observable behavior
+
+For regression checks that accompany an ordinary product change, use the implementation workflow and the project's runner.
 
 1. Find the expected outcome in the accepted requirement, public contract, or reproduced defect. Read the existing runner, test discovery, fixtures, and CI commands. Use the smallest boundary that still exercises the failure mode. A unit test can cover pure behavior, while an integration test can cover an actual transaction or adapter. Use a browser or native app harness for behavior that depends on that runtime.
 2. Choose inputs and expected results independently of the code under test. Include the boundary, failure, or concurrency case that would catch the relevant regression. Reuse existing fixtures and runners. Substitute external dependencies where needed for isolation or determinism, and exercise the real boundary when a substitute could hide the defect. Verify observable output and effects.

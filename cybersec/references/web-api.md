@@ -1,6 +1,6 @@
 # Web, API, and Service Security
 
-Select the changed/exposed surfaces and actual stack. ASVS requirements, API risk lists, and WSTG tests have different purposes; select applicable editions/IDs rather than claiming blanket compliance.
+Select the changed/exposed surfaces and actual stack. When verification against ASVS is in scope, record the selected edition, level or subset, applicable requirement IDs, and evidence or coverage gaps. Use the edition required by the project. ASVS 5.0.0 is a reference for web application and service controls. Use OWASP Top 10:2025 to screen risks and WSTG for applicable test methods. Report only the checks actually performed.
 
 ## Identity, business rules, and data
 
@@ -32,4 +32,4 @@ Use these checks for equivalent credential and cryptographic paths in desktop, m
 
 High-value checks include two identities accessing the same resource, allowed versus denied properties/actions, replayed/reordered requests, malicious content at the final rendering sink, cross-account cache reuse, and recovery after partial effects. Use isolated fixtures or established local services. Record which browser/API/runtime boundaries were actually exercised; a build or scanner alone does not establish end-to-end security.
 
-Primary guidance: [ASVS](https://asvs.owasp.org/), [API Security](https://api-security.owasp.org/), [WSTG](https://owasp.org/projects/web-security-testing-guide).
+Primary guidance: [ASVS](https://asvs.owasp.org/), [OWASP Top 10:2025](https://top10.owasp.org/2025/0x00_2025-Introduction/), [API Security](https://api-security.owasp.org/), [WSTG](https://owasp.org/projects/web-security-testing-guide).

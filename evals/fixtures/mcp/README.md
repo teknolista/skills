@@ -1,0 +1,3 @@
+# Receipt MCP gateway
+
+The rollout must keep a legacy desktop client on MCP `2025-11-25` and add a second client using MCP `2026-07-28`. Both target one existing authenticated Streamable HTTP endpoint. The existing SDK adapter's support for the new revision has not been verified. The synthetic traces record one successful legacy initialization and one failed request from a test client. The `create_receipt` tool can write a receipt before its response is lost. A user may retry that action, and two principals can submit the same business request ID independently. Clients may also present an application handle when reading a receipt. No running server or SDK is included.

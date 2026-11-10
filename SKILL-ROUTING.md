@@ -62,7 +62,7 @@ The Android integration stage brought the collection to **13 discoverable skills
 - “Plan an Android architecture” → PentaPRO. “Add this approved Gradle module” → Android module structure.
 - “Find why this Android sync sometimes drops writes” → Diagnose Defect while the cause is unclear. Use the native data helper for the concrete fix when applicable.
 - “Add a browser regression for retry after a failed save” → Behavior Testing. A native Compose interaction test uses the native Android UI test owner.
-- “Implement this HTTP write endpoint” → HTTP API. “Expose the action as an MCP tool” → MCP Server. An implementation that touches both uses the actual transport and owning service contract at each boundary.
+- “Implement this HTTP write endpoint and its regression checks” → HTTP API. “Expose the action as an MCP tool” → MCP Server. An implementation that touches both uses the actual transport and owning service contract at each boundary. Coordinate through Software Delivery when dependent tasks or increments need a shared execution plan.
 - “Create a PR” alone → no quiz. “Add a comprehension quiz to this PR” → PR Quiz. Drafting, publishing, workflow installation and branch-rule changes retain their distinct authorization scopes.
 
 Cross-package links are optional navigation within this collection. A separately installed helper uses its own core instructions and project-owned contracts; it must not claim to have loaded an absent companion. Install related packages when desired, and preserve each package's internal references. Generic owners do not require the Android helper packages for non-Android work.

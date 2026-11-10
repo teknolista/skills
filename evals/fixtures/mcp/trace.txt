@@ -1,0 +1,6 @@
+legacy POST /mcp body={"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","clientInfo":{"name":"desk","version":"1"},"capabilities":{}}}
+legacy HTTP 200 Mcp-Session-Id: synthetic-session
+legacy POST /mcp Mcp-Session-Id: synthetic-session body={"jsonrpc":"2.0","method":"notifications/initialized"}
+
+new POST /mcp MCP-Protocol-Version: 2026-07-28 Mcp-Method: tools/call Mcp-Name: create_receipt body={"jsonrpc":"2.0","id":7,"method":"tools/call","params":{"name":"create_receipt","arguments":{"request_id":"demo"},"_meta":{"io.modelcontextprotocol/protocolVersion":"2026-07-28","io.modelcontextprotocol/clientCapabilities":{}}}}
+new HTTP 400 body={"error":"Missing session. Send initialize first."}

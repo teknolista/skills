@@ -1,5 +1,7 @@
 # Software factory skill assessment
 
+This is a historical record of the earlier 17-package assessment. See the [collection review](COLLECTION-REVIEW.md) and [evaluation guide](SKILL-EVALUATION.md) for later changes and trials.
+
 Reviewed the supplied compilation of model responses on 2026-11-09. The attachment supplied ideas and claims for verification. The repository review used the checked-out collection at baseline `fd8633a` and the user's commercial software scope.
 
 ## What changes the outcome
