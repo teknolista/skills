@@ -4,6 +4,19 @@ Choose the primary owner from the requested outcome and mode, not from an Androi
 
 Ordinary backend, CLI or other implementation can proceed under the project's instructions without invoking a skill from this collection. The owners compose according to the requested work and the project’s established workflow. A security defect found during peer review can be reported there; it does not automatically start a second audit. An implementation helper must apply relevant security controls without requiring a full security assessment for every edit.
 
+## Choose the depth of the workflow
+
+Select the owner by outcome. Select the specification depth, agent authority and verification separately. The [change contract guide](software-delivery/references/change-contracts.md) defines when to proceed directly, explore in isolation, or establish a material change contract before implementation.
+
+| Request | Route |
+| --- | --- |
+| Correct copy on one screen without changing meaning or behavior | Apply the local edit and check the affected rendering or content. Use UI Design if the change calls for an interaction or design decision. |
+| Try two interaction patterns with synthetic data | UI Design for a visual concept. Technical Research for a bounded feasibility experiment. Capture what the experiment establishes before deciding whether to maintain its output. |
+| Add image sharing across an app, API and storage | Use PentaPRO when drafting the requirements. Use Software Delivery to coordinate authorized implementation after the contract establishes permissions, failure behavior and checks. Use specialist guidance at the actual boundaries. |
+| Remove one authorization condition | Trace allowed and denied behavior and establish the intended policy before changing it. Use Cybersecurity when threat assessment or hardening is the requested outcome. A short diff can need strong evidence. |
+
+Use an existing issue, specification, schema or contract to record decisions at its owning location. In a combined request, draft and review the scope the user or policy requires before coding. If implementation reveals a material conflict, pause only dependent work and resolve it with the appropriate owner. Keep the actual code, canonical artifacts, tests and evidence aligned through the handoff.
+
 ## Generic owners
 
 | Requested result | Primary owner | Boundary |

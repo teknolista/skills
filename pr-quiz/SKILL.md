@@ -3,7 +3,7 @@ name: pr-quiz
 description: Create or regenerate a decision-comprehension quiz for a GitHub pull request when explicitly requested. Use for PR quizzes or their optional grading workflow; not code review, security assessment, test validation, or automatic action after creating a PR.
 license: MIT
 metadata:
-  version: "1.2.2"
+  version: "1.2.3"
 ---
 
 # PR Decision Quiz
@@ -60,7 +60,7 @@ The asset pins the official [`github-script` v9.0.0 release](https://github.com/
 
 A pass is bound to the quiz ID, question/option/key content and current PR head SHA. For checkbox grading, the edit must belong to that head and quiz. For comment grading, copy the current command from the pending status and replace its option letters. The command includes a revision token that changes with the quiz content or head. Earlier bare commands are ignored by this workflow version. Regenerate malformed quizzes with the publisher. Ticking boxes or editing text outside the quiz leaves its identity intact. Authors are disallowed by default. Requested individual reviewers or prior reviewers are recognized by the template; team-reviewer and custom-role policies require an explicit adaptation. This is an educational convenience, not a tamper-proof approval system: PR content/answers are editable and the key is public. Enforce genuine review requirements independently.
 
-Past reviewers include users who submitted a review, not only maintainers with write permission. Do not treat this eligibility rule as a trusted authorization boundary. The publisher rereads the body before editing and checks the resulting block. A changed body aborts before writing. An unconfirmed write needs inspection before retrying. An edit can still race between the final read and write, so coordinate with other body editors. For a material handoff, retain the PR/head, quiz ID, draft versus published state and actually tested workflow scope; never carry a quiz pass into a code/security verdict.
+For answer comments, verify the current token and sender eligibility before writing a status or result comment. Ignore stale, bare or ineligible submissions without changing the quiz result. PR metadata events still refresh status when the quiz is missing or malformed. Past reviewers include users who submitted a review, and the quiz eligibility rule is informational. The publisher rereads the body before editing and checks the resulting block. A changed body aborts before writing. An unconfirmed write needs inspection before retrying. An edit can still race between the final read and write, so coordinate with other body editors. For a material handoff, retain the PR/head, quiz ID, draft versus published state and actually tested workflow scope. Keep code and security verdicts with their respective review workflows.
 
 The workflow posts a result comment/status only after the user has authorized installing this behavior. Keep the quiz status informational. GitHub commit statuses are keyed by repository, SHA, and context. Two PRs sharing a head SHA can display the same status, and GitHub can coalesce or delay workflow events. Use the separate review requirements for merging. For fork PRs, use the trusted metadata-event setup without running untrusted head code; private/fork token permissions and organization policies must be checked in the real environment. An API failure or unsupported configuration remains an unverified gate, not a pass.
 

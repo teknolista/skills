@@ -5,6 +5,8 @@ Inputs are trusted, locally authored design files, not arbitrary user HTML.
 This bounded helper is not a browser sanitizer, accessibility audit, or native UI runtime.
 """
 import argparse
+import base64
+import hashlib
 import html
 from html.parser import HTMLParser
 import json
@@ -218,6 +220,10 @@ class Markup(HTMLParser):
 
     handle_startendtag = handle_starttag
 
+    def handle_comment(self, data):
+        # Browsers can end these malformed comments before HTMLParser does.
+        require(not data.startswith((">", "->")) and "--!>" not in data, "malformed HTML comment")
+
 
 def token_css(data):
     result = []
@@ -302,7 +308,13 @@ def build(manifest, output):
     scales_html = "".join(f'<p>{escaped(group)} / {escaped(key)}: {value}px</p>' for group in ("space", "radius") for key, value in tokens.get(group, {}).items())
     typography = "".join(f'<p style="font:{style.get("weight", 400)} {style["size"]}px/{style["line"]} {escaped(style.get("family", "system-ui, sans-serif"))}">{escaped(key)} — Sample text 0123456789</p>' for key, style in tokens.get("type", {}).items())
     template = (Path(__file__).resolve().parent.parent / "assets/prototype/viewer.html").read_text(encoding="utf-8")
+    viewer_scripts = re.findall(r"<script>(.*?)</script>", template, re.S)
+    require(len(viewer_scripts) == 1, "viewer template must have one bundled executable script")
+    # Hash trusted template code before inserting authored fragments. The browser
+    # must enforce this boundary even when it parses a fragment differently.
+    viewer_hash = base64.b64encode(hashlib.sha256(viewer_scripts[0].encode("utf-8")).digest()).decode("ascii")
     values = dict(language=language, title=escaped(title), css=token_css(tokens) + "\n" + css, options=options,
+                  viewerhash=viewer_hash,
                   themes="".join(f'<option>{theme}</option>' for theme in theme_names),
                   widths="".join(f'<option>{w}</option>' for w in widths), states=states_html,
                   pairs=pairs_html, roles=roles_html, scales=scales_html, typography=typography, config=configuration)

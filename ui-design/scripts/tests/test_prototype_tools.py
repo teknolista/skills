@@ -1,8 +1,11 @@
 """Regression tests for the optional declared-pair checker and offline builder."""
+import base64
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -119,6 +122,25 @@ class PrototypeTests(unittest.TestCase):
         self.assertNotIn("https://", built)
         self.assertNotIn("fonts.googleapis", built)
         self.assertIn("location.hash", built)
+
+    def test_gallery_policy_allows_only_the_bundled_viewer_script(self):
+        result = self.run_cli("build", self.manifest, self.output)
+        self.assertEqual(0, result.returncode, result.stderr)
+        built = self.output.read_text()
+        viewer, = re.findall(r"<script>(.*?)</script>", built, re.S)
+        digest = base64.b64encode(hashlib.sha256(viewer.encode("utf-8")).digest()).decode("ascii")
+        self.assertEqual(f"'sha256-{digest}'", re.search(r"; script-src ([^;]+);", built)[1])
+
+    def test_malformed_comments_cannot_hide_active_markup(self):
+        self.output.write_text("previous preview")
+        fragment = self.example / "notes.html"
+        for opener in ("<!-->", "<!--->", "<!-- sample --!>"):
+            with self.subTest(opener=opener):
+                fragment.write_text(f"{opener}<script>unexpected()</script><!-- -->")
+                result = self.run_cli("build", self.manifest, self.output)
+                self.assertEqual(1, result.returncode)
+                self.assertIn("malformed HTML comment", result.stderr)
+                self.assertEqual("previous preview", self.output.read_text())
 
     def test_metadata_is_escaped(self):
         title = '</title><script>alert("metadata")</script>'

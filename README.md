@@ -16,10 +16,12 @@ All skill instructions and generated artifacts are in English. Conversation can 
 - [✨ AI Agent Skills](#-ai-agent-skills)
   - [Contents](#contents)
   - [Available skills](#available-skills)
+  - [Choose a workflow](#choose-a-workflow)
   - [Installation and activation](#installation-and-activation)
     - [Install with the skills CLI](#install-with-the-skills-cli)
     - [Manual installation](#manual-installation)
     - [Activation](#activation)
+    - [First task and adoption checks](#first-task-and-adoption-checks)
   - [Agent and model compatibility](#agent-and-model-compatibility)
     - [Native skill locations](#native-skill-locations)
     - [Required capabilities](#required-capabilities)
@@ -65,15 +67,15 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.6.3 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [PentaPRO](#pentapro) | 2.7.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
 | [Peer Review](#peer-review) | 1.10.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersecurity](#cybersecurity) | 1.6.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.6 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
+| [UI Design](#ui-design) | 1.5.7 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
 | [Diagnose Defect](#diagnose-defect) | 1.0.0 | Reproduce unclear failures, distinguish causes, and verify authorized fixes. |
 | [Behavior Testing](#behavior-testing) | 1.1.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
 | [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
 | [MCP Server](#mcp-server) | 1.1.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
-| [Software Delivery](#software-delivery) | 1.1.0 | Coordinate dependent implementation tasks through verified increments. |
+| [Software Delivery](#software-delivery) | 1.2.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
 | [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
 | [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
 | [Agent Instructions](#agent-instructions) | 1.0.1 | Maintain portable software-development agent guidance. |
@@ -85,11 +87,19 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Android unit testing](android-unit-testing/SKILL.md) | 1.2.3 | Author/run/debug isolated logic tests. |
 | [Android integration testing](android-integration-testing/SKILL.md) | 1.2.4 | Author/run/debug non-UI integration tests. |
 | [Android UI testing](android-ui-testing/SKILL.md) | 1.2.3 | Author/run/debug native device/emulator Compose tests. |
-| [PR Quiz](pr-quiz/SKILL.md) | 1.2.2 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
+| [PR Quiz](pr-quiz/SKILL.md) | 1.2.3 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
 The [routing and consolidation map](SKILL-ROUTING.md) records the 14 Android/quiz source skills. The [closure review](COLLECTION-REVIEW.md) maps all 54 entrypoints in the two requested upstream repositories. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
 
 The current collection contains **21 skills**. It is a curated adaptation, not a mirror of upstream packages. No Matt Pocock or Superpowers installation is required.
+
+## Choose a workflow
+
+Use a short request for a clear, reversible, low-risk edit. Work from the existing behavior and run the checks that cover the change. For exploratory prompting or vibe coding, isolate the experiment and capture the question it answers. Before carrying experimental code into a maintained product, establish the intended behavior and apply the product's implementation and verification gates.
+
+For consequential work or when the project requires spec-driven development (SDD), use the governing specification or change record before implementation. The agent can draft it from the developer's intent, repository evidence and examples, then ask for unresolved decisions that affect the outcome. Use [PentaPRO](#pentapro) for a broader specification and [Software Delivery](#software-delivery) for dependent implementation tasks. Preserve the project's authoritative tickets, schemas and acceptance checks, and link them from the specification where useful.
+
+If you require the entire selected scope specified before coding, say so in the request or project policy. Otherwise settle each increment's behavior, constraints and checks before implementing that increment. Give the agent autonomy over routine implementation choices within the agreed scope. Keep verification and any release authority explicit. The [routing guide](SKILL-ROUTING.md#choose-the-depth-of-the-workflow) shows how to apply this to common tasks.
 
 ## Installation and activation
 
@@ -111,6 +121,8 @@ npx skills@latest add teknolista/skills --skill '*' -a codex -y
 ```
 
 Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Installation defaults to the current project. Add `-g` for user-level installation across projects.
+
+The installer installs the selected skill packages and can link agent directories to a canonical copy. Use `--copy` when independent copies are needed; see the [installation methods](https://github.com/vercel-labs/skills/blob/main/docs/commands.md#installation-methods). The repository's root `evals/` and `scripts/` stay in the collection checkout, even when you install all 21 skills. For a manual installation, copy only the selected skill directories. See [what belongs to the collection and to each package](#repository-structure).
 
 Use `npx skills@latest check` to check for updates and `npx skills@latest update` to update installed skills. See the [official CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) for installation options and update scopes.
 
@@ -149,6 +161,15 @@ A skill stored in this repository is not automatically installed into other proj
 The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-design` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration. Native helpers use their listed names, for example `$android-data-layer`; `pr-quiz` runs only for a requested comprehension quiz or quiz setup, never merely after PR creation.
 
 The core instructions use Markdown and optional references/templates. Cross-package links are optional navigation; no generic owner requires an Android helper for other platforms. The optional prototype helper uses Python. Publishing a requested PR quiz requires Python, gh and actual GitHub access; its optional grader uses GitHub Actions. Installing a package does not install these tools or activate a remote workflow. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
+
+### First task and adoption checks
+
+1. Install the packages needed for your work and confirm that your agent can discover and read them, including their supporting files. Use a small task in a disposable project to check activation and tool access before relying on a new host/model combination.
+2. Open the software project's root and provide the intended outcome, relevant constraints and expected result. Reuse existing project instructions. The optional [AGENTS.md template](AGENTS-template.md) helps record commands, contracts and authority; adapt it rather than overwriting existing guidance or leaving placeholders as executable instructions.
+3. Choose the [workflow depth](#choose-a-workflow). For a new specification, ask `Use $penta-pro to specify an offline notes application. Save the specification and identify unresolved decisions before implementation.` For an existing accepted plan, ask `Use $software-delivery to implement the next ready increment and run the required checks.` For a clear copy edit, identify the exact text and intended replacement directly.
+4. Inspect the actual artifacts and verification evidence. Confirm that the result meets the requested behavior, preserves existing constraints and names untested boundaries. Review and release follow the project's own gates. Resume material work from its saved contracts and evidence.
+
+The collection supplies reusable methods and selected platform procedures. Generic workflows apply across stacks, while the bundled implementation detail is strongest for native Android, web UI, HTTP APIs and MCP. Other stacks require their own tooling and applicable documentation. Installation, a generated specification and passing collection tests do not certify the software produced with these skills. Consult the [maintenance review](FINAL-SKILL-REVIEW.md) and [evaluation results](evals/RESULTS.md) for the scope actually checked.
 
 ## Agent and model compatibility
 
@@ -252,7 +273,7 @@ PentaPRO drafts from accessible evidence and delegated choices with provenance. 
 
 Critical product rules should have concrete input/output examples independent of the implementation. PROOF identifies realistic regressions that planned assertions must detect and checks that reported execution actually exercises them. Planned checks remain `Unverified` until executed. Specification readiness, document acceptance, implementation verification, and release acceptance are separate states. Creating or updating a specification does not itself authorize implementation or release; existing authorization remains valid.
 
-A sufficiently specified increment can be ready for implementation while its future software tests remain unverified. An unresolved product decision blocks the work that depends on it. Acceptance records the responsible person's actual decision, scope, revision, and conditions. Exploration and review preserve their next action in the conversation unless specification writing is authorized.
+A sufficiently specified increment can be ready for implementation while its future software tests remain unverified. An unresolved product decision blocks the work that depends on it. When the request requires the entire selected scope specified first, readiness must cover that scope before coding. Acceptance records the responsible person's actual decision, scope, revision, and conditions. The handoff carries enough linked context for an implementer who did not attend the interview. Exploration and review preserve their next action in the conversation unless specification writing is authorized.
 
 The workflow is model-neutral. Use a host that can load the complete skill folder and relevant project context. Disclose missing capabilities rather than inventing answers or verification results. Package compatibility does not establish identical quality across models.
 
@@ -491,7 +512,7 @@ Use to implement an MCP server or an exposed capability. For example, “Expose 
 
 ## Software Delivery
 
-Coordinate dependent tasks and verify the integrated result. For example, “Implement the accepted retry change across the API, worker and existing clients.” In a spec-driven project, use the active accepted change and keep the requirement IDs in verification and handoff. In a project without SDD, use the request, existing interfaces and callers, tests, and decisions to establish the intended behavior. A change localized to one endpoint can use HTTP API directly. [Skill](software-delivery/SKILL.md)
+Coordinate dependent tasks and verify the integrated result. For example, “Implement the accepted retry change across the API, worker and existing clients.” Use the governing baseline and applicable active change, or establish the intended behavior from the request and existing project contracts. Reconcile material changes with the owning records and keep verification tied to the resulting revision. A clear localized change can use its domain procedure directly. See [Software Delivery](software-delivery/SKILL.md) and its [change contract guide](software-delivery/references/change-contracts.md).
 
 ## Technical Research
 
@@ -536,7 +557,7 @@ Offline maintainer checks: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discov
 
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
-The template supplies rules for scoped work, implementation, validation, review, security, collaboration, and handoff. It routes work by outcome, identifies the five pillar documents and the cumulative UI specification, and explains ownership, resumption, and evidence states. Fill in the project's skill locations and commands. Use the packages relevant to each task. The project chooses its stack, source layout, model, and test framework. Artifacts use English by default, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their authoritative documents and link them from the project guide.
+The template supplies rules for scoped work, implementation, validation, review, security, collaboration, and handoff. It routes work by outcome and lets the project set when direct edits, exploration, or prior specification apply. It identifies the five pillar documents and the cumulative UI specification, and explains ownership, resumption, and evidence states. Fill in the project's skill locations and commands. Use the packages relevant to each task. The project chooses its stack, source layout, model, and test framework. Artifacts use English by default, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their authoritative documents and link them from the project guide.
 
 ## Repository structure
 
@@ -606,7 +627,12 @@ skills/
     └── scripts/
 ```
 
-`SKILL.md` contains required metadata and runtime instructions. Optional `agents/` files adapt host presentation; `assets/` holds output templates; `references/` holds conditional detail; `evals/` holds maintenance cases and validation records; `scripts/` holds optional executable helpers and their focused tests. Create only the directories a skill needs.
+The two directories at the repository root support collection maintenance:
+
+- `evals/` holds [evaluation cases](evals/cases.json), synthetic project fixtures, project-policy overlays, independent checks, and [trial results](evals/RESULTS.md). These let maintainers compare agent behavior on the same tasks and inspect the resulting artifacts.
+- `scripts/` holds the [collection validator](scripts/validate_collection.py), its dependency list, the [evaluation runner](scripts/run_skill_evals.py), and runner tests. Use the [validation instructions](#validation-and-improvement) and [evaluation procedure](SKILL-EVALUATION.md) from a checkout of the collection. A full repository clone includes both directories.
+
+Inside a skill package, `SKILL.md` contains metadata and runtime instructions. Optional `agents/` files adapt host presentation, `assets/` holds output templates, and `references/` holds conditional detail. Some packages also carry their own `evals/` maintenance cases or `scripts/` helpers and tests. These nested directories belong to the package and can accompany its installation. For example, UI Design carries its [local prototype helper](ui-design/scripts/prototype_tools.py). Create only the directories a skill needs.
 
 ## Maintenance and new skills
 
@@ -615,6 +641,19 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 ### Validation and improvement
 
 Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root to check frontmatter, local links and anchors, catalog versions, and installation coverage. The [validation workflow](.github/workflows/validate.yml) runs these checks and the offline Python and Node helper tests. It uses no model evaluation credentials.
+
+To reproduce the local collection checks, use a POSIX development environment with Git, Python 3.12+ and Node.js 24, matching the CI runtime family. After installing the dependency above, run these commands from the collection root. The evaluator lifecycle tests launch bounded local subprocesses; the quiz tests use API doubles and do not publish to GitHub.
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/validate_collection.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s ui-design/scripts/tests -v
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s pr-quiz/scripts/tests -v
+node pr-quiz/scripts/tests/workflow.cjs
+git diff --check
+```
+
+These are collection-maintenance prerequisites, not requirements for reading or installing each skill manually. Model trials and the optional MCP SDK smoke test have separate setup and evidence limits in the [evaluation procedure](SKILL-EVALUATION.md).
 
 Use the [evaluation procedure and synthetic Codex trials](SKILL-EVALUATION.md) to decide whether to add, revise, or retire a skill. The [software factory assessment](SKILL-ASSESSMENT.md) and [collection review](COLLECTION-REVIEW.md) retain earlier source decisions and validation limits. The [final maintenance review](FINAL-SKILL-REVIEW.md) records the later per-package assessment and distribution review.
 

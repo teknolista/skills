@@ -1,6 +1,6 @@
-# Frontier-model trial record, 2026-11-09
+# Frontier model trial record
 
-The [trial procedure](../SKILL-EVALUATION.md) ran on Codex CLI `0.160.0` with low reasoning effort, the collection at `95abba607180cda548749edb76034efe5dbcac32` as baseline, and the working candidate. All 32 model sessions completed, 28 with GPT-6.1 Sol and four with GPT-6 Astra. Each session used a disposable synthetic repository and an identical starting fixture for its case. The no-collection arm retained the host's normal built-in capabilities. All routing runs used unhinted prompts. The MCP planning runs explicitly invoked the installed skill in the baseline and candidate arms.
+The 2026-11-09 [trial procedure](../SKILL-EVALUATION.md) ran on Codex CLI `0.160.0` with low reasoning effort, the collection at `95abba607180cda548749edb76034efe5dbcac32` as baseline, and the working candidate. All 32 model sessions completed, 28 with GPT-6.1 Sol and four with GPT-6 Astra. Each session used a disposable synthetic repository and an identical starting fixture for its case. The no-collection arm retained the host's normal built-in capabilities. All routing runs used unhinted prompts. The MCP planning runs explicitly invoked the installed skill in the baseline and candidate arms.
 
 ## Localized HTTP change
 
@@ -34,3 +34,15 @@ Local validation passed all 21 packages, the helper suites (24 UI and 12 PR publ
 ## Final-review qualification (2026-11-09)
 
 The trials above kept evaluator checks outside task workspaces, but did not establish that the host denied reads of those files or sibling runs. Treat them as exploratory local comparisons, not blinded or adversarially isolated evaluations. The later runner timeout correction is covered by offline process-lifetime tests; it does not retroactively change these recorded runs or their measured outcomes.
+
+## Adaptive workflow checks (2026-11-10)
+
+Ran the [new workflow cases](../SKILL-EVALUATION.md#score-the-outputs) on Codex CLI `0.160.0`, GPT-6.1 Sol, low reasoning effort, and disposable fixtures. Compared baseline `a910ca37f86ef48b6cb0a09b9569933249534346` with the working PentaPRO 2.7.0 and Software Delivery 1.2.0 drafts. The two owner cases invoked their skills explicitly. The copy edit used normal discovery. The first launch could not initialize the local Codex state under the outer sandbox. The retry used the runner's workspace sandbox for the fixture agents.
+
+| Case | Observed outcome |
+| --- | --- |
+| Entire scope before code | Both arms saved five linked drafts and left source and tests byte-identical. Both recorded the unresolved payload-conflict policy as blocking the selected scope and kept checks unverified. The baseline completed. The first candidate run reached the 160-second limit before its final response. A candidate rerun with a 240-second limit recovered from an unavailable `python` command and completed in 205 seconds. Its drafts and final response preserved the same boundary. |
+| Conflict with accepted contract | Both arms cited the active tenant-scoped requirement and preserved all files. A candidate rerun after clarifying accepted versus proposed records also preserved all files and demonstrated the existing contract drift with local probes. |
+| Localized copy edit | The candidate changed only the misspelled heading bytes and did not read a collection skill. |
+
+These are narrow behavioral checks. They support the observed boundaries but do not establish an improvement over the baseline. The follow-up runs used different time limits and are not a latency comparison. The runner did not establish read isolation from sibling runs or evaluator material. Prototype adoption and generated-source workflows have manual cases and were not executed.

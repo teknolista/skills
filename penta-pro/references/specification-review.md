@@ -1,6 +1,6 @@
 # Review the specification
 
-Use this procedure for the first consolidated draft, material revisions and requested specification reviews. The target is what the written artifacts tell a reader to build, verify and operate. For an early draft, review intent and coherence and record which later checks are pending. Assess implementation readiness only for a named increment. A standalone review is read-only unless the user asks for revisions.
+Use this procedure for the first consolidated draft, material revisions and requested specification reviews. The target is what the written artifacts tell a reader to build, verify and operate. For an early draft, review intent and coherence and record which later checks are pending. Assess implementation readiness for a named increment, or for the entire selected scope when that scope must be specified before coding. A standalone review is read-only unless the user asks for revisions.
 
 ## Reconstruct before comparing
 

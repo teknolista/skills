@@ -33,6 +33,17 @@
     "owner": null,
     "prompt": "Fix only the typo in the README heading. Keep the rest of the file byte-for-byte."
   },
+  "sdd-full-scope": {
+    "fixture": "receipts",
+    "owner": "penta-pro",
+    "prompt": "Create a PentaPRO specification for changing receipt retries and then implement the change once ready. I need the entire selected scope specified before any implementation. Keep the handler signature and ordinary success response. Keys are scoped to the authenticated tenant, and replaying the same key and payload must return the original receipt without a second job. The behavior for the same tenant and key with a different payload is a product decision I have not made or delegated. Include that case in scope."
+  },
+  "delivery-contract-conflict": {
+    "fixture": "receipts",
+    "overlay": "sdd",
+    "owner": "software-delivery",
+    "prompt": "Support suggested a quick change to let different tenants with the same request ID reuse the same receipt. Make the handler, store and test changes if the behavior fits the existing approved contract. Tell me what you checked."
+  },
   "mcp-revisions": {
     "fixture": "mcp",
     "owner": "mcp-server",

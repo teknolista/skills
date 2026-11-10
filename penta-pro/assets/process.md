@@ -6,7 +6,7 @@
 
 | Field | Value |
 | --- | --- |
-| Template version | 2.6.3 |
+| Template version | 2.7.0 |
 | Product name and one-sentence purpose | [FILL IN] |
 | Document owner and decision-makers | [FILL IN] |
 | Specification version, updated date, and document status | [FILL IN: Draft / Reviewed / Accepted / Superseded] |
@@ -93,9 +93,11 @@ Define the project's cycle from selecting an outcome and preparing checks throug
 
 Use a formal plan when complexity or uncertainty warrants it. Planning-only requests produce investigation and a proposal; they do not authorize implementation. Define any required plan approval explicitly.
 
+Record whether specification readiness is required for the entire selected scope before coding or for each increment before its implementation. If the project distinguishes exploratory work from maintained delivery, define what evidence and authority are needed to adopt an experiment. Use the existing workflow and gates.
+
 ## Increment readiness, authority, and completion
 
-Assess these conditions for the selected increment, retaining unresolved items with owners and scope:
+Assess these conditions for the selected increment. When the entire selected scope must be specified first, assess all of it before handing off implementation. Retain unresolved items with owners and scope.
 
 - Outcome, users, selected scope, exclusions, and evidence/hypotheses are explicit.
 - Behavior, permissions, important failures, quality constraints, and observable acceptance criteria are sufficient for implementation.
@@ -113,7 +115,7 @@ Before recording specification acceptance, review the selected revision. Check c
 
 For the first consolidated draft or a material revision, record the reviewed document revision or snapshot, affected scope, review method (author or independent), coverage gaps and a brief journey reconstruction or link to it. For material findings, record the affected IDs, consequence, disposition, owner and next action using existing records where possible. Mark a repair verified only after rereading the changed records and their affected links. Keep the review result separate from the acceptance and implementation gates below.
 
-When handing off an incomplete increment, record the next allowed action, the affected IDs and the specific decision or evidence needed to proceed. If a linked contract is inaccessible, state which conclusion still depends on it.
+Make the handoff usable without the original interview. Record the baseline, affected IDs, settled decisions, next allowed action and remaining evidence. For a blocked increment, identify the decision or evidence needed to proceed. If a linked contract is inaccessible, state which conclusion still depends on it.
 
 | Gate or authority | Responsible assessor / decision-maker | Required basis | Actual state / source / date / scope |
 | --- | --- | --- | --- |

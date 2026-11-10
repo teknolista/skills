@@ -56,10 +56,28 @@ test('correct answer creates a pass bound to the current commit', async () => {
   assert.match(result.reports[0], /^<!-- pr-quiz-result -->\n<!-- pr-quiz-pass:abcdef123456:newsha:[a-f0-9]{64} -->\n/);
 });
 for (const who of ['author', 'outsider']) {
-  test(`${who} cannot grade a quiz`, async () => assert.equal(state(await run({ who })), 'pending'));
+  test(`${who} cannot grade or change the result from a comment`, async () => {
+    const result = await run({ who });
+    assert.deepEqual(result.statuses, []);
+    assert.deepEqual(result.reports, []);
+  });
 }
 test('author remains excluded even when present in past reviewers', async () => {
-  assert.equal(state(await run({ who: 'author', reviews: [{ user: { login: 'author' } }] })), 'pending');
+  const result = await run({ who: 'author', reviews: [{ user: { login: 'author' } }] });
+  assert.deepEqual(result.statuses, []);
+  assert.deepEqual(result.reports, []);
+});
+test('unauthorized malformed answer leaves status and comment untouched', async () => {
+  for (const answer of ['1A 1B', 'missing answers']) {
+    const result = await run({ who: 'outsider', answer });
+    assert.deepEqual(result.statuses, []);
+    assert.deepEqual(result.reports, []);
+  }
+});
+test('an answer comment cannot update status when there is no quiz', async () => {
+  const result = await run({ who: 'outsider', answer: '/answer 0000000000000000 1A', contents: '' });
+  assert.deepEqual(result.statuses, []);
+  assert.deepEqual(result.reports, []);
 });
 test('a past reviewer is recognized after leaving the request list', async () => {
   assert.equal(state(await run({ requested: [], reviews: [{ user: { login: 'reviewer' } }] })), 'success');
@@ -90,12 +108,12 @@ test('a quoted marker in another bot comment is not a cached pass', async () => 
   const marker = (await run()).reports[0].split('\n')[1];
   assert.equal(state(await run({ comments: [botComment(`Quoted: ${marker}`)], answer: '1B' })), 'failure');
 });
-test('empty answer metadata is invalid', async () => assert.equal(state(await run({ contents: body({}) })), 'pending'));
-test('a missing quiz remains pending', async () => assert.equal(state(await run({ contents: 'no quiz' })), 'pending'));
-test('multiple quiz blocks remain pending', async () => assert.equal(state(await run({ contents: body() + body() })), 'pending'));
+test('empty answer metadata is invalid', async () => assert.equal(state(await run({ event: 'pull_request_target', contents: body({}) })), 'pending'));
+test('a missing quiz remains pending', async () => assert.equal(state(await run({ event: 'pull_request_target', contents: 'no quiz' })), 'pending'));
+test('multiple quiz blocks remain pending', async () => assert.equal(state(await run({ event: 'pull_request_target', contents: body() + body() })), 'pending'));
 test('multiple keys remain pending', async () => {
   const contents = body().replace('<!-- pr-quiz:end -->', body().match(/<!-- pr-quiz-key:.*? -->/)[0] + '\n<!-- pr-quiz:end -->');
-  assert.equal(state(await run({ contents })), 'pending');
+  assert.equal(state(await run({ event: 'pull_request_target', contents })), 'pending');
 });
 test('explanations cannot reflect control markers, links or mentions', async () => {
   const marker = (await run()).reports[0].split('\n')[1];
@@ -145,7 +163,7 @@ test('a correct answer does not publish a pass if the head moves during evaluati
 });
 test('a key for a removed option and duplicated visible options both remain pending', async () => {
   for (const contents of [body().replace('**A)**', '**C)**'), body().replace('**B)**', '**A)**')]) {
-    const result = await run({ contents });
+    const result = await run({ event: 'pull_request_target', contents });
     assert.equal(state(result), 'pending');
     assert.deepEqual(result.reports, []);
   }

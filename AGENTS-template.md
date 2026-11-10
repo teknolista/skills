@@ -26,6 +26,10 @@ Keep detailed requirements, decisions, and runbooks in their authoritative docum
 
 Skills are tools for the requested outcome, not mandatory stages. Ordinary implementation may use project guidance directly. Carry the target snapshot/variant, canonical contracts, actual authority, completed checks and remaining gaps between material subtasks. Reuse existing decisions; do not start duplicate interviews or create competing requirement/review records. Recheck changed source before reusing evidence from an earlier snapshot.
 
+Choose the depth of specification and checks from the actual consequences and project policy. A localized, clear, low-risk, reversible change can use the request, existing contract and focused checks. For exploration, define the question and use an isolated experiment when authorized. Before implementing consequential new behavior, establish its governing scope, constraints, decisions and observable checks in the existing specification, ticket or contract. Prepare coherent increments unless the user or project requires the entire selected scope specified first. An agent can draft from project evidence and ask only about consequential decisions outside delegation. Required security, review and release gates apply in every mode.
+
+Reassess if an edit affects new consumers, changes an important invariant, or makes a consequential assumption visible. Reconcile the contract before continuing dependent work. Moving an experiment into maintained use requires the normal implementation and verification gates. When generated code has a governing source, use the project's authoring and regeneration workflow.
+
 Use the generic owners according to the requested work; optional implementation/test helpers have narrower responsibilities. Read the selected skill's actual `SKILL.md` and the supporting resources relevant to the task. Resolve resource paths from its installed directory. This table routes work; it does not replace the skill instructions or require running all skills for every change.
 
 | Skill | When to use it | Expected result and boundary |

@@ -3,7 +3,7 @@ name: penta-pro
 description: "Explores software requirements through focused interviews and creates, updates, or reviews PentaPRO specifications. Use for new software, substantial feature specifications, resuming a PentaPRO document, or reviewing written requirements, design and implementation readiness."
 license: MIT
 metadata:
-  version: "2.6.3"
+  version: "2.7.0"
 ---
 
 # PentaPRO
@@ -33,12 +33,14 @@ Use the user's language for the interview and clear English for artifacts, prese
 
 For unclear intent, conflicting answers, or consequential alternatives, read [focused discovery](references/discovery.md). Skip renewed discovery for settled decisions and small, clear updates.
 
+Set the scope that must be ready before code. Use the next increment by default and the entire selected scope when the user or project requires complete prior specification.
+
 For new specifications or material scope changes, screen the [software profiles](references/software-profiles.md) and read the applicable entries. Combine profiles and overlays for hybrid systems and add domain-specific concerns when needed. Keep all five pillars and record coverage as `Included`, `Linked`, `Pending`, `Deferred`, or `Not applicable`. Tailor depth to consequence. Use [specification patterns](references/specification-patterns.md) for detailed records and the [worked example](references/worked-example.md) for an illustration of traceability.
 
 Establish whether the work creates software, changes an existing system, replaces a component, or investigates feasibility. Read applicable project rules before drafting and link their sources in PROCESS when they affect delivery. For existing systems, identify the baseline revision, consumers, stored data, behavior to preserve, and intended changes. Use observations to characterize current behavior and flag conflicts with accepted requirements. For a material change, use the [baseline and proposed change guidance](references/document-maintenance.md#baseline-and-proposed-changes). Extend coverage for the domain when the listed profiles leave a consequential gap.
 
 1. Reuse known facts. Establish the users, problem evidence, intended outcomes, first increment, and constraints across the five pillars; briefly reflect consequential interpretations for correction. For products where the bet matters, establish the strategy, principles, alternatives, and stopping criteria before elaborating features. Gather influential constraints early, including offline use, device support, data location, recovery, safety, and applicable commercial, launch, documentation, or support commitments. Distinguish observed needs from hypotheses and technical health from user or business success.
-2. Use accessible evidence to draft and narrow the questions. Prioritize questions that change the next increment. Ask a foundational question alone or batch a few independent questions. For each consequential decision, state what it changes and give a recommended option when evidence supports one. Defer questions whose prerequisites remain open and continue independent work while answers are pending.
+2. Use accessible evidence to draft and narrow the questions. Prioritize questions that affect the required readiness scope. Ask a foundational question alone or batch a few independent questions. For each consequential decision, state what it changes and give a recommended option when evidence supports one. Defer questions whose prerequisites remain open and continue independent work while answers are pending.
 3. Use PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS as the preferred order of interview deepening and document presentation. These are perspectives, not sequential development phases. Revisit affected pillars when a later decision changes an earlier premise:
 
    | Pillar | Focus |
@@ -55,7 +57,7 @@ Establish whether the work creates software, changes an existing system, replace
    - PROCESS tracks authority, ownership, status, and resumption from the start. Finalize its execution plan after the other pillars expose the necessary work. For updates, follow affected records and dependencies without restarting settled work solely to traverse the order.
 
 4. Run one integrated interview. When creation is requested, save the initial draft across all five files in the default layout before pausing for answers or handing off the specification. Use supported details and mark consequential unknowns `Pending`. Consolidate later rounds in the affected files. Save shared status, coverage, revision history, and the next interview focus and action in `process.md`, linking open questions in `project.md`. For an established or explicitly requested single file, use the equivalent sections in that file.
-5. Before handing off the first consolidated draft or a material revision, or using it to start authorized implementation, use [specification review](references/specification-review.md) on the saved artifacts. Reconstruct the intended behavior from the files before comparing with the interview. Review all five pillars on creation and the affected chain on update. A first partial save can precede this review; label the remaining coverage. Keep findings and the next action in PROCESS within the authorized writing scope. For small edits, check the changed record and its direct dependencies. Stop questioning when further answers would not change the next increment; retain non-blocking uncertainty explicitly.
+5. Before handing off the first consolidated draft or a material revision, or using it to start authorized implementation, use [specification review](references/specification-review.md) on the saved artifacts. Reconstruct the intended behavior from the files before comparing with the interview. Review all five pillars on creation and the affected chain on update. A first partial save can precede this review; label the remaining coverage. Keep findings and the next action in PROCESS within the authorized writing scope. For small edits, check the changed record and its direct dependencies. Stop questioning when further answers would not materially affect the required readiness scope. Record remaining uncertainty explicitly.
 
 For a consequential behavior, trace one requirement through its observable criterion, feasible check, design constraint, operating implication, and owner before moving to another. Link the existing records. If a link is missing, record the exact gap and affected decision.
 
@@ -105,9 +107,11 @@ Report genuine gaps instead of removing a difficult concern to make the draft lo
 
 ## Readiness and handoff
 
-When another task continues from this specification, pass its canonical requirement/contract IDs, settled versus proposed decisions, actual authorization, target baseline and pending evidence. Reuse that context without a second interview; keep implementation findings in their owner and reconcile material requirement changes here only within scope.
+When another task continues from this specification, pass its canonical requirement/contract IDs, settled versus proposed decisions, actual authorization, target baseline and pending evidence. The handoff should work from the saved records without access to the conversation. Reuse it without a second interview and reconcile material requirement changes in their owning records within scope.
 
 Assess the next increment as `Not assessed`, `Blocked`, or `Ready for the next increment` using the template's PROCESS checklist. Record assessor, scope, basis, and blockers. For each material gap, say which decision or gate it affects. Record who may authorize the work and its actual authorization separately. An unavailable prerequisite for the selected work can block readiness. A future release check needs a feasible plan before development and actual evidence at its gate.
+
+If the user or project requires a complete specification before coding, review readiness for the entire selected scope before handing off implementation. A ready first increment alone does not clear that gate. For incremental specification, settle consequential behavior and checks for each increment before its implementation and keep later decisions pending. Leave reversible implementation choices within delegation.
 
 For an investigation or prototype, specify the question, limits, expected evidence, and stopping condition instead of inventing a final design. Set document status to `Accepted` only after actual acceptance by the responsible person.
 

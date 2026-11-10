@@ -10,7 +10,7 @@ Briefly reflect your understanding of the user, desired outcome, constraints, an
 
 Start with an open question when the underlying need is unclear. For a bounded choice, offer a short set of realistic options and explain your recommendation. Do not bias every question toward agreeing with the agent. Ask what the answer changes when that is not obvious.
 
-Prioritize questions that change the next increment's value, scope, design, or checks. Ask a foundational decision alone when later questions depend on it; otherwise batch a few independent questions. Recompute what is answerable after each round. Investigate accessible facts yourself; ask the user for preferences, priorities, and consequential decisions that remain theirs.
+Prioritize questions that change the value, scope, design or checks for the work that must be ready. Use the whole selected scope when required before coding. Ask a foundational decision alone when later questions depend on it. Otherwise batch a few independent questions. Recompute what is answerable after each round. Investigate accessible facts yourself and ask the user for consequential preferences and decisions that remain theirs.
 
 For each question, state what depends on the answer and use a concrete scenario where it helps the user decide. Offer a supported recommendation for a real choice. When the issue is an unknown fact, ask for its source, a representative example, or a way to verify it. If an answer is unavailable, complete independent drafting and record which increment or gate the gap affects.
 
