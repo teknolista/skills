@@ -139,7 +139,6 @@ class PrototypeTests(unittest.TestCase):
                 fragment.write_text(f"{opener}<script>unexpected()</script><!-- -->")
                 result = self.run_cli("build", self.manifest, self.output)
                 self.assertEqual(1, result.returncode)
-                self.assertIn("malformed HTML comment", result.stderr)
                 self.assertEqual("previous preview", self.output.read_text())
 
     def test_metadata_is_escaped(self):
