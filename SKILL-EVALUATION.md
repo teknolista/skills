@@ -12,6 +12,8 @@ The [final maintenance review](FINAL-SKILL-REVIEW.md) records the subsequent per
 
 Use a POSIX host (such as Linux or macOS), Python 3.12 or later, Git, and an authenticated Codex CLI with the intended model available. The runner writes fresh repositories and raw events to a new temporary directory, using Codex workspace-write sandboxing and no approval prompts. It terminates the run's process group on timeout; this does not contain a process that deliberately escapes that group or undo external effects. Use only synthetic inputs. Confirm the host has no user-installed copies of the tested packages that could leak into the control arm. Built-in and other host skills may still be available in every arm.
 
+The candidate arm copies tracked and unignored new package files from the working tree. Review those paths before running the trial. Ignored local files, including ordinary caches and local secret files, stay outside the package snapshot. The baseline arm uses the selected Git revision.
+
 Evaluator checks are kept outside each task workspace. The default local mode does not establish read isolation from them or from sibling trials. Workspace-write restrictions alone do not prove confidentiality. Inspect access traces and report this limitation; for blinded/adversarial comparisons use an execution environment that actually excludes evaluator files and other runs. The existing trials are exploratory local comparisons.
 
 ```sh

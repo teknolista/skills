@@ -59,6 +59,38 @@ class ProcessLifetimeTests(unittest.TestCase):
 
 
 class PilotControlTests(unittest.TestCase):
+    def test_candidate_exports_only_distribution_paths(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / "source"
+            package = source / "sample"
+            package.mkdir(parents=True)
+            runner.git("init", "-q", cwd=source)
+            (source / ".gitignore").write_text("sample/private.txt\n")
+            (package / "SKILL.md").write_text("staged version")
+            (package / "removed.md").touch()
+            runner.git("add", "--", "sample", cwd=source)
+            (package / "SKILL.md").write_text("candidate version")
+            (package / "removed.md").unlink()
+            (package / "new.md").touch()
+            (package / "private.txt").write_text("ignored control")
+            destination = root / "candidate"
+            runner.copy_candidate(source, destination)
+            self.assertEqual(runner.inventory(destination), ["sample"])
+            files = {path.name: path.read_text() for path in (destination / "sample").iterdir()}
+            self.assertEqual(files, {"SKILL.md": "candidate version", "new.md": ""})
+
+    def test_candidate_rejects_external_symbolic_link(self):
+        with tempfile.TemporaryDirectory() as folder:
+            source = Path(folder)
+            runner.git("init", "-q", cwd=source)
+            package = source / "sample"
+            package.mkdir()
+            (package / "SKILL.md").touch()
+            (package / "link").symlink_to("/path/outside/fixture")
+            with self.assertRaisesRegex(ValueError, "symbolic link"):
+                runner.copy_candidate(source, source / "candidate")
+
     def test_receipt_grader_distinguishes_fixture_from_clean_control(self):
         fixture = runner.EVALS / "fixtures" / "receipts"
         checker = runner.EVALS / "check_receipts.py"

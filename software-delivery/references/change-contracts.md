@@ -25,6 +25,12 @@ When moving an experiment into maintained use, decide what to discard, reuse or 
 
 When a project governs generated code through a schema, DSL or another source artifact, edit the governing source and regenerate through the established toolchain. Check the resulting diff, consumer compatibility and actual behavior. Treat unexpected generated drift as a discrepancy to resolve with the owner. Follow the project's exception policy for any direct patch. A Markdown brief or a passing test alone does not establish such a generation workflow.
 
+## Port an existing behavior
+
+Pin the source revision and the behavior being carried forward. Compare authoritative requirements, examples, screenshots and observed source behavior where they disagree. Record the difference, the owner-confirmed behavior to preserve or change, and a check that distinguishes the alternatives. Keep those links in the existing change and evidence records.
+
+Run shared fixtures or domain vectors through the source and target entry points. Cover relevant edge cases, prior stored data, ordering and locale. Exercise platform-specific installation, restart, access and upgrade separately when they are in scope. For example, a questionnaire port can compare score totals and translations using synthetic inputs, then verify that the target app restores the expected result after reopening. A screenshot confirms only the rendered state it captured.
+
 ## Worked example with OpenSpec
 
 A receipt endpoint is approved to scope request IDs to the authenticated tenant. The published capability defines replay. The accepted OpenSpec change adds independent tenant receipts and conflict handling. Locate the actual root, version, schema and active change. Under the default schema, read the proposal for scope, the spec delta for behavior, design for technical decisions and tasks for the implementation checklist. In a MODIFIED requirement, preserve existing scenarios that the change still supports. Inspect the complete replacement block, including cases outside the immediate fix. [Default schema](https://openspec.dev/docs/schemas/spec-driven)

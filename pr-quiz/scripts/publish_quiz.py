@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Render a multiple-choice quiz into a PR description.
 
-Usage: publish_quiz.py <pr-number> <quiz.json> [--dry-run]
+Usage: publish_quiz.py <pr-number> <quiz.json> [--repo [HOST/]OWNER/REPO] [--head SHA] [--dry-run]
 
 quiz.json:
 {
@@ -21,6 +21,7 @@ hidden HTML comment that the pr-quiz GitHub Action reads. Any existing quiz bloc
 in the description is replaced, which gives the quiz a new id and resets the pass.
 """
 
+import argparse
 import base64
 import html
 import json
@@ -100,7 +101,7 @@ def render(questions):
         "## PR Quiz",
         "",
         "Decision-comprehension aid. Follow the repository's separate review and merge requirements.",
-        "Tick exactly one answer per question. The result is posted as a comment once all questions are answered.",
+        "Tick exactly one answer per question. With automatic grading enabled, the workflow can post the result.",
         "If automatic grading is enabled, copy the example command from the current pr-quiz commit status and replace its option letters.",
         "",
         *lines,
@@ -125,32 +126,39 @@ def gh(*args):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if a != "--dry-run"]
-    dry_run = "--dry-run" in sys.argv
-    if len(args) != 2:
-        sys.exit(__doc__)
-    pr, quiz_path = args
-
-    if not re.fullmatch(r"[1-9][0-9]*", pr):
+    parser = argparse.ArgumentParser(description="Publish or preview a decision-comprehension PR quiz.")
+    parser.add_argument("pr")
+    parser.add_argument("quiz_path")
+    parser.add_argument("--repo", help="Target GitHub repository in [HOST/]OWNER/REPO format")
+    parser.add_argument("--head", help="Full commit SHA reviewed while drafting the questions")
+    parser.add_argument("--dry-run", action="store_true")
+    options = parser.parse_args()
+    if not re.fullmatch(r"[1-9][0-9]*", options.pr):
         raise ValueError("PR number must be a positive integer.")
-    quiz_id, block = render(load_quiz(quiz_path))
-
-    if dry_run:
+    if options.head is not None and not re.fullmatch(r"[a-fA-F0-9]{40}", options.head):
+        raise ValueError("Expected head must be a full commit SHA.")
+    quiz_id, block = render(load_quiz(options.quiz_path))
+    if options.dry_run:
         print(block)
         return
 
-    def current_body():
-        return json.loads(gh("pr", "view", pr, "--json", "body"))["body"] or ""
-
-    original = current_body()
-    updated = replace_quiz(original, block)
-    if current_body() != original:
-        raise ValueError("PR description changed before publication; inspect the new body and retry.")
-    subprocess.run(["gh", "pr", "edit", pr, "--body-file", "-"], input=updated, text=True, check=True)
-    observed = current_body()
+    fields = ("--json", "body,headRefOid,url")
+    selector = ("--repo", options.repo) if options.repo else ()
+    original = json.loads(gh("pr", "view", options.pr, *selector, *fields))
+    url, head = original["url"], original["headRefOid"]
+    if options.head and options.head.lower() != head:
+        raise ValueError("PR head differs from the revision used to draft the quiz.")
+    updated = replace_quiz(original["body"] or "", block)
+    if json.loads(gh("pr", "view", url, *fields)) != original:
+        raise ValueError("PR description or head changed before publication; review the current PR.")
+    subprocess.run(["gh", "pr", "edit", url, "--body-file", "-"], input=updated, text=True, check=True)
+    result = json.loads(gh("pr", "view", url, *fields))
+    if result["url"] != url or result["headRefOid"] != head:
+        raise ValueError("PR update was sent, but its target or head changed; review the current PR.")
+    observed = result["body"] or ""
     if observed.count(START) != 1 or observed.count(END) != 1 or block not in observed:
         raise ValueError("PR update was sent, but the quiz block could not be confirmed; inspect the current body.")
-    print(f"Quiz {quiz_id} published to PR #{pr}.")
+    print(f"Quiz {quiz_id} published to {url} at {head}.")
 
 
 if __name__ == "__main__":

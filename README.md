@@ -16,6 +16,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 - [✨ AI Agent Skills](#-ai-agent-skills)
   - [Contents](#contents)
   - [Available skills](#available-skills)
+  - [Quick start](#quick-start)
   - [Choose a workflow](#choose-a-workflow)
   - [Start a pilot](#start-a-pilot)
   - [Installation and activation](#installation-and-activation)
@@ -59,6 +60,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [Native Android implementation and testing](#native-android-implementation-and-testing)
   - [PR Quiz](#pr-quiz)
   - [Project AGENTS.md template](#project-agentsmd-template)
+  - [Guides and case studies](#guides-and-case-studies)
   - [Repository structure](#repository-structure)
   - [Maintenance and new skills](#maintenance-and-new-skills)
     - [Validation and improvement](#validation-and-improvement)
@@ -77,12 +79,12 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Behavior Testing](#behavior-testing) | 1.1.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
 | [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
 | [MCP Server](#mcp-server) | 1.1.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
-| [Software Delivery](#software-delivery) | 1.3.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
+| [Software Delivery](#software-delivery) | 1.4.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
 | [Production Operations](#production-operations) | 1.0.0 | Plan and configure hosted backends, deploy verified artifacts, and operate or recover the service. |
 | [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
 | [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
 | [Agent Instructions](#agent-instructions) | 1.1.0 | Maintain portable software-development agent guidance. |
-| [Android modules](android-module-structure/SKILL.md) | 1.2.6 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [Android modules](android-module-structure/SKILL.md) | 1.3.0 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
 | [Android data](android-data-layer/SKILL.md) | 1.2.4 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
 | [Android errors](android-error-handling/SKILL.md) | 1.2.3 | Implement typed domain/HTTP/storage error handling. |
 | [Android Koin](android-di-koin/SKILL.md) | 1.2.3 | Implement dependency bindings and Android lifetimes. |
@@ -90,11 +92,25 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Android unit testing](android-unit-testing/SKILL.md) | 1.2.3 | Author/run/debug isolated logic tests. |
 | [Android integration testing](android-integration-testing/SKILL.md) | 1.2.4 | Author/run/debug non-UI integration tests. |
 | [Android UI testing](android-ui-testing/SKILL.md) | 1.2.3 | Author/run/debug native device/emulator Compose tests. |
-| [PR Quiz](pr-quiz/SKILL.md) | 1.2.3 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
+| [PR Quiz](pr-quiz/SKILL.md) | 1.3.0 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
 The [routing and consolidation map](SKILL-ROUTING.md) records the 14 Android/quiz source skills. The [closure review](COLLECTION-REVIEW.md) maps all 54 entrypoints in the two requested upstream repositories. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
 
 The current collection contains **22 skills**. It is a curated adaptation, not a mirror of upstream packages. No Matt Pocock or Superpowers installation is required.
+
+## Quick start
+
+In your software project's root, use the [installation prerequisites](#install-with-the-skills-cli) and install one skill for a first task. This example installs PentaPRO for Codex from the published collection.
+
+```sh
+npx skills@latest add teknolista/skills --skill penta-pro -a codex
+```
+
+Open a Codex session in that project, select `$penta-pro`, and ask:
+
+> Specify the first useful slice of an offline notes app. Save the specification and show which decisions and checks are still open. Planning only.
+
+Read the saved specification and confirm the first increment's behavior. For an agreed multi-step implementation, install and select [Software Delivery](#software-delivery). For a known local fix, give the agent the expected behavior and a focused check. OpenSpec is optional. Use the [workflow guide](#choose-a-workflow) to decide when a versioned change record helps.
 
 ## Choose a workflow
 
@@ -110,7 +126,7 @@ If you require the entire selected scope specified before coding, say so in the 
 2. Install the primary skill and any specialist the work needs. For direct work, start with the agreed behavior and focused check. For vibe coding, define what the isolated experiment should demonstrate. Use the [prototype promotion example](software-delivery/references/change-contracts.md#worked-example-of-adopting-a-prototype) if it will become maintained code.
 3. When using SDD with OpenSpec, identify the selected schema and accepted change. Link its scenarios to checks through the actual product entry point. Use the [delivery example](software-delivery/references/change-contracts.md#worked-example-with-openspec) and, when maintaining five pillars, the [PentaPRO ownership example](penta-pro/references/document-maintenance.md#example-with-an-accepted-openspec-change).
 4. Run a working control and a meaningful failure check where the risk warrants it. Record the command, revision, result and any required check still pending in the project's existing PR or verification record. For consequential changes, follow the project's review, security and release gates. Record what a new session would need to resume.
-5. Use the [pilot measurement procedure](SKILL-EVALUATION.md#score-the-outputs) to compare outcomes and record friction or failures. See the [adoption plan](ANTHROPIC-ADOPTION-PLAN.md) for the rationale and sequence.
+5. Use the [pilot measurement procedure](SKILL-EVALUATION.md#score-the-outputs) to compare outcomes and record friction or failures. See the [adoption plan](docs/ANTHROPIC-ADOPTION-PLAN.md) for the rationale and sequence.
 
 A pilot can begin with a local test and synthetic inputs. Hosted deployment, native device coverage, third-party integration, and comparative model runs need the corresponding target tools and access.
 
@@ -579,7 +595,7 @@ Implementation results are source/configuration changes and proportionate execut
 
 [pr-quiz](pr-quiz/SKILL.md) creates an explicitly requested decision-comprehension quiz for a specific GitHub PR. It is generic across platforms and separate from Peer Review: passing questions does not establish defect freedom, security or independent approval. Creating a PR alone never activates it.
 
-Example: `Use $pr-quiz to draft a quiz about the caching and retry decisions in PR 123.` Drafting stays local; publishing requires the requested PR-edit scope. The [Python helper](pr-quiz/scripts/publish_quiz.py) previews with `--dry-run` without GitHub access, then can preserve surrounding PR text while publishing through `gh` when authorized. Resolve its installed path in the target repository.
+Example: `Use $pr-quiz to draft a quiz about the caching and retry decisions in PR 123.` Drafting stays local; publishing requires the requested PR-edit scope. The [Python helper](pr-quiz/scripts/publish_quiz.py) previews with `--dry-run` without GitHub access, then can preserve surrounding PR text while publishing through `gh` when authorized. Resolve its installed path in the target repository. When publishing, pass the intended repository with `--repo` and the reviewed commit with `--head`. The helper checks the current head and body before the edit and confirms the result afterward.
 
 The [optional workflow asset](pr-quiz/assets/pr-quiz.yml) grades through trusted GitHub metadata events, without running PR-head code. It is not installed as an active workflow here. Authors are ineligible by default; passes bind to the quiz content, ID and head SHA. Comment answers use the current revision token shown in the pending status. Review team policy, the pinned action, and token permissions before enabling the template. Keep its commit status informational because PRs can share the same commit SHA. Use repository review requirements for merge authorization.
 
@@ -590,6 +606,14 @@ Offline maintainer checks: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discov
 [AGENTS-template.md](AGENTS-template.md) is a reusable working guide for AI agents, separate from the skills. Copy it to a target project's root as `AGENTS.md`, fill in the project facts, navigation, actual commands, and decision authority, and remove or mark inapplicable entries. Preserve an existing project's guidance rather than replacing it blindly.
 
 The template supplies rules for scoped work, implementation, validation, review, security, collaboration, and handoff. It routes work by outcome and lets the project set when direct edits, exploration, or prior specification apply. It identifies the five pillar documents and the cumulative UI specification, and explains ownership, resumption, and evidence states. Fill in the project's skill locations and commands. Use the packages relevant to each task. The project chooses its stack, source layout, model, and test framework. Artifacts use English by default, with exceptions for required identifiers, literal data, and localization. Keep detailed specifications and runbooks in their authoritative documents and link them from the project guide.
+
+## Guides and case studies
+
+The PDFs are Portuguese teaching editions dated November 2026. They preserve the package versions and results of those editions. Use the installed `SKILL.md`, this catalog, and the target tool's documentation for current commands and versions. For an existing OpenSpec project, check its installed CLI, profile, resolved spec root and schema before applying a tutorial command. [OpenSpec documentation](https://openspec.dev/docs)
+
+- [Development with agents](docs/guia-consolidado-desenvolvimento-com-agentes.pdf) covers direct changes, prototypes, SDD with OpenSpec, Android, web, desktop, HTTP APIs, MCP servers, workers, and deployment. Its exercises identify the checks to run on your own target.
+- [Castas Android retrospective](docs/relatorio-retrospectiva-castas-android.pdf) shows how environment checks, cross-platform parity, device tests and release evidence changed during one project.
+- [Adoption plan](docs/ANTHROPIC-ADOPTION-PLAN.md), [evaluation procedure](SKILL-EVALUATION.md) and [maintenance review](FINAL-SKILL-REVIEW.md) describe how to adopt or evaluate changes to the collection.
 
 ## Repository structure
 
@@ -606,6 +630,7 @@ skills/
 ├── SKILL-ASSESSMENT.md
 ├── COLLECTION-REVIEW.md
 ├── FINAL-SKILL-REVIEW.md
+├── docs/
 ├── .github/workflows/validate.yml
 ├── evals/
 ├── scripts/
@@ -665,8 +690,9 @@ skills/
     └── scripts/
 ```
 
-The two directories at the repository root support collection maintenance:
+The documentation and maintenance directories serve different readers:
 
+- `docs/` holds the [guides and case studies](#guides-and-case-studies) for developers and maintainers.
 - `evals/` holds [evaluation cases](evals/cases.json), synthetic project fixtures, project-policy overlays, independent checks, and [trial results](evals/RESULTS.md). These let maintainers compare agent behavior on the same tasks and inspect the resulting artifacts.
 - `scripts/` holds the [collection validator](scripts/validate_collection.py), its dependency list, the [evaluation runner](scripts/run_skill_evals.py), and offline validator/runner tests. Use the [validation instructions](#validation-and-improvement) and [evaluation procedure](SKILL-EVALUATION.md) from a checkout of the collection. A full repository clone includes both directories.
 

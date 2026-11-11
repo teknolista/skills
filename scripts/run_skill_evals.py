@@ -30,6 +30,30 @@ def inventory(directory):
     return sorted(path.parent.name for path in directory.glob("*/SKILL.md"))
 
 
+def copy_candidate(source, destination):
+    """Copy the working-tree files eligible for distribution as skill packages."""
+    source = source.resolve()
+    listed = git("ls-files", "--cached", "--others", "--exclude-standard", "-z", cwd=source)
+    paths = {Path(os.fsdecode(raw)) for raw in listed.split(b"\0") if raw}
+    packages = {path.parts[0] for path in paths
+                if len(path.parts) == 2 and path.name == "SKILL.md" and (source / path).exists()}
+    if not packages:
+        raise ValueError("candidate has no skill packages")
+    for path in sorted(paths):
+        if len(path.parts) < 2 or path.parts[0] not in packages:
+            continue
+        entry = source / path
+        if entry.is_symlink() or entry.resolve() != entry:
+            raise ValueError(f"candidate package path contains a symbolic link: {path}")
+        if not entry.exists():
+            continue
+        if not entry.is_file():
+            raise ValueError(f"candidate package path is not a regular file: {path}")
+        target = destination / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(entry, target)
+
+
 def snapshot(directory):
     files = {}
     for path in sorted(directory.rglob("*")):
@@ -259,11 +283,10 @@ def main():
             with tarfile.open(fileobj=io.BytesIO(git("archive", revision, "--", *packages))) as archive:
                 archive.extractall(baseline, filter="data")
         if "candidate" in options.arms:
-            for name in inventory(ROOT):
-                package = ROOT / name
-                if package.is_symlink() or any(path.is_symlink() for path in package.rglob("*")):
-                    parser.error(f"candidate package {name} contains a symbolic link")
-                shutil.copytree(package, candidate / name)
+            try:
+                copy_candidate(ROOT, candidate)
+            except ValueError as exc:
+                parser.error(str(exc))
         sources = {"baseline": baseline, "candidate": candidate}
         source_hashes = {}
         for arm in options.arms:

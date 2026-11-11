@@ -3,7 +3,7 @@ name: android-module-structure
 description: Implement native Android/Kotlin JVM module boundaries, Gradle conventions and build configuration in an existing or authorized project. Use for concrete module/build changes; use penta-pro for requirements, architecture proposals and readiness specifications, and peer-review for read-only code review.
 license: MIT
 metadata:
-  version: "1.2.6"
+  version: "1.3.0"
 ---
 
 # Native Android Module Structure
@@ -100,4 +100,4 @@ Use targeted lint and meaningful host/device checks for affected behavior. For s
 
 Maintainers evaluating another model/host can use the [cross-skill scenarios](evals/scenarios.md). A structural validator does not establish how well that model implements an Android app.
 
-For concrete Android code/build changes, the [execution guidance](references/execution.md) supplies the inspect/implement/verify/handoff procedure without replacing the generic planning or assessment owners.
+For a new runner, device, or uncertain build setup, use the [Android execution guidance](references/execution.md#verify-a-new-device-or-runner-before-feature-work) to verify the target before implementation.

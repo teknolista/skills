@@ -9,6 +9,12 @@ Use this short contract when a task changes code, build configuration or a test 
 3. Choose the task owner: penta-pro for specification, ui-design for UI design/implementation, peer-review for read-only code/test assessment, and cybersec for security work. Native module/data/DI/background and test-authoring skills supply implementation procedures for their narrower tasks. Do not load every reference or migrate the stack to match an example.
 4. Verify unfamiliar or version-sensitive symbols against the resolved dependency or official documentation for that version. Before adding a dependency, confirm the exact group, artifact, publisher, and version against the project's approved source. If verification is unavailable, name the unresolved input and continue independent work.
 
+## Verify a new device or runner before feature work
+
+For a new checkout, runner or device-dependent change with uncertain setup, smoke-test the existing app or smallest executable slice first. Run the wrapper and SDK checks in the execution context that will build or launch the app. On an emulator, check the image/API/ABI, writable AVD storage and VM acceleration there with `emulator -accel-check`. A sandbox and its host can expose different devices and permissions. CPU virtualization and GPU rendering are separate settings. [Emulator acceleration](https://developer.android.com/studio/run/emulator-acceleration)
+
+Use `adb devices -l` to select an authorized test serial. Check `adb -s "$TEST_SERIAL" shell getprop sys.boot_completed` for `1` and confirm the reported API/ABI against the test matrix. Use a bounded wait. Install and launch the intended variant and assert a small user-visible behavior. Treat SDK resolution, boot, install, app startup and test results as distinct observations. A physical device uses the device checks directly. Keep host tests moving if a device check is blocked, and record the missing boundary.
+
 ## Implement a small coherent change
 
 - Reuse the existing Result, UI text, route and repository definitions. Replace illustrative names/IDs with real owners; do not add duplicate types from several examples. A body containing only a comment is an outline and must be implemented before delivery. Resolve constructor dependencies, imports, resources and manifests as well as the main Kotlin file.

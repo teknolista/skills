@@ -13,6 +13,12 @@ spec=importlib.util.spec_from_file_location('quiz',SCRIPT)
 quiz=importlib.util.module_from_spec(spec);spec.loader.exec_module(quiz)
 
 class QuizTests(unittest.TestCase):
+    pr_url = "https://github.example.test/team/project/pull/123"
+    head = "a" * 40
+
+    def pr_state(self, body="Original", head=None):
+        return json.dumps({"body": body, "headRefOid": head or self.head, "url": self.pr_url})
+
     def fixture(self):
         return {'questions':[{'question':'Why this cache?', 'options':['retain data','lose data','skip errors','disable auth'], 'correct':0,'explanation':'Keep observed records.'}]}
     def load(self,data):
@@ -77,7 +83,7 @@ class QuizTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             fixture = Path(folder) / "quiz.json"
             fixture.write_text(json.dumps(self.fixture()))
-            bodies = [json.dumps({"body": body}) for body in ("Original", "Concurrent edit")]
+            bodies = [self.pr_state(body) for body in ("Original", "Concurrent edit")]
             with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture)]), \
                  patch.object(quiz, "gh", side_effect=bodies), \
                  patch.object(quiz.subprocess, "run") as edit:
@@ -90,11 +96,49 @@ class QuizTests(unittest.TestCase):
             fixture = Path(folder) / "quiz.json"
             fixture.write_text(json.dumps(self.fixture()))
             with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture)]), \
-                 patch.object(quiz, "gh", return_value=json.dumps({"body": "Unchanged"})), \
+                 patch.object(quiz, "gh", return_value=self.pr_state("Unchanged")), \
                  patch.object(quiz.subprocess, "run") as edit:
                 with self.assertRaisesRegex(ValueError, "could not be confirmed"):
                     quiz.main()
                 edit.assert_called_once()
                 self.assertTrue(edit.call_args.kwargs["input"].startswith("Unchanged"))
+
+    def test_stale_draft_and_head_change_abort_before_write(self):
+        with tempfile.TemporaryDirectory() as folder:
+            fixture = Path(folder) / "quiz.json"
+            fixture.write_text(json.dumps(self.fixture()))
+            args = ["publish_quiz.py", "123", str(fixture), "--head", self.head]
+            newer = self.pr_state(head="b" * 40)
+            for states in ([newer], [self.pr_state(), newer]):
+                with self.subTest(states=len(states)), patch.object(sys, "argv", args), \
+                     patch.object(quiz, "gh", side_effect=states), patch.object(quiz.subprocess, "run") as edit:
+                    with self.assertRaisesRegex(ValueError, "head"):
+                        quiz.main()
+                    edit.assert_not_called()
+
+    def test_publication_targets_resolved_url_and_checks_head_after_write(self):
+        with tempfile.TemporaryDirectory() as folder:
+            fixture = Path(folder) / "quiz.json"
+            fixture.write_text(json.dumps(self.fixture()))
+            args = ["publish_quiz.py", "123", str(fixture), "--repo", "github.example.test/team/project",
+                    "--head", self.head]
+            block = f"{quiz.START}\nquiz\n{quiz.END}"
+            before = self.pr_state()
+            for observed_head in (self.head, "b" * 40):
+                after = self.pr_state(f"Original\n\n{block}\n", observed_head)
+                with self.subTest(head=observed_head), patch.object(sys, "argv", args), \
+                     patch.object(quiz, "gh", side_effect=[before, before, after]) as read, \
+                     patch.object(quiz, "render", return_value=("quiz-id", block)), \
+                     patch.object(quiz.subprocess, "run") as edit, patch("builtins.print") as report:
+                    if observed_head == self.head:
+                        quiz.main()
+                        self.assertIn(self.pr_url, report.call_args.args[0])
+                    else:
+                        with self.assertRaisesRegex(ValueError, "head changed"):
+                            quiz.main()
+                    self.assertIn("--repo", read.call_args_list[0].args)
+                    self.assertEqual([call.args[2] for call in read.call_args_list[1:]], [self.pr_url] * 2)
+                    edit.assert_called_once()
+                    self.assertEqual(edit.call_args.args[0][:4], ["gh", "pr", "edit", self.pr_url])
 
 if __name__=='__main__':unittest.main()

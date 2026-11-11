@@ -1,6 +1,6 @@
 # Final skill maintenance review
 
-This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [pilot readiness review](#pilot-readiness-review) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
+This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [collection readiness verification](#collection-readiness-verification) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
 
 Date: 2026-11-09. Scope: the current working collection of 21 packages, including the preceding maintenance changes on top of `95abba607180cda548749edb76034efe5dbcac32`. This is a maintainer self-review, not an independent approval or a claim of globally optimal skills.
 
@@ -147,7 +147,7 @@ The collection is ready for use with its documented prerequisites and project-sp
 
 ## Pilot readiness review
 
-2026-11-11. Reviewed the 22 entrypoints in the working collection over `9405717` for discovery, responsibilities, authority, operational failure handling and evidence. Followed relevant templates and procedures, including risk-directed inspection of Android version and runtime assumptions, protected API/MCP effects, Git scopes, review independence, OpenSpec status, and production promotion. The [adoption plan](ANTHROPIC-ADOPTION-PLAN.md) records rationale and the [pilot guide](README.md#start-a-pilot) is the project entry point.
+2026-11-11. Reviewed the 22 entrypoints in the working collection over `9405717` for discovery, responsibilities, authority, operational failure handling and evidence. Followed relevant templates and procedures, including risk-directed inspection of Android version and runtime assumptions, protected API/MCP effects, Git scopes, review independence, OpenSpec status, and production promotion. The [adoption plan](docs/ANTHROPIC-ADOPTION-PLAN.md) records rationale and the [pilot guide](README.md#start-a-pilot) is the project entry point.
 
 | Package | Review and disposition |
 | --- | --- |
@@ -175,3 +175,21 @@ The collection is ready for use with its documented prerequisites and project-sp
 | PR Quiz | Retained opt-in discovery boundary, safe publication and educational grading scope. |
 
 All 22 packages passed the skill-creator validator and the collection catalog, license, link and installation checks. All 83 offline tests passed (18 collection/evaluator, 26 UI helper, 12 PR publisher and 27 Node grader scenarios). The installation comparison matched 144 files. The [pilot evidence](evals/RESULTS.md#anthropic-adoption-pilot-preparation) records the OpenSpec, isolation, grader and operations checks and their coverage. Review of entrypoints and selected references supports adoption for a scoped pilot. It does not establish exhaustive platform behavior, universal discovery, or superior model performance.
+
+
+## Collection readiness verification
+
+2026-11-11. Reviewed all 22 entrypoints in the candidate over `640d5ed`, their task boundaries and supporting resources, the installation and routing guides, project template, helper scripts, evaluation fixtures, notices and validation workflow. Rechecked version-sensitive instructions against the owning sources for the [Agent Skills format](https://agentskills.io/specification), [Android Gradle and Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin), [Compose test environments](https://developer.android.com/develop/ui/compose/testing/migrate-v2), [OpenSpec schema](https://openspec.dev/docs/schemas/spec-driven), [MCP revisions](https://modelcontextprotocol.io/specification/2026-07-28/changelog) and [GitHub CLI publishing](https://cli.github.com/manual/gh_pr_edit).
+
+| Change | Reason and evidence |
+| --- | --- |
+| Software Delivery 1.4.0 and Android Module Structure 1.3.0 | The Castas retrospective showed a source/behavior mismatch and different device visibility in the agent sandbox and host. Porting now links a pinned source, the accepted rule and a comparison through the target entry point. Android setup now checks boot, device identity and a minimal user-visible assertion on uncertain runners. |
+| PR Quiz 1.3.0 | The old publisher compared body text alone. A new head could receive questions drafted for an older diff. The supported invocation supplies the target repository and reviewed SHA. The helper pins the resolved PR URL and checks the head and body around the edit. Regression tests and an independent subprocess trial with a fake `gh` covered a matching revision, a stale draft, drift before the edit, and drift after submission. The last case reported the submitted edit and required inspection. GitHub does not provide an atomic compare-and-edit through this helper. |
+| Evaluation runner | The candidate snapshot formerly copied whole directories, including ignored local files. It now follows the Git distribution inventory and refuses symlinks in selected package paths. The regression exercises changed tracked content, new files, deleted files, and an ignored control. |
+| Documentation and validation | The adoption plan's relative links resolve after its move, and the prior root URL redirects readers. The README includes a first-task example and links the tutorial and case study as dated editions. Git attributes mark the PDFs as binary. A staged validation in a disposable checkout reproduced the original PDF whitespace failure and passed after the attribute was added. |
+
+All 22 entrypoints passed the skill-creator validator. The collection gate found no issues across 135 Markdown files, 818 local link/anchor checks, 22 catalog versions, package licenses and optional host metadata. All 87 offline tests passed: 20 collection and evaluation tests, 26 UI helper tests, 14 quiz publisher tests, and 27 grader scenarios. The OpenSpec 1.16.0 fixture confirmed valid artifacts with unfinished work and detected a missing scenario. The Bubblewrap probe denied grader/sibling file access and confirmed private scratch writes.
+
+Both the manual installation and Skills CLI 1.7.6 with `--copy` installed all 22 packages in disposable projects. All 144 installed package files matched the source. Collection-level guides, scripts and fixtures stayed outside the project installation. Codex CLI 0.160.0 reported all 22 project skills enabled through the local `skills/list` call. The [MCP fixture](evals/check_mcp_sdk.py) also passed in-process with Python SDK 2.2.0 for legacy sessions, modern direct calls, SDK discovery, replay after response loss, caller-bound handles, and version/header errors.
+
+The candidate supports local adoption using the documented tools and prerequisites. Hosted CI, production providers, live GitHub grading, consuming Android builds, and quality comparisons across models and other hosts require their own evidence.

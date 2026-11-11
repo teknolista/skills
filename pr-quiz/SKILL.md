@@ -3,7 +3,7 @@ name: pr-quiz
 description: Create or regenerate a decision-comprehension quiz for a GitHub pull request when explicitly requested. Use for PR quizzes or their optional grading workflow; not code review, security assessment, test validation, or automatic action after creating a PR.
 license: MIT
 metadata:
-  version: "1.2.3"
+  version: "1.3.0"
 ---
 
 # PR Decision Quiz
@@ -14,7 +14,7 @@ Create a review aid about this PR's important design decisions and tradeoffs. Th
 
 Do not activate merely because a PR exists or was just created. Use only when the user requests a quiz, regeneration or quiz-workflow setup. A request to draft questions permits a local draft/preview, not PR edits, comments, CI installation or branch-protection changes. When publishing is requested, publish the concrete quiz after local validation; do not ask for the same authority again. Work in the target repository and resolve this package's script/assets relative to its actual installed directory.
 
-Never create a PR as a side effect. Resolve the requested number/repository or use `gh pr view --json number,title,baseRefName,headRefName,url` in the actual target checkout. Read the diff and relevant owning contracts. If the requested PR or source is unavailable, report that limit rather than inventing questions.
+Never create a PR as a side effect. Resolve the requested number/repository or use `gh pr view --json number,title,baseRefName,headRefName,headRefOid,url` in the actual target checkout. Capture the repository, PR number and full head SHA, then read that revision’s diff and relevant owning contracts. If the requested PR or source is unavailable, report that limit rather than inventing questions.
 
 ## Write useful questions
 
@@ -47,10 +47,11 @@ From the target repository, substitute the installed skill path and actual PR nu
 
 ```sh
 python3 /installed/path/pr-quiz/scripts/publish_quiz.py 123 /tmp/quiz.json --dry-run
-python3 /installed/path/pr-quiz/scripts/publish_quiz.py 123 /tmp/quiz.json
+python3 /installed/path/pr-quiz/scripts/publish_quiz.py 123 /tmp/quiz.json \
+  --repo OWNER/REPO --head "$REVIEWED_SHA"
 ```
 
-Dry-run is local and does not call GitHub. Publishing needs Python, `gh`, a resolved target repository and its actual write permission. The script preserves surrounding PR text and replaces exactly one well-formed quiz block; a regenerated ID invalidates earlier quiz passes. Report the PR URL and question count, without displaying the key as an answer aid.
+Dry-run is local and does not call GitHub. Publishing needs Python, `gh`, a resolved target repository and its actual write permission. Set REVIEWED_SHA to the full head SHA used to draft the quiz. Use HOST/OWNER/REPO for a GitHub Enterprise host when applicable. The script preserves surrounding PR text and replaces exactly one well-formed quiz block; a regenerated ID invalidates earlier quiz passes. Report the PR URL and question count, without displaying the key as an answer aid.
 
 ## Optional grading workflow
 
@@ -60,7 +61,7 @@ The asset pins the official [`github-script` v9.0.0 release](https://github.com/
 
 A pass is bound to the quiz ID, question/option/key content and current PR head SHA. For checkbox grading, the edit must belong to that head and quiz. For comment grading, copy the current command from the pending status and replace its option letters. The command includes a revision token that changes with the quiz content or head. Earlier bare commands are ignored by this workflow version. Regenerate malformed quizzes with the publisher. Ticking boxes or editing text outside the quiz leaves its identity intact. Authors are disallowed by default. Requested individual reviewers or prior reviewers are recognized by the template; team-reviewer and custom-role policies require an explicit adaptation. This is an educational convenience, not a tamper-proof approval system: PR content/answers are editable and the key is public. Enforce genuine review requirements independently.
 
-For answer comments, verify the current token and sender eligibility before writing a status or result comment. Ignore stale, bare or ineligible submissions without changing the quiz result. PR metadata events still refresh status when the quiz is missing or malformed. Past reviewers include users who submitted a review, and the quiz eligibility rule is informational. The publisher rereads the body before editing and checks the resulting block. A changed body aborts before writing. An unconfirmed write needs inspection before retrying. An edit can still race between the final read and write, so coordinate with other body editors. For a material handoff, retain the PR/head, quiz ID, draft versus published state and actually tested workflow scope. Keep code and security verdicts with their respective review workflows.
+For answer comments, verify the current token and sender eligibility before writing a status or result comment. Ignore stale, bare or ineligible submissions without changing the quiz result. PR metadata events still refresh status when the quiz is missing or malformed. Past reviewers include users who submitted a review, and the quiz eligibility rule is informational. The publisher pins the resolved PR URL and rechecks its head and body before editing. It confirms the head and quiz block after writing. Inspect an unconfirmed write before retrying. GitHub can still receive a concurrent update between the final read and the write, so coordinate with other body editors when needed. For a material handoff, retain the PR/head, quiz ID, draft versus published state and actually tested workflow scope. Keep code and security verdicts with their respective review workflows.
 
 The workflow posts a result comment/status only after the user has authorized installing this behavior. Keep the quiz status informational. GitHub commit statuses are keyed by repository, SHA, and context. Two PRs sharing a head SHA can display the same status, and GitHub can coalesce or delay workflow events. Use the separate review requirements for merging. For fork PRs, use the trusted metadata-event setup without running untrusted head code; private/fork token permissions and organization policies must be checked in the real environment. An API failure or unsupported configuration remains an unverified gate, not a pass.
 
