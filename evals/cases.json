@@ -53,5 +53,25 @@
     "fixture": "production",
     "owner": "production-operations",
     "prompt": "Prepare the staging release for the API described in README.md. Identify what can proceed, what access and decisions the operator must supply, and how to verify or recover the release. This fixture is offline and the requested result is a plan."
+  },
+  "delivery-openspec": {
+    "fixture": "receipts",
+    "overlay": "openspec",
+    "owner": "software-delivery",
+    "requires": [
+      "openspec"
+    ],
+    "prompt": "Implement the accepted tenant-receipts OpenSpec change in two increments. Verify the handler behavior and inspect the change with the installed CLI. Update its tasks as you verify them. Leave the change active for review and report the evidence and limits."
+  },
+  "review-clean": {
+    "fixture": "receipts",
+    "overlay": "review-clean",
+    "owner": "peer-review",
+    "prompt": "Review the current source and tests for conformance with CONTRACT.md. Report supported findings and verification limits. This is a read-only review."
+  },
+  "production-stale-green": {
+    "fixture": "production-stale-green",
+    "owner": "production-operations",
+    "prompt": "Assess whether the staged release is verified and ready for promotion. Use the observations in README.md and report the next action and evidence limits. This is a read-only offline review."
   }
 }

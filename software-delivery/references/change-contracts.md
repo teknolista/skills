@@ -24,3 +24,21 @@ If implementation reveals that the contract is incomplete, contradictory or infe
 When moving an experiment into maintained use, decide what to discard, reuse or rebuild. Review any reused source and dependencies, replace temporary data and shortcuts, establish the maintained behavior and operating constraints, and run the applicable integration and acceptance checks. Carry prototype observations only for the conditions they exercised.
 
 When a project governs generated code through a schema, DSL or another source artifact, edit the governing source and regenerate through the established toolchain. Check the resulting diff, consumer compatibility and actual behavior. Treat unexpected generated drift as a discrepancy to resolve with the owner. Follow the project's exception policy for any direct patch. A Markdown brief or a passing test alone does not establish such a generation workflow.
+
+## Worked example with OpenSpec
+
+A receipt endpoint is approved to scope request IDs to the authenticated tenant. The published capability defines replay. The accepted OpenSpec change adds independent tenant receipts and conflict handling. Locate the actual root, version, schema and active change. Under the default schema, read the proposal for scope, the spec delta for behavior, design for technical decisions and tasks for the implementation checklist. In a MODIFIED requirement, preserve existing scenarios that the change still supports. Inspect the complete replacement block, including cases outside the immediate fix. [Default schema](https://openspec.dev/docs/schemas/spec-driven)
+
+Before changing the handler, use the installed CLI to inspect artifact and task status. For OpenSpec 1.16.0, examples are `openspec status --change tenant-receipts --json`, `openspec instructions apply --change tenant-receipts --json` and `openspec validate tenant-receipts --strict`. Use equivalent commands when the project uses a different version or schema. Valid artifacts establish the state of the change record. The project's accepted decision establishes intent and the implementation request establishes authority.
+
+| Scenario in the governing delta | Check through the existing entry point |
+| --- | --- |
+| Two tenants use the same ID | Submit under both authenticated identities. Observe two receipts and two independent jobs. |
+| Exact replay | Repeat the same tenant, ID and payload. Observe the original receipt and no additional job. |
+| Conflicting replay | Change the payload for that tenant and ID. Observe the contract's conflict response and unchanged job and receipt state. |
+
+Run relevant tests before and after the change when the baseline can reproduce the defect. Update the canonical tasks for work actually completed. Link the scenario, command, observed result, tested commit or working-tree snapshot, and limits in the project's existing verification record or the handoff when no such record exists. A test with sequential in-memory calls leaves durable and concurrent behavior unverified. The optional [OpenSpec verification skill](https://openspec.dev/docs/skills#openspec-verify-change) can supplement the comparison with the plan. If the work resumes after a revision changes, reopen the active change and diff, and rerun checks affected by the new revision. Archive when requested or required by the project's workflow after reconciliation.
+
+## Worked example of adopting a prototype
+
+An isolated upload prototype demonstrated that users can retry a failed submission. Record what it demonstrated with synthetic data. When asked to make it part of the maintained application, inspect the real entry point, account permissions, file limits, dependency changes and the prototype's stubbed storage. Reuse the interaction where it fits the application. Replace the stub through the owning adapter and establish the accepted behavior for failed and repeated submissions in the existing ticket or change record. Exercise successful upload, denied access and retry on the maintained implementation. Record the observed result there. Use OpenSpec if the project's workflow or user selects it for this change.

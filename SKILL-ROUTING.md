@@ -17,6 +17,8 @@ Select the owner by outcome. Select the specification depth, agent authority and
 
 Use an existing issue, specification, schema or contract to record decisions at its owning location. In a combined request, draft and review the scope the user or policy requires before coding. If implementation reveals a material conflict, pause only dependent work and resolve it with the appropriate owner. Keep the actual code, canonical artifacts, tests and evidence aligned through the handoff.
 
+For a first project pilot, follow the [pilot setup](README.md#start-a-pilot). Software Delivery has worked examples for [OpenSpec](software-delivery/references/change-contracts.md#worked-example-with-openspec) and [prototype adoption](software-delivery/references/change-contracts.md#worked-example-of-adopting-a-prototype).
+
 ## Generic owners
 
 | Requested result | Primary owner | Boundary |

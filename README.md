@@ -17,6 +17,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
   - [Contents](#contents)
   - [Available skills](#available-skills)
   - [Choose a workflow](#choose-a-workflow)
+  - [Start a pilot](#start-a-pilot)
   - [Installation and activation](#installation-and-activation)
     - [Install with the skills CLI](#install-with-the-skills-cli)
     - [Manual installation](#manual-installation)
@@ -68,7 +69,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.7.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [PentaPRO](#pentapro) | 2.8.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
 | [Peer Review](#peer-review) | 1.10.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersecurity](#cybersecurity) | 1.6.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 | [UI Design](#ui-design) | 1.5.7 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
@@ -76,11 +77,11 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Behavior Testing](#behavior-testing) | 1.1.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
 | [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
 | [MCP Server](#mcp-server) | 1.1.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
-| [Software Delivery](#software-delivery) | 1.2.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
+| [Software Delivery](#software-delivery) | 1.3.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
 | [Production Operations](#production-operations) | 1.0.0 | Plan and configure hosted backends, deploy verified artifacts, and operate or recover the service. |
 | [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
 | [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
-| [Agent Instructions](#agent-instructions) | 1.0.1 | Maintain portable software-development agent guidance. |
+| [Agent Instructions](#agent-instructions) | 1.1.0 | Maintain portable software-development agent guidance. |
 | [Android modules](android-module-structure/SKILL.md) | 1.2.6 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
 | [Android data](android-data-layer/SKILL.md) | 1.2.4 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
 | [Android errors](android-error-handling/SKILL.md) | 1.2.3 | Implement typed domain/HTTP/storage error handling. |
@@ -103,6 +104,16 @@ For consequential work or when the project requires spec-driven development (SDD
 
 If you require the entire selected scope specified before coding, say so in the request or project policy. Otherwise settle each increment's behavior, constraints and checks before implementing that increment. Give the agent autonomy over routine implementation choices within the agreed scope. Keep verification and any release authority explicit. For a hosted backend, use [Production Operations](#production-operations) when planning environments, configuring the release pipeline or carrying out an authorized deployment and verifying the running service. The [routing guide](SKILL-ROUTING.md#choose-the-depth-of-the-workflow) shows how to apply this to common tasks.
 
+## Start a pilot
+
+1. Choose one maintained repository or a new project's first useful slice. Record the intended user outcome, relevant boundary, and one check that exercises it. [Adapt the project instructions](AGENTS-template.md) to the actual stack, commands, and authorities.
+2. Install the primary skill and any specialist the work needs. For direct work, start with the agreed behavior and focused check. For vibe coding, define what the isolated experiment should demonstrate. Use the [prototype promotion example](software-delivery/references/change-contracts.md#worked-example-of-adopting-a-prototype) if it will become maintained code.
+3. When using SDD with OpenSpec, identify the selected schema and accepted change. Link its scenarios to checks through the actual product entry point. Use the [delivery example](software-delivery/references/change-contracts.md#worked-example-with-openspec) and, when maintaining five pillars, the [PentaPRO ownership example](penta-pro/references/document-maintenance.md#example-with-an-accepted-openspec-change).
+4. Run a working control and a meaningful failure check where the risk warrants it. Record the command, revision, result and any required check still pending in the project's existing PR or verification record. For consequential changes, follow the project's review, security and release gates. Record what a new session would need to resume.
+5. Use the [pilot measurement procedure](SKILL-EVALUATION.md#score-the-outputs) to compare outcomes and record friction or failures. See the [adoption plan](ANTHROPIC-ADOPTION-PLAN.md) for the rationale and sequence.
+
+A pilot can begin with a local test and synthetic inputs. Hosted deployment, native device coverage, third-party integration, and comparative model runs need the corresponding target tools and access.
+
 ## Installation and activation
 
 ### Install with the skills CLI
@@ -124,7 +135,9 @@ npx skills@latest add teknolista/skills --skill '*' -a codex -y
 
 Replace `codex` with another [supported agent identifier](https://github.com/vercel-labs/skills/blob/main/docs/agents.md), such as `claude-code` or `cursor`. Installation defaults to the current project. Add `-g` for user-level installation across projects.
 
-The installer installs the selected skill packages and can link agent directories to a canonical copy. Use `--copy` when independent copies are needed; see the [installation methods](https://github.com/vercel-labs/skills/blob/main/docs/commands.md#installation-methods). The repository's root `evals/` and `scripts/` stay in the collection checkout, even when you install all 21 skills. For a manual installation, copy only the selected skill directories. See [what belongs to the collection and to each package](#repository-structure).
+To pilot edits from a local checkout, run `npx skills@latest add /path/to/skills --skill '*' -a codex --copy -y` from the pilot project. Use an absolute path to the checkout whose files you want to test.
+
+The installer installs the selected skill packages and can link agent directories to a canonical copy. Use `--copy` when independent copies are needed; see the [installation methods](https://github.com/vercel-labs/skills/blob/main/docs/commands.md#installation-methods). The repository's root `evals/` and `scripts/` stay in the collection checkout, even when you install all 22 skills. For a manual installation, copy only the selected skill directories. See [what belongs to the collection and to each package](#repository-structure).
 
 Use `npx skills@latest check` to check for updates and `npx skills@latest update` to update installed skills. See the [official CLI reference](https://github.com/vercel-labs/skills/blob/main/docs/commands.md) for installation options and update scopes.
 

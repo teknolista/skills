@@ -1,6 +1,6 @@
 # Final skill maintenance review
 
-This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [22-package closing review](#22-package-closing-review) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
+This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [pilot readiness review](#pilot-readiness-review) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
 
 Date: 2026-11-09. Scope: the current working collection of 21 packages, including the preceding maintenance changes on top of `95abba607180cda548749edb76034efe5dbcac32`. This is a maintainer self-review, not an independent approval or a claim of globally optimal skills.
 
@@ -144,3 +144,34 @@ Rechecked the [Agent Skills specification](https://agentskills.io/specification)
 All 22 installed skill-creator metadata checks passed. The collection gate passed catalog, license, installation, local-link/anchor and optional host-metadata checks. All 80 offline tests passed: 15 collection/evaluator tests, 26 UI helper tests, 12 PR publisher tests and 27 Node workflow scenarios. Whitespace checks passed. Local runtimes remain Python 3.12.6 and Node.js 26.10.0; hosted CI declares Python 3.12 and Node.js 24.
 
 The collection is ready for use with its documented prerequisites and project-specific verification; no substantiated blocker remains in the inspected scope. This does not establish universal correctness, security certification, or best-in-class performance across models. This closing pass did not rerun model comparisons, live deployments, Android devices, browser/assistive sessions, installation trials or hosted CI. Their earlier evidence retains its original scope. Changes remain local; no commit, push or deployment was performed.
+
+## Pilot readiness review
+
+2026-11-11. Reviewed the 22 entrypoints in the working collection over `9405717` for discovery, responsibilities, authority, operational failure handling and evidence. Followed relevant templates and procedures, including risk-directed inspection of Android version and runtime assumptions, protected API/MCP effects, Git scopes, review independence, OpenSpec status, and production promotion. The [adoption plan](ANTHROPIC-ADOPTION-PLAN.md) records rationale and the [pilot guide](README.md#start-a-pilot) is the project entry point.
+
+| Package | Review and disposition |
+| --- | --- |
+| Software Delivery | Added OpenSpec and prototype adoption examples. The forward test exercised actual scenario, task and handler evidence. |
+| PentaPRO | Added OpenSpec ownership and revision-aware resumption example. Synchronized PROCESS template and catalog. |
+| Agent Instructions | Added scoped runner and external grader controls to the evaluation method. Kept evaluation conditional on significant instruction changes. |
+| Behavior Testing | Retained test authoring scope, independent expected results and failure sensitivity. Receipt controls exercise those principles. |
+| Peer Review | Retained read-only review and substantiated findings. Added a clean comparison fixture to the collection suite. |
+| Cybersecurity | Retained threat/control ownership, scoped access and evaluation of the actual enforcement boundary. The runner enforces mount exclusion outside skill instructions. |
+| Production Operations | Retained exact target, served revision and recovery boundaries after two offline forward tests. Added the stale-green fixture. |
+| Diagnose Defect | Retained failing versus working comparison and authorization for fixes and probes. |
+| HTTP API | Retained tenant-scoped retry, compatibility, transaction and external destination controls. |
+| MCP Server | Retained revision-specific lifecycle, caller authorization and downstream effect checks. |
+| Technical Research | Retained primary evidence, bounded experiments and explicit uncertainty. |
+| Git Delivery | Retained staged versus working-tree evidence and explicit publication scope. |
+| UI Design | Retained conditional platform procedures and separation of visual, interaction and usability evidence. |
+| Android Module Structure | Retained effective Gradle mode, module ownership and supported build/release variants. |
+| Android Data Layer | Retained atomic writes, migration and session-bound storage behavior. |
+| Android Error Handling | Retained typed failure classification, cancellation and bounded retry behavior. |
+| Android DI Koin | Retained runtime argument and qualifier checks beyond graph inspection. |
+| Android Background Work | Retained idempotency, WorkManager state and account-at-commit protections. |
+| Android Unit Testing | Retained deterministic scheduling, cleanup and observable assertions. |
+| Android Integration Testing | Retained actual migration, transport and application construction boundaries. |
+| Android UI Testing | Retained native runtime, synchronization, selectors and platform evidence. |
+| PR Quiz | Retained opt-in discovery boundary, safe publication and educational grading scope. |
+
+All 22 packages passed the skill-creator validator and the collection catalog, license, link and installation checks. All 83 offline tests passed (18 collection/evaluator, 26 UI helper, 12 PR publisher and 27 Node grader scenarios). The installation comparison matched 144 files. The [pilot evidence](evals/RESULTS.md#anthropic-adoption-pilot-preparation) records the OpenSpec, isolation, grader and operations checks and their coverage. Review of entrypoints and selected references supports adoption for a scoped pilot. It does not establish exhaustive platform behavior, universal discovery, or superior model performance.

@@ -36,6 +36,12 @@ Distinguish the current baseline, a proposed or accepted change, and deployed be
 
 If a required external record is inaccessible, contradictory, or insufficiently detailed, mark the affected concern `Pending` and name the smallest missing input or reconciliation. Do not synthesize a replacement copy and then treat it as authoritative. When no external canonical workflow is selected, use the ordinary PentaPRO templates and ownership defaults.
 
+### Example with an accepted OpenSpec change
+
+For an approved change named `tenant-receipts`, PRODUCT points to the `Receipt retries` requirement and affected scenarios in the change delta. PROJECT links the change's design decisions. PRODUCTION records any durable storage or rollout constraints that apply to the project. PROCESS links the accepted change, its task list, acceptance decision, and next pending check. PROOF maps the scenarios to the handler checks, their observed results and the tested snapshot. For example, the conflicting replay scenario needs a 409 response and unchanged job state. If the tests have only been planned, record them as pending even when OpenSpec validates the delta and its planning artifacts are complete.
+
+When resuming, reopen the active change and the latest relevant source. If the accepted scenario or implementation changed after the last check, keep the prior result tied to its snapshot and identify what needs rerunning. Update the owning record when the project accepts a changed decision. After the project synchronizes and archives the change, point ongoing PRODUCT references to the maintained capability spec and retain historical evidence against the tested change. [OpenSpec default schema](https://openspec.dev/docs/schemas/spec-driven)
+
 ## Coordinated updates and resumption
 
 1. Read `process.md` for current scope, next action, shared status, and any unfinished update. Then inspect the affected pillars and their referenced records. For an existing single-file specification, read its equivalent resume section.

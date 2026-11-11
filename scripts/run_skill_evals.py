@@ -13,6 +13,9 @@ import subprocess
 import tarfile
 import tempfile
 import time
+from urllib.parse import urlsplit
+
+import eval_isolation
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -74,7 +77,32 @@ def run_bounded(command, *, stdout, stderr, timeout):
             raise
 
 
-def run_case(job, cases, options, output, sources):
+def trial_command(options, work, tools, prompt):
+    codex = "/tools/codex" if options.isolated else options.codex
+    cwd = eval_isolation.WORKSPACE if options.isolated else str(work)
+    command = [codex, "exec", "--ignore-user-config", "--ephemeral", "--cd", cwd,
+               "--model", options.model, "-c", f"model_reasoning_effort={json.dumps(options.effort)}",
+               "-c", f"projects.{json.dumps(cwd)}.trust_level=\"trusted\"", "--json"]
+    if options.isolated:
+        command.extend([
+            "--dangerously-bypass-approvals-and-sandbox",
+            "-c", 'model_provider="eval_gateway"',
+            "-c", 'model_providers.eval_gateway.name="Evaluation gateway"',
+            "-c", f"model_providers.eval_gateway.base_url={json.dumps(options.gateway)}",
+            "-c", 'model_providers.eval_gateway.wire_api="responses"',
+        ])
+        return eval_isolation.command(work, tools, [*command, prompt])
+    return [options.codex, "-a", "never", *command[1:], "--sandbox", "workspace-write", prompt]
+
+
+def inspect_git(work, isolated, *args):
+    command = ["git", "-c", "core.fsmonitor=false", "-c", "core.hooksPath=/dev/null", *args]
+    if isolated:
+        command = eval_isolation.command(work, {}, command)
+    return subprocess.check_output(command, cwd=work, timeout=20)
+
+
+def run_case(job, cases, options, output, sources, tools):
     case_id, arm, attempt = job
     case = cases[case_id]
     run = output / f"{case_id}-{arm}-{attempt}"
@@ -100,12 +128,9 @@ def run_case(job, cases, options, output, sources):
     if options.explicit and arm in sources and case["owner"]:
         owner = case["owner"]
         prompt = f"Use ${owner} at .agents/skills/{owner}/SKILL.md.\n\n{prompt}"
-    command = [
-        options.codex, "-a", "never", "exec", "--ignore-user-config", "--ephemeral",
-        "--sandbox", "workspace-write", "--cd", str(work), "--model", options.model,
-        "-c", f"model_reasoning_effort={json.dumps(options.effort)}",
-        "-c", f"projects.{json.dumps(str(work))}.trust_level=\"trusted\"", "--json", prompt,
-    ]
+    if options.isolated:
+        eval_isolation.probe(work, tools, (EVALS / "check_receipts.py", output / "settings.json"))
+    command = trial_command(options, work, tools, prompt)
     started = time.monotonic()
     with (run / "events.jsonl").open("w") as events, (run / "stderr.txt").open("w") as errors:
         exit_code = run_bounded(command, stdout=events, stderr=errors, timeout=options.timeout)
@@ -115,36 +140,68 @@ def run_case(job, cases, options, output, sources):
     (run / "answer.txt").write_text(messages[-1] + "\n" if messages else "")
     commands = [item.get("command", "") for item in items if item["type"] == "command_execution"]
     after = snapshot(work)
-    revision = git("rev-parse", "HEAD", cwd=work)
-    state = git("status", "--porcelain=v1", cwd=work)
-    (run / "diff.patch").write_bytes(git("diff", "--no-ext-diff", "HEAD", "--", cwd=work))
+    inspection_error = None
+    revision = state = b""
+    try:
+        revision = inspect_git(work, options.isolated, "rev-parse", "HEAD")
+        state = inspect_git(work, options.isolated, "status", "--porcelain=v1")
+        diff = inspect_git(work, options.isolated, "diff", "--no-ext-diff", "--no-textconv", "HEAD", "--")
+        (run / "diff.patch").write_bytes(diff)
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as exc:
+        inspection_error = str(exc)
     installed_before = snapshot(sources[arm]) if arm in sources else {}
     return {
         "case": case_id, "arm": arm, "attempt": attempt, "run": run.name,
         "exit_code": exit_code, "seconds": round(time.monotonic() - started, 2),
+        "git_inspection_error": inspection_error,
         "thread_id": next((event["thread_id"] for event in events if event.get("type") == "thread.started"), None),
         "usage": next((event["usage"] for event in reversed(events) if event.get("type") == "turn.completed"), None),
+        "reported_errors": sum(item["type"] == "error" for item in items),
         "tool_events": sum(item["type"] in {"command_execution", "mcp_tool_call", "web_search", "file_change"}
                            for item in items),
         "skill_paths_mentioned_in_commands": [name for name in inventory(installed)
                                              if any(f"{name}/SKILL.md" in cmd for cmd in commands)],
         "changed_paths": changes(before, after), "fixture_sha256": before,
         "installed_skill_changes": changes(installed_before, snapshot(installed)),
-        "fixture_head": revision.decode().strip(), "fixture_status": state.decode().splitlines(),
+        "fixture_head": revision.decode().strip(), "fixture_status": state.decode(errors="replace").splitlines(),
     }
+
+
+def native_tool(executable):
+    path = shutil.which(executable)
+    if path:
+        resolved = Path(path).resolve()
+        with resolved.open("rb") as binary:
+            if binary.read(4) == b"\x7fELF":
+                return resolved
+    raise ValueError(f"{executable} must resolve to a standalone Linux executable for isolation")
+
+
+def gateway_url(value):
+    url = urlsplit(value)
+    if (not url.hostname or url.username or url.password or url.query or url.fragment
+            or (url.scheme != "https" and not (url.scheme == "http" and url.hostname in
+                                               {"localhost", "127.0.0.1", "::1"}))):
+        raise argparse.ArgumentTypeError("use an HTTPS or loopback HTTP gateway URL without credentials")
+    return value
 
 
 def main():
     cases = json.loads((EVALS / "cases.json").read_text())
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--baseline", required=True, help="Git revision to install as the baseline arm")
+    parser.add_argument("--baseline", help="Git revision to install as the baseline arm")
     parser.add_argument("--arms", nargs="+", choices=("none", "baseline", "candidate"),
                         default=["none", "baseline"])
-    parser.add_argument("--cases", nargs="+", choices=tuple(cases), default=list(cases))
+    parser.add_argument("--cases", nargs="+", choices=tuple(cases),
+                        default=[name for name, case in cases.items() if not case.get("requires")])
     parser.add_argument("--explicit", action="store_true", help="Explicitly invoke the fixture's owner in skill arms")
-    parser.add_argument("--model", default="gpt-6.1-sol")
+    parser.add_argument("--model", help="Model exposed by the selected host or gateway")
     parser.add_argument("--effort", default="low")
     parser.add_argument("--codex", default="codex")
+    parser.add_argument("--isolated", action="store_true", help="Use Linux mount and process isolation")
+    parser.add_argument("--gateway", type=gateway_url, help="Responses API gateway for isolated model runs")
+    parser.add_argument("--openspec", help="Standalone OpenSpec executable to mount for isolated runs")
+    parser.add_argument("--check-isolation", action="store_true", help="Run offline isolation probes and exit")
     parser.add_argument("--workers", type=int, default=1)
     parser.add_argument("--repetitions", type=int, default=1)
     parser.add_argument("--timeout", type=int, default=180, help="Per-run wall timeout in seconds")
@@ -155,7 +212,40 @@ def main():
         parser.error("workers, repetitions and timeout must be positive")
     if len(set(options.arms)) != len(options.arms) or len(set(options.cases)) != len(options.cases):
         parser.error("select each arm and case only once")
-    revision = git("rev-parse", "--verify", "--end-of-options", f"{options.baseline}^{{commit}}").decode().strip()
+    if options.check_isolation:
+        with tempfile.TemporaryDirectory(prefix="skill-eval-probe-") as scratch:
+            root = Path(scratch)
+            workspace = root / "workspace"
+            workspace.mkdir()
+            (workspace / "AGENTS.md").touch()
+            sibling = root / "other-run"
+            sibling.write_text("other run control")
+            eval_isolation.probe(workspace, {}, (EVALS / "check_receipts.py", sibling))
+        print("Isolation probe passed: grader and sibling files denied, private scratch writable.")
+        return
+    if options.isolated and not (options.gateway and options.model):
+        parser.error("--isolated model runs require --gateway and an explicit tool-capable --model")
+    options.model = options.model or "gpt-6.1-sol"
+    if not options.isolated and (options.gateway or options.openspec):
+        parser.error("--gateway and --openspec are for isolated runs")
+    if "baseline" in options.arms and not options.baseline:
+        parser.error("--baseline is required when selecting the baseline arm")
+    tools = {}
+    if options.isolated:
+        try:
+            tools["codex"] = native_tool(options.codex)
+            sidecar = tools["codex"].with_name("codex-code-mode-host")
+            if sidecar.is_file():
+                tools[sidecar.name] = native_tool(str(sidecar))
+            if options.openspec:
+                tools["openspec"] = native_tool(options.openspec)
+        except ValueError as exc:
+            parser.error(str(exc))
+    needs_openspec = any("openspec" in cases[name].get("requires", ()) for name in options.cases)
+    if needs_openspec and not (tools.get("openspec") if options.isolated else shutil.which("openspec")):
+        parser.error("selected case requires OpenSpec; provide --openspec for isolated runs or install it on PATH")
+    revision = (git("rev-parse", "--verify", "--end-of-options", f"{options.baseline}^{{commit}}")
+                .decode().strip() if options.baseline else None)
     output = Path(tempfile.mkdtemp(prefix="skill-eval-"))
     print(output, flush=True)
     with tempfile.TemporaryDirectory(prefix="skill-eval-sources-") as source_dir:
@@ -182,6 +272,10 @@ def main():
         metadata = vars(options) | {
             "baseline": revision, "codex_version": subprocess.check_output([options.codex, "--version"],
                                                                            text=True).strip(),
+            "execution_boundary": "mount-and-process; shared network" if options.isolated else "workspace-write",
+            "openspec_version": subprocess.check_output(
+                [tools.get("openspec", "openspec"), "--version"], text=True, timeout=15
+            ).strip() if needs_openspec else None,
             "case_definitions": {case: cases[case] for case in options.cases},
             "skill_sha256": source_hashes,
         }
@@ -192,7 +286,7 @@ def main():
                 arms = options.arms if (attempt + index) % 2 else list(reversed(options.arms))
                 jobs.extend((case, arm, attempt) for arm in arms)
         with ThreadPoolExecutor(max_workers=options.workers) as pool, (output / "results.jsonl").open("w") as report:
-            for result in pool.map(lambda job: run_case(job, cases, options, output, sources), jobs):
+            for result in pool.map(lambda job: run_case(job, cases, options, output, sources, tools), jobs):
                 report.write(json.dumps(result) + "\n")
                 report.flush()
                 print(f"{result['run']} exit={result['exit_code']} seconds={result['seconds']}", flush=True)

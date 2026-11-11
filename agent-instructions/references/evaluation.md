@@ -53,3 +53,11 @@ Use these as fixture-authoring briefs. Keep expected behavior out of the evaluat
 | Routing controls | An Android Room migration test, an existing Compose screen fix, a copy edit, a requirements interview, and a review-only request. | Inspect the owner and actual changes. Preserve native test/design ownership, canonical artifacts, and read-only review scope. |
 
 Record which checks actually ran in the target repository. Case descriptions are a test inventory.
+
+## Isolate the trial and grader
+
+Prepare the task inputs and installed candidate in a disposable workspace. Use a fresh runtime identity and home, with only the workspace and necessary trusted tools visible. Keep grader keys, sibling runs, host configuration and personal credentials outside the runtime. If model access needs credentials, prefer a scoped inference gateway that holds them outside the agent's runtime. Restrict its model, budget and outbound access through the environment. Check that no control-plane or project credentials are reachable. Match the boundary and tool availability across all comparison arms.
+
+Before grading, prove the workspace is usable and probe denied reads and writes against actual files outside it. Record which resources were excluded and what access remains. Run fixed checks with trusted code outside the agent's session. Inspect agent-authored artifacts as untrusted input and run executable output in a separate restricted environment. Include a known-good control and an implementation with a seeded defect that the same check rejects. For a read-only reviewer, a clean case measures unsupported findings while a seeded case measures detection. A changed fixture or grader requires rechecking both controls.
+
+Treat synthetic smoke tests as a starting point for adoption. On a real pilot, record the next increment, acceptance check, actual permissions, baseline, and observed outcome. Promote a rule into the reusable skill when the failure and correction transfer across tasks. Keep project commands in their project and enforce objective properties through trusted checks. [Anthropic evaluation guidance](https://www.anthropic.com/research/demystifying-evals-for-ai-agents)
