@@ -71,27 +71,27 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.8.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
-| [Peer Review](#peer-review) | 1.10.2 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
-| [Cybersecurity](#cybersecurity) | 1.6.0 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
-| [UI Design](#ui-design) | 1.5.7 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
-| [Diagnose Defect](#diagnose-defect) | 1.0.0 | Reproduce unclear failures, distinguish causes, and verify authorized fixes. |
-| [Behavior Testing](#behavior-testing) | 1.1.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
-| [HTTP API](#http-api) | 1.1.1 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
-| [MCP Server](#mcp-server) | 1.1.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
-| [Software Delivery](#software-delivery) | 1.4.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
-| [Production Operations](#production-operations) | 1.0.0 | Plan and configure hosted backends, deploy verified artifacts, and operate or recover the service. |
-| [Technical Research](#technical-research) | 1.0.0 | Resolve technical uncertainty with traceable evidence. |
-| [Git Delivery](#git-delivery) | 1.0.0 | Review, commit and publish the authorized Git snapshot. |
-| [Agent Instructions](#agent-instructions) | 1.1.0 | Maintain portable software-development agent guidance. |
-| [Android modules](android-module-structure/SKILL.md) | 1.3.0 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
-| [Android data](android-data-layer/SKILL.md) | 1.2.4 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
-| [Android errors](android-error-handling/SKILL.md) | 1.2.3 | Implement typed domain/HTTP/storage error handling. |
-| [Android Koin](android-di-koin/SKILL.md) | 1.2.3 | Implement dependency bindings and Android lifetimes. |
-| [Android background](android-background/SKILL.md) | 1.2.3 | Implement durable WorkManager jobs and retries. |
-| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.3 | Author/run/debug isolated logic tests. |
-| [Android integration testing](android-integration-testing/SKILL.md) | 1.2.4 | Author/run/debug non-UI integration tests. |
-| [Android UI testing](android-ui-testing/SKILL.md) | 1.2.3 | Author/run/debug native device/emulator Compose tests. |
+| [PentaPRO](#pentapro) | 2.8.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [Peer Review](#peer-review) | 1.10.3 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
+| [Cybersecurity](#cybersecurity) | 1.6.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
+| [UI Design](#ui-design) | 1.5.8 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
+| [Diagnose Defect](#diagnose-defect) | 1.1.0 | Reproduce unclear failures, distinguish causes, and verify authorized fixes. |
+| [Behavior Testing](#behavior-testing) | 1.2.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
+| [HTTP API](#http-api) | 1.2.0 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
+| [MCP Server](#mcp-server) | 1.2.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
+| [Software Delivery](#software-delivery) | 1.5.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
+| [Production Operations](#production-operations) | 1.0.1 | Plan and configure hosted backends, deploy verified artifacts, and operate or recover the service. |
+| [Technical Research](#technical-research) | 1.1.0 | Resolve technical uncertainty with traceable evidence. |
+| [Git Delivery](#git-delivery) | 1.0.1 | Review, commit and publish the authorized Git snapshot. |
+| [Agent Instructions](#agent-instructions) | 1.1.1 | Maintain portable software-development agent guidance. |
+| [Android modules](android-module-structure/SKILL.md) | 1.4.0 | Implement native Gradle/module configuration; specification belongs to PentaPRO. |
+| [Android data](android-data-layer/SKILL.md) | 1.3.0 | Implement repositories, Ktor/OkHttp, Room, DataStore and sync. |
+| [Android errors](android-error-handling/SKILL.md) | 1.2.4 | Implement typed domain/HTTP/storage error handling. |
+| [Android Koin](android-di-koin/SKILL.md) | 1.2.4 | Implement dependency bindings and Android lifetimes. |
+| [Android background](android-background/SKILL.md) | 1.2.4 | Implement durable WorkManager jobs and retries. |
+| [Android unit testing](android-unit-testing/SKILL.md) | 1.2.4 | Author/run/debug isolated logic tests. |
+| [Android integration testing](android-integration-testing/SKILL.md) | 1.3.0 | Author/run/debug non-UI integration tests. |
+| [Android UI testing](android-ui-testing/SKILL.md) | 1.3.0 | Author/run/debug native device/emulator Compose tests. |
 | [PR Quiz](pr-quiz/SKILL.md) | 1.3.0 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
 The [routing and consolidation map](SKILL-ROUTING.md) records the 14 Android/quiz source skills. The [closure review](COLLECTION-REVIEW.md) maps all 54 entrypoints in the two requested upstream repositories. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
@@ -117,6 +117,8 @@ Read the saved specification and confirm the first increment's behavior. For an 
 Use a short request for a clear, reversible, low-risk edit. Work from the existing behavior and run the checks that cover the change. For exploratory prompting or vibe coding, isolate the experiment and capture the question it answers. Before carrying experimental code into a maintained product, establish the intended behavior and apply the product's implementation and verification gates.
 
 For consequential work or when the project requires spec-driven development (SDD), use the governing specification or change record before implementation. The agent can draft it from the developer's intent, repository evidence and examples, then ask for unresolved decisions that affect the outcome. Use [PentaPRO](#pentapro) for a broader specification and [Software Delivery](#software-delivery) for dependent implementation tasks. Preserve the project's authoritative tickets, schemas and acceptance checks, and link them from the specification where useful.
+
+Follow the project's selected record for the affected scope. For OpenSpec, identify the accepted change and the resolved schema, preserve the published baseline while implementing, and verify the consolidated capability after an authorized sync or archive. For project-native SDD, use its existing accepted change, baseline and evidence records. A localized implementation can go directly to its domain skill in either workflow. [OpenSpec example](software-delivery/references/change-contracts.md#worked-example-with-openspec) · [Project-native example](software-delivery/references/change-contracts.md#worked-example-with-project-native-sdd)
 
 If you require the entire selected scope specified before coding, say so in the request or project policy. Otherwise settle each increment's behavior, constraints and checks before implementing that increment. Give the agent autonomy over routine implementation choices within the agreed scope. Keep verification and any release authority explicit. For a hosted backend, use [Production Operations](#production-operations) when planning environments, configuring the release pipeline or carrying out an authorized deployment and verifying the running service. The [routing guide](SKILL-ROUTING.md#choose-the-depth-of-the-workflow) shows how to apply this to common tasks.
 
@@ -190,9 +192,9 @@ A skill stored in this repository is not automatically installed into other proj
 
 ### Activation
 
-The skills support automatic selection for matching tasks. In Codex, mention `$penta-pro`, `$peer-review`, `$cybersec`, or `$ui-design` to select one explicitly. Their `agents/openai.yaml` files provide optional display metadata and default prompts; they do not select a model. Select models through the host's controls or authorized orchestration. Native helpers use their listed names, for example `$android-data-layer`; `pr-quiz` runs only for a requested comprehension quiz or quiz setup, never merely after PR creation.
+The skills support automatic selection for matching tasks. In Codex, mention a skill name such as `$penta-pro`, `$http-api`, or `$android-data-layer` to select it explicitly. PentaPRO, Peer Review, Cybersecurity, UI Design, and Production Operations ship optional `agents/openai.yaml` display metadata and default prompts. Select the model through the host controls. Use `$pr-quiz` for a requested comprehension quiz or quiz setup.
 
-The core instructions use Markdown and optional references/templates. Cross-package links are optional navigation; no generic owner requires an Android helper for other platforms. The optional prototype helper uses Python. Publishing a requested PR quiz requires Python, gh and actual GitHub access; its optional grader uses GitHub Actions. Installing a package does not install these tools or activate a remote workflow. Actual work still requires relevant project access and whatever tools its requested checks need. Saving a specification or report requires a writable destination. Installing a skill does not supply those capabilities or authorize additional actions.
+The core instructions use Markdown and package-local references and templates. Skills refer to optional companions by name. The optional prototype helper uses Python. Publishing a requested PR quiz requires Python, `gh` and actual GitHub access, and its optional grader uses GitHub Actions. Use the tools, access and writable destinations required by the task. Installing a skill supplies instructions and package assets.
 
 ### First task and adoption checks
 
@@ -297,7 +299,7 @@ Existing single-file specifications and explicitly requested locations remain su
 
 When the project already assigns normative requirements or implementation tasks to an existing change/specification system, PentaPRO keeps the five pillars as global context and navigation. It links the authoritative records instead of copying complete requirements or maintaining another task list. [Integration guidance](penta-pro/references/document-maintenance.md#existing-change-and-specification-workflows) distinguishes the current baseline, an accepted/proposed change, verification and actual deployment without imposing another framework.
 
-Creation saves all five initial drafts before pausing for answers. Later rounds update the affected records, with stable IDs and links to their authoritative definitions. PROCESS records an `In progress` state for material updates across files and a `Consistent` state after reconciliation. Resumption inspects actual contents and completes any interrupted update. Proposed changes retain their baseline, compatibility commitments, and separate status until settled.
+Creation saves the first draft in the selected format and location before pausing for answers. The default split saves all five drafts. Later rounds update the affected records, with stable IDs or locators and links to authoritative definitions. PROCESS records `In progress` for material updates across files and `Consistent` after reconciliation. Resumption inspects actual contents and completes any interrupted update. Proposed changes retain their baseline, compatibility commitments, and separate status until settled.
 
 For consequential ideas, PentaPRO records a working hypothesis and challenges it from the perspectives that could change the decision. Before handoff or authorized implementation, it reviews the consolidated specification by reconstructing a representative journey from the artifacts, comparing that reading with confirmed intent, and tracing material dependencies through the pillars. PROCESS holds the scoped review result, open items and next action. The author can run this review directly. Fresh independent review is available when authorized and supported by the host. [Specification review](penta-pro/references/specification-review.md)
 
@@ -530,19 +532,19 @@ An optional standard-library Python helper checks explicitly declared token cont
 
 ## Diagnose Defect
 
-Use for an ambiguous failure, intermittent regression, or slowdown that needs a discriminating reproduction. For example, “Diagnose why retries sometimes lose a queued job.” The result records the cause evidence and remaining uncertainty. A fix and its verification follow the requested scope. [Skill](diagnose-defect/SKILL.md)
+Use for an ambiguous failure, intermittent regression, or slowdown that needs a discriminating reproduction. For example, “Diagnose why retries sometimes lose a queued job.” The result records the cause evidence and remaining uncertainty. A fix and its verification follow the requested scope. [Skill](diagnose-defect/SKILL.md) · [Bisection and input reduction](diagnose-defect/references/localization.md)
 
 ## Behavior Testing
 
-Use when behavior tests are the primary deliverable or test-first implementation is requested. For example, “Add a regression test for submitting twice after a lost response.” Ordinary implementation includes its own regression checks. For native Android test authoring, select the applicable native helper. [Skill](behavior-testing/SKILL.md)
+Use when behavior tests are the primary deliverable or test-first implementation is requested. For example, “Add a regression test for submitting twice after a lost response.” Ordinary implementation includes its own regression checks. For native Android test authoring, select the applicable native helper. [Skill](behavior-testing/SKILL.md) · [Test design and intermittent failures](behavior-testing/references/test-design.md)
 
 ## HTTP API
 
-Use for concrete server changes under an existing or authorized contract. For example, “Implement this endpoint with retry-safe writes and preserve current client errors.” The output includes contract and implementation changes, caller impact, and executed checks. [Skill](http-api/SKILL.md)
+Use for concrete server changes under an existing or authorized contract. For example, “Implement this endpoint with retry-safe writes and preserve current client errors.” The output includes contract and implementation changes, caller impact, and executed checks. [Skill](http-api/SKILL.md) · [Limits, caching, and endpoint evolution](http-api/references/lifecycle.md)
 
 ## MCP Server
 
-Use to implement an MCP server or an exposed capability. For example, “Expose the existing document lookup through our supported MCP client.” Keep protocol revision, transport, permission enforcement, and downstream test effects explicit. The protocol reference covers modern and legacy clients, including shared endpoints. [Skill](mcp-server/SKILL.md) · [Revision checks](mcp-server/references/protocol-revisions.md)
+Use to implement an MCP server or an exposed capability. For example, “Expose the existing document lookup through our supported MCP client.” Keep protocol revision, transport, permission enforcement, and downstream test effects explicit. The protocol reference covers modern and legacy clients, including shared endpoints. [Skill](mcp-server/SKILL.md) · [Revision checks](mcp-server/references/protocol-revisions.md) · [Remote authorization](mcp-server/references/authorization.md)
 
 ## Software Delivery
 
@@ -589,7 +591,7 @@ These helpers implement concrete native Kotlin/JVM/Android changes. They do not 
 | [android-integration-testing](android-integration-testing/SKILL.md) | Write the Room migration/data-preservation test for this schema update. | Native boundary, storage and transport test procedures in the entrypoint |
 | [android-ui-testing](android-ui-testing/SKILL.md) | Write a device test for the retry button and retained content. | Native host, selectors, scheduling and cleanup procedures in the entrypoint |
 
-Implementation results are source/configuration changes and proportionate executed checks, with missing SDK/device/service evidence disclosed. Existing stacks, versions, supported behavior and user authorization govern the work. These packages do not add iOS/Desktop targets, start a UI redesign or run independent audits merely because code is Android-specific. Cross-package links help when companions are installed; each helper retains essential local instructions and uses project-owned contracts otherwise.
+Implementation results are source/configuration changes and proportionate executed checks, with missing SDK/device/service evidence disclosed. Existing stacks, versions, supported behavior and user authorization govern the work. Each package retains essential instructions for standalone use and names optional companions for distinct tasks. Use the project's existing commands and contracts when a companion is absent.
 
 ## PR Quiz
 
@@ -609,9 +611,9 @@ The template supplies rules for scoped work, implementation, validation, review,
 
 ## Guides and case studies
 
-The PDFs are Portuguese teaching editions dated November 2026. They preserve the package versions and results of those editions. Use the installed `SKILL.md`, this catalog, and the target tool's documentation for current commands and versions. For an existing OpenSpec project, check its installed CLI, profile, resolved spec root and schema before applying a tutorial command. [OpenSpec documentation](https://openspec.dev/docs)
+The PDFs are Portuguese teaching editions dated November 2026. The installed `SKILL.md`, this catalog, and the target tool's documentation govern current commands and versions. For an existing OpenSpec project, check its installed CLI, profile, resolved spec root and schema before applying a tutorial command. [OpenSpec documentation](https://openspec.dev/docs)
 
-- [Development with agents](docs/guia-consolidado-desenvolvimento-com-agentes.pdf) covers direct changes, prototypes, SDD with OpenSpec, Android, web, desktop, HTTP APIs, MCP servers, workers, and deployment. Its exercises identify the checks to run on your own target.
+- [Development with agents](docs/guia-consolidado-desenvolvimento-com-agentes.pdf) covers direct changes, vibe coding and prototype promotion, project-native SDD and OpenSpec, Android, web, desktop, HTTP APIs, MCP servers, workers, and deployment. The revised edition explains OpenSpec 2.0 discovery and distinguishes delta validation from verification of the consolidated capability.
 - [Castas Android retrospective](docs/relatorio-retrospectiva-castas-android.pdf) shows how environment checks, cross-platform parity, device tests and release evidence changed during one project.
 - [Adoption plan](docs/ANTHROPIC-ADOPTION-PLAN.md), [evaluation procedure](SKILL-EVALUATION.md) and [maintenance review](FINAL-SKILL-REVIEW.md) describe how to adopt or evaluate changes to the collection.
 
@@ -704,7 +706,7 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 ### Validation and improvement
 
-Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root to check frontmatter, local inline links and ATX-heading anchors outside fenced examples, catalog versions, standalone licenses, installation coverage, and the supported fields of optional `agents/openai.yaml` files. Host metadata checks cover mapping shape, duplicate keys, UI text, the owning skill in the default prompt, packaged icons, color format and invocation-policy types; they are not a complete host schema or a host-discovery test. The [validation workflow](.github/workflows/validate.yml) runs these checks and the offline Python and Node helper tests. It discovers every root skill package, including Production Operations, and uses no model evaluation or cloud credentials.
+Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root. It checks frontmatter, local inline links and ATX-heading anchors outside fenced examples, catalog versions, licenses, installation coverage, and supported optional `agents/openai.yaml` fields. Relative links in shipped packages must resolve inside the package, including after a standalone install. Refer to optional companions by name and give maintainers upstream links for provenance. The [validation workflow](.github/workflows/validate.yml) runs the collection gate and offline Python and Node helper tests. Model trials and runtime compatibility checks use the [evaluation procedure](SKILL-EVALUATION.md).
 
 To reproduce the local collection checks, use a POSIX development environment with Git, Python 3.12+ and Node.js 24, matching the CI runtime family. After installing the dependency above, run these commands from the collection root. The validator tests use disposable Git inventories and exercise valid and invalid collections. The evaluator lifecycle tests launch bounded local subprocesses; the quiz tests use API doubles and do not publish to GitHub.
 

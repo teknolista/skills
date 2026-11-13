@@ -1,6 +1,6 @@
 # Final skill maintenance review
 
-This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [collection readiness verification](#collection-readiness-verification) for the latest pass; the [README catalog](README.md#available-skills) owns current package versions.
+This record contains successive reviews. Earlier dates, counts and versions describe their original snapshots. See the [current collection review](#current-collection-review) for the latest pass. The [README catalog](README.md#available-skills) owns current package versions.
 
 Date: 2026-11-09. Scope: the current working collection of 21 packages, including the preceding maintenance changes on top of `95abba607180cda548749edb76034efe5dbcac32`. This is a maintainer self-review, not an independent approval or a claim of globally optimal skills.
 
@@ -193,3 +193,40 @@ All 22 entrypoints passed the skill-creator validator. The collection gate found
 Both the manual installation and Skills CLI 1.7.6 with `--copy` installed all 22 packages in disposable projects. All 144 installed package files matched the source. Collection-level guides, scripts and fixtures stayed outside the project installation. Codex CLI 0.160.0 reported all 22 project skills enabled through the local `skills/list` call. The [MCP fixture](evals/check_mcp_sdk.py) also passed in-process with Python SDK 2.2.0 for legacy sessions, modern direct calls, SDK discovery, replay after response loss, caller-bound handles, and version/header errors.
 
 The candidate supports local adoption using the documented tools and prerequisites. Hosted CI, production providers, live GitHub grading, consuming Android builds, and quality comparisons across models and other hosts require their own evidence.
+
+## Current collection review
+
+2026-11-13. Reviewed all 22 installable entrypoints and their supporting assets and references relevant to the reviewed changes, using `2500753` as the starting revision. Checked canonical record ownership, task selection, permission boundaries, reproducible evidence, source currency, standalone installation and developer onboarding. This maintenance pass included targeted independent review, executed controls and a matched synthetic GPT-6.1 Sol pilot. The [evaluation record](evals/RESULTS.md#matched-gpt-61-sol-pilot) describes outcomes and limits.
+
+| Package | Review disposition |
+| --- | --- |
+| PentaPRO | Resolve authority and output format before writing. Preserve local and external record identity, link verification to the tested revision, and distinguish priority, obligation and confirmation. |
+| Software Delivery | Document OpenSpec defaults, version-specific skill invocation, strict post-archive validation, and a project-native SDD example. Preserve direct and exploratory paths. |
+| Behavior Testing | Add focused examples for test boundary, denied side effects, input selection, fault sensitivity and intermittent failures. Preserve the existing test-first scope. |
+| Diagnose Defect | Add reliable-reproducer prerequisites, bisection handling for unclassifiable revisions, and controlled input reduction. |
+| Technical Research | Verify applicable versions and dependency provenance, examine counterevidence, and bound benchmark conclusions. |
+| HTTP API | Add conditional guidance for throttling, shared cache isolation, atomic write preconditions and consumer migration. Retain the existing idempotency and SSRF procedure. |
+| MCP Server | Make token audience and downstream credential separation operational and link both supported authorization revisions. Test denied requests at the actual downstream boundary. |
+| Peer Review | Add a caller/installed API check and an example of a substitute hiding a protection failure. Retain evidence-based review and valid zero-finding outcomes. |
+| Cybersecurity | Make detection and accountability visible in threat coverage, update MCP source links, and include the version-qualified Android encrypted storage option. |
+| UI Design | Add a rendered accessibility journey spanning automated and manual checks, and make Android companion instructions optional when installed alone. |
+| Production Operations | Connect an applicable error-budget policy to a promotion decision and add incident recovery and follow-up evidence to the existing record. |
+| Git Delivery | Respect project commit/signature policy and stop publication on credentials present anywhere in the outgoing range. |
+| Agent Instructions | Distinguish explicit use from discovery and place generated-code execution and scoring in separate environments. |
+| Android Module Structure | Describe effective built-in Kotlin configuration, conditional reference stacks, and Room 2/3 conventions. |
+| Android Data Layer | Preserve existing clients and serialization policy, give Room 2/3 setup alternatives, and test actual data boundaries and migration. |
+| Android Error Handling | Preserve cancellation, keep deadline ownership explicit, and carry server retry hints where the operation requires them. |
+| Android DI Koin | Use compile-time checks where supported and exercise runtime parameters, module selection and platform startup where needed. |
+| Android Background | Document current runtime coordinates, expedited quotas, foreground requirements and startup ownership. |
+| Android Unit Testing | Clarify test scheduler scope and keep fixtures and cancellation checks deterministic. |
+| Android Integration Testing | Describe version-matched Room tests, DataStore test-scope cleanup and optional process isolation. |
+| Android UI Testing | Preserve resolved Compose factory/scheduler choices and use supported automated accessibility checks with device evidence when required. |
+| PR Quiz | Reviewed the explicitly requested educational workflow, eligibility, revision binding, and the limits of its informational status. The current code and offline grader behavior meet that scope. |
+
+The [routing guide](SKILL-ROUTING.md), [project template](AGENTS-template.md), [maintenance procedure](SKILL-EVALUATION.md) and [Portuguese development guide](docs/guia-consolidado-desenvolvimento-com-agentes.pdf) share the same project-owned contract and verification workflow. The earlier [Castas case study](docs/relatorio-retrospectiva-castas-android.pdf) remains a dated record of that project.
+
+The revised 112-page guide preserves the existing labs and adds OpenSpec 2.0 setup and troubleshooting, project-native SDD, vibe coding and prototype promotion, platform-specific verification, and a comparative pilot exercise. All nine extracted OpenSpec deltas validated and archived with simulated task completion, and all eight consolidated capability specs passed strict validation. The CLI lab passed six subprocess checks and rejected a deliberate negative-value regression. The current PDF's 22 catalog versions, page count, 165 internal destinations and 51 bookmarks were checked. The pages were rendered for inspection.
+
+The Android review exercised five groups of JVM behavior with the extracted Kotlin Result, repository and fake snippets and the real coroutine library. Room, Compose and platform instructions were checked against primary sources. Builds of the updated variants against consuming Android dependencies and device behavior remain project checks. Hosted CI, live GitHub grading and production deployment were outside this local collection validation.
+
+The closing run passed all 22 entrypoint validations and 99 offline checks: 32 collection/evaluator tests, 26 UI helper tests, 14 PR quiz publisher tests, and 27 quiz workflow scenarios. The case manifest and the standalone link and catalog checks passed. Local installation and discovery passed for the supported Codex workflow. Use the [installation guide](README.md#installation-and-activation) to adopt the collection and the [pilot procedure](SKILL-EVALUATION.md#reproduce-the-synthetic-codex-trials) to measure it on representative project work.

@@ -43,7 +43,7 @@ Primary material consulted includes [OWASP authorization](https://cheatsheetseri
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. At this research stage, the additions were independently written. The subsequent native Android integration imported the Android controls reference from the local bundle. See the [source map and redistribution status](../../THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills). Historical trials retain their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. At this research stage, the additions were independently written. The subsequent native Android integration imported the Android controls reference from the local bundle. See the [source map and redistribution status](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills). Historical trials retain their recorded versions.
 
 ## Checked values and effective operations — version 1.3.1
 
@@ -56,7 +56,7 @@ The 2026-11-05 maintenance review made the checked-to-used value trace explicit 
 
 Adapted enforceable ownership and security-invariant checks plus explicit model/code mapping, including revocation between real operations. The original synthesis rejects unconditional trust of internal types: runtime input, mutable authority and separately deployed consumers retain their actual enforcement requirements. Model results do not establish deployed control effectiveness. No execution-only finding rule or automatic remediation was imported.
 
-This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](../../THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
+This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
 
 Model-checking scope was also checked against the primary [TLA+ model introduction](https://learning.tlapl.us/intro/platform/) and [TLC model documentation](https://dl.tlapl.us/tlatoolbox/doc/model/about-models.html): finite-model exploration and implementation correspondence are separate claims. No checker was installed or run for this update.
 
@@ -67,7 +67,7 @@ Model-checking scope was also checked against the primary [TLA+ model introducti
 
 ## Android security consolidation — 1.5.0
 
-2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. The source bundle is attributed to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see the [third-party notice](../../THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for provenance and redistribution limits. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
+2026-11-06: The local android-security procedure was incorporated as references/android-controls.md under the existing assessment/hardening authority. The source bundle is attributed to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see the [third-party notice](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for provenance and redistribution limits. There is no separate Android security entrypoint or second verdict. Generic mobile and other platform coverage remains intact. The [integration map](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
 
 ## Account-switch commit boundary — 1.5.2
 

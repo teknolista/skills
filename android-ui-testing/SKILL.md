@@ -3,7 +3,7 @@ name: android-ui-testing
 description: Author, run or debug automated native Android Compose interaction tests on devices/emulators. Use for UI-test implementation; use ui-design for screen design, usability/accessibility critique or visual acceptance, and peer-review for independent code/test review.
 license: MIT
 metadata:
-  version: "1.2.3"
+  version: "1.3.0"
 ---
 
 # Android Compose UI Testing
@@ -14,7 +14,7 @@ metadata:
 2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
 3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
-Use native AndroidX Compose UI testing and `AndroidJUnitRunner` under `src/androidTest` for real Android behavior. Read [unit testing](../android-unit-testing/SKILL.md) for isolated logic and [integration testing](../android-integration-testing/SKILL.md) for non-UI storage/network boundaries.
+Use native AndroidX Compose UI testing and `AndroidJUnitRunner` under `src/androidTest` for real Android behavior. Optional companions are `android-unit-testing` for isolated logic and `android-integration-testing` for non-UI storage/network boundaries.
 
 ## Dependencies and host
 
@@ -83,10 +83,12 @@ Close test databases, HTTP clients/engines, and isolated DI containers; remove o
 
 Run the actual variant's connected-device task, for example `:app:connectedDebugAndroidTest`, or its configured managed-device task. Include required app startup, navigation, and release behavior in the chosen coverage. Report the device/API, executed cases, results, and limits. Passing previews, host-only tests, or a clock advance alone does not establish UI correctness.
 
-Sources: [Compose testing](https://developer.android.com/develop/ui/compose/testing), [v2 migration and dispatchers](https://developer.android.com/develop/ui/compose/testing/migrate-v2), [synchronization](https://developer.android.com/develop/ui/compose/testing/synchronization).
-
 ## Check input routing and effective configuration
 
 Drive real pointer/keyboard/semantics actions, not direct calls to onClick or assignment of a field's backing variable. Hold the first submission pending with a controlled fake, attempt a second activation through the affected input route, and assert the observable operation count. Use touch or keyboard events when hit-testing, overlays, or focus are the behavior under test. A semantics invocation alone does not exercise pointer routing. Keep accessible selectors and test data deterministic across locales; using resource IDs avoids copy drift but does not itself test localization, RTL or TalkBack.
 
-Test protected screens/deep links under an unauthorized fixture and after a session change. Inspect release-effective permissions and manifest settings separately from a debug test Activity. Keep screenshots and failure artifacts free of real credentials/private records. Passing a Compose semantics assertion is not a screen-reader session or a security assessment.
+When accessibility is part of the claim, pair assertions for names, roles, actions and states with the supported automated checks and the applicable keyboard or TalkBack journey. For a supported `AndroidComposeTestRule`, add the BOM-aligned `ui-test-junit4-accessibility` artifact and enable checks before an action or `tryPerformAccessibilityChecks()`. This API requires API 34+ and a device or emulator. Preserve ordinary semantics assertions on lower APIs and record which accessibility checks actually ran. [Compose accessibility testing](https://developer.android.com/develop/ui/compose/accessibility/testing) · [Rule API limits](https://developer.android.com/reference/kotlin/androidx/compose/ui/test/junit4/AndroidComposeTestRule)
+
+Test protected screens and deep links under an unauthorized fixture and after a session change. Inspect release-effective permissions and manifest settings separately from a debug test Activity. Use synthetic accounts and records in screenshots and failure artifacts.
+
+Sources: [Compose testing](https://developer.android.com/develop/ui/compose/testing), [v2 migration and dispatchers](https://developer.android.com/develop/ui/compose/testing/migrate-v2), [synchronization](https://developer.android.com/develop/ui/compose/testing/synchronization).

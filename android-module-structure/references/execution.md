@@ -20,7 +20,7 @@ Use `adb devices -l` to select an authorized test serial. Check `adb -s "$TEST_S
 - Reuse the existing Result, UI text, route and repository definitions. Replace illustrative names/IDs with real owners; do not add duplicate types from several examples. A body containing only a comment is an outline and must be implemented before delivery. Resolve constructor dependencies, imports, resources and manifests as well as the main Kotlin file.
 - Prefer structured concurrency and explicit state ownership; no GlobalScope, blocking calls on Main, swallowed cancellation, unbounded retry, or backend secrets embedded in the APK. Preserve local user edits and existing migrations.
 - Distinguish cancellation, rejection, retryable failure and unknown outcome. A request timing out does not prove a write failed: reconcile status or use an actual idempotency contract before repeating it.
-- Keep external input at a validated boundary and authorization on the responsible service/domain operation. Use [Cybersecurity Android controls](../../cybersec/references/android-controls.md) when available for relevant controls and negative checks. Do not turn a missing SDK into permission to disable a production security control.
+- Keep external input at a validated boundary and authorization on the responsible service/domain operation. Use the optional `cybersec` skill's Android controls for targeted negative checks. Keep production controls enforced and report verification unavailable when an SDK or device is missing.
 
 ## Verify the claim, not only the file
 

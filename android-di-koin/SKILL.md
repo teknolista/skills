@@ -3,7 +3,7 @@ name: android-di-koin
 description: Implement or debug Koin bindings, Android ViewModel ownership and application/worker dependency wiring. Use for concrete DI code changes; use peer-review for independent inspection and ui-design for screen design.
 license: MIT
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
 ---
 
 # Android Dependency Injection with Koin
@@ -14,7 +14,7 @@ metadata:
 2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
 3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
-Use the selected Android Koin integration and compatible versions. Keep dependency injection at composition roots and constructors; do not use a service locator inside domain logic. Respect an existing DI stack rather than adding Koin alongside another container without a migration need.
+Use the selected Android Koin integration and compatible versions. Keep dependency injection at composition roots and constructors. For an existing Hilt or other DI project, use its integration and testing workflow. Adding a second container belongs to an intentional migration.
 
 ## Dependencies and imports
 
@@ -36,7 +36,7 @@ val notesPresentationModule = module {
 }
 ```
 
-A repository constructor's data-source interfaces must also have bindings. Register the native transport engine, configured HttpClient, DAO/database, and DataStore only where needed; use the construction/lifetime policies in [data layer](../android-data-layer/SKILL.md). Prefer a singleton for an owned database/client, a ViewModel definition for a ViewModel, and a factory when a new instance per resolution is intended. Do not turn Activity-scoped state into a singleton by default.
+A repository constructor's data-source interfaces must also have bindings. Register the native transport engine, configured HttpClient, DAO/database, and DataStore only where needed. The optional `android-data-layer` skill covers their construction and lifetimes. Prefer a singleton for an owned database/client, a ViewModel definition for a ViewModel, and a factory when a new instance per resolution is intended. Keep Activity-scoped state in its owner.
 
 ## Application composition
 
@@ -69,14 +69,14 @@ Resolve dependencies once at appropriate Compose boundaries. Pass values/callbac
 
 ## Workers and verification
 
-Read [background work](../android-background/SKILL.md) for factory ordering, initializer removal, and worker registration. Do not initialize WorkManager twice with competing factories.
+Check factory ordering, initializer removal, and worker registration using the optional `android-background` skill or the installed integration's documentation. WorkManager has one initialization owner.
 
-Use Koin graph verification supported by the installed version and an application startup test for required bindings, qualifiers, parameterized factories, and saved-state/navigation owners. Koin's constructor-based `verify()` does not resolve qualifiers, properties or dependencies obtained inside definition lambdas. Use a focused runtime resolution test with the actual qualifier, arguments and owner when those are material. [Koin verification](https://insert-koin.io/docs/reference/koin-test/verify/) In tests, use isolated containers where possible and close/reset the container so overrides do not leak across tests.
-
-Sources: [Android Koin ViewModels](https://insert-koin.io/docs/reference/koin-android/viewmodel/), [Compose ViewModels](https://insert-koin.io/docs/reference/koin-compose/compose-viewmodel/), [Koin WorkManager](https://insert-koin.io/docs/reference/koin-android/workmanager/).
+When the Koin Compiler Plugin covers the application entrypoint, use its checks for static graph, qualifier and scope errors. Verify which variants and module lists it can resolve. For projects outside that coverage, use the supported constructor verification API, such as `verify()` or `androidVerify()` where available. For runtime parameters, properties, dynamic modules, and Android navigation or startup, test the actual configured owner and assert the resolved instance or behavior. Use isolated containers and close/reset them between tests. [Compiler checks](https://insert-koin.io/docs/reference/koin-compiler/compile-safety/) · [Koin verification](https://insert-koin.io/docs/reference/koin-test/verify/)
 
 ## Resolve all bindings before calling a feature complete
 
 Walk each constructor from the app composition root: concrete implementation, interface binding, qualifier, runtime parameters and lifetime. A module definition containing only a repository binding is not a complete graph if its data sources are absent. Check which scope owns every closeable instance captured by a longer-lived dependency. If switching accounts replaces a scoped repository, verify that an existing ViewModel resolves fresh state through the intended owner or is recreated. For a destination with SavedStateHandle, exercise resolution under the real navigation entry owner; do not fix it by registering one global handle.
 
 Account-scoped services must not outlive their credentials/data policy. Close/reset owned clients and scopes on session replacement, reject late old-account writes, and never retain Activity/Composable references in singleton definitions. Verify the merged Application/startup configuration in the actual release variant, not only a test container with overrides.
+
+Sources: [Android Koin ViewModels](https://insert-koin.io/docs/reference/koin-android/viewmodel/), [Compose ViewModels](https://insert-koin.io/docs/reference/koin-compose/compose-viewmodel/), [Koin WorkManager](https://insert-koin.io/docs/reference/koin-android/workmanager/).

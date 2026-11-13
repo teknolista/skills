@@ -31,6 +31,8 @@ Capture the action and resulting state, not only a final screenshot or an intern
 
 For a changed form or other consequential interaction, verify the recovery path with a concrete input and actor. For example, submit invalid data by keyboard, observe which field and message are exposed, correct it without losing unrelated input, then confirm the resulting state. Where relevant, test an asynchronous error or permission denial as a separate case. Record viewport, zoom/text scaling, locale and assistive technology actually exercised. Automated semantics and a successful render leave manual reading order, announcements and task completion unverified.
 
+For an accessibility pass on that form, scan the actual rendered error and recovery states with the project's checker where available. Then complete the journey using the supported keyboard or switch input and a representative screen reader. Check where focus lands, what is announced, which inputs persist, and whether the user can recover. On native Android, use device semantics checks and TalkBack where relevant. Record each exercised platform and state, and leave untested combinations explicit.
+
 ## Evidence record and stopping
 
 Record target revision or local snapshot, screen/state, environment and tool, action, expected and observed result, pass/fail/not-run and artifact reference. Separate `planned`, `source-inspected`, `rendered-inspected`, `interaction-tested` and `user-tested` evidence. Scope claims to the checks actually performed.

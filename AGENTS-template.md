@@ -51,7 +51,7 @@ If a needed skill or resource is unavailable, identify the missing capability an
 
 Default paths below are relative to the target repository root. They describe project outputs, not files to write inside an installed skill. Preserve established authoritative locations and record deliberate alternatives in Project Facts and Navigation.
 
-If the project already assigns detailed requirements or implementation tasks to another specification/tracker, keep that record authoritative. The five pillars can link and index it; do not maintain a competing copy of requirements or task status. Keep a proposed change distinct from the current supported baseline, and preserve evidence with the revision it actually checks. When OpenSpec governs a change, record its accepted change ID and selected schema, link its requirement scenarios to the affected checks, and use its existing tasks. Keep artifact validity, task progress, and observed behavior visible as distinct evidence.
+Identify the authoritative records for this scope before writing new specifications. The five pillars can index requirements and tasks already owned by a project tracker, schema, or spec workflow. Keep proposals distinct from the supported baseline and bind verification evidence to the revision checked. When OpenSpec governs a change, use its selected schema, accepted change ID, requirement scenarios and tasks. Record artifact validity, task progress and observed behavior separately. When authorized to consolidate or archive, check the resulting capability and preserve the historical links to prior evidence.
 
 | Document | Canonical responsibility |
 | --- | --- |

@@ -1,5 +1,6 @@
 """Check skill metadata, collection links, catalog versions, and installation coverage."""
 from collections import Counter
+from functools import cache
 import os
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
@@ -40,6 +41,8 @@ directories = {root}
 for file in files:
     directories.update(parent for parent in file.parents if root in parent.parents)
 markdown = sorted(file for file in files if file.suffix == ".md")
+entries = sorted(file for file in markdown if file.name == "SKILL.md" and file.parent.parent == root)
+package_roots = {entry.parent for entry in entries}
 headings = re.compile(r"^ {0,3}#{1,6}\s+(.+?)\s*#*\s*$", re.M)
 links = re.compile(r"(?<!!)\[[^\]\n]*\]\((<[^>]+>|[^)\s]+)\)")
 
@@ -60,6 +63,7 @@ def prose_lines(path):
         yield number, row
 
 
+@cache
 def anchors(path):
     counts = Counter()
     result = set()
@@ -76,21 +80,27 @@ for file in markdown:
     if not file.is_file() or file.resolve() not in files:
         problems.append(f"{file.relative_to(root)} is missing or resolves outside the collection")
         continue
+    package = root / file.relative_to(root).parts[0]
     for number, row in prose_lines(file):
         for raw in links.findall(row):
             parsed = urlsplit(raw.strip("<>"))
             if parsed.scheme or parsed.netloc:
                 continue
-            path = file if not parsed.path else Path(os.path.abspath(file.parent / unquote(parsed.path)))
+            relative_path = Path(unquote(parsed.path))
+            path = file if not parsed.path else Path(os.path.abspath(file.parent / relative_path))
             checked += 1
             if not path.exists() or any(
                 target not in files and target not in directories for target in (path, path.resolve())
             ):
                 problems.append(f"{file.relative_to(root)}:{number} missing or outside collection: {raw}")
+            elif package in package_roots and (
+                relative_path.is_absolute()
+                or any(not target.is_relative_to(package) for target in (path, path.resolve()))
+            ):
+                problems.append(f"{file.relative_to(root)}:{number} link is not portable in a standalone package: {raw}")
             elif parsed.fragment and path.suffix == ".md" and unquote(parsed.fragment) not in anchors(path):
                 problems.append(f"{file.relative_to(root)}:{number} missing anchor {raw}")
 
-entries = sorted(file for file in markdown if file.name == "SKILL.md" and file.parent.parent == root)
 readme = (root / "README.md").read_text()
 labels = {
     "penta-pro":"PentaPRO", "peer-review":"Peer Review", "cybersec":"Cybersecurity",
@@ -174,6 +184,10 @@ for entry in entries:
     if notice not in files or notice.is_symlink() or not notice.is_file() or notice.read_bytes() != mit_notice:
         problems.append(f"{package}: standalone LICENSE must match the repository MIT notice")
     metadata = data.get("metadata")
+    if isinstance(metadata, dict) and any(
+        not isinstance(key, str) or not isinstance(value, str) for key, value in metadata.items()
+    ):
+        problems.append(f"{package}: metadata keys and values must be strings")
     version = metadata.get("version") if isinstance(metadata, dict) else None
     if not isinstance(version, str) or not re.fullmatch(r"(?:0|[1-9][0-9]*)(?:\.(?:0|[1-9][0-9]*)){2}", version):
         problems.append(f"Invalid release version metadata for {package}")

@@ -3,7 +3,7 @@ name: production-operations
 description: Plan, configure, deploy, verify, operate, or recover a hosted backend. Use for cloud or VPS infrastructure, deployment pipelines, runtime identities, rollouts, database cutovers, observability, or operational incidents.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Production Operations

@@ -52,7 +52,7 @@ fun AppNavigation() {
 
 Pass stable IDs and small scalar arguments, then load current data at the destination. Do not serialize large models, credentials, or user-sensitive payloads into routes. Treat route/deep-link arguments as untrusted inputs and validate authorization when loading the data.
 
-Acquire a destination ViewModel inside its `composable` entry with the project's selected factory/DI integration and the current entry's owner. Use the [Koin helper](../../../android-di-koin/SKILL.md) when Koin is already selected; navigation does not require a DI migration. A ViewModel can decode typed arguments with `SavedStateHandle.toRoute<NoteDetailRoute>()`; use one consistent source for the ID instead of passing contradictory constructor and route values. Use a parent graph owner only when the product intentionally shares a ViewModel; clear it when that graph leaves the stack.
+Acquire a destination ViewModel inside its `composable` entry with the project's selected factory or DI integration and the current entry's owner. For projects that use Koin, the optional `android-di-koin` skill covers native bindings. A ViewModel can decode typed arguments with `SavedStateHandle.toRoute<NoteDetailRoute>()`. Use one consistent source for the ID. Use a parent graph owner only when the product intentionally shares a ViewModel, and clear it when that graph leaves the stack.
 
 For top-level tabs, choose `launchSingleTop`, `restoreState`, and `popUpTo(...){ saveState = true }` deliberately to avoid duplicate stacks and preserve each tab as required. After successful authentication, remove login destinations when back navigation must not return to them. Do not repeatedly navigate from an unacknowledged boolean during recomposition.
 
@@ -64,12 +64,12 @@ Declare Android deep links/App Links through the selected Navigation API and the
 
 ## Verify
 
-Test graph start, typed argument decoding, cross-feature callbacks, duplicate taps, relevant tab restoration, system back/Up, protected destinations, and links. Use `TestNavHostController` with the compatible Compose navigator for isolated graph checks, and [device UI tests](../../../android-ui-testing/SKILL.md) for full flows. Do not infer process-death restoration from a simple recomposition test.
+Test graph start, typed argument decoding, cross-feature callbacks, duplicate taps, relevant tab restoration, system back/Up, protected destinations, and links. Use `TestNavHostController` with the compatible Compose navigator for isolated graph checks. Exercise full flows through the native test harness, with the optional `android-ui-testing` skill where available. A simple recomposition test leaves process-death restoration unverified.
 
 Sources: [Navigation Compose](https://developer.android.com/develop/ui/compose/navigation), [type-safe routes](https://developer.android.com/guide/navigation/design/type-safety).
 
 ## Treat external navigation as a trust boundary
 
-An external link may identify a resource but must not directly authorize a delete, payment or privilege change. Parse the URI with platform APIs, validate exact scheme/host/path and argument constraints, then enforce account/record access in the responsible operation. Do not accept a host because its text contains a trusted domain. Check redirected and nested intents as well as the first URL; use [security guidance](../../../cybersec/references/android-controls.md) for exported components and URI grants.
+An external link may identify a resource but must not directly authorize a delete, payment or privilege change. Parse the URI with platform APIs, validate exact scheme/host/path and argument constraints, then enforce account/record access in the responsible operation. Do not accept a host because its text contains a trusted domain. Check redirected and nested intents as well as the first URL. The optional `cybersec` skill has Android controls for exported components and URI grants.
 
 Test direct entry with no parent stack, a missing/deleted record, malformed arguments, another account's record and session expiry while the screen is open. A type-safe route prevents some serialization mistakes; it does not validate domain ownership or authorize data access.

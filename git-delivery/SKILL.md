@@ -3,7 +3,7 @@ name: git-delivery
 description: Review and package a requested Git commit, normal branch push, or pull request, preserving unrelated work and verifying the published revision. Use for commit, ship, push, or PR preparation. Implementation completion alone does not authorize publication, merge, or deployment.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Deliver reviewed Git changes
@@ -28,13 +28,15 @@ Recheck HEAD, index and working-tree contents against what was reviewed. Stage e
 
 If unrelated edits are already staged, preserve them in the original index. Use a verified path-limited commit or isolated temporary index only when it can commit the intended contents and retain those selections exactly. For a partially staged intended file, preserve the selected blob rather than substituting its working-tree content. If the separation cannot be established safely, stop before committing and report the exact conflict without unstaging other work.
 
-Inspect the exact candidate commit diff and run the appropriate whitespace/required checks on it. Confirm it contains exactly the intended set. Create a non-empty commit with a concise English message that states the result. Inspect the commit and post-hook worktree afterward. A hook that changes files or the index requires reconciliation and review; never amend automatically or assume its changes are already verified. If no intended changes exist, do not manufacture a commit.
+Inspect the exact candidate commit diff and run the appropriate whitespace and required checks. Confirm it contains exactly the intended set. Create a non-empty commit using the project's message and signature policy, with a concise English message when no convention applies. Inspect the commit and post-hook worktree afterward. Reconcile and review hook changes before proceeding. If no intended changes exist, report that outcome.
 
 ## Push and confirm
 
 Resolve push URLs and ref configuration before sending data. Use the established destination; use `origin` and the current branch only if unambiguous. If multiple push URLs, mirror settings, or automatic tag following would widen publication, stop and report the configuration instead of changing it. Use the local Git documentation to choose an explicit branch-only command for the actual setup.
 
 Check the destination branch's current object ID. If it exists, obtain enough history through a scoped safe fetch when needed and verify it is an ancestor of the intended commit. Inspect outgoing commits. Stop on divergence; do not pull, rebase, merge, force-push or rewrite history. For a standard single-destination setup, use an explicit remote and `HEAD:refs/heads/<destination-branch>` refspec, disabling incidental tag following with a supported command option if needed.
+
+Check the outgoing range for credentials and private data, including values introduced and then deleted before the tip. If discovered, stop publication and report the affected path and revision without the value. Coordinate revocation or rotation and any history repair under the actual authority for those actions.
 
 After push, query the actual push destination and compare its branch ID with the intended commit. A success message alone is insufficient. If the push fails, retain the local commit and report the error. If remote confirmation is unavailable, report publication as unverified. A no-op requires evidence that the intended branch already points to the commit.
 

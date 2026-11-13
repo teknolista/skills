@@ -19,6 +19,7 @@ Use these prompts to detect omissions, selecting applicable domain references fo
 | Delivery and administration | Can a contributor, dependency, build runner, updater, or recovery operator bypass the intended trust boundary? |
 | Privacy and lifecycle | Do collection, secondary use, sharing, retention, deletion, or backups violate the project's data requirements? |
 | Containment and recovery | After one control fails, what else becomes reachable, which evidence survives, and how can trusted operation resume? |
+| Detection and accountability | For a material abuse or release risk, what event reaches the detection system, what context identifies the actor/action/resource, who responds, and can an authorized synthetic trigger prove delivery without exposing secrets? |
 
 These are investigation prompts, not findings or a complete attack catalog. Apply additional project/domain requirements. An Assessed row describes work performed, not absence of risk; do not invent a security score or an “all attacks covered” percentage from checked rows.
 

@@ -3,7 +3,7 @@ name: diagnose-defect
 description: Investigate ambiguous, intermittent, cross-boundary, or performance defects in software. Use when the cause of a reported failure is unclear or prior fixes failed. Produce evidence for the cause and verify any authorized fix. Use the owning platform skill for clear, localized implementation or test failures.
 license: MIT
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Diagnose a defect
@@ -17,5 +17,7 @@ Find the smallest reliable observation that distinguishes the reported failure f
 5. When reproduction is unavailable, continue with safe source, revision, and existing evidence inspection. Label conclusions as hypotheses unless the evidence establishes the cause. Report the smallest missing artifact or observation that would distinguish the remaining explanations.
 
 Keep active incident containment and root-cause analysis distinct. Follow existing authority for live mitigation, production probes, data access, and external actions. Work in isolated environments for replay and history bisection. Redact credentials and personal data before storing or sharing diagnostic artifacts.
+
+When a reliable reproducer still leaves a large suspect range, read [revision bisection and input reduction](references/localization.md).
 
 Return the symptom, affected scope, reproduction or evidence limits, cause confidence, actual check outcomes, and next action. Ordinary localized fixes can use the project's normal workflow.

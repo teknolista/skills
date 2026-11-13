@@ -3,7 +3,7 @@ name: android-unit-testing
 description: Author, run or debug isolated Kotlin/JVM and Android logic tests using fakes and deterministic coroutine scheduling. Use for test implementation tasks; use peer-review to assess test effectiveness without changing source and ui-design for screen acceptance design.
 license: MIT
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
 ---
 
 # Android Unit Testing
@@ -18,7 +18,7 @@ Test the public contract and observable behavior. Before writing tests, enumerat
 
 ## Boundaries and stack
 
-An isolated test can wire multiple real classes when collaborators are pure and cheap. Fake network/storage/time boundaries; do not fake a pure validator merely because it is another class. Real Room/SQLite, files, sockets, and Android lifecycle integration belong in [integration testing](../android-integration-testing/SKILL.md). Ktor MockEngine does not perform real network I/O; tests using it may exercise client integration without a server.
+An isolated test can wire multiple real classes when collaborators are pure and cheap. Keep real pure validators and fake network, storage or time boundaries where needed. Use boundary tests for real Room/SQLite, files, sockets and Android lifecycle, with the optional `android-integration-testing` skill when installed. Ktor MockEngine can exercise client integration without sockets.
 
 Use `src/test` for JVM-hosted tests and `src/androidTest` when real Android framework/device behavior is needed. A pure framework helper can still be a small unit tested on a device. Robolectric is an optional supported JVM tool when suitable; it is not evidence of identical device behavior. Test critical platform behavior on Android.
 
@@ -27,6 +27,8 @@ Preserve the project's test framework: JUnit5 requires Jupiter dependencies and 
 ## Coroutine scheduling
 
 Use one shared `TestCoroutineScheduler` for a test's dispatchers. Prefer `StandardTestDispatcher` when testing ordering, suspension, or races; use `UnconfinedTestDispatcher` deliberately for eager collectors or simple cases. Eager entry is not production scheduling and does not guarantee all suspend work completes immediately.
+
+Virtual time controls work scheduled on test dispatchers. For code that switches to IO or Default explicitly, inject the dispatcher or test through a controlled collaborator. Record any real execution outside the scheduler when judging a timing assertion.
 
 ```kotlin
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -90,10 +92,10 @@ When coverage reporting is needed, use Android/JVM JaCoCo or a compatible Kover 
 
 Run affected tests using the module's actual task: for example `:feature:notes:presentation:testDebugUnitTest` for an Android debug variant, or `:core:domain:test` for a Kotlin/JVM module. Run device tests separately. Report commands, results, and limits accurately.
 
-Sources: [coroutine testing](https://developer.android.com/kotlin/coroutines/test), [Flow testing](https://developer.android.com/kotlin/flow/test).
-
 ## Parallelism, fakes and failure assertions
 
 Dispatchers.setMain changes global process state. Do not run tests that replace Main concurrently without isolation; use the test engine's supported serialization/resource-lock configuration or separate processes. Reuse one scheduler for all dispatchers under test, but create independent fixture state per test. If a fake completes immediately, it may conceal the loading, cancellation or interleaving behavior you intended to test: add controllable suspension before asserting that behavior.
 
 Use the same domain interface in the fake and production owner. Test each error that changes observable behavior; use tables for equivalent mappings. For cancellation, wait until a collaborator is suspended, cancel the owning job, and assert both cancellation propagation and the absence of a later success or stale write. When testing a race, assert that the intended interleaving occurred before trusting the final-state assertion. A passing test against a fake that silently reports every write as success does not exercise storage failure.
+
+Sources: [coroutine testing](https://developer.android.com/kotlin/coroutines/test), [Flow testing](https://developer.android.com/kotlin/flow/test).

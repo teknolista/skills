@@ -90,7 +90,7 @@ Use native `androidx.compose.ui.tooling.preview.Preview`, theme-wrapped realisti
 
 Separate named functions, multipreview annotations, and `PreviewParameter` are all valid; choose the format that keeps states easy to inspect. Native `@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)`, `widthDp`, and `fontScale` are available. Add compact/expanded and `fontScale = 2f` samples when reflow can fail. Include `ui-tooling-preview` for main compilation and keep the tooling runtime debug-only.
 
-Previews complement tests. Add behavior/semantics tests for complex interactive components when warranted, and [screen tests](../../../android-ui-testing/SKILL.md) for action wiring and flows. A static preview does not prove touch, focus, semantics, restoration, or rendered pixel correctness.
+Previews complement tests. Add behavior and semantics tests for complex interactive components, and exercise action wiring and flows with the project's UI runner when warranted. The optional `android-ui-testing` skill covers that setup. A static preview does not prove touch, focus, semantics, restoration, or rendered pixel correctness.
 
 Sources: [Compose API guidelines](https://android.googlesource.com/platform/frameworks/support/+/androidx-main/compose/docs/compose-api-guidelines.md), [accessibility](https://developer.android.com/develop/ui/compose/accessibility), [custom modifiers](https://developer.android.com/develop/ui/compose/custom-modifiers).
 

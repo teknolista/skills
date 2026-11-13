@@ -3,7 +3,7 @@ name: android-module-structure
 description: Implement native Android/Kotlin JVM module boundaries, Gradle conventions and build configuration in an existing or authorized project. Use for concrete module/build changes; use penta-pro for requirements, architecture proposals and readiness specifications, and peer-review for read-only code review.
 license: MIT
 metadata:
-  version: "1.3.0"
+  version: "1.4.0"
 ---
 
 # Native Android Module Structure
@@ -53,7 +53,7 @@ Use an included `build-logic` build and version catalog for repeated configurati
 
 Read [native build-logic examples](references/build-logic.md) when creating conventions, Room/KSP setup, or catalog wiring. It covers included-build catalog access, native application/library conventions, Compose tooling, and registration through precompiled script plugin filenames.
 
-AGP 9+ enables built-in Kotlin by default, but inspect effective `android.builtInKotlin` settings and supported module overrides before changing plugins. When built-in Kotlin is enabled, do not also apply `org.jetbrains.kotlin.android` to that Android module. On a supported opt-out/legacy configuration that still uses the Kotlin Android plugin, retain it until a deliberate migration; the AGP version alone does not prove which mode a module uses. Kotlin/JVM modules still use their own Kotlin plugin. Align the Compose compiler and serialization compiler plugins with the effective Kotlin compiler; inspect AGP's embedded Kotlin compatibility when applicable. Use public `com.android.build.api.dsl` APIs, not Gradle/AGP internals.
+AGP 9 enables built-in Kotlin by default. Inspect effective settings and supported per-module overrides before changing plugins. Use one Kotlin implementation per Android module. On AGP 9 versions that support temporary opt-out, projects retaining `org.jetbrains.kotlin.android` also need the compatible old DSL (`android.builtInKotlin=false` and `android.newDsl=false` for the documented project-wide opt-out). Check the migration guide for the actual AGP version before editing flags. Kotlin/JVM modules use their own Kotlin plugin. Align Compose and serialization plugins with the effective Kotlin compiler, and use public `com.android.build.api.dsl` APIs.
 
 For a deliberate built-in Kotlin migration, also inspect annotation processing and source directories: legacy `org.jetbrains.kotlin.kapt` is incompatible with that mode; use supported KSP or the documented AGP legacy-kapt path when needed. Move custom Kotlin sources through supported Android source APIs rather than assuming the old Kotlin source-set DSL still applies. Do not remove a processor until its generated-code consumers have a verified replacement.
 
@@ -61,13 +61,13 @@ Keep Java and Kotlin bytecode targets aligned, and choose a JDK supported by the
 
 ## Native dependencies and resources
 
-Use AndroidX Compose via its BOM, AndroidX Navigation/Lifecycle/Room/DataStore/WorkManager, and the chosen native Koin and Ktor/OkHttp integrations. These libraries do not require additional platform targets. Domain modules can use coroutines, `java.time` where supported by their runtime consumers, and other Kotlin/JVM libraries without becoming Android modules.
+Keep the app's current stack. Use the Compose BOM when the project selects AndroidX Compose. Domain modules can use coroutines, `java.time` where supported by their runtime consumers, and other Kotlin/JVM libraries without becoming Android modules.
 
 Each Android module owns its `namespace`, `src/main/res`, strings, plurals, and drawables. Share resources through appropriate Android library modules or public UI/accessor APIs. Reference the owning module's `R`; respect non-transitive R classes and resource visibility. Prefix resource names where that prevents collisions.
 
 Use `BuildConfig` only for non-secret build configuration such as an endpoint or public client identifier; explicitly enable generation in modules that need it. Inject environment configuration into services for testability. `local.properties` and CI variables keep values out of source control, but generated APK constants are extractable. Keep server secrets on a server; configure signing credentials outside committed build files. Configure release shrinking/resource shrinking and keep rules according to the app's libraries, then exercise the release build.
 
-The retained stack is used only through Android/JVM artifacts and Android source sets:
+This optional reference stack uses Android/JVM artifacts and Android source sets. Use an existing project's equivalent choices, such as Hilt or Retrofit, with their own integration and tests.
 
 | Concern | Native project choice |
 |---|---|
@@ -86,18 +86,18 @@ The retained stack is used only through Android/JVM artifacts and Android source
 1. Select the smallest useful module boundaries; add chosen modules to `settings.gradle.kts`.
 2. Apply the native conventions and assign a unique namespace where required.
 3. Add explicit permitted dependencies, native resources, and the feature API.
-4. Register the feature in the app’s existing composition root and navigation when required. Use the [Koin](../android-di-koin/SKILL.md) and [Compose navigation](../ui-design/references/android/navigation.md) examples when they match the project.
+4. Register the feature in the app’s existing composition root and navigation when required. Use the optional `android-di-koin` and `ui-design` Android navigation examples when they match the project.
 5. If using Room, configure KSP/schema export and migration coverage in the owning database module.
 6. Run affected unit tests, lint, and a representative debug/release assembly. Run relevant device tests; do not report a documented command as an executed result.
 
-Sources: [built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin), [Gradle convention plugins](https://docs.gradle.org/current/userguide/implementing_gradle_plugins_convention.html).
-
 ## Supply chain and release handoff
 
-Pin reproducible tool/dependency inputs and verify their origin before adding a repository or plugin. Avoid dynamic versions, arbitrary executable Gradle snippets from error pages, broad repository fallbacks, or disabling dependency verification to resolve a build. Keep signing credentials outside tracked files and restrict CI access. Inspect the merged release manifest, effective network/backup config and minified output; a clean debug build alone cannot establish release readiness. See [Android security](../cybersec/references/android-controls.md).
+Pin reproducible tool/dependency inputs and verify their origin before adding a repository or plugin. Keep approved repositories, dependency verification and signing controls in place while diagnosing build failures. Keep signing credentials outside tracked files and restrict CI access. Inspect the merged release manifest, effective network/backup config and minified output on the relevant release variant. The optional `cybersec` skill supplies native Android security controls.
 
 Use targeted lint and meaningful host/device checks for affected behavior. For startup or scrolling performance work, capture a baseline and compare profileable/release behavior using supported benchmark tooling and representative devices; do not infer speed from fewer recompositions or more modules. Baseline Profiles and caching are optional measured optimizations, not substitutes for functional checks.
 
 Maintainers evaluating another model/host can use the [cross-skill scenarios](evals/scenarios.md). A structural validator does not establish how well that model implements an Android app.
 
 For a new runner, device, or uncertain build setup, use the [Android execution guidance](references/execution.md#verify-a-new-device-or-runner-before-feature-work) to verify the target before implementation.
+
+Sources: [built-in Kotlin](https://developer.android.com/build/migrate-to-built-in-kotlin), [Gradle convention plugins](https://docs.gradle.org/current/userguide/implementing_gradle_plugins_convention.html).

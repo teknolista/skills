@@ -12,11 +12,15 @@ Hold or stop promotion when checks fail, telemetry is unavailable, or the agreed
 
 Use service-specific logs, metrics, traces and synthetic checks according to the operating contract. Choose signals that reflect user impact and likely failure modes, such as successful request rate, latency, queue age, job completion, saturation, database connections, replication lag and backup age. Attach revision and environment for comparison. Control sampling, retention, cardinality and access. Redact sensitive identifiers and payloads. Record SLI population, denominator, time window and thresholds when an SLO applies. Set actionable alert routing, severity, ownership and a linked procedure. Exercise the delivery path for a test alert when authorized. Track capacity headroom, quota and cost signals.
 
+When the service has an error-budget policy, connect the decision to the agreed observation window and applicable budget or burn rate. For example, if a tagged candidate violates the stop threshold while the stable revision remains healthy, hold expansion, preserve the stable path, and verify queued work and stored data before selecting a recovery action. An observation window with insufficient traffic needs more evidence before promotion.
+
 ## Respond to an incident
 
 1. Establish affected service, time, scope and symptoms. Check ongoing changes, dependencies, last known good state and the incident owner. Start a UTC timeline with source links and sanitized observations.
 2. Stabilize within authority using the least disruptive viable action. Examples include stopping a rollout, switching a compatible revision, pausing a consumer or disabling a feature. Compare blast radius and recovery paths before action. Preserve evidence and coordinate customer or stakeholder updates through the authorized owner.
 3. Verify mitigation from user-facing signals and data/queue consistency. Record residual impact and who monitors it. Separate root cause confidence from the evidence that the service recovered.
 4. Follow up with a causal investigation, prevention and regression checks, runbook changes and owners. Feed release and recovery evidence back to the project records. Security incidents follow the project's incident and evidence-handling policy.
+
+In the existing incident record, capture the affected window and customer impact, revision and evidence, containment and recovery checks, confirmed causes and contributing conditions, and corrective actions with owners and follow-up. Review conditions that made the failure possible and track whether each correction works.
 
 [Google SRE canarying releases](https://sre.google/workbook/canarying-releases/) · [Google SRE incident management](https://sre.google/resources/practices-and-processes/incident-management-guide/) · [OpenTelemetry security](https://opentelemetry.io/docs/security/)

@@ -18,7 +18,7 @@ Keep acceptance criteria with their canonical feature or requirement record, ind
 
 Evidence identifies the tested commit or artifact, environment, relevant data, command or manual procedure, expected and actual outcome, and execution date. A planned check or an unexecuted test remains `Unverified`.
 
-Trace the value chain: objective/discovery → requirement → acceptance criterion → design/contract and task → check/evidence → outcome evaluation. Reuse the canonical IDs and links. For the selected increment, flag missing or orphan references and report failed, unverified, or stale evidence. Retain historical results with their tested scope. Recheck after changes that affect a result or when the gate requires the exact revision. Where the gate permits prior evidence, document why changed inputs, requirements, or conditions cannot affect the result. Use existing automation for structural checks such as duplicate IDs, missing owners, broken links, or missing verification.
+Trace the value chain: objective/discovery → requirement → acceptance criterion → design/contract and task → check/evidence → outcome evaluation. Use canonical IDs or artifact and scenario locators tied to the checked revision. For the selected increment, flag missing or orphan references and report failed, unverified, or stale evidence. Retain historical results with their tested scope. Recheck after changes that affect a result or when the gate requires the exact revision. Where the gate permits prior evidence, document why changed inputs, requirements, or conditions cannot affect the result. Use existing automation for structural checks such as duplicate IDs, missing owners, broken links, or missing verification.
 
 ## Verification and validation strategy
 

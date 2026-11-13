@@ -3,7 +3,7 @@ name: http-api
 description: Implement or change HTTP API server endpoints and their upstream integrations against a concrete contract. Use for server handler, error, authorization, retry, compatibility, or migration behavior. Requirements discovery, MCP implementation, and independent review have separate workflows.
 license: MIT
 metadata:
-  version: "1.1.1"
+  version: "1.2.0"
 ---
 
 # Implement HTTP API changes
@@ -19,5 +19,7 @@ Use the project's version of its contract tooling and frameworks. Refer to [HTTP
 For an endpoint that promises idempotency, scope the key by operation and the caller or tenant defined by the contract. Check authorization before returning a stored outcome. Bind the key to the request's meaning so reusing it with different input yields the documented conflict. Coordinate the durable outcome and effect through a transaction or an equivalent recovery protocol. For a downstream side effect, use the provider's idempotency or reconciliation mechanism if available. Exercise a lost response after the effect, concurrent duplicates, and conflicting key reuse. Inspect the resulting state and count effects. [AWS guidance on safe retries](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/)
 
 For integrations that accept a caller-controlled URL or follow redirects, enforce the intended destination and credential policy at the actual outbound request, including resolved addresses and redirect hops. Use the project's constrained client or egress boundary; disable redirects when it cannot enforce that policy. Bound response bytes, decompression and total request time where relevant. Verify a permitted destination and a rejected destination with controlled endpoints, checking that no credentials or effects reach the rejected target. See [OWASP SSRF prevention](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html).
+
+When changing [limits, caching, or the lifecycle of a public endpoint](references/lifecycle.md), check the behavior with supported callers and intermediaries.
 
 Return changed contracts and code, affected consumers and migration implications, and executed verification with gaps. A plan or review request retains its requested scope.

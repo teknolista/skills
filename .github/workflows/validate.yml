@@ -30,6 +30,7 @@ jobs:
         run: |
           python3 -m pip install --only-binary=:all: -r scripts/requirements-validation.txt
           python3 scripts/validate_collection.py
+          python3 scripts/run_skill_evals.py --check-cases
       - name: Run offline helper tests
         run: |
           python3 -m unittest discover -s scripts/tests -v

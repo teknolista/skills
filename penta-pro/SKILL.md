@@ -3,7 +3,7 @@ name: penta-pro
 description: "Explores software requirements through focused interviews and creates, updates, or reviews PentaPRO specifications. Use for new software, substantial feature specifications, resuming a PentaPRO document, or reviewing written requirements, design and implementation readiness."
 license: MIT
 metadata:
-  version: "2.8.0"
+  version: "2.8.1"
 ---
 
 # PentaPRO
@@ -21,7 +21,7 @@ Turn user intent into an English specification organized as **PRODUCT → PROOF 
 
 Before changing a specification, identify the requested mode, target snapshot, canonical files/IDs and allowed writes. If context is limited, take one increment at a time and preserve the next action and material gaps in the existing PROCESS record or in the response for read-only work.
 
-On resumption or update, preserve the authoritative specification, including a legacy single file. When creating a specification, honor the requested destination and format. By default, locate the target project's root and create `docs/` there if needed. Save `docs/product.md`, `docs/proof.md`, `docs/project.md`, `docs/production.md`, and `docs/process.md` using the matching templates in `assets/`. If the user specifies a different directory, save the five files together there and verify links from that location. The template index stays in the skill package.
+Before choosing output paths, establish what already governs this scope. Use the project's authoritative layout for updates, including a legacy single file. If the project uses an external requirements or change registry, apply the [ownership rules](references/document-maintenance.md#existing-change-and-specification-workflows) before filling templates. When creating a new five-pillar specification, honor the requested format and destination. The default is `docs/` at the project root with `product.md`, `proof.md`, `project.md`, `production.md`, and `process.md`. Verify links from the actual output location. Keep the template index in the skill package.
 
 Clarify which project to use when the target is ambiguous. Inspect existing destinations before writing and clarify collisions with unrelated documents. Follow [document maintenance](references/document-maintenance.md) for the five-file layout and requested migrations. Resolve skill asset paths relative to this skill and keep project answers in the target project.
 
@@ -56,7 +56,7 @@ Establish whether the work creates software, changes an existing system, replace
    - Refine PROOF's integration checks, environments, and procedures after design and operational decisions. If a check reveals an infeasible requirement or design, revisit the affected records and preserve the unresolved decision; do not weaken acceptance silently.
    - PROCESS tracks authority, ownership, status, and resumption from the start. Finalize its execution plan after the other pillars expose the necessary work. For updates, follow affected records and dependencies without restarting settled work solely to traverse the order.
 
-4. Run one integrated interview. When creation is requested, save the initial draft across all five files in the default layout before pausing for answers or handing off the specification. Use supported details and mark consequential unknowns `Pending`. Consolidate later rounds in the affected files. Save shared status, coverage, revision history, and the next interview focus and action in `process.md`, linking open questions in `project.md`. For an established or explicitly requested single file, use the equivalent sections in that file.
+4. Run one integrated interview. When creation is requested, save the initial draft in the chosen authoritative location and format before pausing for answers or handing it off. For the default split, save all five files. Use supported details and mark consequential unknowns `Pending`. Consolidate later rounds in the affected files. Save shared status, coverage, revision history, and the next interview focus and action in `process.md`, linking open questions in `project.md`. In a single-file specification, use the corresponding sections.
 5. Before handing off the first consolidated draft or a material revision, or using it to start authorized implementation, use [specification review](references/specification-review.md) on the saved artifacts. Reconstruct the intended behavior from the files before comparing with the interview. Review all five pillars on creation and the affected chain on update. A first partial save can precede this review; label the remaining coverage. Keep findings and the next action in PROCESS within the authorized writing scope. For small edits, check the changed record and its direct dependencies. Stop questioning when further answers would not materially affect the required readiness scope. Record remaining uncertainty explicitly.
 
 For a consequential behavior, trace one requirement through its observable criterion, feasible check, design constraint, operating implication, and owner before moving to another. Link the existing records. If a link is missing, record the exact gap and affected decision.

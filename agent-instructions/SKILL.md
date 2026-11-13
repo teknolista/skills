@@ -3,7 +3,7 @@ name: agent-instructions
 description: Create or improve software-development SKILL.md packages and project agent instructions. Use when maintaining reusable agent workflows, activation descriptions, supporting resources, or AGENTS.md guidance. Ordinary product documentation and application implementation have separate owners.
 license: MIT
 metadata:
-  version: "1.1.0"
+  version: "1.1.1"
 ---
 
 # Maintain useful agent instructions

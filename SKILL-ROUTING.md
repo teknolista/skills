@@ -13,11 +13,12 @@ Select the owner by outcome. Select the specification depth, agent authority and
 | Correct copy on one screen without changing meaning or behavior | Apply the local edit and check the affected rendering or content. Use UI Design if the change calls for an interaction or design decision. |
 | Try two interaction patterns with synthetic data | UI Design for a visual concept. Technical Research for a bounded feasibility experiment. Capture what the experiment establishes before deciding whether to maintain its output. |
 | Add image sharing across an app, API and storage | Use PentaPRO when drafting the requirements. Use Software Delivery to coordinate authorized implementation after the contract establishes permissions, failure behavior and checks. Use specialist guidance at the actual boundaries. |
+| Implement an accepted OpenSpec or project-native SDD change | Confirm which project record governs the behavior. Use the domain owner for a localized implementation or Software Delivery for dependent increments. Trace verification to the accepted scenarios and existing evidence record. |
 | Remove one authorization condition | Trace allowed and denied behavior and establish the intended policy before changing it. Use Cybersecurity when threat assessment or hardening is the requested outcome. A short diff can need strong evidence. |
 
 Use an existing issue, specification, schema or contract to record decisions at its owning location. In a combined request, draft and review the scope the user or policy requires before coding. If implementation reveals a material conflict, pause only dependent work and resolve it with the appropriate owner. Keep the actual code, canonical artifacts, tests and evidence aligned through the handoff.
 
-For a first project pilot, follow the [pilot setup](README.md#start-a-pilot). Software Delivery has worked examples for [OpenSpec](software-delivery/references/change-contracts.md#worked-example-with-openspec) and [prototype adoption](software-delivery/references/change-contracts.md#worked-example-of-adopting-a-prototype).
+For a first project pilot, follow the [pilot setup](README.md#start-a-pilot). Software Delivery has worked examples for [OpenSpec](software-delivery/references/change-contracts.md#worked-example-with-openspec), [project-native SDD](software-delivery/references/change-contracts.md#worked-example-with-project-native-sdd), and [prototype adoption](software-delivery/references/change-contracts.md#worked-example-of-adopting-a-prototype).
 
 ## Generic owners
 
@@ -83,7 +84,7 @@ The Android integration stage brought the collection to **13 discoverable skills
 - “Restore service after a failed rollout” → Production Operations for mitigation and recovery. Diagnose Defect owns causal investigation and Cybersecurity handles security assessment where applicable.
 - “Create a PR” alone → no quiz. “Add a comprehension quiz to this PR” → PR Quiz. Drafting, publishing, workflow installation and branch-rule changes retain their distinct authorization scopes.
 
-Cross-package links are optional navigation within this collection. A separately installed helper uses its own core instructions and project-owned contracts; it must not claim to have loaded an absent companion. Install related packages when desired, and preserve each package's internal references. Generic owners do not require the Android helper packages for non-Android work.
+The links in this collection-level map help developers find packages. Each installed skill keeps its relative resource links inside its own directory and refers to optional companions by name. An individual installation uses its packaged instructions and the project's commands and contracts. Install a companion when its distinct workflow is useful.
 
 ## Carry context between tasks
 

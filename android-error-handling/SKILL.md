@@ -3,7 +3,7 @@ name: android-error-handling
 description: Implement or debug typed results and expected domain, HTTP and storage error mapping in native Android Kotlin code. Use for concrete error-handling changes; use peer-review for read-only assessment and ui-design for user-facing error interaction design.
 license: MIT
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
 ---
 
 # Android Error Handling
@@ -14,11 +14,11 @@ metadata:
 2. Before executing a build or test, inspect the chosen task and hooks for network calls, credentials, publishing, or shared writes. Use isolated fixtures by default for checks with external effects. Confirm the authorized target before any shared-system check.
 3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
-Use native Android/JVM APIs and the project's selected library versions. Domain error types remain plain Kotlin. Expected failures have typed outcomes; programming defects should remain visible. Preserve coroutine cancellation. See [data ownership](../android-data-layer/SKILL.md) and [UI error rendering](../ui-design/references/android/presentation-mvi.md).
+Use native Android/JVM APIs and the project's selected library versions. Keep expected failures typed, programming defects visible, and coroutine cancellation intact. Optional companions are `android-data-layer` for data ownership and `ui-design` for Android error rendering.
 
 ## Typed outcomes in the domain module
 
-Use one consistent result abstraction; do not accidentally mix it with `kotlin.Result`. `AppError` avoids the name collision between the error bound and the nested `Result.Error` class.
+Use the project's existing result abstraction. This example uses a typed failure parameter for plain Kotlin domain errors. `AppError` avoids the name collision with the nested `Result.Error` class.
 
 ```kotlin
 interface AppError
@@ -134,7 +134,7 @@ suspend inline fun <reified T : Any> responseToResult(
 }
 ```
 
-This is an Android Ktor/OkHttp example, not a promise that all engines and versions expose identical exception classes. Confirm the installed API when adapting imports. Handle additional **known** transport exceptions at this boundary; avoid a catch-all that turns programmer errors into successful control flow. DNS failure does not prove that the entire device is offline; use an appropriately worded message. Do not expose raw exceptions, backend bodies, stack traces, or credentials to users.
+This Android Ktor/OkHttp example maps the selected engine's known transport exceptions. Confirm the resolved API and exception types before adapting it. Keep unexpected failures visible. Describe a DNS failure as a problem reaching the service. Return safe, localized errors to users and keep raw exceptions, bodies and credentials out of the presentation layer.
 
 Use standard Ktor request functions rather than overloads named `get`/`post` that can resolve ambiguously. Configure a trusted HTTPS base URL once with Ktor's URL builder; define whether routes are relative to its path prefix. Avoid string concatenation and `contains(BASE_URL)` checks. Test leading/trailing slashes, path parameters, queries, and any permitted absolute URLs. Apply the approved origin and credential policy to the final request and each redirect hop. In a controlled fixture, inspect destination and headers after a cross-origin redirect. Reject an invalid TLS certificate without weakening trust checks.
 
@@ -155,16 +155,16 @@ Catch storage-specific exceptions in the data layer, rethrow cancellation, and m
 
 Map each user-visible domain error to localized text in its presentation owner. Reuse existing conventions such as `R.string.*`, `UiText` or a shared presentation module when present. Internal retry signals need no user-facing string. Keep logs useful and redacted; do not use unconditional `printStackTrace()` as production logging.
 
-## Verify
-
-Exercise status mapping, DNS/connection/timeout failures, malformed success JSON, bodyless success, cancellation, rejected refresh, and unknown statuses. Assert the observable result; ensure cancellation is thrown rather than wrapped. See [integration testing](../android-integration-testing/SKILL.md).
-
-Sources: [Ktor response validation](https://ktor.io/docs/client-response-validation.html), [Android coroutine practices](https://developer.android.com/kotlin/coroutines/coroutines-best-practices).
-
-A bodyless success needs its own supported response contract. An HTTP 202 response acknowledges acceptance for processing. Verify the final operation state through the documented completion path before showing a completed result.
-
 ## Failure classification and retry contract
 
-TLS trust/hostname failures are security/configuration failures, not evidence that the device is offline. Do not bypass trust checks or retry them indefinitely. Keep retry policy with the operation. If it honors Retry-After on 429 or 503, preserve the needed response metadata before mapping to an enum, bound the delay, and handle absent or invalid values. Check for retries in every layer so a worker, repository, and HTTP client do not multiply each other’s attempts. A POST timeout can have an unknown server outcome: use a supported status/idempotency contract before resubmitting. Do not parse arbitrary server text into actionable HTML or display it as a trusted localized error.
+TLS trust and hostname failures require valid trust configuration. Treat them as terminal for the current attempt. Keep retry policy with the operation and check the worker, repository and client together so their attempts stay bounded. After a POST timeout, resolve the potentially committed operation through the supported status or idempotency contract before resubmitting.
 
-The sample helper models small buffered responses; streaming responses need lifetime/cleanup and cancellation handling appropriate to their body channel. Do not return a Response stream after closing its client/request scope. Preserve original cancellation rather than converting it into UNKNOWN.
+The enum helper is suitable when status alone determines the result. For an operation that honors `Retry-After` on 429 or 503, read `response.headers[HttpHeaders.RetryAfter]` while mapping the response. Carry the status category and the parsed retry hint in the data-layer outcome used by the retry owner. Keep transport details out of UI messages. Handle delay-seconds and HTTP-date with the project's parser and injected clock. If the requested wait exceeds the remaining retry budget, defer or stop the operation rather than retrying earlier. Use the documented fallback when the header is absent or invalid. [Retry-After semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-10.2.3)
+
+For an application-owned deadline that the contract exposes as a typed failure, use `withTimeoutOrNull` around the entire operation at the deadline owner and map its null timeout to the appropriate error when the operation otherwise returns a non-null outcome. Let parent cancellation and timeouts owned by another scope propagate. The HTTP client's own timeout exceptions still belong to the transport mapping. For streaming responses, consume or transfer the body within its supported request/client lifetime and close it on exit. A bodyless success needs a supported response contract. HTTP 202 acknowledges acceptance for processing. Verify the final operation state through the documented completion path before showing a completed result.
+
+## Verify
+
+Exercise status mapping, DNS/connection/timeout failures, malformed success JSON, bodyless success, cancellation, rejected refresh, and unknown statuses. If the retry contract uses server hints, cover both header forms, invalid values and a wait beyond the budget. Exercise a locally owned deadline and external cancellation separately when both can reach the operation. The optional `android-integration-testing` skill covers transport fixtures.
+
+Sources: [Ktor response validation](https://ktor.io/docs/client-response-validation.html), [Ktor timeouts](https://ktor.io/docs/client-timeout.html), [Android coroutine practices](https://developer.android.com/kotlin/coroutines/coroutines-best-practices).

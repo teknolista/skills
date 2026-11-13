@@ -1,6 +1,6 @@
 # Controllable Notes fake
 
-Use with the NoteRepository, Note and typed Result contracts in [data layer](../../android-data-layer/SKILL.md). Place it in test sources, import those project-owned domain types, and reuse them rather than creating a second Result or Note. This supplies the initialNotes/refreshResult constructor contract used by the unit-testing example; adapt the production ViewModel and UI model mapper to the actual feature.
+Use with the project's NoteRepository, Note and typed Result contracts. The optional `android-data-layer` skill shows the repository shape used here. Place the fake in test sources and import the actual project-owned domain types. This supplies the initialNotes/refreshResult constructor contract used by the unit-testing example. Adapt the production ViewModel and UI model mapper to the actual feature.
 
 ```kotlin
 import kotlinx.coroutines.CompletableDeferred

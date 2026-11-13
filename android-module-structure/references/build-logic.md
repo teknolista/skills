@@ -144,7 +144,7 @@ Set `applicationId`, namespace, version, signing, and app-specific dependencies 
 
 ## Room convention and feature use
 
-This example targets Room 2.x. For a project already using Room 3, inspect the resolved `androidx.room3` artifacts, plugin and driver-specific migration APIs before adapting it. [Room 2 to 3 migration guide](https://developer.android.com/training/data-storage/room/migration-2-to-3)
+Choose the convention that matches the project's Room major version. The Room 2 example uses the Room 2 plugin implementation from the catalog above.
 
 `app.android.room.gradle.kts`:
 
@@ -166,6 +166,8 @@ dependencies {
 
 Expose Room through `api` only if your module's public signatures require consumers to see its types. Set the database module namespace and include migration tests. Do not add this convention to modules that do not own Room processing.
 
+For Room 3, use the `androidx.room3` plugin and `room3` schema extension with `androidx.room3:room3-runtime` and `androidx.room3:room3-compiler` through KSP. When a precompiled convention applies the plugin, resolve its implementation for the chosen version on the included build's classpath, or apply the versioned plugin directly in the database module. Configure the chosen SQLite driver in the database builder and run migration tests against the exported schemas with the matching Room 3 helper. Check manual migrations, imports, transaction APIs and schema export paths when upgrading. [Room 3 schema export](https://developer.android.com/jetpack/androidx/releases/room3) · [Room 2 to 3 migration guide](https://developer.android.com/training/data-storage/room/migration-2-to-3)
+
 A Compose feature's `build.gradle.kts` can then stay small:
 
 ```kotlin
@@ -181,7 +183,7 @@ dependencies {
 }
 ```
 
-Apply the serialization compiler plugin in modules declaring serializable routes/DTOs, using a convention whose external plugin implementation is already on the included build classpath. Domain modules use `org.jetbrains.kotlin.jvm`; a small Kotlin/JVM convention can configure their toolchain and test engine. JUnit5 tests require Jupiter dependencies and `tasks.withType<Test>().configureEach { useJUnitPlatform() }`; Android instrumented tests use AndroidJUnitRunner with a compatible runner integration.
+Use the Koin dependency in this example only for a Koin feature. Apply the serialization compiler plugin in modules declaring serializable routes/DTOs, using a convention whose external plugin implementation is already on the included build classpath. Domain modules use `org.jetbrains.kotlin.jvm`; a small Kotlin/JVM convention can configure their toolchain and test engine. JUnit5 tests require Jupiter dependencies and `tasks.withType<Test>().configureEach { useJUnitPlatform() }`; Android instrumented tests use AndroidJUnitRunner with a compatible runner integration.
 
 ## Verification
 

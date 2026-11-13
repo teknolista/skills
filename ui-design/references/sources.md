@@ -1,6 +1,6 @@
 # Source research and adaptation
 
-Research date: 2026-11-05. This is an original English synthesis of methods, not an upstream installer or concatenation of skills. No upstream scripts, images, datasets, brand kits or substantial instruction passages are bundled. Source terms remain with their owners; see [third-party notices](../../THIRD-PARTY-NOTICES.md).
+Research date: 2026-11-05. This is an original English synthesis of methods, not an upstream installer or concatenation of skills. No upstream scripts, images, datasets, brand kits or substantial instruction passages are bundled. Source terms remain with their owners; see [third-party notices](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md).
 
 ## Scope and limits
 
@@ -64,7 +64,7 @@ The package adds a single cumulative screen contract, stable IDs and explicit de
 
 ## User-supplied Android/KMP bundle — 2026-11-05
 
-Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. At this research stage, the additions were independently written. The subsequent native Android integration imported four UI procedure references from the local bundle. See the [source map and redistribution status](../../THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills). Historical trials retain their recorded versions.
+Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and relevant supporting material. At this research stage, the additions were independently written. The subsequent native Android integration imported four UI procedure references from the local bundle. See the [source map and redistribution status](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills). Historical trials retain their recorded versions.
 
 ## Local design consolidation — version 1.4.0
 
@@ -72,7 +72,7 @@ Reviewed the 20 entrypoints in the user-supplied PL Coding Skills Bundle and rel
 
 The source checker was exercised in bounded in-memory experiments: a missing declared foreground, unknown usage and translucent background could evade meaningful contrast evaluation. Its runtime also depended on remote fonts/icons and did not fully implement modal focus behavior. No source implementation, styles, template or token data was copied. Optional local tools/examples/tests are original repository code, with their own explicit supported contract and verification record. Source investigation is not a claim of source-tool safety or complete functionality.
 
-The existing cumulative document, platform guidance, evidence levels and user authorization remain intact. No fixed option counts, global theme/state permutations, automatic publication, mandatory new documentation tree or unsupported accessibility guarantees were adopted. This authorized follow-up changes/removes the local source copy after destination checks; the earlier historical source-state observation does not describe its current presence. See [notices](../../THIRD-PARTY-NOTICES.md#local-design-skill-consolidation--2026-11-06).
+The existing cumulative document, platform guidance, evidence levels and user authorization remain intact. No fixed option counts, global theme/state permutations, automatic publication, mandatory new documentation tree or unsupported accessibility guarantees were adopted. This authorized follow-up changes/removes the local source copy after destination checks; the earlier historical source-state observation does not describe its current presence. See [notices](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#local-design-skill-consolidation--2026-11-06).
 
 
 ## pstack synthesis — version 1.3.0
@@ -81,12 +81,12 @@ The existing cumulative document, platform guidance, evidence levels and user au
 
 Adapted identified-instance readiness, serial or isolated UI driving, action plus durable-outcome evidence, owned cleanup that retains evidence, and honest state/transition abstraction. Existing flow coverage, identity inheritance, native/web distinctions and authority rules were retained. No mandatory live pass for documentation-only work, new feature-map tree, Cursor/Grok/Tailscale setup, fixed prototype count or automatic user-session control was imported.
 
-This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](../../THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
+This is independently written conceptual guidance. No upstream scripts, templates, model files or substantial instruction text were copied or executed. See [third-party notices](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#cursor-pstack-research) for the common research scope, license and exclusions. Historical trials retain their original scope; no new cross-model or production-effectiveness result is claimed.
 
 
 ## Android implementation consolidation — 1.5.0
 
-2026-11-06: Four local Android UI entrypoints (Compose architecture, components, MVI presentation and navigation) were incorporated as conditional references under references/android. The source bundle is attributed to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see the [third-party notice](../../THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for provenance and redistribution limits. UI Design remains generic and owns the single UI contract; the four former names are not discoverable skills. Project architecture and actual versions govern their examples. Earlier design-prototype work remains intact. The [integration map](../../SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
+2026-11-06: Four local Android UI entrypoints (Compose architecture, components, MVI presentation and navigation) were incorporated as conditional references under references/android. The source bundle is attributed to Philipp Lackner and [PL Coding's Claude Code Skills page](https://www.pl-coding.com/claude-skills); see the [third-party notice](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for provenance and redistribution limits. UI Design remains generic and owns the single UI contract; the four former names are not discoverable skills. Project architecture and actual versions govern their examples. Earlier design-prototype work remains intact. The [integration map](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/SKILL-ROUTING.md) records source disposition and activation boundaries. No publishing, host installation or new runtime correctness claim follows from the import.
 
 ## Local-input and stack maintenance — 1.5.2
 
@@ -94,4 +94,4 @@ This is independently written conceptual guidance. No upstream scripts, template
 
 ## Elephant & Goldfish Model — 1.5.3
 
-2026-11-07: adapted the [Comprehension reviewer's](https://github.com/google/elephant-goldfish-model/blob/e9e1f06aa4e26e95cd4ed37210a0632202c429e9/agents/comprehension.md) reconstruction technique to reconstruct a screen journey from its entry to its result and recovery. It separates a cue a user can discover from an explanation only a spec reader sees. The finding's scope follows the actual material inspected. See [research scope and attribution](../../THIRD-PARTY-NOTICES.md#elephant--goldfish-model-research).
+2026-11-07: adapted the [Comprehension reviewer's](https://github.com/google/elephant-goldfish-model/blob/e9e1f06aa4e26e95cd4ed37210a0632202c429e9/agents/comprehension.md) reconstruction technique to reconstruct a screen journey from its entry to its result and recovery. It separates a cue a user can discover from an explanation only a spec reader sees. The finding's scope follows the actual material inspected. See [research scope and attribution](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/THIRD-PARTY-NOTICES.md#elephant--goldfish-model-research).

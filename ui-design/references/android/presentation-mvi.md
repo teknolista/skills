@@ -52,7 +52,7 @@ fun NoteListScreen(
 }
 ```
 
-Imports: `androidx.lifecycle.compose.collectAsStateWithLifecycle`, Compose runtime `getValue`, and the `koinViewModel` import provided by the installed Android Koin integration. Add AndroidX Lifecycle runtime-compose, viewmodel-compose/viewmodel-ktx as required by the installed versions, and the native Koin artifact described in [DI](../../../android-di-koin/SKILL.md).
+Use `androidx.lifecycle.compose.collectAsStateWithLifecycle`, Compose runtime `getValue`, and the `koinViewModel` import provided by the installed Koin version. Resolve Lifecycle and Koin artifacts against the project's catalog. The optional `android-di-koin` skill covers the native setup.
 
 ## Transient effects and delivery
 
@@ -136,7 +136,7 @@ Test saved-state initialization with a real `SavedStateHandle`, and test save/re
 
 Wrap previews in the app theme. Supply realistic content, empty/loading/error variants where relevant, large fonts, and relevant widths. Preview the stateless Screen without starting DI or a network client.
 
-Verify action handling, duplicate submission, late responses, error clearing on retry, cancellation, locale changes, and restoration. Use [unit tests](../../../android-unit-testing/SKILL.md) for state logic and [UI tests](../../../android-ui-testing/SKILL.md) for rendered behavior.
+Verify action handling, duplicate submission, late responses, error clearing on retry, cancellation, locale changes, and restoration. Use the project's unit runner for state logic and its native harness for rendered behavior. Optional helpers are `android-unit-testing` and `android-ui-testing`.
 
 Sources: [UI events](https://developer.android.com/topic/architecture/ui-layer/events), [saved state](https://developer.android.com/topic/libraries/architecture/viewmodel/viewmodel-savedstate).
 

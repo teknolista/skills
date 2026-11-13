@@ -3,7 +3,7 @@ name: software-delivery
 description: Coordinate software implementation across dependent tasks or increments. Use for an existing delivery plan, a cross-component change, or resuming multi-step implementation.
 license: MIT
 metadata:
-  version: "1.4.0"
+  version: "1.5.0"
 ---
 
 # Deliver a software change

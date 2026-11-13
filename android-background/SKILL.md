@@ -3,7 +3,7 @@ name: android-background
 description: Implement or debug native Android WorkManager jobs, constraints, retries, idempotency and worker initialization. Use for concrete durable-work changes; use penta-pro for product/operating requirements and cybersec for security assessment.
 license: MIT
 metadata:
-  version: "1.2.3"
+  version: "1.2.4"
 ---
 
 # Android Background Work
@@ -15,6 +15,8 @@ metadata:
 3. Run the smallest relevant check that exercises the changed boundary. Record the snapshot, variant, command, result, and any untested device or service behavior. A successful implementation check is separate from review and release acceptance.
 
 Choose Android APIs from the execution contract. Use ViewModel/application coroutine scopes for appropriate in-process work; use WorkManager for deferrable persistent work with constraints and eventual execution. It is not an exact scheduler. Exact alarms and foreground services require their own user-visible need, permissions, platform restrictions, and current Android documentation; do not substitute them by default.
+
+For short, time-sensitive one-time work, use expedited scheduling only when justified by the user-visible operation. Decide whether quota exhaustion should defer the work as ordinary work or drop it, and handle that outcome. If supporting Android versions below API 31, provide the worker's foreground information and notification for expedited execution. For long-running work, check foreground service types, permissions, start restrictions and job quotas for the supported OS and targetSdk before selecting a mechanism. [Work request options](https://developer.android.com/develop/background-work/background-tasks/persistent/getting-started/define-work) · [Long-running workers](https://developer.android.com/develop/background-work/background-tasks/persistent/how-to/long-running)
 
 ## Durable job design
 
@@ -31,7 +33,7 @@ Periodic work schedules future runs even when one run returns `Result.failure()`
 
 ## Koin integration and initialization
 
-Use compatible `androidx.work:work-runtime-ktx`/runtime and `io.insert-koin:koin-androidx-workmanager` artifacts from the catalog. Register a worker definition with its runtime Context/WorkerParameters and injectable collaborators, using the installed worker DSL:
+Resolve `CoroutineWorker` from `androidx.work:work-runtime` on WorkManager 2.9 and later. On older versions, check the matching `work-runtime-ktx` artifact. Preserve the project's worker factory and use compatible `io.insert-koin:koin-androidx-workmanager` only for Koin wiring. Register the worker with its runtime Context/WorkerParameters and injectable collaborators using the installed DSL:
 
 ```kotlin
 val syncModule = module {
@@ -63,7 +65,7 @@ Disable **only WorkManager's** automatic startup metadata when the Koin factory 
 </manifest>
 ```
 
-Use one initialization strategy: the Koin integration or a deliberately configured `Configuration.Provider`/custom WorkerFactory strategy supported by the installed versions. Do not initialize WorkManager a second time or allow an early provider to initialize it with the default factory first. Inspect the merged manifest, Application registration, startup ordering, and any extra processes.
+Use one initialization strategy: the Koin integration or a deliberately configured `Configuration.Provider`/custom WorkerFactory strategy supported by the installed versions. Prevent an early provider from selecting the default factory before your configuration. Inspect the merged manifest, Application registration, startup ordering, and any extra processes. The optional `android-module-structure` skill covers native module and manifest ownership.
 
 ## Verification
 
@@ -71,10 +73,10 @@ Test with `work-testing` facilities and the real worker factory: retryable versu
 
 Run a device startup/worker smoke test and appropriate integration tests. Check relevant current Android execution restrictions when introducing long-running work or foreground notifications; document the supported API/targetSdk behavior.
 
-Sources: [Android persistent work](https://developer.android.com/develop/background-work/background-tasks/persistent), [WorkManager configuration](https://developer.android.com/develop/background-work/background-tasks/persistent/configuration/custom-configuration), [Koin worker setup](https://insert-koin.io/docs/reference/koin-android/workmanager/).
-
 ## Account and execution boundaries
 
 Bind work to an account/session identity and recheck it before reading credentials. Enforce the expected account or session generation at the atomic write boundary, or use storage partitioned by the captured account when the contract permits that account's work to finish. For server mutations, enforce resource ownership at the service. Exercise a session switch between the last pre-write check and the commit. Cancel matching unique work/tags on logout, and reject stale work even if cancellation arrived too late. Avoid storing bearer tokens in job inputs. A network-connected constraint does not prove the backend is reachable or that credentials remain valid.
 
-Periodic work is inexact, and long-running/foreground work has targetSdk-dependent restrictions and notification requirements. Check the actual WorkManager/Android versions; do not use expedited work or a foreground service as an unlimited retry/quota bypass. Exercise rescheduling after process loss and a permanent auth error separately from a temporary network failure.
+Exercise rescheduling after process loss and a permanent auth error separately from a temporary network failure. For expedited work, cover the selected quota fallback and foreground notification path where supported.
+
+Sources: [WorkManager releases](https://developer.android.com/jetpack/androidx/releases/work), [WorkManager configuration](https://developer.android.com/develop/background-work/background-tasks/persistent/configuration/custom-configuration), [Koin worker setup](https://insert-koin.io/docs/reference/koin-android/workmanager/).

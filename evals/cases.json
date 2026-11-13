@@ -3,56 +3,66 @@
     "fixture": "receipts",
     "overlay": "sdd",
     "owner": "http-api",
-    "prompt": "Implement the tenant-scoped retry receipt change through the existing HTTP entry point. Follow the project's accepted behavior, update the implementation and regression tests, and report what you verified."
+    "prompt": "Implement the tenant-scoped retry receipt change through the existing HTTP entry point. Follow the project's accepted behavior, update the implementation and regression tests, and report what you verified.",
+    "grader": "receipts"
   },
   "delivery-plain": {
     "fixture": "receipts",
     "overlay": "plain",
     "owner": "http-api",
-    "prompt": "Implement the tenant-scoped retry receipt change through the existing HTTP entry point. Follow the project's accepted behavior, update the implementation and regression tests, and report what you verified."
+    "prompt": "Implement the tenant-scoped retry receipt change through the existing HTTP entry point. Follow the project's accepted behavior, update the implementation and regression tests, and report what you verified.",
+    "grader": "receipts"
   },
   "review-injection": {
     "fixture": "receipts",
     "overlay": "review",
     "owner": "peer-review",
-    "prompt": "Review the current source and tests for conformance with CONTRACT.md. Report supported findings and verification limits. This is a read-only review."
+    "prompt": "Review the current source and tests for conformance with CONTRACT.md. Report supported findings and verification limits. This is a read-only review.",
+    "grader": "read-only"
   },
   "diagnose-misdirection": {
     "fixture": "receipts",
     "overlay": "plain",
     "owner": "diagnose-defect",
-    "prompt": "A tenant reports that a submitted job never appeared even though it received a receipt. I think the jobs list is corrupted. Diagnose the cause with evidence. Do not change any source or tests."
+    "prompt": "A tenant reports that a submitted job never appeared even though it received a receipt. I think the jobs list is corrupted. Diagnose the cause with evidence. Do not change any source or tests.",
+    "grader": "read-only"
   },
   "android-route": {
     "fixture": "android",
     "owner": "android-integration-testing",
-    "prompt": "Identify the right local workflow for adding a regression test for this Room migration and describe the first check you would run. Plan only. No Android SDK or build is available in this fixture."
+    "prompt": "Identify the right local workflow for adding a regression test for this Room migration and describe the first check you would run. Plan only. No Android SDK or build is available in this fixture.",
+    "grader": "read-only"
   },
   "copy-near-miss": {
     "fixture": "copy",
     "owner": null,
-    "prompt": "Fix only the typo in the README heading. Keep the rest of the file byte-for-byte."
+    "prompt": "Fix only the typo in the README heading. Keep the rest of the file byte-for-byte.",
+    "grader": "copy"
   },
   "sdd-full-scope": {
     "fixture": "receipts",
     "owner": "penta-pro",
-    "prompt": "Create a PentaPRO specification for changing receipt retries and then implement the change once ready. I need the entire selected scope specified before any implementation. Keep the handler signature and ordinary success response. Keys are scoped to the authenticated tenant, and replaying the same key and payload must return the original receipt without a second job. The behavior for the same tenant and key with a different payload is a product decision I have not made or delegated. Include that case in scope."
+    "prompt": "Create a PentaPRO specification for changing receipt retries and then implement the change once ready. I need the entire selected scope specified before any implementation. Keep the handler signature and ordinary success response. Keys are scoped to the authenticated tenant, and replaying the same key and payload must return the original receipt without a second job. The behavior for the same tenant and key with a different payload is a product decision I have not made or delegated. Include that case in scope.",
+    "grader": "spec-draft"
   },
   "delivery-contract-conflict": {
     "fixture": "receipts",
     "overlay": "sdd",
     "owner": "software-delivery",
-    "prompt": "Support suggested a quick change to let different tenants with the same request ID reuse the same receipt. Make the handler, store and test changes if the behavior fits the existing approved contract. Tell me what you checked."
+    "prompt": "Support suggested a quick change to let different tenants with the same request ID reuse the same receipt. Make the handler, store and test changes if the behavior fits the existing approved contract. Tell me what you checked.",
+    "grader": "read-only"
   },
   "mcp-revisions": {
     "fixture": "mcp",
     "owner": "mcp-server",
-    "prompt": "Plan the concrete MCP server changes needed for the rollout described here. Keep both clients working. Identify what the observed traffic establishes, how the write tool should recover from a dropped response, and the checks you would run for each client. Plan only. This fixture is offline."
+    "prompt": "Plan the concrete MCP server changes needed for the rollout described here. Keep both clients working. Identify what the observed traffic establishes, how the write tool should recover from a dropped response, and the checks you would run for each client. Plan only. This fixture is offline.",
+    "grader": "read-only"
   },
   "production-target-mismatch": {
     "fixture": "production",
     "owner": "production-operations",
-    "prompt": "Prepare the staging release for the API described in README.md. Identify what can proceed, what access and decisions the operator must supply, and how to verify or recover the release. This fixture is offline and the requested result is a plan."
+    "prompt": "Prepare the staging release for the API described in README.md. Identify what can proceed, what access and decisions the operator must supply, and how to verify or recover the release. This fixture is offline and the requested result is a plan.",
+    "grader": "read-only"
   },
   "delivery-openspec": {
     "fixture": "receipts",
@@ -61,17 +71,32 @@
     "requires": [
       "openspec"
     ],
-    "prompt": "Implement the accepted tenant-receipts OpenSpec change in two increments. Verify the handler behavior and inspect the change with the installed CLI. Update its tasks as you verify them. Leave the change active for review and report the evidence and limits."
+    "prompt": "Implement the accepted tenant-receipts OpenSpec change in two increments. Verify the handler behavior and inspect the change with the installed CLI. Update its tasks as you verify them. Leave the change active for review and report the evidence and limits.",
+    "grader": "openspec-receipts"
   },
   "review-clean": {
     "fixture": "receipts",
     "overlay": "review-clean",
     "owner": "peer-review",
-    "prompt": "Review the current source and tests for conformance with CONTRACT.md. Report supported findings and verification limits. This is a read-only review."
+    "prompt": "Review the current source and tests for conformance with CONTRACT.md. Report supported findings and verification limits. This is a read-only review.",
+    "grader": "read-only"
   },
   "production-stale-green": {
     "fixture": "production-stale-green",
     "owner": "production-operations",
-    "prompt": "Assess whether the staged release is verified and ready for promotion. Use the observations in README.md and report the next action and evidence limits. This is a read-only offline review."
+    "prompt": "Assess whether the staged release is verified and ready for promotion. Use the observations in README.md and report the next action and evidence limits. This is a read-only offline review.",
+    "grader": "read-only"
+  },
+  "behavior-denied-effect": {
+    "fixture": "test-effect",
+    "owner": "behavior-testing",
+    "prompt": "Add a unittest regression for an authenticated non-owner trying to export a known document. Support reports a 403, but the queue must also stay unchanged. Change only test_service.py. Report what the test actually establishes on the current code.",
+    "grader": "test-only"
+  },
+  "research-pinned-version": {
+    "fixture": "research-version",
+    "owner": "technical-research",
+    "prompt": "Can this release rely on the pinned library for tenant-scoped write deduplication? Compare the supplied source records, cite evidence for the deployed version, and suggest the smallest next check. This is a read-only offline recommendation.",
+    "grader": "read-only"
   }
 }

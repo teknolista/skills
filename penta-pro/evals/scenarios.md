@@ -189,7 +189,7 @@ This one bounded trial covers drafting, output ownership, uncertainty and confli
 
 2026-11-06: Native module implementation is distinct from architecture/specification/readiness work. The five pillars retain their canonical ownership; adding a concrete approved Gradle module does not start a second product interview.
 
-Maintainer routing cases are recorded in [the integration map](../../SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.
+Maintainer routing cases are recorded in [the integration map](https://github.com/teknolista/skills/blob/25007537cc58122a8200d1bed63245586f49c82b/SKILL-ROUTING.md). Check the requested mode and artifact owner rather than activating all packages from an Android keyword. Entry-point/link validation is structural evidence, not an executed cross-model routing benchmark.
 
 ## Existing canonical change workflow — 2.5.4
 

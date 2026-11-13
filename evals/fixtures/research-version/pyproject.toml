@@ -1,0 +1,4 @@
+[project]
+name = "synthetic-relay-consumer"
+version = "1.0.0"
+dependencies = ["vector-relay==2.4.1"]

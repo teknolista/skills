@@ -2,17 +2,17 @@
 
 ### Requirement: Receipt retries
 
-For a valid authenticated request, the service SHALL scope a request ID to its authenticated tenant and return HTTP 202 with a receipt. A repeat with the same tenant, request ID and payload SHALL return the original receipt without a new job. Reusing the same tenant and request ID with a different payload SHALL return HTTP 409 with `{"error": "idempotency_conflict"}` without changing the receipt or creating a job. The handler signature and ordinary success response SHALL remain compatible. Missing identity SHALL return HTTP 401 and malformed input SHALL return HTTP 400, with no job created in either case.
+The handler SHALL preserve its signature and scope valid request IDs to the authenticated tenant. It SHALL return HTTP 202 and a receipt for new requests and exact replays, with at most one job per tenant and ID. Conflicting payloads SHALL return HTTP 409 with `{"error": "idempotency_conflict"}` and preserve state. Missing identity SHALL return HTTP 401 and malformed input HTTP 400, without creating jobs.
 
 #### Scenario: Independent tenants use the same ID
 
 - **WHEN** two authenticated tenants submit valid requests with the same ID
-- **THEN** each gets its own receipt and job
+- **THEN** each receives HTTP 202 and its own receipt, and each creates one job
 
 #### Scenario: Request ID is replayed
 
 - **WHEN** a tenant repeats the same ID and payload
-- **THEN** it receives its original receipt without creating another job
+- **THEN** it receives HTTP 202 and its original receipt without creating another job
 
 #### Scenario: Conflicting replay
 

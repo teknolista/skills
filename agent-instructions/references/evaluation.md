@@ -23,9 +23,13 @@ Verify that the execution boundary actually denies reads of evaluator material; 
 
 Include a clear case, a realistic failure or ambiguity, and a near miss where the skill should stay inactive. Choose the target stacks actually used. Include an existing Android workflow for changes that affect Android routing or a shared owner. Exercise a denied operation or misleading result where the workflow touches an authority boundary. A missing runner or unsupported tool is an observed outcome with a recorded cause.
 
+For discovery trials, keep prompts identical across arms and record required owners, permissible companions, and cases that call for no collection skill. Treat command traces as indirect evidence unless the host exposes activation events. Use a separate explicit-invocation comparison to test the procedure with the owner supplied. Keep some tasks outside the editing loop to check generalization.
+
 ## Score artifacts and effects
 
 Evaluate executable checks first where practical. Inspect the exact resulting files and compare externally visible behavior with the same acceptance criteria in every run. For review and design tasks, use a fixed rubric with verified positives and negatives. Hide the run arm from the reviewer where practical. Use the following fields in an existing maintenance record.
+
+Execute generated code in a separate, constrained process with disposable inputs and no unnecessary credentials or network. Keep expected results and scoring authority outside that process. Test the checker against valid and broken implementations, including shortcuts that satisfy visible examples while violating the contract.
 
 | Field | Record |
 | --- | --- |

@@ -58,6 +58,24 @@ class CollectionValidationTests(unittest.TestCase):
         self.write("guide.md", "[Invalid](private.md)\n")
         self.check("missing or outside collection")
 
+    def test_package_link_cannot_escape_installed_directory(self):
+        self.write("penta-pro/references/guide.md", "[Unavailable after standalone installation](../../README.md)\n")
+        self.check("link is not portable in a standalone package")
+
+    def test_package_cannot_link_to_an_absolute_checkout_path(self):
+        asset = self.root / "penta-pro/assets/process.md"
+        self.write("penta-pro/references/guide.md", f"[Unavailable after relocation]({asset})\n")
+        self.check("link is not portable in a standalone package")
+
+    def test_package_can_link_to_its_own_parent_resource(self):
+        self.write("penta-pro/references/guide.md", "[Packaged template](../assets/process.md)\n")
+        self.check()
+
+    def test_metadata_cannot_contain_non_string_values(self):
+        entry = self.root / "penta-pro/SKILL.md"
+        entry.write_text(entry.read_text().replace("  version: '1.0.0'", "  version: '1.0.0'\n  tags: [spec]"))
+        self.check("metadata keys and values must be strings")
+
     def test_catalog_version_must_match(self):
         target = self.root / "README.md"
         target.write_text(target.read_text().replace("1.0.0", "1.0.1"))

@@ -12,6 +12,8 @@ Use automation to establish reproducible facts before spending review effort on 
 
 These tools have configured assumptions and finite coverage; tests and environments may also be nondeterministic. Report results with their scope rather than calling the layer opinion-free or equating green output with a sound design. Do not repeat mechanical style comments already enforced by a reliable project check unless a concrete issue remains unaddressed.
 
+When a change relies on an unfamiliar dependency, API, or generated configuration, verify the installed version and actual caller before accepting a plausible name or example. Inspect whether a substitute bypasses the guard or side effect the test claims to exercise. For example, a mocked repository returning `Forbidden` does not establish that a production query scopes results to the authenticated tenant.
+
 Automation and semantic review complement each other. For example, a server handler and its tests can both trust a user-supplied tenant ID without checking the authenticated user's membership, contrary to the established tenant policy. All checks may pass; tracing the actual actor, guard and effect can still establish a defect. Failed checks can likewise coexist with useful source findings. Continue permitted inspection when useful, preserve required blocking gates, and label unavailable evidence rather than requiring an entirely green pipeline merely to begin reviewing.
 
 ## Find what changed and who observes it
