@@ -749,3 +749,18 @@ Where present, evaluation files and executable tests record the package's actual
 All 22 packages use the [MIT License](LICENSE) and include a copy of its notice. This covers the imported Android and PR Quiz material, including references embedded in UI Design and Cybersecurity, under the MIT redistribution permission confirmed by the repository maintainer. Retain the license and applicable attribution when redistributing a package. See [third-party notices](THIRD-PARTY-NOTICES.md#pl-coding-android-and-pr-quiz-skills) for the source mapping.
 
 The source research for [PentaPRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersecurity](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
+
+## Data Privacy
+
+- **No personal data** is collected
+- **No cookies** are used for tracking
+- Test results are stored **only in your browser's localStorage**
+- **No server-side** storage of individual responses
+- Users can clear all data by clearing browser storage
+
+---
+
+<p align="center"><small>
+Copyleft © 2026 <a href="https://x.com/teknolista">Raul Bras</a> 🇧🇷 Published under the MIT license. <br>
+Made in Brazil, in the Land of Oz (SP) , with 🌭 🍕 and AI 🤖.
+</small></p>
