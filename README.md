@@ -72,7 +72,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.9.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PRODUCTION, PROOF, and PROCESS. |
+| [PentaPRO](#pentapro) | 2.9.2 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PRODUCTION, PROOF, and PROCESS. |
 | [Peer Review](#peer-review) | 1.10.3 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersecurity](#cybersecurity) | 1.6.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 | [UI Design](#ui-design) | 1.5.9 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
@@ -80,7 +80,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Behavior Testing](#behavior-testing) | 1.2.0 | Author behavior and regression tests or use a requested test-first workflow outside native Android. |
 | [HTTP API](#http-api) | 1.2.0 | Implement HTTP API changes and verify compatibility, authorization, and write effects. |
 | [MCP Server](#mcp-server) | 1.2.0 | Implement and verify Model Context Protocol server capabilities and transport boundaries. |
-| [Software Delivery](#software-delivery) | 1.5.0 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
+| [Software Delivery](#software-delivery) | 1.5.1 | Coordinate dependent implementation tasks and verify their integrated result against the agreed change. |
 | [Production Operations](#production-operations) | 1.0.1 | Plan and configure hosted backends, deploy verified artifacts, and operate or recover the service. |
 | [Technical Research](#technical-research) | 1.1.0 | Resolve technical uncertainty with traceable evidence. |
 | [Git Delivery](#git-delivery) | 1.0.1 | Review, commit and publish the authorized Git snapshot. |

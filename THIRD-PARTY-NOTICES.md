@@ -148,6 +148,10 @@ See the [PentaPRO](penta-pro/references/sources.md#elephant--goldfish-model--260
 
 The [software factory assessment](SKILL-ASSESSMENT.md#detailed-source-decisions) identifies inspected upstream skill files, revisions, technical standards, and decisions for each local owner. The four new skills and changes to existing owners are original adaptations. The repository redistributes no upstream skill prose, scripts, or templates from this review. The linked works retain their respective rights and licenses. No external skill, plugin, or hook is installed by these packages.
 
+## Blueprint follow-up
+
+The [Blueprint skills](https://github.com/owainlewis/blueprint/tree/9a73756a1f0dddd526aab89d2600e487ce6880ff/skills) and [verification guide](https://github.com/owainlewis/blueprint/blob/9a73756a1f0dddd526aab89d2600e487ce6880ff/guides/verification.md) informed focused changes to Software Delivery's task slicing and acceptance evidence, and PentaPRO's pre-implementation design challenge. These are original instructions integrated into the existing owners; no Blueprint code, templates, or skill text is bundled. Its separate `improve`, `test`, `review`, and `architecture-review` entrypoints overlap existing collection responsibilities, so this follow-up did not add duplicate skills or require its orchestration workflow.
+
 ## Matt Pocock and Superpowers closure review
 
 The [complete disposition map](COLLECTION-REVIEW.md#upstream-coverage) records 39 Matt Pocock and 15 Superpowers entrypoints at their inspected revisions. New workflow instructions use original wording and do not bundle upstream code, scripts, templates or substantial prose. The original works retain their licenses and notices. No plugin, hook or external orchestration is installed. Exclusions are explicit rather than represented as imported capabilities.
