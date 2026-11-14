@@ -3,12 +3,12 @@ name: penta-pro
 description: "Explores software requirements through focused interviews and creates, updates, or reviews PentaPRO specifications. Use for new software, substantial feature specifications, resuming a PentaPRO document, or reviewing written requirements, design and implementation readiness."
 license: MIT
 metadata:
-  version: "2.8.1"
+  version: "2.9.0"
 ---
 
 # PentaPRO
 
-Turn user intent into an English specification organized as **PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS**. Cover the product's lifecycle and resolve enough uncertainty for the next useful increment; keep later scope visible without pretending its design is settled.
+Turn user intent into an English specification organized as **PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS**. Cover the product's lifecycle and resolve enough uncertainty for the next useful increment; keep later scope visible without pretending its design is settled.
 
 ## Choose the task and resources
 
@@ -21,7 +21,7 @@ Turn user intent into an English specification organized as **PRODUCT → PROOF 
 
 Before changing a specification, identify the requested mode, target snapshot, canonical files/IDs and allowed writes. If context is limited, take one increment at a time and preserve the next action and material gaps in the existing PROCESS record or in the response for read-only work.
 
-Before choosing output paths, establish what already governs this scope. Use the project's authoritative layout for updates, including a legacy single file. If the project uses an external requirements or change registry, apply the [ownership rules](references/document-maintenance.md#existing-change-and-specification-workflows) before filling templates. When creating a new five-pillar specification, honor the requested format and destination. The default is `docs/` at the project root with `product.md`, `proof.md`, `project.md`, `production.md`, and `process.md`. Verify links from the actual output location. Keep the template index in the skill package.
+Before choosing output paths, establish what already governs this scope. Use the project's authoritative layout for updates, including a legacy single file. If the project uses an external requirements or change registry, apply the [ownership rules](references/document-maintenance.md#existing-change-and-specification-workflows) before filling templates. When creating a new five-pillar specification, honor the requested format and destination. The default is `docs/` at the project root with `product.md`, `project.md`, `production.md`, `proof.md`, and `process.md`. Verify links from the actual output location. Keep the template index in the skill package.
 
 Clarify which project to use when the target is ambiguous. Inspect existing destinations before writing and clarify collisions with unrelated documents. Follow [document maintenance](references/document-maintenance.md) for the five-file layout and requested migrations. Resolve skill asset paths relative to this skill and keep project answers in the target project.
 
@@ -41,19 +41,19 @@ Establish whether the work creates software, changes an existing system, replace
 
 1. Reuse known facts. Establish the users, problem evidence, intended outcomes, first increment, and constraints across the five pillars; briefly reflect consequential interpretations for correction. For products where the bet matters, establish the strategy, principles, alternatives, and stopping criteria before elaborating features. Gather influential constraints early, including offline use, device support, data location, recovery, safety, and applicable commercial, launch, documentation, or support commitments. Distinguish observed needs from hypotheses and technical health from user or business success.
 2. Use accessible evidence to draft and narrow the questions. Prioritize questions that affect the required readiness scope. Ask a foundational question alone or batch a few independent questions. For each consequential decision, state what it changes and give a recommended option when evidence supports one. Defer questions whose prerequisites remain open and continue independent work while answers are pending.
-3. Use PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS as the preferred order of interview deepening and document presentation. These are perspectives, not sequential development phases. Revisit affected pillars when a later decision changes an earlier premise:
+3. Use PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS as the preferred order of initial detail and document presentation. These are perspectives, not sequential development phases. Capture consequential operating conditions with the product before choosing a solution; revisit affected pillars when a later decision changes an earlier premise:
 
    | Pillar | Focus |
    | --- | --- |
    | PRODUCT | Users, value, journeys, business rules, permissions, scope, and observable acceptance criteria. |
-   | PROOF | Check methods, representative inputs, failure cases, and required acceptance evidence. |
    | PROJECT | Delivery constraints, resources, dependencies, risks, architecture, data, and contracts. |
    | PRODUCTION | Installation, environments, updates, migration, support, monitoring, and recovery. |
+   | PROOF | Check methods, representative inputs, failure cases, and required acceptance evidence. |
    | PROCESS | Tasks, responsibilities, execution authority, review, integration, and escalation. |
 
-   - Establish product behavior and acceptance criteria in PRODUCT, then outline requirement-derived checks and required evidence in PROOF before elaborating the solution. Reuse settled design decisions and existing contracts.
-   - Gather consequential operating constraints, budget, existing-platform limits, and dependencies early enough to inform PROJECT. Detail implementation-specific deployment and recovery in PRODUCTION once the relevant design is known.
-   - Refine PROOF's integration checks, environments, and procedures after design and operational decisions. If a check reveals an infeasible requirement or design, revisit the affected records and preserve the unresolved decision; do not weaken acceptance silently.
+   - Establish product behavior, observable acceptance criteria, and consequential conditions of real use in PRODUCT. Include operating, budget, platform, recovery, and support constraints that could change the solution; link their source and owner. This is input to PROJECT, not a premature operating procedure.
+   - In PROJECT, choose a feasible solution against those conditions and existing contracts. Then detail distribution, deployment, operation, updates, and recovery in PRODUCTION using the selected design.
+   - In PROOF, derive checks from PRODUCT's criteria and the material PROJECT and PRODUCTION decisions. Include representative failures, environments, operational rehearsals, and evidence for the selected gates. If a check exposes an infeasible requirement or design, revisit the affected records without weakening acceptance silently.
    - PROCESS tracks authority, ownership, status, and resumption from the start. Finalize its execution plan after the other pillars expose the necessary work. For updates, follow affected records and dependencies without restarting settled work solely to traverse the order.
 
 4. Run one integrated interview. When creation is requested, save the initial draft in the chosen authoritative location and format before pausing for answers or handing it off. For the default split, save all five files. Use supported details and mark consequential unknowns `Pending`. Consolidate later rounds in the affected files. Save shared status, coverage, revision history, and the next interview focus and action in `process.md`, linking open questions in `project.md`. In a single-file specification, use the corresponding sections.
@@ -79,7 +79,7 @@ For material assumptions, separate permission to proceed from evidence that the 
 ## Document invariants
 
 - Keep all five pillars. Remove drafting prompts from the project deliverable. Record `Pending` for material unknown applicability or insufficient linked coverage, and `Not applicable` for screened concerns with a reason. Keep deferred work visible with an owner and trigger.
-- Reuse canonical artifacts. Link requirements and acceptance from PRODUCT, decisions and contracts from PROJECT, and evidence from PROOF. Index independently maintained feature details, increment plans, and contracts from their owning pillar. If the project already selects an external specification/change workflow, preserve its authoritative requirements and task list using [the integration rules](references/document-maintenance.md#existing-change-and-specification-workflows). Keep shared coverage and navigation in PROCESS.
+- Reuse canonical artifacts. Link requirements and acceptance from PRODUCT, decisions and contracts from PROJECT, operating procedures from PRODUCTION, and evidence from PROOF. Index independently maintained feature details, increment plans, and contracts from their owning pillar. If the project already selects an external specification/change workflow, preserve its authoritative requirements and task list using [the integration rules](references/document-maintenance.md#existing-change-and-specification-workflows). Keep shared coverage and navigation in PROCESS.
 - If a screen specification such as `docs/ui-design.md` exists, follow the [ownership rules](references/document-maintenance.md#screen-specifications-and-other-companion-artifacts). Reconcile material conflicts instead of treating a detailed mockup as authority over product behavior.
 - Resolve final links from the generated document's location. Replace authoring links into this skill with actual project artifacts or remove them with the drafting guidance. Keep needed contract details in the deliverable or its accessible canonical references.
 - Record glossary, artifact ownership, and material revision history only at the depth needed to preserve meaning. Use existing trackers and machine-readable contracts when authoritative; do not create parallel YAML/JSON copies without a consumer and a synchronization rule.

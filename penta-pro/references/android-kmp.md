@@ -1,18 +1,12 @@
 # Android and Kotlin Multiplatform specification overlay
 
-Apply alongside the mobile/offline profile when Android or KMP is in scope. Record answers in the existing five pillar files, using the preferred PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS order. These prompts do not mandate Compose, MVI, Clean Architecture, Koin, Ktor, Room, a module per layer, iOS support or a fixed SDK/library version.
+Apply alongside the mobile/offline profile when Android or KMP is in scope. Record answers in the existing five pillar files, using the preferred PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS order. These prompts do not mandate Compose, MVI, Clean Architecture, Koin, Ktor, Room, a module per layer, iOS support or a fixed SDK/library version.
 
 ## PRODUCT
 
 Identify actual target platforms, device/window/input conditions and shared versus platform-specific journeys. For each important action define who can perform it, displayed fields, validation units, loading/refresh/partial failure, cancellation and recovery. Specify whether text limits count bytes, UTF-16 code units, code points or user-perceived characters when the distinction affects input, truncation or storage.
 
 For offline edits distinguish locally retained, queued, synchronized and server-confirmed states. Define stale-data age, conflicts, account switch, permission loss and unsaved-data behavior. State which data may survive backgrounding, configuration recreation, process termination, logout and app upgrades. A library exposing saved-state types across targets does not establish equivalent OS restoration. Link a screen contract such as docs/ui-design.md if it exists; keep product permissions and acceptance here.
-
-## PROOF
-
-Plan checks by risk and execution boundary: pure logic, persistence/network integration, UI plus real presentation logic, representative feature flow and actual device/platform behavior. Use controlled clocks, schedulers and collaborators for repeatable failure/recovery tests; state which real boundaries are replaced. A mocked transport is not evidence of TLS or production service compatibility. Include relevant cancellation, concurrent/duplicate actions, late responses, data migration and restoration cases.
-
-For KMP record which supported target runs each shared contract and which platform actuals need separate checks. JVM success does not imply Kotlin/Native success. A constructed SavedStateHandle proves consumption of supplied values, not the OS save/restore path. Define required device, SDK, variant and unavailable-evidence handling without claiming a universal test count or exhaustive matrix.
 
 ## PROJECT
 
@@ -25,6 +19,12 @@ For shared code identify target-compatible APIs/artifacts and platform implement
 ## PRODUCTION
 
 Define platform-specific packaging/signing, update compatibility, migrations with existing user data, downgrade/rollback limits and disconnected-client support. Link platform test and release evidence. Set diagnostics/redaction, cache/draft backup and retention, logout cleanup, auth-refresh limits and background-sync ownership. Explicitly distinguish credential storage convenience from the encryption/key/access policy required by the threat model.
+
+## PROOF
+
+Plan checks by risk and execution boundary: pure logic, persistence/network integration, UI plus real presentation logic, representative feature flow and actual device/platform behavior. Use controlled clocks, schedulers and collaborators for repeatable failure/recovery tests; state which real boundaries are replaced. A mocked transport is not evidence of TLS or production service compatibility. Include relevant cancellation, concurrent/duplicate actions, late responses, data migration and restoration cases.
+
+For KMP record which supported target runs each shared contract and which platform actuals need separate checks. JVM success does not imply Kotlin/Native success. A constructed SavedStateHandle proves consumption of supplied values, not the OS save/restore path. Define required device, SDK, variant and unavailable-evidence handling without claiming a universal test count or exhaustive matrix.
 
 ## PROCESS
 

@@ -1,8 +1,10 @@
 # PRODUCT
 
-[PRODUCT](product.md) · [PROOF](proof.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROCESS](process.md)
+[PRODUCT](product.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROOF](proof.md) · [PROCESS](process.md)
 
 Shared specification state and next action are recorded in [PROCESS](process.md#document-metadata-and-resume-state).
+
+Record consequential conditions of real use here before solution selection: distribution and supported environments, offline or availability needs, data location, upgrade and recovery expectations, support commitments, and cost or platform limits where relevant. State observable outcomes and acceptance criteria; PROJECT assesses feasibility and PRODUCTION details the eventual operating procedures.
 
 ## Specification at a glance
 

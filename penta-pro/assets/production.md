@@ -1,12 +1,12 @@
 # PRODUCTION
 
-[PRODUCT](product.md) · [PROOF](proof.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROCESS](process.md)
+[PRODUCT](product.md) · [PROJECT](project.md) · [PRODUCTION](production.md) · [PROOF](proof.md) · [PROCESS](process.md)
 
 Shared specification state and next action are recorded in [PROCESS](process.md#document-metadata-and-resume-state).
 
 Define how the software reaches actual users and remains usable. Adapt this pillar to the distribution model; a local tool may need installation and upgrade instructions without cloud infrastructure.
 
-Capture consequential operating constraints early enough to shape the solution. Detail deployment, configuration, updates, and recovery using PROJECT's design, then reconcile their checks in PROOF and work in PROCESS. If an operational requirement makes the design infeasible, revisit the affected decision rather than silently dropping the requirement.
+PRODUCT records consequential conditions of real use before solution selection. Detail deployment, configuration, updates, and recovery here using PROJECT's design; carry operational checks into PROOF and tasks into PROCESS. If the design cannot meet an operating condition, revisit the affected decision rather than silently dropping the requirement.
 
 ## Environments, setup, and configuration
 

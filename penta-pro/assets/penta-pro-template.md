@@ -1,6 +1,6 @@
 # PentaPRO Specification Templates
 
-**PRODUCT · PROOF · PROJECT · PRODUCTION · PROCESS**
+**PRODUCT · PROJECT · PRODUCTION · PROOF · PROCESS**
 
 Describe the product, solution, evidence, working method, and operation across its lifecycle, with implementation detail for the next useful increment. Keep detailed supporting material in linked project documents.
 
@@ -8,14 +8,14 @@ Describe the product, solution, evidence, working method, and operation across i
 | Pillar | Guiding question | Primary responsibility |
 | --- | --- | --- |
 | PRODUCT | What should we achieve, for whom, and why? | User needs, behavior, business rules, and quality expectations. |
-| PROOF | What evidence will show that the solution works and is useful? | Verification, validation, traceability, and acceptance evidence. |
 | PROJECT | What solution will we deliver, within which constraints? | Delivery commitments, resources, risks, and solution design. |
 | PRODUCTION | How will people install, use, operate, and recover the software? | Environments, releases, monitoring, maintenance, and recovery. |
+| PROOF | What evidence will show that the solution works and is useful? | Verification, validation, traceability, and acceptance evidence. |
 | PROCESS | How will people and agents carry out the work? | Workflow, responsibilities, context, and execution boundaries. |
 
 PROJECT includes both delivery planning and the technical blueprint. PROOF means evidence-based confidence, not mathematical proof. PRODUCTION applies to deployed services, installed applications, command-line tools, and distributed libraries.
 
-Use this order for presentation and interview deepening. Gather consequential operational and delivery constraints early; refine PROOF after design and operational decisions. PROCESS records authority and resume state throughout. Reconcile affected pillars before handoff rather than treating the order as fixed execution phases.
+Use this order for initial detail and presentation. Capture consequential operating conditions and acceptance criteria in PRODUCT before choosing a solution. Detail PRODUCTION from PROJECT's design, then complete PROOF against PRODUCT, PROJECT, and PRODUCTION. PROCESS records authority and resume state throughout. Reconcile affected pillars before handoff rather than treating the order as fixed execution phases.
 
 ## Authoring guidance
 
@@ -41,9 +41,9 @@ For a first specification using the default layout, adapt these five templates i
 | Template | Project destination | Canonical content |
 | --- | --- | --- |
 | [PRODUCT](product.md) | `docs/product.md` | Summary, domain glossary, outcomes, requirements, and acceptance criteria. |
-| [PROOF](proof.md) | `docs/proof.md` | Verification plans, traceability, actual evidence, and outcome evaluation. |
 | [PROJECT](project.md) | `docs/project.md` | Design, contracts, delivery constraints, risks, questions, and decisions. |
 | [PRODUCTION](production.md) | `docs/production.md` | Distribution, configuration, operation, support, and recovery. |
+| [PROOF](proof.md) | `docs/proof.md` | Verification plans, traceability, actual evidence, and outcome evaluation. |
 | [PROCESS](process.md) | `docs/process.md` | Shared document state, coverage, identifiers, history, resume state, tasks, and authority. |
 
 Use one integrated interview and populate supported content across the set. Keep a concise disposition in a pillar even when little detail applies. Preserve existing project documents and requested locations. Read [document maintenance](../references/document-maintenance.md) for updates, partial writes, or migration.

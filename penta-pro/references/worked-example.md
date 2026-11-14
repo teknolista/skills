@@ -43,18 +43,6 @@ The principle **preserve input and fail visibly** is derived from BRIEF-001 and 
 
 `MET-001` links to OBJ-001: observe whether a representative analyst can obtain the expected total for a supplied list and understand an invalid-line report. Baseline, participant access and review window are Pending. Guardrail: any input modification or unexpected data transmission fails REQ-003 regardless of usability feedback.
 
-## PROOF
-
-| Check / trace | Planned procedure and oracle | Result / evidence |
-| --- | --- | --- |
-| CHECK-001: DISC-001 → OBJ-001 → REQ-001 → AC-001/002 → FEAT-001 / DEC-001 | Run the two exact fixtures above through the future CLI; compare exit status and both output streams byte-for-byte. | Unverified; none. |
-| CHECK-002: REQ-002 → AC-003 | Run the invalid-line fixture; compare the three outputs with AC-003. | Unverified; none. |
-| CHECK-003: REQ-003 → AC-005 | Compare input bytes before/after each fixture and observe attempted network calls in an isolated test environment. | Unverified; none. |
-| CHECK-004: REQ-001 → AC-004 | Choose boundary/overflow fixtures after OPEN-001 is resolved; derive expected results independently of the implementation. | Unverified; procedure incomplete. |
-| VAL-001: DISC-001 → OBJ-001 / MET-001 | Plan a walkthrough of valid and invalid files with a representative analyst; record task outcome, confusion, limitations and whether to revise the proposal. | Unverified; no participant recruited or session run. |
-
-Illustrative evidence record shape for CHECK-001: **subject revision:** not available; **environment:** to be selected with platform support; **fixtures/oracle:** AC-001/002 above; **execution:** Not run; **actual output:** Not observed; **result:** Unverified; **evidence location:** None. Use the [evidence pattern](specification-patterns.md#check-and-evidence-record) when actual execution occurs.
-
 ## PROJECT
 
 `DEC-001`: **Accepted within the fictional delegation**. The agent chooses separate parsing and CLI-output functions so arithmetic cases can be checked independently of terminal formatting. Alternative: one combined function; simpler initially, but harder to test in isolation. Authority is BRIEF-001's parser-organization delegation. This settles no output format, numeric range, or implementation authorization.
@@ -72,6 +60,18 @@ The artifact registry points to these inline records; no separate ADR, API schem
 Release plan, still Proposed: distribute a versioned local package after supported-platform checks and the applicable acceptance checks pass. Record the actual artifact, install/removal instructions, known limitations, release owner and authority. No artifact exists yet. Removal must preserve user input files; a discovered incorrect total or data modification stops distribution pending investigation.
 
 After an authorized pilot, evaluate MET-001 with the analyst using non-sensitive examples. Decide whether to retain the workflow, revise diagnostics, or revisit DISC-001. Record actual findings and limitations; no telemetry or claimed improvement is needed to fill this example. Performance and broader usability targets remain unset until evidence or an authorized decision supports them.
+
+## PROOF
+
+| Check / trace | Planned procedure and oracle | Result / evidence |
+| --- | --- | --- |
+| CHECK-001: DISC-001 → OBJ-001 → REQ-001 → AC-001/002 → FEAT-001 / DEC-001 | Run the two exact fixtures above through the future CLI; compare exit status and both output streams byte-for-byte. | Unverified; none. |
+| CHECK-002: REQ-002 → AC-003 | Run the invalid-line fixture; compare the three outputs with AC-003. | Unverified; none. |
+| CHECK-003: REQ-003 → AC-005 | Compare input bytes before/after each fixture and observe attempted network calls in an isolated test environment. | Unverified; none. |
+| CHECK-004: REQ-001 → AC-004 | Choose boundary/overflow fixtures after OPEN-001 is resolved; derive expected results independently of the implementation. | Unverified; procedure incomplete. |
+| VAL-001: DISC-001 → OBJ-001 / MET-001 | Plan a walkthrough of valid and invalid files with a representative analyst; record task outcome, confusion, limitations and whether to revise the proposal. | Unverified; no participant recruited or session run. |
+
+Illustrative evidence record shape for CHECK-001: **subject revision:** not available; **environment:** to be selected with platform support; **fixtures/oracle:** AC-001/002 above; **execution:** Not run; **actual output:** Not observed; **result:** Unverified; **evidence location:** None. Use the [evidence pattern](specification-patterns.md#check-and-evidence-record) when actual execution occurs.
 
 ## PROCESS
 

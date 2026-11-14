@@ -71,7 +71,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 
 | Skill | Version | Purpose |
 | --- | --- | --- |
-| [PentaPRO](#pentapro) | 2.8.1 | Explore, create, resume, update, or review software specifications across PRODUCT, PROOF, PROJECT, PRODUCTION, and PROCESS. |
+| [PentaPRO](#pentapro) | 2.9.0 | Explore, create, resume, update, or review software specifications across PRODUCT, PROJECT, PRODUCTION, PROOF, and PROCESS. |
 | [Peer Review](#peer-review) | 1.10.3 | Review backend, frontend, Android, and test code for substantiated defects and meaningful regression protection. |
 | [Cybersecurity](#cybersecurity) | 1.6.1 | Model threats, assess security controls, and verify authorized hardening across web/API, desktop/mobile, DevOps, cloud, and IT projects. |
 | [UI Design](#ui-design) | 1.5.8 | Specify, refine, review, and implement web and Android screens. Maintain `docs/ui-design.md` when screen documentation is in scope. |
@@ -264,12 +264,12 @@ An exploration-only request stays in the conversation until the user asks to cap
 | Pillar | Focus |
 | --- | --- |
 | PRODUCT | Users, value, journeys, business rules, permissions, scope, and observable acceptance criteria. |
-| PROOF | Verification methods, concrete examples, failure cases, and acceptance evidence. |
 | PROJECT | Delivery constraints, resources, dependencies, risks, architecture, data, and contracts. |
 | PRODUCTION | Installation, environments, updates, migration, support, monitoring, and recovery. |
+| PROOF | Verification methods, concrete examples, failure cases, and acceptance evidence. |
 | PROCESS | Tasks, responsibilities, execution authority, review, integration, and escalation. |
 
-The preferred order for interview deepening and document presentation is PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS. Establish behavior and evidence needs before designing the solution, then detail its operation and execution plan. Gather consequential operational, budget, and platform constraints early. Refine PROOF after design and operational decisions, and maintain PROCESS authority and resume state throughout. Reconcile affected pillars as decisions change; the order does not impose sequential development phases.
+The preferred order for initial detail and document presentation is PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS. Establish behavior, acceptance criteria, and consequential conditions of real use in PRODUCT. Choose a feasible solution in PROJECT, detail its operation in PRODUCTION, then define complete checks and evidence in PROOF. Maintain PROCESS authority and resume state throughout. Reconcile affected pillars as decisions change; the order does not impose sequential development phases.
 
 The template connects product strategy and stopping criteria to discovery evidence, outcomes, requirements, contracts, verification, and post-release learning. It includes a consolidated identifier and status model, increment readiness, decision and uncertainty records, privacy and accessibility considerations, delivery dependencies, documentation, launch and support readiness, and operational recovery evidence. Conditional profiles cover services, installed/offline apps, CLI tools, infrastructure, libraries, data/scientific workloads, AI features, embedded systems, interactive media, and commercial launch. For Android/KMP projects, an [additional overlay](penta-pro/references/android-kmp.md) details cross-platform contracts, test boundaries, state retention, dependency lifetimes and release evidence within the five pillar files. Combine profiles for hybrid products; they are not an exhaustive taxonomy.
 
@@ -290,9 +290,9 @@ Use $penta-pro to review whether the first increment is ready for development.
 By default, a first specification uses five files in the project's `docs/` directory. Each file owns its pillar and links related records in the others. One integrated interview populates the set, and the initial draft records pending decisions so the interview can resume.
 
 - `docs/product.md` covers users, scope, requirements, and acceptance criteria.
-- `docs/proof.md` covers planned checks, traceability, and actual evidence.
 - `docs/project.md` covers design, constraints, contracts, and decisions.
 - `docs/production.md` covers distribution, operation, and recovery.
+- `docs/proof.md` covers planned checks, traceability, and actual evidence.
 - `docs/process.md` covers the workflow, shared status, coverage, revision history, and next interview action.
 
 Existing single-file specifications and explicitly requested locations remain supported. Migration is performed when requested.

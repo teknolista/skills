@@ -14,7 +14,7 @@ Use for creation, updates, resumption, or requested migration to the five-file l
 
 Keep sibling navigation in each file and link specific records using their stable IDs and valid anchors. Record a fact once and reference its owner. For example, a check in `proof.md` links its acceptance criterion in `product.md` and its contract in `project.md`. Define stable headings or explicit anchors where record-level navigation is needed. Existing external schemas or trackers can remain authoritative.
 
-Use PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for new presentation and interview deepening. An order change alone does not require rewriting an existing specification or reopening settled decisions. Resume from PROCESS and follow affected dependencies; retain established locations and IDs.
+Use PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS for new initial detail and presentation. Capture consequential operating conditions and acceptance criteria in PRODUCT before selecting a solution; detail PRODUCTION after PROJECT and complete PROOF after both. An order change alone does not require rewriting an existing specification or reopening settled decisions. Resume from PROCESS and follow affected dependencies; retain established locations and IDs.
 
 For a first specification using the default layout, create all five files with supported content and explicit gaps. Small projects can have short pillars. Keep the template index as authoring guidance in the skill package. Remove drafting links and placeholders from the generated project files. Before writing, inspect any existing files at the destinations and resolve ambiguous ownership.
 

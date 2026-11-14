@@ -56,13 +56,13 @@ Identify the authoritative records for this scope before writing new specificati
 | Document | Canonical responsibility |
 | --- | --- |
 | `docs/product.md` | Users, outcomes, requirements, business permissions and feature acceptance criteria. |
-| `docs/proof.md` | Planned checks, traceability, actual verification evidence and its limitations. |
 | `docs/project.md` | Architecture, contracts, constraints, decisions, risks, assumptions and open questions. |
 | `docs/production.md` | Configuration, distribution, migrations, operations, support and recovery. |
+| `docs/proof.md` | Planned checks, traceability, actual verification evidence and its limitations. |
 | `docs/process.md` | Shared specification state, coverage, tasks, authority, revision history and next action. |
 | `docs/ui-design.md` | Detailed screen/flow contracts, visual rules, interaction states and screen-specific acceptance; links to governing requirements and existing design-system sources. |
 
-PentaPRO uses PRODUCT → PROOF → PROJECT → PRODUCTION → PROCESS for presentation and interview deepening. Gather influential operating constraints early, refine checks after design decisions, and track authority and resumption throughout. This order does not impose sequential implementation phases. The UI document supplements the five pillars when visual interfaces are in scope.
+PentaPRO uses PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS for initial detail and presentation. Capture consequential operating conditions and acceptance criteria in PRODUCT before choosing a solution; detail operation and checks after the design. Track authority and resumption throughout. This order does not impose sequential implementation phases. The UI document supplements the five pillars when visual interfaces are in scope.
 
 On resumption, read the relevant next-action record in `docs/process.md` or the established tracker, then the affected requirements, contracts, checks and screens. Load only the records and dependencies needed for the task. If documents do not yet exist, use the available brief and project evidence; create them when specification work is requested rather than manufacturing a full specification for every small edit.
 
