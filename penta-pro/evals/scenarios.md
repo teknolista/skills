@@ -215,3 +215,7 @@ The agent checked 12 Markdown files/87 local links and anchors. A maintainer SHA
 ## Initial-detail order — 2.9.0
 
 2026-11-14: The preferred initial-detail and presentation order is PRODUCT → PROJECT → PRODUCTION → PROOF → PROCESS. PRODUCT retains observable acceptance and consequential conditions of real use before a solution is chosen. PROJECT assesses feasibility, PRODUCTION details the chosen solution's operation, PROOF completes the check plan before implementation, and PROCESS consolidates the work while tracking authority and resumption throughout. The preferred-order case above now exercises those dependencies. The version 2.3.0 record remains a historical account of its own revision. Structural validation and the existing offline helper tests do not constitute a new behavioral trial of this authoring sequence or a comparison across models.
+
+## Reference alignment — 2.9.1
+
+2026-11-14: A follow-up repository-wide search found active ownership lists and examples that still displayed PROOF before PROJECT or PRODUCTION. The maintenance reference, specification-pattern example, UI Design entrypoint/reference, OpenSpec adoption plan, and evaluator's unordered pillar-name tuple were aligned. The 2.3.0 statement and dated PDF retain their historical versions. This alignment changes presentation and navigation, not canonical ownership or evidence status.

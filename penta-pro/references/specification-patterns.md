@@ -67,7 +67,7 @@ For an operation that changes durable state, grants access, or has external effe
 | An authenticated actor requests another tenant's resource | The required resource-level authority and allowed response and effects | Use two isolated tenants. Exercise reads and writes across the boundary and verify both returned data and durable effects against the access rule. |
 | A migration and older clients coexist | Which versions may read and write each state, and when recovery becomes irreversible | Exercise the supported old/new combinations with pre-existing data and interrupt at the consequential migration boundary. |
 
-For example, if a confirmed rule permits at most one reservation per request, a missing response leaves the outcome unknown. A retry check must count reservations and inspect their ownership. A successful retry response alone cannot establish that the rule held. Keep the behavior and criterion in PRODUCT, the operation contract in PROJECT, the planned check in PROOF, ownership in PROCESS, and reconciliation or recovery in PRODUCTION.
+For example, if a confirmed rule permits at most one reservation per request, a missing response leaves the outcome unknown. A retry check must count reservations and inspect their ownership. A successful retry response alone cannot establish that the rule held. Keep the behavior and criterion in PRODUCT, the operation contract in PROJECT, reconciliation or recovery in PRODUCTION, the planned check in PROOF, and ownership in PROCESS.
 
 ## Threat and hazard mapping
 

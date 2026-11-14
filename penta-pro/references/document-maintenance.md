@@ -7,9 +7,9 @@ Use for creation, updates, resumption, or requested migration to the five-file l
 | File | Owns |
 | --- | --- |
 | `docs/product.md` | Product summary, glossary, objectives, requirements, and acceptance criteria. |
-| `docs/proof.md` | Check plans, requirement-to-evidence links, actual results, and outcome evaluation. |
 | `docs/project.md` | Architecture, contracts, dependencies, risks, assumptions, open questions, and decisions. |
 | `docs/production.md` | Environments, distribution, migrations, operations, support, and recovery. |
+| `docs/proof.md` | Check plans, requirement-to-evidence links, actual results, and outcome evaluation. |
 | `docs/process.md` | Shared specification metadata, coverage, identifier conventions, revision history, resume state, tasks, gates, and authority. |
 
 Keep sibling navigation in each file and link specific records using their stable IDs and valid anchors. Record a fact once and reference its owner. For example, a check in `proof.md` links its acceptance criterion in `product.md` and its contract in `project.md`. Define stable headings or explicit anchors where record-level navigation is needed. Existing external schemas or trackers can remain authoritative.
@@ -20,7 +20,7 @@ For a first specification using the default layout, create all five files with s
 
 ## Screen specifications and other companion artifacts
 
-When a maintained screen specification such as `docs/ui-design.md` exists, keep it as the canonical home for detailed layouts, component states, interaction behavior and screen-specific acceptance. PRODUCT retains product requirements, business permissions and acceptance at the feature boundary; link the screen records rather than copying them. PROOF indexes the required checks and their actual evidence, wherever that evidence is maintained. PROJECT references the design system and implementation contracts, while PROCESS records artifact ownership and any unfinished reconciliation. Do not create a companion file merely because a template mentions one; the default PentaPRO output is still the five pillar files.
+When a maintained screen specification such as `docs/ui-design.md` exists, keep it as the canonical home for detailed layouts, component states, interaction behavior and screen-specific acceptance. PRODUCT retains product requirements, business permissions and acceptance at the feature boundary; link the screen records rather than copying them. PROJECT references the design system and implementation contracts. PROOF indexes the required checks and their actual evidence, wherever that evidence is maintained. PROCESS records artifact ownership and any unfinished reconciliation. Do not create a companion file merely because a template mentions one; the default PentaPRO output is still the five pillar files.
 
 Compare the companion's actual scope and decision status with the product requirement. For example, an offline-only product and a screen labeled “Synchronized to cloud” conflict even if both documents are marked accepted. Identify the affected requirement and screen IDs, sources, and decision needed. Do not silently introduce cloud infrastructure or change a settled requirement to match the screen. Apply a resolution supported by current authority; otherwise leave only the dependent work blocked. If editing the companion is outside scope, record the exact pending reconciliation rather than claiming the whole set is consistent.
 
@@ -28,7 +28,7 @@ Compare the companion's actual scope and decision status with the product requir
 
 When the project already uses a maintained requirements/change system, establish which records are authoritative before filling the templates. Examples include capability specifications and active change tasks in OpenSpec, an existing requirements registry, or accepted tracker records. The presence of a tool alone does not select its authority; use the project's stated ownership and actual artifacts. This is conditional integration, not a requirement to install or initialize another framework.
 
-When a five-pillar specification is in scope, use it for global context and navigation. PRODUCT links capability requirements and acceptance by their canonical IDs or stable locators. PROOF links their checks and revision-specific evidence. PROJECT holds global architecture and points to relevant change designs or durable decisions. PRODUCTION retains operating constraints and procedures. PROCESS points to the active change/task list and records shared readiness, authority, ownership and unresolved reconciliation. Keep requirement definitions and execution tasks with their existing owners.
+When a five-pillar specification is in scope, use it for global context and navigation. PRODUCT links capability requirements and acceptance by their canonical IDs or stable locators. PROJECT holds global architecture and points to relevant change designs or durable decisions. PRODUCTION retains operating constraints and procedures. PROOF links checks and revision-specific evidence. PROCESS points to the active change/task list and records shared readiness, authority, ownership and unresolved reconciliation. Keep requirement definitions and execution tasks with their existing owners.
 
 For an external requirement without an ID, record its canonical artifact, capability, requirement title, and scenario when useful. Include the change or revision in verification records. A local ID may serve as a navigation alias. When a requirement is renamed or consolidated, update current pointers and retain the old reference with historical evidence.
 

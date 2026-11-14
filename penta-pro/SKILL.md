@@ -3,7 +3,7 @@ name: penta-pro
 description: "Explores software requirements through focused interviews and creates, updates, or reviews PentaPRO specifications. Use for new software, substantial feature specifications, resuming a PentaPRO document, or reviewing written requirements, design and implementation readiness."
 license: MIT
 metadata:
-  version: "2.9.0"
+  version: "2.9.1"
 ---
 
 # PentaPRO
@@ -59,7 +59,7 @@ Establish whether the work creates software, changes an existing system, replace
 4. Run one integrated interview. When creation is requested, save the initial draft in the chosen authoritative location and format before pausing for answers or handing it off. For the default split, save all five files. Use supported details and mark consequential unknowns `Pending`. Consolidate later rounds in the affected files. Save shared status, coverage, revision history, and the next interview focus and action in `process.md`, linking open questions in `project.md`. In a single-file specification, use the corresponding sections.
 5. Before handing off the first consolidated draft or a material revision, or using it to start authorized implementation, use [specification review](references/specification-review.md) on the saved artifacts. Reconstruct the intended behavior from the files before comparing with the interview. Review all five pillars on creation and the affected chain on update. A first partial save can precede this review; label the remaining coverage. Keep findings and the next action in PROCESS within the authorized writing scope. For small edits, check the changed record and its direct dependencies. Stop questioning when further answers would not materially affect the required readiness scope. Record remaining uncertainty explicitly.
 
-For a consequential behavior, trace one requirement through its observable criterion, feasible check, design constraint, operating implication, and owner before moving to another. Link the existing records. If a link is missing, record the exact gap and affected decision.
+For a consequential behavior, trace one requirement through its observable criterion, design constraint, operating implication, feasible check, and owner before moving to another. Link the existing records. If a link is missing, record the exact gap and affected decision.
 
 Work through one coherent feature or increment at a time when the specification exceeds the available context. Read its canonical records and follow material dependencies across the five pillars. When specification writing is authorized, save affected IDs, unresolved questions, remaining reconciliation, and the next action in PROCESS before a handoff. For exploration-only or review-only work, report that state in the conversation. On resumption, reopen relevant records and verify their current state.
 
