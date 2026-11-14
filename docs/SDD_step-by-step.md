@@ -1,3 +1,6 @@
+# SDD walkthrough notes
+
+These working notes collect several approaches to product discovery and project constitutions using Spec Kit. Each section presents a separate draft. For the maintained workflow, start with the collection guide and check the commands and templates in your installed tool version. [Choose a workflow](../README.md#choose-a-workflow)
 
 # FIRST SECTION: CHATGPT
 
@@ -15,8 +18,6 @@ You must follow the correct order.
 ---
 
 # 🔵 PART 1 — PRODUCT SPECIFICATION FLOW
-
-This follows the structure defined in .
 
 ---
 

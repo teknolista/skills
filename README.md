@@ -66,6 +66,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
     - [Validation and improvement](#validation-and-improvement)
     - [Adding a new skill](#adding-a-new-skill)
   - [License and attribution](#license-and-attribution)
+  - [Data privacy](#data-privacy)
 
 ## Available skills
 
@@ -92,7 +93,7 @@ All skill instructions and generated artifacts are in English. Conversation can 
 | [Android unit testing](android-unit-testing/SKILL.md) | 1.2.4 | Author/run/debug isolated logic tests. |
 | [Android integration testing](android-integration-testing/SKILL.md) | 1.3.0 | Author/run/debug non-UI integration tests. |
 | [Android UI testing](android-ui-testing/SKILL.md) | 1.3.0 | Author/run/debug native device/emulator Compose tests. |
-| [PR Quiz](pr-quiz/SKILL.md) | 1.3.0 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
+| [PR Quiz](pr-quiz/SKILL.md) | 2.0.0 | Explicitly requested PR decision-comprehension aid, separate from review approval. |
 
 The [routing and consolidation map](SKILL-ROUTING.md) records the 14 Android/quiz source skills. The [closure review](COLLECTION-REVIEW.md) maps all 54 entrypoints in the two requested upstream repositories. Four Android UI skills are internal UI Design procedures; Android security is a Cybersecurity reference. Those five overlapping names are deliberately not separate installable skills.
 
@@ -597,7 +598,7 @@ Implementation results are source/configuration changes and proportionate execut
 
 [pr-quiz](pr-quiz/SKILL.md) creates an explicitly requested decision-comprehension quiz for a specific GitHub PR. It is generic across platforms and separate from Peer Review: passing questions does not establish defect freedom, security or independent approval. Creating a PR alone never activates it.
 
-Example: `Use $pr-quiz to draft a quiz about the caching and retry decisions in PR 123.` Drafting stays local; publishing requires the requested PR-edit scope. The [Python helper](pr-quiz/scripts/publish_quiz.py) previews with `--dry-run` without GitHub access, then can preserve surrounding PR text while publishing through `gh` when authorized. Resolve its installed path in the target repository. When publishing, pass the intended repository with `--repo` and the reviewed commit with `--head`. The helper checks the current head and body before the edit and confirms the result afterward.
+Example: `Use $pr-quiz to draft a quiz about the caching and retry decisions in PR 123.` Drafting stays local; publishing requires the requested PR-edit scope. The [Python helper](pr-quiz/scripts/publish_quiz.py) previews with `--dry-run` without GitHub access, then can preserve surrounding PR text while publishing through `gh` when authorized. Resolve its installed path in the target repository. Publishing requires the intended repository in `--repo` and the reviewed commit in `--head`. Earlier helper versions accepted implicit targets. Update any publication scripts to pass both options. The helper checks the current head and body before the edit and confirms the result afterward.
 
 The [optional workflow asset](pr-quiz/assets/pr-quiz.yml) grades through trusted GitHub metadata events, without running PR-head code. It is not installed as an active workflow here. Authors are ineligible by default; passes bind to the quiz content, ID and head SHA. Comment answers use the current revision token shown in the pending status. Review team policy, the pinned action, and token permissions before enabling the template. Keep its commit status informational because PRs can share the same commit SHA. Use repository review requirements for merge authorization.
 
@@ -615,6 +616,7 @@ The PDFs are Portuguese teaching editions dated November 2026. The installed `SK
 
 - [Development with agents](docs/guia-consolidado-desenvolvimento-com-agentes.pdf) covers direct changes, vibe coding and prototype promotion, project-native SDD and OpenSpec, Android, web, desktop, HTTP APIs, MCP servers, workers, and deployment. The revised edition explains OpenSpec 2.0 discovery and distinguishes delta validation from verification of the consolidated capability.
 - [Castas Android retrospective](docs/relatorio-retrospectiva-castas-android.pdf) shows how environment checks, cross-platform parity, device tests and release evidence changed during one project.
+- [SDD walkthrough notes](docs/SDD_step-by-step.md) collect separate working drafts for product discovery and project constitutions using Spec Kit. Use the workflow above for current collection guidance.
 - [Adoption plan](docs/ANTHROPIC-ADOPTION-PLAN.md), [evaluation procedure](SKILL-EVALUATION.md) and [maintenance review](FINAL-SKILL-REVIEW.md) describe how to adopt or evaluate changes to the collection.
 
 ## Repository structure
@@ -632,6 +634,7 @@ skills/
 ├── SKILL-ASSESSMENT.md
 ├── COLLECTION-REVIEW.md
 ├── FINAL-SKILL-REVIEW.md
+├── REVIEW-REPORT.md
 ├── docs/
 ├── .github/workflows/validate.yml
 ├── evals/
@@ -665,9 +668,9 @@ skills/
 │   ├── assets/
 │   │   ├── penta-pro-template.md
 │   │   ├── product.md
-│   │   ├── proof.md
 │   │   ├── project.md
 │   │   ├── production.md
+│   │   ├── proof.md
 │   │   └── process.md
 │   ├── evals/
 │   └── references/
@@ -708,10 +711,11 @@ Authoring was checked against [OpenAI's skill guide](https://learn.chatgpt.com/d
 
 Install the maintainer dependency with `python3 -m pip install -r scripts/requirements-validation.txt` in a development environment. Run `python3 scripts/validate_collection.py` from this repository root. It checks frontmatter, local inline links and ATX-heading anchors outside fenced examples, catalog versions, licenses, installation coverage, and supported optional `agents/openai.yaml` fields. Relative links in shipped packages must resolve inside the package, including after a standalone install. Refer to optional companions by name and give maintainers upstream links for provenance. The [validation workflow](.github/workflows/validate.yml) runs the collection gate and offline Python and Node helper tests. Model trials and runtime compatibility checks use the [evaluation procedure](SKILL-EVALUATION.md).
 
-To reproduce the local collection checks, use a POSIX development environment with Git, Python 3.12+ and Node.js 24, matching the CI runtime family. After installing the dependency above, run these commands from the collection root. The validator tests use disposable Git inventories and exercise valid and invalid collections. The evaluator lifecycle tests launch bounded local subprocesses; the quiz tests use API doubles and do not publish to GitHub.
+To reproduce the local collection checks, use a POSIX development environment with Git, Python 3.12+ and Node.js 24, matching the CI runtime family. After installing the dependency above, run these commands from the collection root. The validator tests use disposable Git inventories. The evaluator isolation cases need Linux with Bubblewrap and libseccomp, and the OpenSpec cases need the OpenSpec CLI. Check the test summary for skips. The quiz tests use API doubles. [Evaluation prerequisites](SKILL-EVALUATION.md)
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/validate_collection.py
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/run_skill_evals.py --check-cases
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts/tests -v
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s ui-design/scripts/tests -v
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s pr-quiz/scripts/tests -v
@@ -750,13 +754,12 @@ All 22 packages use the [MIT License](LICENSE) and include a copy of its notice.
 
 The source research for [PentaPRO](penta-pro/references/sources.md), [Peer Review](peer-review/references/sources.md), [Cybersecurity](cybersec/references/sources.md), and [UI Design](ui-design/references/sources.md) records their inputs and adaptation decisions. [Third-party notices](THIRD-PARTY-NOTICES.md) preserve upstream attribution; the repository license does not relicense external articles. Attribution does not imply affiliation, endorsement, or a runtime dependency.
 
-## Data Privacy
+## Data privacy
 
-- **No personal data** is collected
-- **No cookies** are used for tracking
-- Test results are stored **only in your browser's localStorage**
-- **No server-side** storage of individual responses
-- Users can clear all data by clearing browser storage
+- The optional UI prototype helper reads local inputs and writes an HTML file. The bundled viewer runs locally and keeps the selected route, theme, and width in the URL fragment.
+- PR Quiz preview runs locally. Publishing writes quiz questions and an encoded answer key to the GitHub PR body. If the optional grader is installed, answers and results can appear in PR checkboxes, comments, and commit statuses. Access and retention follow the repository and GitHub settings.
+- The evaluation runner saves prompts, agent events, and outputs to a local temporary directory. Model trials send the supplied prompt and any context selected by the agent to the configured model service. Use synthetic fixtures for collection trials.
+- The agent host, installer, and external tools have their own data policies. The optional Vercel installer documents telemetry settings. [Installer telemetry](https://github.com/vercel-labs/skills#telemetry)
 
 ---
 

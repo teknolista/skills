@@ -49,7 +49,7 @@ class QuizTests(unittest.TestCase):
         for raw in [conflicting,root_duplicate]:
             with self.subTest(raw=raw),tempfile.TemporaryDirectory() as d:
                 p=Path(d)/'q.json';p.write_text(raw)
-                with patch.object(sys,'argv',['publish_quiz.py','123',str(p)]), patch.object(quiz.subprocess,'run',side_effect=AssertionError('No GitHub call expected')):
+                with patch.object(sys,'argv',['publish_quiz.py','123',str(p),'--dry-run']), patch.object(quiz.subprocess,'run',side_effect=AssertionError('No GitHub call expected')):
                     with self.assertRaises(ValueError):quiz.main()
     def test_replacement_preserves_outside_text_and_backslashes(self):
         body='Maintainer note\n'+quiz.START+'\nold\n'+quiz.END+'\nDo not lose this.'
@@ -84,18 +84,28 @@ class QuizTests(unittest.TestCase):
             fixture = Path(folder) / "quiz.json"
             fixture.write_text(json.dumps(self.fixture()))
             bodies = [self.pr_state(body) for body in ("Original", "Concurrent edit")]
-            with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture)]), \
+            with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture), "--repo", "team/project", "--head", self.head]), \
                  patch.object(quiz, "gh", side_effect=bodies), \
                  patch.object(quiz.subprocess, "run") as edit:
                 with self.assertRaisesRegex(ValueError, "changed before publication"):
                     quiz.main()
                 edit.assert_not_called()
 
+    def test_publication_requires_explicit_repository_and_reviewed_head(self):
+        for flags in ([], ["--repo", "team/project"], ["--head", self.head]):
+            args = ["publish_quiz.py", "123", "unneeded.json", *flags]
+            with self.subTest(flags=flags), patch.object(sys, "argv", args), \
+                 patch.object(quiz.subprocess, "run") as request, patch("sys.stderr"):
+                with self.assertRaises(SystemExit) as exit_status:
+                    quiz.main()
+                self.assertEqual(exit_status.exception.code, 2)
+                request.assert_not_called()
+
     def test_publication_checks_result_without_overwriting_again(self):
         with tempfile.TemporaryDirectory() as folder:
             fixture = Path(folder) / "quiz.json"
             fixture.write_text(json.dumps(self.fixture()))
-            with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture)]), \
+            with patch.object(sys, "argv", ["publish_quiz.py", "123", str(fixture), "--repo", "team/project", "--head", self.head]), \
                  patch.object(quiz, "gh", return_value=self.pr_state("Unchanged")), \
                  patch.object(quiz.subprocess, "run") as edit:
                 with self.assertRaisesRegex(ValueError, "could not be confirmed"):
@@ -107,7 +117,7 @@ class QuizTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             fixture = Path(folder) / "quiz.json"
             fixture.write_text(json.dumps(self.fixture()))
-            args = ["publish_quiz.py", "123", str(fixture), "--head", self.head]
+            args = ["publish_quiz.py", "123", str(fixture), "--repo", "team/project", "--head", self.head]
             newer = self.pr_state(head="b" * 40)
             for states in ([newer], [self.pr_state(), newer]):
                 with self.subTest(states=len(states)), patch.object(sys, "argv", args), \

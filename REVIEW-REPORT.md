@@ -1,5 +1,7 @@
 # Skill Review Report
 
+This historical report records recommendations against earlier package revisions. The maintenance review tracks subsequent changes and verification. [Final skill maintenance review](FINAL-SKILL-REVIEW.md)
+
 ## Project Overview
 
 This repository contains **22 skills** for assisting developers in building high-quality software with AI coding agents. The skills cover the full software development lifecycle: specification (PentaPRO), implementation (HTTP API, MCP, Android), testing (unit, integration, UI), review (Peer Review, Cybersecurity), delivery (Git Delivery, Software Delivery, Production Operations), and guidance (Agent Instructions, PR Quiz).

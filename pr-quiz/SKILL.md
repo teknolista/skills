@@ -3,7 +3,7 @@ name: pr-quiz
 description: Create or regenerate a decision-comprehension quiz for a GitHub pull request when explicitly requested. Use for PR quizzes or their optional grading workflow; not code review, security assessment, test validation, or automatic action after creating a PR.
 license: MIT
 metadata:
-  version: "1.3.0"
+  version: "2.0.0"
 ---
 
 # PR Decision Quiz
@@ -51,7 +51,7 @@ python3 /installed/path/pr-quiz/scripts/publish_quiz.py 123 /tmp/quiz.json \
   --repo OWNER/REPO --head "$REVIEWED_SHA"
 ```
 
-Dry-run is local and does not call GitHub. Publishing needs Python, `gh`, a resolved target repository and its actual write permission. Set REVIEWED_SHA to the full head SHA used to draft the quiz. Use HOST/OWNER/REPO for a GitHub Enterprise host when applicable. The script preserves surrounding PR text and replaces exactly one well-formed quiz block; a regenerated ID invalidates earlier quiz passes. Report the PR URL and question count, without displaying the key as an answer aid.
+Dry-run runs locally and can run without `gh`. Publishing requires Python, `gh`, write access to the target PR, and both `--repo` and `--head`. Set REVIEWED_SHA to the full head SHA used to draft the quiz. Use HOST/OWNER/REPO for a GitHub Enterprise host when applicable. The script preserves surrounding PR text and replaces exactly one well-formed quiz block; a regenerated ID invalidates earlier quiz passes. Report the PR URL and question count, without displaying the key as an answer aid.
 
 ## Optional grading workflow
 

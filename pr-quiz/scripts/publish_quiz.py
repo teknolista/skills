@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Render a multiple-choice quiz into a PR description.
 
-Usage: publish_quiz.py <pr-number> <quiz.json> [--repo [HOST/]OWNER/REPO] [--head SHA] [--dry-run]
+Preview: publish_quiz.py <pr-number> <quiz.json> --dry-run
+Publish: publish_quiz.py <pr-number> <quiz.json> --repo [HOST/]OWNER/REPO --head SHA
 
 quiz.json:
 {
@@ -135,6 +136,8 @@ def main():
     options = parser.parse_args()
     if not re.fullmatch(r"[1-9][0-9]*", options.pr):
         raise ValueError("PR number must be a positive integer.")
+    if not options.dry_run and (not options.repo or not options.head):
+        parser.error("publication requires --repo and --head")
     if options.head is not None and not re.fullmatch(r"[a-fA-F0-9]{40}", options.head):
         raise ValueError("Expected head must be a full commit SHA.")
     quiz_id, block = render(load_quiz(options.quiz_path))
@@ -143,10 +146,9 @@ def main():
         return
 
     fields = ("--json", "body,headRefOid,url")
-    selector = ("--repo", options.repo) if options.repo else ()
-    original = json.loads(gh("pr", "view", options.pr, *selector, *fields))
+    original = json.loads(gh("pr", "view", options.pr, "--repo", options.repo, *fields))
     url, head = original["url"], original["headRefOid"]
-    if options.head and options.head.lower() != head:
+    if options.head.lower() != head:
         raise ValueError("PR head differs from the revision used to draft the quiz.")
     updated = replace_quiz(original["body"] or "", block)
     if json.loads(gh("pr", "view", url, *fields)) != original:
